@@ -91,6 +91,7 @@ module.exports=function(app) {
             user.email = req.body.email;
             user.age = req.body.age;
             user.nation = req.body.nation;
+            user.elements=req.body.elements;
 
             user.save(function (err) {
                 if (!err) {
