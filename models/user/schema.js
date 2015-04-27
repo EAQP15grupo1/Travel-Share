@@ -12,7 +12,11 @@ var schema = new Schema({
         password: {type: String},
         email: {type: String},
         age: {type: Number},
-        nation:{type:String}
+        nation:{type:String},
+        elements:{
+                    offers:[{type:String}],
+                    needs:[{type:String}]
+        }
     },
     {versionKey: false});
 

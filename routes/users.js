@@ -38,7 +38,8 @@ module.exports=function(app) {
             password: req.body.password,
             email: req.body.email,
             age: req.body.age,
-            nation: req.body.nation
+            nation: req.body.nation,
+            elements:req.body.elements
 
         });
 
