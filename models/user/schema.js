@@ -13,10 +13,10 @@ var schema = new Schema({
         email: {type: String},
         age: {type: Number},
         nation:{type:String},
-        elements:{
-                    offers:[{type:String}],
-                    needs:[{type:String}]
-        }
+        offers:[{type:String, enum:['Deporte','Fiesta','Cultura','Compañia','Trabajo']}],
+        needs:[{type:String, enum:['Deporte','Fiesta','Cultura','Compañia','Trabajo']}],
+        descrip:{type:String}
+
     },
     {versionKey: false});
 

@@ -10,8 +10,8 @@ var schema = new Schema({
         eventname: {type: String},
         tag:{type:String, enum:['Deporte','Fiesta','Cultura','Compañia','Trabajo']},
         tag2:{type:String},
-        owner:{type:mongoose.Schema.Types.Mixed, ref: 'User', denormalize: ['nick', 'email']},
-        participantes:[{type:mongoose.Schema.Types.Mixed, ref: 'User', denormalize: ['nick', 'email']}],
+        owner:{type:Schema.Types.ObjectId, ref: 'User'},
+        attendees:[{type: Schema.Types.ObjectId, ref: 'User'}],
         place:[{type:Number}],
         date:{type:String}
     },

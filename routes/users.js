@@ -39,7 +39,9 @@ module.exports=function(app) {
             email: req.body.email,
             age: req.body.age,
             nation: req.body.nation,
-            elements:req.body.elements
+            needs:req.body.needs,
+            offers:req.body.offers,
+            descrip:req.body.descrip
 
         });
 
@@ -82,7 +84,7 @@ module.exports=function(app) {
         console.log('UPDATE user');
         User.findOneAndUpdate({"_id": req.params._id},req.body, function (err, user) {
             console.log(user._id);
-            
+
             user.set(function (err) {
                 if (!err) {
                     console.log('Updated');
