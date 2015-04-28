@@ -95,19 +95,8 @@ module.exports=function(app) {
 
     updateEvent = function (req, res) {
         console.log('UPDATE event');
-        Event.findOne({"_id": req.params._id}, function (err, event) {
+        Event.findOneAndUpdate({"_id": req.params._id},req.body, function (err, event) {
             console.log(event._id);
-
-
-            //permitimos al usuario modificar los siguientes campos
-
-            event.eventname = req.body.eventname;
-            event.tag = req.body.tag;
-            event.tag2 = req.body.tag2;
-            event.participantes = req.body.participantes;
-            event.place = req.body.place;
-            event.date = req.body.date;
-
 
             event.save(function (err) {
                 if (!err) {
