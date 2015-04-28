@@ -78,6 +78,7 @@ module.exports=function(app) {
     }
 
 
+
     //Get por tag
     findByTag = function(req,res){
         Event.find({"tag":req.params.tag}, function(err, events){
@@ -131,4 +132,5 @@ module.exports=function(app) {
     app.delete('/event/:_id', deleteEvent);
     app.get('/events/:tag', findByTag);
     app.put('/event/:_id',updateEvent);
+
 }

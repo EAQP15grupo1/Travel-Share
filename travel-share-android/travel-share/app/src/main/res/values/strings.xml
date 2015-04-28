@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Strings -->
+    <string name="app_name">travel-share</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Login Acitivy -->
+    <string name="login_l_username">Usuario</string>
+    <string name="login_l_password">Contraseña</string>
+    <string name="login_l_signin">Entrar</string>
+    <string name="login_l_register">Registro en TravelShare</string>
+
+    <!-- CreateUser Activity -->
+    <string name="create_user_username_tv">Usuario:</string>
+    <string name="create_user_username_hint">Máx 20 caracteres</string>
+    <string name="create_user_nationality_tv">Nacionalidad:</string>
+    <string name="create_user_nationality_hint">¿De dónde eres?</string>
+    <string name="create_user_name_tv">Nombre:</string>
+    <string name="create_user_name_hint">Nombre real</string>
+    <string name="create_user_email_tv">Email:</string>
+    <string name="create_user_email_hint">Escribe tu email</string>
+    <string name="create_user_password_tv">Contraseña:</string>
+    <string name="create_user_password2_tv">Repite la contraseña:</string>
+    <string name="create_user_password_hint">**********</string>
+    <string name="create_user_btn">Crear usuario</string>
+
+    <!-- Main activity -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+</resources>

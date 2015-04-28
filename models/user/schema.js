@@ -12,7 +12,15 @@ var schema = new Schema({
         password: {type: String},
         email: {type: String},
         age: {type: Number},
+<<<<<<< HEAD
         nation:{type:String}
+=======
+        nation:{type:String},
+        elements:{
+                    offers:[{type:String}],
+                    needs:[{type:String}]
+        }
+>>>>>>> 042ec5f75bcc977e82d603217cdcb7002c307938
     },
     {versionKey: false});
 
