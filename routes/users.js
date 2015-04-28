@@ -38,7 +38,8 @@ module.exports=function(app) {
             password: req.body.password,
             email: req.body.email,
             age: req.body.age,
-            nation: req.body.nation
+            nation: req.body.nation,
+            elements:req.body.elements
 
         });
 
@@ -90,6 +91,7 @@ module.exports=function(app) {
             user.email = req.body.email;
             user.age = req.body.age;
             user.nation = req.body.nation;
+            user.elements=req.body.elements;
 
             user.save(function (err) {
                 if (!err) {
