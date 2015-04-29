@@ -8,11 +8,12 @@ var mongoose = require('mongoose'),
 //cuidado porque las referencias parece que solo funcionan con ObjectId
 var schema = new Schema({
         eventname: {type: String},
-        tag:{type:String},
-        owner:{ type: String, ref: 'User'},
+        tag:{type:String, enum:['Deporte','Fiesta','Cultura','Compa�ia','Trabajo']},
+        tag2:{type:String},
+        owner:{type:Schema.Types.ObjectId, ref: 'User'},
+        attendees:[{type: Schema.Types.ObjectId, ref: 'User'}],
         place:[{type:Number}],
-        date:{type:String},
-        attendees:[{ type: Schema.Types.ObjectId, ref: 'User' }]
+        date:{type:String}
     },
     {versionKey: false});
 

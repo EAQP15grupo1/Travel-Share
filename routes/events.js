@@ -37,7 +37,9 @@ module.exports=function(app) {
         var event = new Event({
             eventname: req.body.eventname,
             tag:req.body.tag,
+            tag2:req.body.tag2,
             owner:req.body.owner,
+            participantes:req.body.participantes,
             place:req.body.place,
             date:req.body.date,
             attendees:req.body.attendees
@@ -78,10 +80,47 @@ module.exports=function(app) {
 
 
 
+    //Get por tag
+    findByTag = function(req,res){
+        Event.find({"tag":req.params.tag}, function(err, events){
+            if(!err){
+                res.send(events);
+            }else{
+
+                console.log('ERROR:'+err);
+            }
+        });
+    };
+
+    //UPDATE
+
+    updateEvent = function (req, res) {
+        console.log('UPDATE event');
+        Event.findOneAndUpdate({"_id": req.params._id},req.body, function (err, event) {
+            console.log(event._id);
+
+            event.save(function (err) {
+                if (!err) {
+                    console.log('Updated');
+                }
+                else {
+                    console.log('ERROR' + err);
+                }
+
+            })
+        });
+
+        res.send('Event Modified');
+    }
+
+
 //endpoints
 
     app.get('/events', findAllEvents);
     app.get('/event/:_id',findEvent);
     app.post('/event', addEvent);
     app.delete('/event/:_id', deleteEvent);
+    app.get('/events/:tag', findByTag);
+    app.put('/event/:_id',updateEvent);
+
 }

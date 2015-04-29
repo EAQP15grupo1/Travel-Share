@@ -39,7 +39,9 @@ module.exports=function(app) {
             email: req.body.email,
             age: req.body.age,
             nation: req.body.nation,
-            elements:req.body.elements
+            needs:req.body.needs,
+            offers:req.body.offers,
+            descrip:req.body.descrip
 
         });
 
@@ -80,20 +82,10 @@ module.exports=function(app) {
 
     updateUser = function (req, res) {
         console.log('UPDATE user');
-        User.findOne({"_id": req.params._id}, function (err, user) {
+        User.findOneAndUpdate({"_id": req.params._id},req.body, function (err, user) {
             console.log(user._id);
 
-            //permitimos al usuario modificar los siguientes campos
-
-            user.nick = req.body.nick;
-            user.username = req.body.username;
-            user.password = req.body.password;
-            user.email = req.body.email;
-            user.age = req.body.age;
-            user.nation = req.body.nation;
-            user.elements=req.body.elements;
-
-            user.save(function (err) {
+            user.set(function (err) {
                 if (!err) {
                     console.log('Updated');
                 }
