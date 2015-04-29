@@ -5,15 +5,15 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-
+//cuidado porque las referencias parece que solo funcionan con ObjectId
 var schema = new Schema({
         eventname: {type: String},
         tag:{type:String},
-        owner:{type:mongoose.Schema.Types.Mixed, ref: 'User', denormalize: ['nick', 'email']},
+        owner:{ type: String, ref: 'User'},
         place:[{type:Number}],
-        date:{type:String}
+        date:{type:String},
+        attendees:[{ type: Schema.Types.ObjectId, ref: 'User' }]
     },
     {versionKey: false});
-
 
 module.exports = mongoose.model('Event', schema);

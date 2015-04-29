@@ -20,5 +20,4 @@ var schema = new Schema({
     },
     {versionKey: false});
 
-
 module.exports = mongoose.model('User', schema);

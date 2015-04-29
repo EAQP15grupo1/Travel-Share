@@ -39,7 +39,8 @@ module.exports=function(app) {
             tag:req.body.tag,
             owner:req.body.owner,
             place:req.body.place,
-            date:req.body.date
+            date:req.body.date,
+            attendees:req.body.attendees
         });
 
         event.save(function (err) {
