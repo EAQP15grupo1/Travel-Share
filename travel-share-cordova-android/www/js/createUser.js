@@ -52,21 +52,7 @@ $("#button").click(function () {
     var dataOK = JSON.stringify(o);
     window.alert(dataOK);
 
-    $.ajax({
-        type: "POST",
-        url: "localhost:3000/users",
-        data: formData,
-        success: function () {
-        },
-        dataType: "json",
-        contentType: "application/json"
-    });
-
-    $.ajax({
-        url: "http://localhost:3000/users",
-        type: 'POST',
-        crossDomain: true,
-        dataType: 'json',
+    $.post("http://localhost:3000/users", {
         contentType: 'application/json',
         data: dataOK
     }).done(function (data, status, jqxhr) {
