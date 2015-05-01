@@ -1,7 +1,7 @@
 /**
  * Created by Alejandro on 21/4/15.
  */
-module.exports=function(app) {
+module.exports = function (app) {
 
     var Event = require('../models/event/schema.js');
 
@@ -34,15 +34,31 @@ module.exports=function(app) {
         console.log('POST Event');
         console.log(req.body);
 
+        var color = "";
+        if (req.body.tag == "Deporte") {
+            color = "#FFCC66";
+        } else if (req.body.tag == "Fiesta") {
+            color = "#FFCCFF";
+        } else if (req.body.tag == "Cultura") {
+            color = "#99CCFF";
+        } else if (req.body.tag == "Compania") {
+            color = "#99FF99";
+        } else if (req.body.tag == "Trabajo") {
+            color = "#E4E4E4";
+        } else if (req.body.tag == "Musica") {
+            color = "#FFFF99";
+        }
+
         var event = new Event({
             eventname: req.body.eventname,
-            tag:req.body.tag,
-            tag2:req.body.tag2,
-            owner:req.body.owner,
-            participantes:req.body.participantes,
-            place:req.body.place,
-            date:req.body.date,
-            attendees:req.body.attendees
+            tag: req.body.tag,
+            tag2: req.body.tag2,
+            color: color,
+            owner: req.body.owner,
+            participantes: req.body.participantes,
+            place: req.body.place,
+            date: req.body.date,
+            attendees: req.body.attendees
         });
 
         event.save(function (err) {
@@ -79,15 +95,14 @@ module.exports=function(app) {
     }
 
 
-
     //Get por tag
-    findByTag = function(req,res){
-        Event.find({"tag":req.params.tag}, function(err, events){
-            if(!err){
+    findByTag = function (req, res) {
+        Event.find({"tag": req.params.tag}, function (err, events) {
+            if (!err) {
                 res.send(events);
-            }else{
+            } else {
 
-                console.log('ERROR:'+err);
+                console.log('ERROR:' + err);
             }
         });
     };
@@ -96,7 +111,7 @@ module.exports=function(app) {
 
     updateEvent = function (req, res) {
         console.log('UPDATE event');
-        Event.findOneAndUpdate({"_id": req.params._id},req.body, function (err, event) {
+        Event.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, event) {
             console.log(event._id);
 
             event.save(function (err) {
@@ -117,10 +132,10 @@ module.exports=function(app) {
 //endpoints
 
     app.get('/events', findAllEvents);
-    app.get('/event/:_id',findEvent);
+    app.get('/event/:_id', findEvent);
     app.post('/event', addEvent);
     app.delete('/event/:_id', deleteEvent);
     app.get('/events/:tag', findByTag);
-    app.put('/event/:_id',updateEvent);
+    app.put('/event/:_id', updateEvent);
 
 }

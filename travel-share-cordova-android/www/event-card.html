@@ -47,10 +47,6 @@
                 right: 3px;
                 color: #636363;
             }
-
-            :host([favorite]) core-icon-button {
-                color: #da4336;
-            }
         </style>
 
         <div class="card-header" layout horizontal center>
@@ -61,29 +57,15 @@
         </div>
 
         <core-icon-button
-                id="favicon"
-                icon="favorite"
-                on-tap="{{favoriteTapped}}">
+                id="icon"
+                icon="arrow-forward"
+                on-tap="{{buttonTapped}}">
         </core-icon-button>
 
         <content></content>
     </template>
 
-    <script>
-        Polymer({
-            publish: {
-                favorite: {
-                    value: false,
-                    reflect: true
-                }
-            },
-            favoriteTapped: function (event, detail, sender) {
-                this.favorite = !this.favorite;
-                this.fire('favorite-tap');
-            }
-        });
-    </script>
-
+    <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>
 
 
@@ -109,12 +91,9 @@
 
         <div layout vertical center>
             <template repeat="{{event in events}}">
-                <event-card
-                        favorite="{{event.favorite}}"
-                        on-favorite-tap="{{handleFavorite}}"
-                        hidden?="{{show == 'favorites' && !event.favorite}}">
-                    <!--<img src="{{event.avatar}}" width="70" height="70">-->
-
+                <event-card style="background-color: {{event.color}}"
+                            hidden?="{{hidden && isCardHidden}}">
+                    <!--<event-card tag="{{event.tag}}">-->
                     <h2>{{event.eventname}}</h2>
 
                     <div horizontal start-justified layout>
@@ -130,14 +109,7 @@
         </div>
     </template>
 
-    <script>
-        Polymer({
-            handleFavorite: function (event, detail, sender) {
-                var event = sender.templateInstance.model.event;
-                this.$.service.setFavorite(event.uid, event.favorite);
-            }
-        });
-    </script>
+    <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>
 
 
@@ -161,19 +133,6 @@
                    handleAs="json">
         </core-ajax>
     </template>
-    <script>
-        Polymer('event-service', {
-            created: function () {
-                this.events = [];
-            },
-            eventsLoaded: function () {
-                // Make a copy of the loaded data
-                this.events = this.$.ajax.response.slice(0);
-            },
-            setFavorite: function (uid, isFavorite) {
-                // no service backend, just log the change
-                console.log('Favorite changed: ' + uid + ", now: " + isFavorite);
-            }
-        });
-    </script>
+
+    <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>
