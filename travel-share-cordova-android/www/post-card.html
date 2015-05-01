@@ -1,0 +1,182 @@
+<!-- Everything related to the post-card-->
+
+<!-- Single post-card-->
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+
+<polymer-element name="post-card">
+    <template>
+        <style>
+            :host {
+                display: block;
+                position: relative;
+                background-color: white;
+                padding: 20px;
+                width: 100%;
+                font-size: 1.2rem;
+                font-weight: 300;
+            }
+
+            .card-header {
+                margin-bottom: 10px;
+            }
+
+            polyfill-next-selector {
+                content: '.card-header h2';
+            }
+
+            .card-header ::content h2 {
+                margin: 0;
+                font-size: 1.8rem;
+                font-weight: 300;
+            }
+
+            polyfill-next-selector {
+                content: '.card-header img';
+            }
+
+            .card-header ::content img {
+                width: 70px;
+                border-radius: 50%;
+                margin: 10px;
+            }
+
+            core-icon-button {
+                position: absolute;
+                top: 3px;
+                right: 3px;
+                color: #636363;
+            }
+
+            :host([favorite]) core-icon-button {
+                color: #da4336;
+            }
+        </style>
+
+        <div class="card-header" layout horizontal center>
+
+            <!--<content select="img"></content>-->
+            <content select="h2"></content>
+
+        </div>
+
+        <core-icon-button
+                id="favicon"
+                icon="favorite"
+                on-tap="{{favoriteTapped}}">
+        </core-icon-button>
+
+        <content></content>
+    </template>
+
+    <script>
+        Polymer({
+            publish: {
+                favorite: {
+                    value: false,
+                    reflect: true
+                }
+            },
+            favoriteTapped: function (post, detail, sender) {
+                this.favorite = !this.favorite;
+                this.fire('favorite-tap');
+            }
+        });
+    </script>
+
+</polymer-element>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+<!-- List of post-card-->
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<polymer-element name="post-list" attributes="show">
+    <template>
+        <style>
+            :host {
+                display: block;
+                width: 100%;
+            }
+
+            post-card {
+                margin-bottom: 30px;
+            }
+        </style>
+
+        <post-service id="service" posts="{{posts}}"></post-service>
+
+        <div layout vertical center>
+            <template repeat="{{post in posts}}">
+                <post-card
+                        favorite="{{post.favorite}}"
+                        on-favorite-tap="{{handleFavorite}}"
+                        hidden?="{{show == 'favorites' && !post.favorite}}">
+                    <!--<img src="{{post.avatar}}" width="70" height="70">-->
+
+                    <h2>{{post.username}}</h2>
+
+                    <p>{{post.text}}</p>
+                </post-card>
+            </template>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            handleFavorite: function (post, detail, sender) {
+                var post = sender.templateInstance.model.post;
+                this.$.service.setFavorite(post.uid, post.favorite);
+            }
+        });
+    </script>
+</polymer-element>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+<!-- Getting data from server and sending to post-card list-->
+<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="post-service" attributes="posts">
+    <template>
+        <style>
+            :host {
+                display: none;
+            }
+        </style>
+        <!-- http://192.168.2.103:3000/users -->
+        <core-ajax id="ajax"
+                   auto
+                   url="posts.json"
+                   on-core-response="{{postsLoaded}}"
+                   handleAs="json">
+        </core-ajax>
+    </template>
+    <script>
+        Polymer('post-service', {
+            created: function () {
+                this.posts = [];
+            },
+            postsLoaded: function () {
+                // Make a copy of the loaded data
+                this.posts = this.$.ajax.response.slice(0);
+            },
+            /**
+             * Update the service with the current favorite value.
+             * (Two-way data binding updates the favorite value
+             * stored locally.) If this was a real service, this
+             * method would do something useful.
+             *
+             * @method setFavorite
+             * @param uid {Number} Unique ID for post.
+             * @param isFavorite {Boolean} True if the user marked this post as a favorite.
+             */
+            setFavorite: function (uid, isFavorite) {
+                // no service backend, just log the change
+                console.log('Favorite changed: ' + uid + ", now: " + isFavorite);
+            }
+        });
+    </script>
+</polymer-element>
