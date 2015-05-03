@@ -1,10 +1,7 @@
 // event-card
-
-// Posible solución: función que compare con lista y cambie el valor hidden en consecuencia
-
 Polymer({
     publish: {
-        hidden: true
+        hidden: "false"
     },
     buttonTapped: function (event, detail, sender) {
         window.location.href = 'createUser.html';
@@ -24,5 +21,3 @@ Polymer('event-service', {
         return true;
     }
 });
-
-//Polymer({}); //event-list

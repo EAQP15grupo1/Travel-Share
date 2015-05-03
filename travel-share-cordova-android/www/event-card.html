@@ -91,10 +91,10 @@
 
         <div layout vertical center>
             <template repeat="{{event in events}}">
-                <event-card style="background-color: {{event.color}}"
-                            hidden?="{{hidden && isCardHidden}}">
+                <event-card tag="{{event.tag}}" style="background-color: {{event.color}}"
+                            hidden?="{{isHidden}}" tag="{{event.eventname}}">
                     <!--<event-card tag="{{event.tag}}">-->
-                    <h2>{{event.eventname}}</h2>
+                    <h2>{{event.eventname}} {{tag}} {{isHidden}}</h2>
 
                     <div horizontal start-justified layout>
                         <div>{{event.tag}}</div>
