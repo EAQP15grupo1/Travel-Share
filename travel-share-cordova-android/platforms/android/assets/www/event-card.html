@@ -65,14 +65,7 @@
         <content></content>
     </template>
 
-    <script>
-        Polymer({
-            buttonTapped: function (event, detail, sender) {
-                window.location.href = 'createUser.html';
-            }
-        });
-    </script>
-
+    <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>
 
 
@@ -98,9 +91,10 @@
 
         <div layout vertical center>
             <template repeat="{{event in events}}">
-                <event-card style="background-color: {{event.color}}">
+                <event-card tag="{{event.tag}}" style="background-color: {{event.color}}"
+                            hidden?="{{isHidden}}" tag="{{event.eventname}}">
                     <!--<event-card tag="{{event.tag}}">-->
-                    <h2>{{event.eventname}}</h2>
+                    <h2>{{event.eventname}} {{tag}} {{isHidden}}</h2>
 
                     <div horizontal start-justified layout>
                         <div>{{event.tag}}</div>
@@ -115,10 +109,7 @@
         </div>
     </template>
 
-    <script>
-        Polymer({});
-    </script>
-
+    <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>
 
 
@@ -142,15 +133,6 @@
                    handleAs="json">
         </core-ajax>
     </template>
-    <script>
-        Polymer('event-service', {
-            created: function () {
-                this.events = [];
-            },
-            eventsLoaded: function () {
-                // Make a copy of the loaded data
-                this.events = this.$.ajax.response.slice(0);
-            }
-        });
-    </script>
+
+    <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>

@@ -4,7 +4,7 @@ Polymer({
         hidden: "false"
     },
     buttonTapped: function (event, detail, sender) {
-        window.location.href = 'createUser.html';
+        window.location.href = 'eventDetail.html';
     }
 });
 
