@@ -13,9 +13,9 @@ var schema = new Schema({
         email: {type: String},
         age: {type: Number},
         nation:{type:String},
-        offers:[{type:String, enum:['Deporte','Fiesta','Cultura','Compañia','Trabajo']}],
-        needs:[{type:String, enum:['Deporte','Fiesta','Cultura','Compañia','Trabajo']}],
-        descrip:{type:String}
+        offers:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
+        needs:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
+        description:{type:String}
 
     },
     {versionKey: false});
