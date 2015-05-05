@@ -1,7 +1,7 @@
 // event-card
 Polymer({
     publish: {
-        hidden: "false"
+        isHidden: "false"
     },
     buttonTapped: function (event, detail, sender) {
         window.location.href = 'eventDetail.html';

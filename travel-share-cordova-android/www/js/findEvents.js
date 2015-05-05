@@ -61,3 +61,27 @@ document.querySelector("#cultureBtn").addEventListener('change', function () {
         window.alert(arrayTags);
     }
 });
+
+$("#filterBtn").click(function () {
+    // PRUEBAS DE CÓDIGO
+
+    //window.alert("HOLA");
+
+    //var element = document.querySelector('event-service');
+    //element.tags = {'name':'Web Guru','email':'guru@example.com'};
+
+    //Otro posible código
+
+    //var data = [{"tag": "Deporte"}, {"tag": "Trabajo"}];
+    //var tags = {"tags": data};
+    ////window.alert(JSON.stringify(tags));
+    //
+    //var ajax = document.querySelector('event-service');
+    //
+    //ajax.method = 'POST';
+    //ajax.handleAs = 'JSON';
+    //ajax.contentType = 'application/json';
+    //ajax.params = JSON.stringify(tags);
+    //
+    //ajax.go();
+});
