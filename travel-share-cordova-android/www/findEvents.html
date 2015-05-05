@@ -18,6 +18,7 @@
     <link rel="import" href="bower_components/paper-toast/paper-toast.html">
     <link rel="import" href="bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
     <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
     <link rel="import" href="bower_components/font-roboto/roboto.html">
@@ -27,7 +28,6 @@
     <link rel="import" href="event-card.html">
 
     <style>
-
         body {
             font-family: sans-serif;
             margin: 8px 24px;
@@ -117,12 +117,23 @@
     </style>
 
     <style>
+        .wrapper {
+            padding: 20px;
+            text-align: right;
+        }
+
+        paper-button.colored[raised] {
+            background: none repeat scroll 0% 0% #CCCCFF;
+            color: #000000;
+            margin: 20px;
+            width: 120px;
+        }
+
         paper-fab {
             position: fixed;
             right: 40px;
             bottom: 40px;
             background-color: #03a9f4;
-
         }
     </style>
 
@@ -147,27 +158,34 @@
         <div class="content">
             <div center="" horizontal="" layout="">
                 <div flex="">Deporte</div>
-                <paper-toggle-button class="sport" touch-action="pan-y" checked="true"></paper-toggle-button>
+                <paper-toggle-button id="sportBtn" class="sport" touch-action="pan-y"
+                                     checked="true"></paper-toggle-button>
             </div>
             <p></p>
 
             <div center="" horizontal="" layout="">
                 <div flex="">Música</div>
-                <paper-toggle-button class="music" touch-action="pan-y" checked="true"></paper-toggle-button>
+                <paper-toggle-button id="musicBtn" class="music" touch-action="pan-y"
+                                     checked="true"></paper-toggle-button>
             </div>
             <p></p>
 
             <div center="" horizontal="" layout="">
                 <div flex="">Trabajo</div>
-                <paper-toggle-button class="job" touch-action="pan-y" checked="true"></paper-toggle-button>
+                <paper-toggle-button id="jobBtn" class="job" touch-action="pan-y" checked="true"></paper-toggle-button>
             </div>
             <p></p>
 
             <div center="" horizontal="" layout="">
                 <div flex="">Cultura</div>
-                <paper-toggle-button class="culture" touch-action="pan-y" checked="true"></paper-toggle-button>
+                <paper-toggle-button id="cultureBtn" class="culture" touch-action="pan-y"
+                                     checked="true"></paper-toggle-button>
             </div>
         </div>
+
+        <section class="wrapper">
+            <paper-button id="createBtn" class="colored" raised="true">Crear</paper-button>
+        </section>
 
     </core-collapse>
 
@@ -194,17 +212,8 @@
 
 </core-header-panel>
 
-<script>
-    var tabs = document.querySelector('paper-tabs');
-    var list = document.querySelector('event-list');
-
-    tabs.addEventListener('core-select', function () {
-        list.show = tabs.selected;
-    });
-    addEvent = function() {
-        window.location.href = 'createEvent.html';
-    }
-</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/findEvents.js"></script>
 
 </body>
 
