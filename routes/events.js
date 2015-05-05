@@ -133,15 +133,16 @@ module.exports = function (app) {
         console.log('POST Advance');
 
         var tag1=req.body.tags[0].tag;
-        var tag2=req.body.tags[1].tag;
-
+        if(req.body.tags[1] == null) {
+            console.log("es null");
+        }else {
+        var tag2 = req.body.tags[1].tag;
+        }
         if(req.body.tags[2] == null){
             console.log("es null");
         }else{
             var tag3=req.body.tags[2].tag;
         }
-        console.log("tag1: "+tag1+" tag2: "+tag2);
-
         Event.find({$or:[{"tag": tag1},{"tag": tag2},{"tag": tag3}]}, function (err, events) {
             if (!err) {
                 res.send(events);
