@@ -65,7 +65,7 @@
         <content></content>
     </template>
 
-    <script type="text/javascript" src="js/findEvents.js"></script>
+    <script type="text/javascript" src="js/event-card.js"></script>
 </polymer-element>
 
 
@@ -109,7 +109,7 @@
         </div>
     </template>
 
-    <script type="text/javascript" src="js/findEvents.js"></script>
+    <script type="text/javascript" src="js/event-card.js"></script>
 </polymer-element>
 
 
@@ -128,11 +128,11 @@
         <!-- http://192.168.2.103:3000/users -->
         <core-ajax id="ajax"
                    auto
-                   url="http://192.168.2.103:3000/events"
+                   url="http://10.189.186.175:3000/events"
                    on-core-response="{{eventsLoaded}}"
                    handleAs="json">
         </core-ajax>
     </template>
 
-    <script type="text/javascript" src="js/findEvents.js"></script>
+    <script type="text/javascript" src="js/event-card.js"></script>
 </polymer-element>

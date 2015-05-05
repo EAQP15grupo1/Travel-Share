@@ -41,7 +41,7 @@ module.exports=function(app) {
             nation: req.body.nation,
             needs:req.body.needs,
             offers:req.body.offers,
-            descrip:req.body.descrip
+            description:req.body.descripion
 
         });
 

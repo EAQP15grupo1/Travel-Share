@@ -19,7 +19,9 @@
     <link rel="import" href="bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
     <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
     <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/polymer/polymer.html">
 
     <!--<link rel="import" href="post-card.html">-->
     <link rel="import" href="event-card.html">
@@ -53,19 +55,19 @@
         }
 
         paper-toggle-button.sport [checked] .toggle {
-            background-color: #FF9933;
+            background-color: #FFCC66;
         }
 
         paper-toggle-button.music [checked] .toggle {
-            background-color: #FFFF66;
+            background-color: #FFFF99;
         }
 
         paper-toggle-button.job [checked] .toggle {
-            background-color: #99FF66;
+            background-color: #E4E4E4;
         }
 
-        paper-toggle-button.party [checked] .toggle {
-            background-color: #FF3399;
+        paper-toggle-button.culture [checked] .toggle {
+            background-color: #99CCFF;
         }
     </style>
 
@@ -114,6 +116,16 @@
         }
     </style>
 
+    <style>
+        paper-fab {
+            position: fixed;
+            right: 40px;
+            bottom: 40px;
+            background-color: #03a9f4;
+
+        }
+    </style>
+
 </head>
 
 <body unresolved>
@@ -152,8 +164,8 @@
             <p></p>
 
             <div center="" horizontal="" layout="">
-                <div flex="">Fiesta</div>
-                <paper-toggle-button class="party" touch-action="pan-y" checked="true"></paper-toggle-button>
+                <div flex="">Cultura</div>
+                <paper-toggle-button class="culture" touch-action="pan-y" checked="true"></paper-toggle-button>
             </div>
         </div>
 
@@ -177,6 +189,9 @@
         <event-list show="all"></event-list>
     </div>
 
+
+    <paper-fab icon="add" onclick="addEvent()"></paper-fab>
+
 </core-header-panel>
 
 <script>
@@ -186,7 +201,11 @@
     tabs.addEventListener('core-select', function () {
         list.show = tabs.selected;
     });
+    addEvent = function() {
+        window.location.href = 'createEvent.html';
+    }
 </script>
+
 </body>
 
 </html>
