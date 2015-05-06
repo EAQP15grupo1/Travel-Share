@@ -1,6 +1,7 @@
 module.exports=function(app) {
 
     var User = require('../models/user/schema.js');
+    var crypto = require('crypto');
 
 //GET users
 
@@ -31,32 +32,45 @@ module.exports=function(app) {
     addUser = function (req, res) {
         console.log('POST user');
         console.log(req.body);
+        var name=req.body.username;
+        var pass = req.body.password
+        var passEncriptada = encriptar(name, pass)
 
-        var user = new User({
-            nick: req.body.nick,
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
-            age: req.body.age,
-            nation: req.body.nation,
-            needs:req.body.needs,
-            offers:req.body.offers,
-            description:req.body.descripion
 
-        });
+        User.findOne({username: name},function(err, user){
 
-        user.save(function (err) {
+            if (!user){
 
-            if (!err) {
-                console.log('User added');
+                var user = new User({
+                    nick: req.body.nick,
+                    username: name,
+                    password: passEncriptada,
+                    email: req.body.email,
+                    age: req.body.age,
+                    nation: req.body.nation,
+                    needs: req.body.needs,
+                    offers: req.body.offers,
+                    description: req.body.descripion
+                });
+                user.save(function (err) {
+
+                    if (!err) {
+                        console.log('User added');
+                    }
+                    else {
+
+                        console.log('ERROR', +err);
+                    }
+                })
+
+            res.send(user._id);
+
             }
-            else {
-
-                console.log('ERROR', +err);
+            else{
+                res.send('Usuario existe!')
             }
+
         })
-        res.send(user._id);
-
     }
 
 //DELETE User
@@ -99,10 +113,41 @@ module.exports=function(app) {
         res.send('User Modified');
     }
 
+    function encriptar(user, pass) {
+
+        // usamos el metodo CreateHmac y le pasamos el parametro user y actualizamos el hash con la password
+        var hmac = crypto.createHmac('sha1', user).update(pass).digest('hex')
+        return hmac
+    }
+
+    //Login
+
+        loginUser = function (req, res){
+            console.log('LOGIN user');
+
+            var name=req.body.username;
+            var pass=req.body.password;
+            var passEncriptada = encriptar(name, pass)
+
+            User.findOne({"username": name}, function (err, user) {
+                if(user){
+                    if(user.password === passEncriptada)
+                        res.send(user)
+                    else
+                        res.send('contraseña incorrecta')
+                        }else{
+                    res.send('No existe este usuario!')
+                }
+
+
+             });
+        }
+
 //endpoints
     app.get('/users', findAllUsers);
     app.get('/user/:_id', findUser);
     app.post('/users', addUser);
     app.put('/user/:_id', updateUser);
-    app.delete('/user/:_id', deleteUser)
+    app.delete('/user/:_id', deleteUser);
+    app.post('/login', loginUser)
 }

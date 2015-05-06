@@ -17,6 +17,7 @@ var schema = new Schema({
         needs:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
         description:{type:String}
 
+
     },
     {versionKey: false});
 
