@@ -26,6 +26,22 @@ html, body, #map-canvas {
     background-color: #ff4060;
 }
 
+.exit-button{
+    top: 0px;
+    right:0px;
+    position: absolute;
+    z-index: 90;
+    text-align: right;
+    background-color: transparent;
+    font-size: 30px;
+    border-color: transparent;
+    outline: none;
+    float: right;
+}
+.fa.fa-times{
+    color: #000000;
+}
+
 
 /*Panel busqueda No incluye el imput y boton */
 #search {
@@ -62,10 +78,10 @@ html, body, #map-canvas {
     margin-left: 12px;
     margin-top: 65px;
     z-index: 99;
-    visibility: hidden;
+    visibility: visible;
 }
 
-/*Panel de informaci�n del marcador*/
+/*Panel de informacion del marcador*/
 #panel_info {
     position: absolute;
     width: 400px;
@@ -73,8 +89,9 @@ html, body, #map-canvas {
     margin-left: 12px;
     margin-top: 65px;
     z-index: 6;
+    border-style: solid;
     background-color: #ffffff;
-    visibility: visible;
+    visibility: hidden;
 }
 
 
@@ -86,6 +103,14 @@ html, body, #map-canvas {
 .fa{
     color: white;
 }
+.join-button{
+    position: absolute;
+    bottom: 10px;
+    left : 10px;
+    width: 100px;
+    height: 40px;
+}
+
 
 /*Panel evento*/
 #panelevento {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Eventos">
 <head>
     <title>Home</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!--Library Angular-->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.3.9/angular-resource.js"></script>
 
 
@@ -36,7 +37,7 @@
 
 
 
-<body>
+<body ng-controller="CargarEventos" as CargarEventos>
     <!--Search-->
     <div id="search">
         <div class="input-group" >
@@ -60,37 +61,48 @@
                  <span class="fa fa-futbol-o" ></span>
              </span>
         </button>
-        <button id="2" onclick="expand(id),Filter('Música')" class="list-group-item list-group-item-info">Música
+        <button id="2" onclick="expand(id),Filter('Musica')" class="list-group-item list-group-item-info">Música
             <span class="badge">
                 <span class="fa fa-music" ></span>
             </span>
         </button>
-        <button id="3" onclick="expand(id),Filter('Cine')" class="list-group-item list-group-item-warning">Cine
+        <button id="3" onclick="expand(id),Filter('Cultura')" class="list-group-item list-group-item-warning">Cultura
             <span class="badge">
                 <span class="fa fa-film" ></span>
             </span>
         </button>
-        <button id="4" onclick="expand(id),Filter('Party')" class="list-group-item list-group-item-danger">Party
+        <button id="4" onclick="expand(id),Filter('Fiesta')" class="list-group-item list-group-item-danger">Fiesta
             <span class="badge">
                 <span class="fa fa-venus-mars" ></span>
             </span>
         </button>
         <!--TagSinFiltro-->
-        <button id="5" onclick="expand(id),Filter('Nada')" class="list-group-item">Sin Filtro
-        </button>
+        <button id="5" onclick="expand(id),Filter('Nada')" class="list-group-item">Sin Filtro</button>
     </div>
 
     <div id="panel_info">
-        <div id="panel">
+        <button class="exit-button" onclick="paneltag()"><i class="fa fa-times"></i></button>
+        <div>
+        <img style="padding: 10px 10px 10px 10px;position: absolute;border-color: #004d40" src="icon/img/perfil2.png">
         </div>
-        <div class="form-group">
-            <label class="col-lg-2 control-label"></label>
-            <div class="col-lg-10">
-                <p class="form-control-static">email@ejemplo.com</p>
-            </div>
+        <div  style="padding-left:20px;height: 100px;margin-left: 100px;padding-top:5%;position: relative;text-align:left">
+            <p ><span id="A"style="font:300% sans-serif"></span></p>
+            <p style="text-align: center"><span id="B"></span></p>
         </div>
+
+        <div style="position: relative;  margin-top: 100px;margin-left: 10px;margin-right: 10px;text-align: justify">
+            <dl class="dl-horizontal">
+                <dt>Descripción:</dt>
+                <dd id="description"></dd>
+                <dt>Fecha:</dt>
+                <dd id="fecha"></dd>
+            </dl>
+        </div>
+
+        <button type="button" onclick="join()" class="btn btn-default btn-lg join-button">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
+        </button>
     </div>
-    <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
 
     <!--Google Map-->
     <div id="map-canvas"></div>
