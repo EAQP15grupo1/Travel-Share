@@ -15,7 +15,8 @@ var schema = new Schema({
         nation:{type:String},
         offers:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
         needs:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
-        descrip:{type:String}
+        description:{type:String}
+
 
     },
     {versionKey: false});

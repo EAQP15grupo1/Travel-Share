@@ -52,13 +52,13 @@ module.exports = function (app) {
         var event = new Event({
             eventname: req.body.eventname,
             tag: req.body.tag,
-            tag2: req.body.tag2,
+            idtag: req.body.idtag,
+            description: req.body.description,
             color: color,
             owner: req.body.owner,
-            participantes: req.body.participantes,
+            attendees: req.body.attendees,
             place: req.body.place,
-            date: req.body.date,
-            attendees: req.body.attendees
+            date: req.body.date
         });
 
         event.save(function (err) {
@@ -128,14 +128,46 @@ module.exports = function (app) {
         res.send('Event Modified');
     }
 
+    //POST advance
+    addAdvance = function (req, res) {
+        console.log('POST Advance');
+
+        var tag1=req.body.tags[0].tag;
+        if(req.body.tags[1] == null) {
+            console.log("es null");
+        }else {
+        var tag2 = req.body.tags[1].tag;
+        }
+        if(req.body.tags[2] == null){
+            console.log("es null");
+        }else{
+            var tag3=req.body.tags[2].tag;
+        }
+        Event.find({$or:[{"tag": tag1},{"tag": tag2},{"tag": tag3}]}, function (err, events) {
+            if (!err) {
+                res.send(events);
+            } else {
+
+                console.log('ERROR:' + err);
+            }
+    });
+
+
+}
+
+
+
+
+
 
 //endpoints
-
+    app.post("/events/advanced", addAdvance);
     app.get('/events', findAllEvents);
     app.get('/event/:_id', findEvent);
     app.post('/event', addEvent);
     app.delete('/event/:_id', deleteEvent);
     app.get('/events/:tag', findByTag);
-    app.put('/event/:_id', updateEvent);
+    app.put('/event/:_id', updateEvent)
+
 
 }
