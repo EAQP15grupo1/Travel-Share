@@ -62,26 +62,37 @@ document.querySelector("#cultureBtn").addEventListener('change', function () {
     }
 });
 
-$("#filterBtn").click(function () {
-    // PRUEBAS DE CÓDIGO
+hidingCarts = function () {
+    var cartas = document.querySelector('event-list');
+    var arrayLength = cartas.events.length;
+    console.log(cartas);
+    for (var i = 0; i < arrayLength; i++) {
+        var arrays = ["Deporte", "Musica"];
+        if ($.inArray(cartas.events[i].tag, arrays) == -1) {
+            window.alert(cartas.events[i].eventname);
+        }
+    }
+};
 
-    //window.alert("HOLA");
-
-    //var element = document.querySelector('event-service');
-    //element.tags = {'name':'Web Guru','email':'guru@example.com'};
-
-    //Otro posible código
-
-    //var data = [{"tag": "Deporte"}, {"tag": "Trabajo"}];
-    //var tags = {"tags": data};
-    ////window.alert(JSON.stringify(tags));
-    //
-    //var ajax = document.querySelector('event-service');
-    //
-    //ajax.method = 'POST';
-    //ajax.handleAs = 'JSON';
-    //ajax.contentType = 'application/json';
-    //ajax.params = JSON.stringify(tags);
-    //
-    //ajax.go();
-});
+//    // PRUEBAS DE CÓDIGO
+//
+//    //window.alert("HOLA");
+//
+//    //var element = document.querySelector('event-service');
+//    //element.tags = {'name':'Web Guru','email':'guru@example.com'};
+//
+//    //Otro posible código
+//
+//    //var data = [{"tag": "Deporte"}, {"tag": "Trabajo"}];
+//    //var tags = {"tags": data};
+//    ////window.alert(JSON.stringify(tags));
+//    //
+//    //var ajax = document.querySelector('event-service');
+//    //
+//    //ajax.method = 'POST';
+//    //ajax.handleAs = 'JSON';
+//    //ajax.contentType = 'application/json';
+//    //ajax.params = JSON.stringify(tags);
+//    //
+//    //ajax.go();
+//});

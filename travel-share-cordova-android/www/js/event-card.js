@@ -1,10 +1,13 @@
 // event-card
 Polymer({
-    publish: {
-        isHidden: "false"
-    },
     buttonTapped: function (event, detail, sender) {
         window.location.href = 'eventDetail.html';
+    },
+    hideCards: function (event, detail, sender) {
+        console.log(this.eventTag);
+        var arrayTags = ["Deporte", "Musica"];
+        if ($.inArray(this.eventTag, arrayTags) == -1)
+            this.setAttribute("hidden", true);
     }
 });
 
@@ -16,8 +19,5 @@ Polymer('event-service', {
     eventsLoaded: function () {
         // Make a copy of the loaded data
         this.events = this.$.ajax.response.slice(0);
-    },
-    isCardHidden: function () {
-        return true;
     }
 });
