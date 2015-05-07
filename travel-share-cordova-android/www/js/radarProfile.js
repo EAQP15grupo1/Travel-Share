@@ -5,7 +5,7 @@ window.onload=getUser();
 function getUser() {
 
     $.ajax({
-        url : "http://10.89.254.7:3000/user/554897823fbb18ee03000001",
+        url : "http://10.89.5.151:3000/user/554897823fbb18ee03000001",
         type : 'GET',
         crossDomain : true,
         dataType: "json",
@@ -16,7 +16,7 @@ function getUser() {
             $("#userNick").text("Nick: "+user.nick);
             $("#userAge").text("Edad: "+user.age);
             $("#userNation").text("Nacionalidad: "+user.nation);
-            $("#userDescription").text(user.descrip);
+            $("#userDescription").text(user.description);
 
 
     }, error: function() {

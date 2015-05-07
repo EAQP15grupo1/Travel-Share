@@ -54,7 +54,9 @@ function loadCircles() {
 
         for (var i = 0; i < circles.length; i++) {
             if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
-                alert('Se abre el perfil de usuario: ' + (circles[i].id));
+                //alert('Se abre el perfil de usuario: ' + (circles[i].id));
+                //window.open('../www/radarProfile.html');
+                window.location='../www/radarProfile.html';
             }
         }
     });

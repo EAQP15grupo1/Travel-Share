@@ -53,7 +53,7 @@ $("#button").click(function () {
     window.alert(dataOK);
 
     $.ajax({
-        url: "http://192.168.1.52:3000/users",
+        url: "http://10.89.5.151:3000/users",
         method: "POST",
         contentType: "application/json",
         data: dataOK
