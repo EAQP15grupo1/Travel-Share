@@ -6,12 +6,21 @@
 var id_click_before = 1
 
 function expand(id_click) {
-    document.getElementById(id_click_before).style.width = '400px'
+    document.getElementById(id_click_before).style.width = '400px';
     //Si el valor es 5(TagSinFiltro)
     if(id_click!=5){
-        document.getElementById(id_click).style.width = '470px'
+        document.getElementById(id_click).style.width = '470px';
         id_click_before=id_click;
     }
+}
+
+function paneltag(){
+    document.getElementById("panel_tag").style.visibility = 'visible';
+    document.getElementById("panel_info").style.visibility = 'hidden';
+}
+
+function join(){
+    alert("Gracias por unirte!");
 }
 
 

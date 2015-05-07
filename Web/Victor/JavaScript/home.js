@@ -2,6 +2,7 @@
  * Created by Miranda on 24/04/2015.
  */
 var map;
+var marcadores=[];
 var markers=[];
 var filteredmarkers=[];
 var geolocation;
@@ -11,76 +12,37 @@ var tags = [{
     id: 0,
     color : "white"
 },{
-    nombre: "deporte",
+    nombre: "Deporte",
     id: 1,
     color : "lightgreen"
 }, {
-    nombre: "música",
+    nombre: "Música",
     id: 2,
     color: "lightskyblue"
 },{
-    nombre: "cine",
+    nombre: "Cultura",
     id: 3,
     color : "yellow"
 },{
-    nombre: "party",
+    nombre: "Fiesta",
     id: 4,
     color: "palevioletred"
 }];
 
-// datos dummy
-var marcadores =[{
-    latitude:41.3850639,
-    longitude:2.1734034999999494,
-    event:'Música', //Categoria
-    tag:2, // "nombre"
-    content:"ir al concierto U2", //Eventname
-    eventid:"2"
-    //date
-}, {
-    latitude:41.3910524,
-    longitude:2.180644900000061,
-    event:'Deporte',
-    tag:1,
-    content:"Busco gente para ir a correr juntos",
-    eventid:"5"
-}, {
-    latitude: 41.278451,
-    longitude: 1.978837,
-    event: 'Party',
-    tag:4,
-    content: "ir al Razz juntos",
-    eventid: "19"
-}, {
-    latitude: 41.302827,
-    longitude: 2.001935,
-    event: 'Cine',
-    tag:3,
-    content: "ver la teoria del todo",
-    eventid: "34"
-},{
-    latitude: 41.380894,
-    longitude: 2.189385,
-    event: 'Deporte',
-    tag:1,
-    content: "Hacer surfing",
-    eventid: "34"
-},  {
-    latitude: 41.3931702,
-    longitude: 2.1639602000000195,
-    event: 'Party',
-    tag:4,
-    content: "Salir a tomar algo",
-    eventid: "7"
-},    {
-    latitude: 41.366186,
-    longitude: 2.116494,
-    event: 'Cine',
-    tag:3,
-    content: "Ir al cine para ver el Jurassic World",
-    eventid: "39"
+//Carga los marcadores de la API
+(function() {
+    var app = angular.module('Eventos', []);
+    app.controller('CargarEventos', ['$http', '$log', function ($http, $log) {
+        $http.get('http://localhost:3000/events').success(function (data) {
+            console.log(data);
+            marcadores = data;
+           /* for (var i = 0; i < data.length; i++) {
+                var object = data[i];
 
-}];
+            }*/
+        });
+    }]);
+})();
 
 
 function initialize() {
@@ -101,9 +63,10 @@ function initialize() {
         navigator.geolocation.getCurrentPosition(function(position) {
             geolocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             var content="You're here";
-            var event="none"
+            var event="none";
+            var detalle = "Tú estas aquí";
             var tag = "0";
-            addMarker(geolocation,content,map,event,tag);
+            addMarker(geolocation,detalle,map,content,event,tag);
             map.panTo(geolocation);
         }, function() {
             handleNoGeolocation(true);
@@ -122,13 +85,16 @@ function initialize() {
     // se añanden los macadores y se añade sus valores
     for (var i = 0, j = marcadores.length; i < j; i++)
     {
-        var content = marcadores[i].content;
-        var event=marcadores[i].event;
-        var tag = marcadores[i].tag;
+        var content = marcadores[i].eventname; // content Salir a tomar algo
+        var event=marcadores[i].tag; //event antes Fiesta
+        var tag = marcadores[i].idtag;
         var detalle="Event: "+event+"<br>"+"Content: "+content;
+        var color = marcadores[i].color;
+        var date = marcadores[i].date;
+        var description = marcadores[i].description;
 
-        var position=new google.maps.LatLng(marcadores[i].latitude,marcadores[i].longitude);
-        addMarker(position,detalle,map,event,tag);
+        var position=new google.maps.LatLng(marcadores[i].place[0],marcadores[i].place[1]);
+        addMarker(position,detalle,map,content,event,tag,color,date,description);
     }
 
     //Creamos el boton de buscar
@@ -137,23 +103,35 @@ function initialize() {
     //var searchBox = new google.maps.places.SearchBox((input));
 }
 
+/*
 function placeMarker(position, map) {
 
     var content="Crear un evento";
     var event="undefined";
+    var detalle = "undefined"
     var tag = 0;
-    addMarker(position,content,map,event,tag);
+    addMarker(position,detalle,map,content,event,tag);
     // Te centra el marcador en el centro del mapa
-}
+}*/
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
-//-----------------------------Modificado por Yifei--------------------------------------------------------------
 
 function info_evento(marker){
- var color = tags[marker.tag].color;
-    document.getElementById("panel_info").style.backgroundColor = color;
+ var color = tags[marker.tag].color; //CAMBIAR ESTO POR EL COLOR QUE VIEN DE LA API
+    document.getElementById("panel_tag").style.visibility = 'hidden';
+    document.getElementById("panel_info").style.visibility = 'visible';
+
+    document.getElementById("panel_info").style.borderColor = color;
+    $(".fa.fa-times").css("color",color);
+
+    document.getElementById("A").innerHTML = marker.event;
+    $("#A").css("color",color);
+    document.getElementById("B").innerHTML = marker.content;
+
+    document.getElementById("description").innerHTML = marker.description;
+    document.getElementById("fecha").innerHTML = marker.date;
     //Etuqueta
     //Titulo
     //Informacion
@@ -170,18 +148,21 @@ function Filter(type)
     filterMarkers(keyWord);
 }
 
-function addMarker(position,detalle,map,evento,tag) {
-
+function addMarker(position,detalle,map,content,evento,tag,color,date,description) {
     var icon = "icon/pos_"+tag+".png"
     var marker= new google.maps.Marker
     ({
         position: position,
         map: map,
-        content:detalle,
+        content:content,
         event: evento,
+        detalle:detalle,
         icon: icon,
         tag : tag,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
+        color : color,
+        date: date,
+        description: description
     });
     pushMarker(marker);
     var infowindow2 = new google.maps.InfoWindow
@@ -198,13 +179,13 @@ function addMarker(position,detalle,map,evento,tag) {
         google.maps.event.addListener(marker, 'mouseout', function() {
             infowindow2.close(map, marker);
         });
-        google.maps.event.addListener(marker, 'click', function() {
-            map.panTo(marker.position);
-            document.getElementById("panel_tag").style.visibility = 'hidden';
-            document.getElementById("panel_info").style.visibility = 'visible';
+        if (marker.tag!=0)
+        {
+            google.maps.event.addListener(marker, 'click', function() {
+            map.setCenter(marker.getPosition());
             info_evento(marker);
-        });
-
+            });
+        }
     })(marker, detalle);
 }
 
@@ -213,7 +194,7 @@ function pushMarker(marker)
     markers.push(marker);
 }
 
-function addfilterMarker(position,detalle,map,evento,tag)
+function addfilterMarker(position,detalle,map,content,event,tag,color,date,description)
 {
     var icon = "icon/pos_"+tag+".png"
 
@@ -221,18 +202,23 @@ function addfilterMarker(position,detalle,map,evento,tag)
     ({
         position: position,
         map: map,
-        content:detalle,
-        event: evento,
+        content:content,
+        event: event,
         icon: icon,
         tag: tag,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
+        detalle:detalle,
+        color:color,
+        date:date,
+        description :description
     });
     pushfilterMarker(marker);
     var infowindow2 = new google.maps.InfoWindow
     ({
         content: ''
     })
-    var content = content;
+    console.log(detalle);
+    var detalle = detalle;
     (function(marker,detalle) {
         google.maps.event.addListener(marker, 'mouseover', function()
         {
@@ -243,9 +229,7 @@ function addfilterMarker(position,detalle,map,evento,tag)
             infowindow2.close(map, marker);
         });
         google.maps.event.addListener(marker, 'click', function() {
-            map.panTo(marker.position);
-            document.getElementById("panel_tag").style.visibility = 'hidden';
-            document.getElementById("panel_info").style.visibility = 'visible';
+            map.setCenter(marker.getPosition());
             info_evento(marker);
         });
     })(marker, detalle);
@@ -260,8 +244,7 @@ function pushfilterMarker(marker)
 
 function showFilteredMarkers()
 {
-    console.log(filteredmarkers.length);
-    for(i=0;i<filteredmarkers.length;i++)
+    for(var i=0;i<filteredmarkers.length;i++)
     {
         filteredmarkers[i].setMap(map);
 
@@ -269,10 +252,12 @@ function showFilteredMarkers()
 
         var infowindow2 = new google.maps.InfoWindow
         ({
-            content: ''
+            detalle: ''
         })
-        var detalle = filteredmarkers[i].content;
+        var detalle = filteredmarkers[i].detalle;
+        console.log(filteredmarkers[i]);
         (function(marker,detalle) {
+            console.log(detalle);
             google.maps.event.addListener(marker, 'mouseover', function()
             {
                 infowindow2.setContent(detalle);
@@ -301,46 +286,49 @@ function restart()
     showFilteredMarkers();
 }
 
-console.log(markers);
 
 function filterMarkers(keyWord)
 {
-    var data=marcadores;
     var i=0;
     var isFiltered=false;
-    console.log(data.length);
     if(keyWord=="Nada"){
-        while(i<data.length)
+        while(i<marcadores.length)
         {
-                isFiltered=true;
-                var content = data[i].content;
-                var evento=data[i].event;
-                var position=new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                var detalle="Event: "+evento+"<br>"+"Content: "+content;
-                var tag= data[i].tag;
-                addfilterMarker(position,detalle,map,evento,tag);
-                i++;
+            isFiltered=true;
+            var content = marcadores[i].eventname;
+            var event=marcadores[i].tag;
+            var position=new google.maps.LatLng(marcadores[i].place[0],marcadores[i].place[1]);
+            var detalle="Event: "+event+"<br>"+"Content: "+content;
+            var tag= marcadores[i].idtag;
+            var color = marcadores[i].color;
+            var date = marcadores[i].date;
+            var description = marcadores[i].description;
+
+            addfilterMarker(position,detalle,map,content,event,tag,color,date,description);
+            i++;
 
         }
     }
     else{
-        while(i<data.length)
+        while(i<marcadores.length)
         {
-            if(data[i].event==keyWord)
+            if(marcadores[i].tag==keyWord)
             {
                 isFiltered=true;
-                var content = data[i].content;
-                var evento=data[i].event;
-                var position=new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                var detalle="Event: "+evento+"<br>"+"Content: "+content;
-                var tag= data[i].tag;
-                addfilterMarker(position,detalle,map,evento,tag);
-                i++;
+                var content = marcadores[i].eventname;
+                var event =marcadores[i].tag;
+                var position=new google.maps.LatLng(marcadores[i].place[0],marcadores[i].place[1]);
+                var detalle="Event: "+event+"<br>"+"Content: "+content;
+                var tag= marcadores[i].idtag;
+                var color = marcadores[i].color;
+                var date = marcadores[i].date;
+                var description = marcadores[i].description;
+                console.log("jijijijiji"+detalle);
+                addfilterMarker(position,detalle,map,content,event,tag,color,date,description);
             }
             i++;
         }
     }
-    console.log(filteredmarkers);
     if(isFiltered==true)
     {
         restart();

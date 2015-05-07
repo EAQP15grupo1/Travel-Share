@@ -4,7 +4,7 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
 
-<polymer-element name="event-card">
+<polymer-element name="event-card" attributes="eventTag">
     <template>
         <style>
             :host {
@@ -65,6 +65,16 @@
         <content></content>
     </template>
 
+    <!--<script>-->
+    <!--Polymer({-->
+    <!--hideCards: function (event, detail, sender) {-->
+    <!--console.log(this.eventTag);-->
+    <!--var arrayTags = ["Deporte", "Musica"];-->
+    <!--if ($.inArray(this.eventTag, arrayTags) == -1)-->
+    <!--this.setAttribute("hidden", true);-->
+    <!--}-->
+    <!--});-->
+    <!--</script>-->
     <script type="text/javascript" src="js/event-card.js"></script>
     <script type="text/javascript" src="js/findEvents.js"></script>
 </polymer-element>
@@ -92,10 +102,10 @@
 
         <div layout vertical center>
             <template repeat="{{event in events}}">
-                <event-card style="background-color: {{event.color}}"
-                            hidden?="{{false}}">
-                    <!--<event-card tag="{{event.tag}}">-->
-                    <h2>{{event.eventname}} {{isHidden}}</h2>
+                <event-card class="{{event.tag}}" style="background-color: {{event.color}}"
+                            eventTag="{{event.tag}}">
+                    <!--hidden?="{{isCardHidden}}">-->
+                    <h2>{{event.eventname}}</h2>
 
                     <div horizontal start-justified layout>
                         <div>{{event.tag}}</div>
@@ -130,9 +140,8 @@
         <!-- http://192.168.2.103:3000/users -->
         <core-ajax id="ajax"
                    auto
-                   url="http://10.89.5.151:3000/events/advanced"
+                   url="http://192.168.2.103:3000/events"
                    method="GET"
-                   params="{{tags}}"
                    on-core-response="{{eventsLoaded}}"
                    handleAs="json">
         </core-ajax>
