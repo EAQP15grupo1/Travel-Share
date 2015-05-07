@@ -10,7 +10,7 @@ window.onload = function () {
 
 function loadBackground() {
     imageObj.src = 'img/radar.png';
-    context.drawImage(imageObj, 0, 0, 600, 600);
+    context.drawImage(imageObj, 0, 0, 350, 350);
 }
 
 function loadCircles() {
@@ -44,9 +44,9 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    drawCircle(context, 300, 100, "#FFFF99", 30, 5, "#FF9933", "white", "center", "bold 32px Arial", "1", circles, "usuario");
-    drawCircle(context, 200, 350, "#FF4D4D", 30, 5, "#800000", "white", "center", "bold 32px Arial", "2", circles, "ChupaPilas");
-    drawCircle(context, 450, 450, "#CCFF99", 30, 5, "#336600", "white", "center", "bold 32px Arial", "3", circles, "User3");
+    drawCircle(context, 100, 100, "#FFFF99", 20, 3, "#FF9933", "white", "center", "bold 32px Arial", "1", circles, "usuario");
+    drawCircle(context, 250, 150, "#FF4D4D", 20, 3, "#800000", "white", "center", "bold 32px Arial", "2", circles, "ChupaPilas");
+    drawCircle(context, 80, 250, "#CCFF99", 20, 3, "#336600", "white", "center", "bold 32px Arial", "3", circles, "User3");
 
     $('#radarCanvas').click(function (e) {
         var clickedX = e.pageX - $(this).offset().left;
@@ -56,7 +56,7 @@ function loadCircles() {
             if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
                 //alert('Se abre el perfil de usuario: ' + (circles[i].id));
                 //window.open('../www/radarProfile.html');
-                window.location='../www/radarProfile.html';
+                window.location = '../www/radarProfile.html';
             }
         }
     });

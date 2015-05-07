@@ -27,7 +27,7 @@ $("#createBtn").click(function () {
         contentType: 'application/json',
         data: data,
         success: function () {
-            window.location.href = 'findEvents.html';
+            window.location.href = 'index.html';
         },
         error: function () {
             window.alert("FAIL: Los monos ya han tocado algo que no debian...");
@@ -36,7 +36,7 @@ $("#createBtn").click(function () {
 });
 
 $("#cancelBtn").click(function () {
-    window.location.href = 'findEvents.html';
+    window.location.href = 'index.html';
 });
 
 

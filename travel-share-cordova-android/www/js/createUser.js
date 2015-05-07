@@ -1,82 +1,40 @@
-//var app = {
-//    // Application Constructor
-//    initialize: function () {
-//        this.bindEvents();
-//    },
-//    // Bind Event Listeners
-//    //
-//    // Bind any events that are required on startup. Common events are:
-//    // 'load', 'deviceready', 'offline', and 'online'.
-//    bindEvents: function () {
-//        document.addEventListener('deviceready', this.onDeviceReady, false);
-//    },
-//    // deviceready Event Handler
-//    //
-//    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-//    // function, we must explicitly call 'app.receivedEvent(...);'
-//    onDeviceReady: function () {
-//        app.receivedEvent('deviceready');
-//    },
-//    // Update DOM on a Received Event
-//    receivedEvent: function (id) {
-//        var parentElement = document.getElementById(id);
-//        var listeningElement = parentElement.querySelector('.listening');
-//        var receivedElement = parentElement.querySelector('.received');
-//
-//        listeningElement.setAttribute('style', 'display:none;');
-//        receivedElement.setAttribute('style', 'display:block;');
-//
-//        console.log('Received Event: ' + id);
-//    }
-//};
-//
-//app.initialize();
+$("#createBtn").click(function () {
+    var usernick = $("#nick").val();
+    var userusername = $("#username").val();
+    var usernation = $("#nation").val();
+    var password = $("#password").val();
+    var password2 = $("#password2").val();
 
-$("#button").click(function () {
-    var formData = JSON.stringify($("#userForm").serialize());
-    //window.alert(formData);
+    if (password != password2) {
+        window.alert("Las contraseñas no coinciden");
+    } else {
+        var user = new Object();
+        user.nick = usernick;
+        user.username = userusername;
+        user.nation = usernation;
+        user.password = password;
+        var data = JSON.stringify(user);
 
-    var o = {};
-    var a = $("#userForm").serializeArray();
-    $.each(a, function () {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+        //window.alert(data);
+
+        //window.location.href = 'index.html';
+
+        $.ajax({
+            url: "http://10.189.186.175:3000/users",
+            type: 'POST',
+            crossDomain: true,
+            contentType: 'application/json',
+            data: data,
+            success: function () {
+                window.location.href = 'index.html';
+            },
+            error: function () {
+                window.alert("FAIL: Los monos ya han tocado algo que no debian...");
             }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-
-    var dataOK = JSON.stringify(o);
-    window.alert(dataOK);
-
-    $.ajax({
-        url: "http://10.89.5.151:3000/users",
-        method: "POST",
-        contentType: "application/json",
-        data: dataOK
-    }).done(function (data, status, jqxhr) {
-        window.alert("OK");
-    }).fail(function () {
-        window.alert("FAIL");
-    });
+        });
+    }
 });
 
-//$("#button").addEventListener("click", createUser);
-//
-//function createUser() {
-//
-//
-//    //$.post("https://example.com/Bank/CreditScore", {
-//    //    firstName: this.firstName.value,
-//    //    lastName: this.lastName.value
-//    //}).then(function (data) {
-//    //    if (data.score >= 500) {
-//    //        alert("Congratulations, you are eligible!");
-//    //    } else {
-//    //        alert("Sorry, but you are not eligible.");
-//    //    }
-//    //});
-//};
+$("#cancelBtn").click(function () {
+    window.location.href = 'login.html';
+});

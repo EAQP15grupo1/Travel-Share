@@ -153,13 +153,13 @@
 
         function getEventData() {
             $.ajax({
-                url: "http://localhost:3000/events",
+                url: "http://10.189.186.175:3000/events",
                 type: 'GET',
                 crossDomain: true,
                 dataType: 'json',
                 success: function (data) {
-                    window.alert("OK");
-//                        this.events = this.$.ajax.response.slice(0);
+                    document.querySelector('event-list').events = data;
+                    console.log(document.querySelector('event-list'));
                 },
                 error: function () {
                     window.alert("FAIL: No se han obtenido los datos del evento");
