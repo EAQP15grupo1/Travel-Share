@@ -2,7 +2,7 @@ window.onload = getEventData();
 
 function getEventData () {
     $.ajax({
-        url: "http://10.189.186.175:3000/event/5543c34a0db7709023000001",
+        url: "http://147.83.7.201:3000/event/5543c34a0db7709023000001",
         type: 'GET',
         crossDomain: true,
         dataType: 'json',

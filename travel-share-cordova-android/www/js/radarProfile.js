@@ -5,13 +5,13 @@ window.onload = getUser();
 function getUser() {
 
     $.ajax({
-        url: "http://10.189.186.175:3000/users",
+        url: "http://147.83.7.201:3000/users",
         type: 'GET',
         crossDomain: true,
         dataType: "json",
         success: function (data) {
 
-            var user = data[0];
+            var user = data[3];
 
             $("#userNick").text("Nick: " + user.nick);
             $("#userAge").text("Edad: " + user.age);
