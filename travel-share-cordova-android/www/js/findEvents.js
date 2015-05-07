@@ -63,9 +63,36 @@ document.querySelector("#cultureBtn").addEventListener('change', function () {
 });
 
 $("#filterBtn").click(function () {
+
+
     // PRUEBAS DE CÓDIGO
 
-    //window.alert("HOLA");
+    window.alert("HOLA");
+
+    $.ajax({
+        url : "http://10.89.5.151:3000/events/advanced",
+        type : 'POST',
+        crossDomain : true,
+        contentType:application/json,
+        dataType: "json",
+        success:function(data) {
+
+            var event = data;
+
+            ("#eventName").text(event.eventname);
+            ("#eventDate").text(event.date);
+            ("#eventDescription").text(event.description)
+
+
+
+
+
+        }, error: function() {
+            window.alert("FAIL: Los monos ya han tocado algo que no debian...");
+        }
+
+    });
+
 
     //var element = document.querySelector('event-service');
     //element.tags = {'name':'Web Guru','email':'guru@example.com'};
@@ -82,6 +109,6 @@ $("#filterBtn").click(function () {
     //ajax.handleAs = 'JSON';
     //ajax.contentType = 'application/json';
     //ajax.params = JSON.stringify(tags);
-    //
+
     //ajax.go();
 });
