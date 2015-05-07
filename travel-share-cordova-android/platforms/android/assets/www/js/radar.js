@@ -44,7 +44,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    drawCircle(context, 300, 100, "#FFFF99", 30, 5, "#FF9933", "white", "center", "bold 32px Arial", "1", circles, "xoxoloco");
+    drawCircle(context, 300, 100, "#FFFF99", 30, 5, "#FF9933", "white", "center", "bold 32px Arial", "1", circles, "usuario");
     drawCircle(context, 200, 350, "#FF4D4D", 30, 5, "#800000", "white", "center", "bold 32px Arial", "2", circles, "ChupaPilas");
     drawCircle(context, 450, 450, "#CCFF99", 30, 5, "#336600", "white", "center", "bold 32px Arial", "3", circles, "User3");
 

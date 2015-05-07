@@ -15,19 +15,6 @@ Polymer({
 Polymer('event-service', {
     created: function () {
         this.events = [];
-
-        //$.ajax({
-        //    url: "http://10.189.186.175:3000/events",
-        //    type: 'GET',
-        //    crossDomain: true,
-        //    dataType: 'json',
-        //    success: function (data) {
-        //        this.eventsLoaded();
-        //    },
-        //    error: function () {
-        //        window.alert("FAIL: No se han obtenido los datos del evento");
-        //    }
-        //});
     },
     eventsLoaded: function () {
         // Make a copy of the loaded data
