@@ -1,0 +1,16 @@
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+#new_event {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    margin-left: 12px;
+    margin-top: 65px;
+    z-index: 6;
+    border-style: solid;
+    background-color: #ffffff;
+    visibility: visible;
+}
