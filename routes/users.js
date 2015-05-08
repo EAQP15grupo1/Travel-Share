@@ -134,7 +134,7 @@ module.exports=function(app) {
                     if(user.password === passEncriptada)
                         res.send(user)
                     else
-                        res.send('contraseña incorrecta')
+                        res.send('contrasenia incorrecta')
                         }else{
                     res.send('No existe este usuario!')
                 }
