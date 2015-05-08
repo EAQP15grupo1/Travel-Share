@@ -19,7 +19,7 @@
                 if(data.username!=null)
                 {
                     alert("Username and password match");
-                    $window.location.href='http://localhost:63342/Travel-Share/Web/Victor/home.html';
+                    $window.location.href='http://localhost:63342/Travel-Share/www/home.html';
                     $scope.userInfo.username='';
                     $scope.userInfo.password='';
                 }
