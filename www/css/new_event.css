@@ -3,7 +3,7 @@ html, body, #map-canvas {
     margin: 0px;
     padding: 0px;
 }
-#new_event {
+.new_event {
     position: absolute;
     width: 400px;
     height: 400px;
