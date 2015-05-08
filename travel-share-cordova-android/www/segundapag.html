@@ -141,61 +141,50 @@
 
 <body unresolved>
 
-<core-header-panel>
 
-    <core-toolbar>
+<div class="heading" onclick="document.querySelector('#collapse1').toggle();">Filtrar por categoría</div>
+<core-collapse class="core-collapse-closed" style="overflow: hidden; height: 0px;" id="collapse1">
 
-        <paper-tabs id="tabs" selected="all" self-end>
-            <paper-tab name="radar">Radar</paper-tab>
-            <paper-tab name="eventos">Eventos</paper-tab>
-        </paper-tabs>
-
-    </core-toolbar>
-
-    <div class="heading" onclick="document.querySelector('#collapse1').toggle();">Filtrar por categoría</div>
-    <core-collapse class="core-collapse-closed" style="overflow: hidden; height: 0px;" id="collapse1">
-
-        <div class="content">
-            <div center="" horizontal="" layout="">
-                <div flex="">Deporte</div>
-                <paper-toggle-button id="sportBtn" class="sport" touch-action="pan-y"
-                                     checked="true"></paper-toggle-button>
-            </div>
-            <p></p>
-
-            <div center="" horizontal="" layout="">
-                <div flex="">Música</div>
-                <paper-toggle-button id="musicBtn" class="music" touch-action="pan-y"
-                                     checked="true"></paper-toggle-button>
-            </div>
-            <p></p>
-
-            <div center="" horizontal="" layout="">
-                <div flex="">Trabajo</div>
-                <paper-toggle-button id="jobBtn" class="job" touch-action="pan-y" checked="true"></paper-toggle-button>
-            </div>
-            <p></p>
-
-            <div center="" horizontal="" layout="">
-                <div flex="">Cultura</div>
-                <paper-toggle-button id="cultureBtn" class="culture" touch-action="pan-y"
-                                     checked="true"></paper-toggle-button>
-            </div>
+    <div class="content">
+        <div center="" horizontal="" layout="">
+            <div flex="">Deporte</div>
+            <paper-toggle-button id="sportBtn" class="sport" touch-action="pan-y"
+                                 checked="true"></paper-toggle-button>
         </div>
+        <p></p>
 
-        <section class="wrapper">
-            <paper-button id="filterBtn" class="colored" raised="true" onclick="hidingCarts()">Crear</paper-button>
-        </section>
+        <div center="" horizontal="" layout="">
+            <div flex="">Música</div>
+            <paper-toggle-button id="musicBtn" class="music" touch-action="pan-y"
+                                 checked="true"></paper-toggle-button>
+        </div>
+        <p></p>
 
-    </core-collapse>
+        <div center="" horizontal="" layout="">
+            <div flex="">Trabajo</div>
+            <paper-toggle-button id="jobBtn" class="job" touch-action="pan-y" checked="true"></paper-toggle-button>
+        </div>
+        <p></p>
 
-    <div id="listaEventos" class="container" layout vertical center>
-        <event-list show="all"></event-list>
+        <div center="" horizontal="" layout="">
+            <div flex="">Cultura</div>
+            <paper-toggle-button id="cultureBtn" class="culture" touch-action="pan-y"
+                                 checked="true"></paper-toggle-button>
+        </div>
     </div>
 
-    <paper-fab icon="add" onclick="addEvent()"></paper-fab>
+    <section class="wrapper">
+        <paper-button id="filterBtn" class="colored" raised="true" onclick="hidingCarts()">Filtrar</paper-button>
+    </section>
 
-</core-header-panel>
+</core-collapse>
+
+<div id="listaEventos" class="container" layout vertical center>
+    <event-list show="all"></event-list>
+</div>
+
+<paper-fab icon="add" onclick="addEvent()"></paper-fab>
+
 
 <!--<script src="bower_components/polymer/polymer.min.js"></script>-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>

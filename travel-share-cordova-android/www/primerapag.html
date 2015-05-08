@@ -24,6 +24,8 @@
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="bower_components/polymer/polymer.html">
 
+    <script type=" text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+
     <style>
 
         body {
@@ -52,9 +54,9 @@
             border-bottom-right-radius: 5px;
         }
 
-         canvas {
-             margin: 10px;
-         }
+        canvas {
+            margin: 10px;
+        }
 
     </style>
 
@@ -73,17 +75,6 @@
         .textArea {
             width: 100%;
             height: 100px;
-        }
-
-        core-header-panel {
-            height: 100%;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        core-toolbar {
-            background: #03a9f4;
-            color: white;
         }
 
         #tabs {
@@ -121,20 +112,9 @@
 </head>
 
 <body unresolved>
-
-<core-header-panel>
-
-    <core-toolbar> Detalles del evento</core-toolbar>
-
-    <body>
-    <canvas id="radarCanvas" width="600" height="600"></canvas>
-    </body>
-
-</core-header-panel>
-
-<script type=" text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/radar.js"></script>
-
+<canvas id="radarCanvas" width="350" height="350"></canvas>
 </body>
+
+<script type="text/javascript" src="js/radar.js"></script>
 
 </html>

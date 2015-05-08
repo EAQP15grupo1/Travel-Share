@@ -8,7 +8,9 @@
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
     <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="bower_components/core-drawe-panel/core-drawer-panel.html">
     <link rel="import" href="bower_components/core-menu/core-menu.html">
+    <link rel="import" href="bower_components/core-pages/core-pages.html">
     <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
     <link rel="import" href="bower_components/core-collapse/core-collapse.html">
     <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
@@ -131,38 +133,54 @@
 <core-header-panel>
     <core-toolbar>Profile</core-toolbar>
 
-            <div class="imagen">
-                <img src="img/logo.png" align="left" width="25%" height="100%"/>
-                <div class="informacion">
-                <core-card id="user_card" align="right" vertical layout start>
-                    <div style="padding: 20px;">
-                        <p></p><span id="userNick"></span></p>
-                        <p><span id="userAge"></span></p>
-                        <p><span id="userNation"></span></p>
-                    </div>
-                </core-card>
+    <div class="imagen">
+        <img src="img/logo.png" align="left" width="25%" height="100%"/>
+        <div class="informacion">
+            <core-card id="user_card" align="right" vertical layout start>
+                <div style="padding: 20px;">
+                    <p></p><span id="userNick"></span></p>
+                    <p><span id="userAge"></span></p>
+                    <p><span id="userNation"></span></p>
                 </div>
-            </div>
-
-        <div class="descripcion">
-            <core-card id="core_card" vertical layout start>
-                <div style="padding: 20px;"><span id="userDescription"></span></div>
             </core-card>
         </div>
+    </div>
 
-        <div>
-            <core-card id="core_card">
-            <paper-tabs id="tabs" selected="all" self-end>
-                <paper-tab name="Necesidades">Necesita</paper-tab>
-                <paper-tab name="Ofertas">Ofrece</paper-tab>
+    <div class="descripcion">
+        <core-card id="core_card" vertical layout start>
+            <div style="padding: 20px;"><span id="userDescription"></span></div>
+        </core-card>
+    </div>
+
+
+            <paper-tabs selected="{{ selected }}" selectedindex="0" id="paper-tabs" horizontal center layout>
+                <paper-tab id="tab1" inline flex center-center horizontal layout active>Necesita</paper-tab>
+                <paper-tab id="tab2" inline flex center-center horizontal layout>Ofrece</paper-tab>
             </paper-tabs>
-            </core-card>
-        </div>
-    <paper-toast id="toast1" text="Al dar al boton apareceria un chat"></paper-toast>
+                <core-pages selected="{{ selected }}" selectedindex="0" notap id="core-pages">
+                    <div>
+                        Lista de Necesidades
+                    </div>
+                    <div>Lista de ofertas</div>
+                </core-pages>
+
+
+
+
+    <paper-toast id="toast1" text="Boton para contactar"></paper-toast>
 </core-header-panel>
 <paper-fab icon="account-circle" onclick="document.querySelector('#toast1').show()"></paper-fab>
 
+<script>
+    var tabs =document.getElementById('paper-tabs');
 
+    var pages=document.getElementById('core-pages');
+
+    tabs.addEventListener('core-select', function(){
+        pages.selected=tabs.selected;
+    });
+
+</script>
 
 </body>
 

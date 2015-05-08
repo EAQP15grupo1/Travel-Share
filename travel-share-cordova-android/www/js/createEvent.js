@@ -21,13 +21,13 @@ $("#createBtn").click(function () {
     var data = JSON.stringify(event);
 
     $.ajax({
-        url: "http://192.168.1.52:3000/event",
+        url: "http://147.83.7.201:3000/event",
         type: 'POST',
         crossDomain: true,
         contentType: 'application/json',
         data: data,
         success: function () {
-            window.location.href = 'findEvents.html';
+            window.location.href = 'index.html';
         },
         error: function () {
             window.alert("FAIL: Los monos ya han tocado algo que no debian...");
@@ -36,7 +36,7 @@ $("#createBtn").click(function () {
 });
 
 $("#cancelBtn").click(function () {
-    window.location.href = 'findEvents.html';
+    window.location.href = 'index.html';
 });
 
 

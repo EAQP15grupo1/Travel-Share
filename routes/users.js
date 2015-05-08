@@ -50,7 +50,7 @@ module.exports=function(app) {
                     nation: req.body.nation,
                     needs: req.body.needs,
                     offers: req.body.offers,
-                    description: req.body.descripion
+                    description: req.body.description
                 });
                 user.save(function (err) {
 
@@ -134,7 +134,9 @@ module.exports=function(app) {
                     if(user.password === passEncriptada)
                         res.send(user)
                     else
-                        res.send('contrasenia incorrecta')
+
+                        res.send('contrase�a incorrecta')
+
                         }else{
                     res.send('No existe este usuario!')
                 }

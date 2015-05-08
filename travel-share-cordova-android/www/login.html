@@ -14,6 +14,8 @@
     <link rel="import" href="bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+
 
 
     <style>
@@ -33,10 +35,14 @@
             bottom: 0;
             left: 0;
         }
+        .wrapper {
+            padding: 20px;
+            text-align: center;
+        }
 
         #core_toolbar {
             color: rgb(255, 255, 255);
-            background-color: #526E9C;
+            background-color: #03a9f4;
         }
 
         paper-fab {
@@ -46,26 +52,47 @@
             background-color: #526E9C;
 
         }
+        paper-input {
+            width: 90%;
+            margin-right: 20px;
+        }
+
+        paper-button.coloredOK[raised] {
+            background: none repeat scroll 0% 0% #ADFFAD;
+            color: #000000;
+            margin: 5px;
+            width: 120px;
+        }
+
+        paper-button.coloredCancel[raised] {
+            background: none repeat scroll 0% 0% #FF4D4D;
+            color: #000000;
+            margin: 5px;
+            width: 120px;
+        }
 
     </style>
 </head>
 
 <body>
+<core-toolbar id="core_toolbar">TravelShare</core-toolbar>
 <div>
     <form id="userForm">
         <p>
-            <input id="nick" name="nick" placeholder="Username">
+            <paper-input label="Username" floatinglabel="true"></paper-input>
 
         </p>
 
         <p>
-            <input id="password" type="password" name="password" placeholder="Password">
+            <paper-input label="Password" floatinglabel="true"></paper-input>
         </p>
 
-        <input type="button" id="button" value="¡Entrar en TravelShare!" onclick="location.href='index.html'"/>
+
     </form>
-    <input type="button" id="registerBtn" value="¡Registrarme en TravelShare!"
-           onclick="location.href='createUser.html'"/>
+    <div class="wrapper">
+        <paper-button id="LoginBtn" class="coloredOK" raised="true" role="button" tabindex="0">Sign in</paper-button>
+        <paper-button id="RegisterBtn" class="coloredCancel" raised="true" role="button" tabindex="0">Sign up</paper-button>
+    </div>
 </div>
 
 <script type=" text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
