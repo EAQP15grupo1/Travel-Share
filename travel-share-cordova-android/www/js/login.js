@@ -1,21 +1,32 @@
 $("#LoginBtn").click(function () {
-    var o = {};
-    var a = $("#userForm").serializeArray();
-    $.each(a, function () {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+    var username = $("#username").val();
+    var password = $("#password").val();
+
+    if (username != "" && password != "") {
+        var user = new Object();
+        user.username = username;
+        user.password = password;
+        var data = JSON.stringify(user);
+
+        console.log(data);
+
+        $.ajax({
+            url: "http://localhost:3000/login",
+            type: 'POST',
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: 'json',
+            data: data,
+            success: function (data_API) {
+                window.location.href = 'index.html';
+            },
+            error: function (error_API) {
+                window.alert(error_API.response);
             }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-
-    var dataOK = JSON.stringify(o);
-    window.location.href = "index.html"
-    //window.alert(dataOK);
-
+        });
+    } else {
+        window.alert("Todos los campos son obligatorios");
+    }
 });
 
 $("#RegisterBtn").click(function () {

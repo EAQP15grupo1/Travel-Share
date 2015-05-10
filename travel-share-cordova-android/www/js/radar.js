@@ -54,7 +54,6 @@ function loadCircles() {
         success: function (data) {
             imageObj.src = 'img/radar.png';
             context.drawImage(imageObj, 0, 0, 350, 350);
-            console.log(data[0]._id);
             drawCircle(context, 100, 100, "#FFFF99", 20, 3, "#FF9933", "white", "center", "bold 32px Arial", "1", circles, data[0]._id);
             drawCircle(context, 250, 150, "#FF4D4D", 20, 3, "#800000", "white", "center", "bold 32px Arial", "2", circles, data[1]._id);
             drawCircle(context, 80, 250, "#CCFF99", 20, 3, "#336600", "white", "center", "bold 32px Arial", "3", circles, data[2]._id);

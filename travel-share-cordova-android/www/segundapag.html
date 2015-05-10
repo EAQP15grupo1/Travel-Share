@@ -54,19 +54,19 @@
             border-bottom-right-radius: 5px;
         }
 
-        paper-toggle-button.sport [checked] .toggle {
+        paper-toggle-button.sport::shadow [checked] .toggle {
             background-color: #FFCC66;
         }
 
-        paper-toggle-button.music [checked] .toggle {
+        paper-toggle-button.music::shadow [checked] .toggle {
             background-color: #FFFF99;
         }
 
-        paper-toggle-button.job [checked] .toggle {
+        paper-toggle-button.job::shadow [checked] .toggle {
             background-color: #E4E4E4;
         }
 
-        paper-toggle-button.culture [checked] .toggle {
+        paper-toggle-button.culture::shadow [checked] .toggle {
             background-color: #99CCFF;
         }
     </style>
@@ -174,7 +174,8 @@
     </div>
 
     <section class="wrapper">
-        <paper-button id="filterBtn" class="colored" raised="true" onclick="getFilteredEventData()">Filtrar</paper-button>
+        <paper-button id="filterBtn" class="colored" raised="true" onclick="getFilteredEventData()">Filtrar
+        </paper-button>
     </section>
 
 </core-collapse>

@@ -89,7 +89,6 @@ function getFilteredEventData() {
             data: data,
             success: function (data) {
                 document.querySelector('event-list').events = data;
-                console.log(document.querySelector('event-list'));
             },
             error: function () {
                 window.alert("FAIL: No se han cargado los eventos");
@@ -111,7 +110,6 @@ function getAllEventData() {
         dataType: 'json',
         success: function (data) {
             document.querySelector('event-list').events = data;
-            console.log(document.querySelector('event-list'));
         },
         error: function () {
             window.alert("FAIL: No se han cargado los eventos");

@@ -2,7 +2,6 @@ window.onload = getUser();
 
 function getUser() {
     var url_TS = "http://localhost:3000/user/" + getCookie("userID");
-    console.log(url_TS);
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -11,7 +10,7 @@ function getUser() {
         success: function (data) {
             var user = data;
 
-            $("#userNick").text("Nick: " + user.nick);
+            $("#userNick").text("Username: " + user.username);
             $("#userAge").text("Edad: " + user.age);
             $("#userNation").text("Nacionalidad: " + user.nation);
             $("#userDescription").text(user.description);
