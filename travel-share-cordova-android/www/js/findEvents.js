@@ -70,33 +70,45 @@ document.querySelector("#cultureBtn").addEventListener('change', function () {
     }
 });
 
-hidingCarts = function () {
-    var cartas = document.querySelector('event-list');
-    var arrayLength = cartas.events.length;
-    console.log(cartas);
-    for (var i = 0; i < arrayLength; i++) {
-        if ($.inArray(cartas.events[i].tag, arrayTags) != -1) {
-            window.alert(cartas.events[i].eventname);
+// Obtener los eventos filtrados por las categorías seleccionadas
+function getFilteredEventData() {
+    if (arrayTags.length > 0) {
+        var finalArray = {tags: []};
+
+        for (var i = 0; i < arrayTags.length; i++) {
+            finalArray.tags.push({"tag": arrayTags[i]});
         }
+
+        var data = JSON.stringify(finalArray);
+        $.ajax({
+            url: "http://localhost:3000/events/advanced",
+            type: 'POST',
+            crossDomain: true,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: data,
+            success: function (data) {
+                document.querySelector('event-list').events = data;
+                console.log(document.querySelector('event-list'));
+            },
+            error: function () {
+                window.alert("FAIL: No se han cargado los eventos");
+            }
+        });
+    } else {
+        window.alert("Debes seleccionar alguna categoría");
     }
-};
+}
 
+window.onload = getAllEventData();
 
-function getEventData() {
-    var finalArray = {tags: []};
-
-    for (var i = 0; i < arrayTags.length; i++) {
-        finalArray.tags.push({"tag": arrayTags[i]});
-    }
-
-    var data = JSON.stringify(finalArray);
+// Obtener todos los eventos
+function getAllEventData() {
     $.ajax({
-        url: "http://localhost:3000/events/advanced",
-        type: 'POST',
+        url: "http://localhost:3000/events",
+        type: 'GET',
         crossDomain: true,
         dataType: 'json',
-        contentType: 'application/json',
-        data: data,
         success: function (data) {
             document.querySelector('event-list').events = data;
             console.log(document.querySelector('event-list'));
