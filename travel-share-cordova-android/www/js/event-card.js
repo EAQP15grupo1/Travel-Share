@@ -1,6 +1,7 @@
 // event-card
 Polymer({
     buttonTapped: function (event, detail, sender) {
+        document.cookie = "eventID=" + this.eventID;
         window.location.href = 'eventDetail.html';
     },
     hideCards: function (event, detail, sender) {

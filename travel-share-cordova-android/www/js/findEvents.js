@@ -12,7 +12,11 @@ var arrayTags = ["Deporte", "Musica", "Trabajo", "Cultura"];
 
 document.querySelector("#sportBtn").addEventListener('change', function () {
     if (this.checked) {
-        arrayTags.push("Deporte");
+        var index = arrayTags.indexOf("Deporte");
+        if (index > -1) {
+        } else {
+            arrayTags.push("Deporte");
+        }
     } else {
         var index = arrayTags.indexOf("Deporte");
         if (index > -1) {
@@ -23,7 +27,11 @@ document.querySelector("#sportBtn").addEventListener('change', function () {
 
 document.querySelector("#musicBtn").addEventListener('change', function () {
     if (this.checked) {
-        arrayTags.push("Musica");
+        var index = arrayTags.indexOf("Musica");
+        if (index > -1) {
+        } else {
+            arrayTags.push("Musica");
+        }
     } else {
         var index = arrayTags.indexOf("Musica");
         if (index > -1) {
@@ -34,7 +42,11 @@ document.querySelector("#musicBtn").addEventListener('change', function () {
 
 document.querySelector("#jobBtn").addEventListener('change', function () {
     if (this.checked) {
-        arrayTags.push("Trabajo");
+        var index = arrayTags.indexOf("Trabajo");
+        if (index > -1) {
+        } else {
+            arrayTags.push("Trabajo");
+        }
     } else {
         var index = arrayTags.indexOf("Trabajo");
         if (index > -1) {
@@ -45,7 +57,11 @@ document.querySelector("#jobBtn").addEventListener('change', function () {
 
 document.querySelector("#cultureBtn").addEventListener('change', function () {
     if (this.checked) {
-        arrayTags.push("Cultura");
+        var index = arrayTags.indexOf("Cultura");
+        if (index > -1) {
+        } else {
+            arrayTags.push("Cultura");
+        }
     } else {
         var index = arrayTags.indexOf("Cultura");
         if (index > -1) {
@@ -66,3 +82,27 @@ hidingCarts = function () {
 };
 
 
+function getEventData() {
+    var finalArray = {tags: []};
+
+    for (var i = 0; i < arrayTags.length; i++) {
+        finalArray.tags.push({"tag": arrayTags[i]});
+    }
+
+    var data = JSON.stringify(finalArray);
+    $.ajax({
+        url: "http://localhost:3000/events/advanced",
+        type: 'POST',
+        crossDomain: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data,
+        success: function (data) {
+            document.querySelector('event-list').events = data;
+            console.log(document.querySelector('event-list'));
+        },
+        error: function () {
+            window.alert("FAIL: No se han cargado los eventos");
+        }
+    });
+}

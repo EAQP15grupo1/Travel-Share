@@ -13,14 +13,11 @@ $("#LoginBtn").click(function () {
     });
 
     var dataOK = JSON.stringify(o);
-    window.location.href="index.html"
+    window.location.href = "index.html"
     //window.alert(dataOK);
 
 });
 
 $("#RegisterBtn").click(function () {
-
-    window.location.href="createUser.html"
-
-
+    window.location.href = "createUser.html"
 });
