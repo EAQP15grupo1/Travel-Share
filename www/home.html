@@ -31,8 +31,8 @@
     <!--<link rel="stylesheet" href="css/materialize.css">-->
 
     <!--JS-->
-    <script type="text/javascript"  src="JavaScript/home.js"></script>
-    <script type="text/javascript"  src="JavaScript/home_dinamic.js"></script>
+    <script type="text/javascript"  src="js/home.js"></script>
+    <script type="text/javascript"  src="js/home_dinamic.js"></script>
 </head>
 
 
@@ -47,12 +47,6 @@
                 </span>
         </div>
     </div>
-
-
-    <!-- boton crear evento-->
-    <button href="crear_evento.html" type="button" class="paper-button paper-floating-action-button">+
-        <div class="ripple"></div>
-    </button>
 
     <!--Tags Panel-->
     <div id="panel_tag">
@@ -83,7 +77,7 @@
     <div id="panel_info">
         <button class="exit-button" onclick="paneltag()"><i class="fa fa-times"></i></button>
         <div>
-        <img style="padding: 10px 10px 10px 10px;position: absolute;border-color: #004d40" src="icon/img/perfil2.png">
+        <img style="padding: 10px 10px 10px 10px;position: absolute;border-color: #004d40" src="img/profil_dummy/perfil2.png">
         </div>
         <div  style="padding-left:20px;height: 100px;margin-left: 100px;padding-top:5%;position: relative;text-align:left">
             <p ><span id="A"style="font:300% sans-serif"></span></p>
@@ -100,6 +94,33 @@
         </div>
 
         <button type="button" onclick="join()" class="btn btn-default btn-lg join-button">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
+        </button>
+    </div>
+
+    <!-- boton crear evento-->
+    <button onclick="newevent()" type="button" class="paper-button paper-floating-action-button">+
+        <div class="ripple"></div>
+    </button>
+
+    <!-- New event panel -->
+    <div id="panel_new_event">
+        <button class="exit-button" onclick="exitpanel()"><i class="fa fa-times"></i></button>
+        <div  style="padding-left:20px;height: 100px;margin-left: 100px;padding-top:5%;position: relative;text-align:left">
+            <p ><span id="A"style="font:300% sans-serif"></span></p>
+            <p style="text-align: center"><span id="B"></span></p>
+        </div>
+
+        <div style="position: relative;  margin-top: 100px;margin-left: 10px;margin-right: 10px;text-align: justify">
+            <dl class="dl-horizontal">
+                <dt>Descripción:</dt>
+                <dd id="description"></dd>
+                <dt>Fecha:</dt>
+                <dd id="fecha"></dd>
+            </dl>
+        </div>
+
+        <button type="button" ng-click="join()" class="btn btn-default btn-lg join-button">
             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
         </button>
     </div>

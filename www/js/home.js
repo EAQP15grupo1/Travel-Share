@@ -149,7 +149,7 @@ function Filter(type)
 }
 
 function addMarker(position,detalle,map,content,evento,tag,color,date,description) {
-    var icon = "icon/pos_"+tag+".png"
+    var icon = "img/pos_"+tag+".png"
     var marker= new google.maps.Marker
     ({
         position: position,
@@ -196,7 +196,7 @@ function pushMarker(marker)
 
 function addfilterMarker(position,detalle,map,content,event,tag,color,date,description)
 {
-    var icon = "icon/pos_"+tag+".png"
+    var icon = "img/pos_"+tag+".png"
 
     var marker= new google.maps.Marker
     ({

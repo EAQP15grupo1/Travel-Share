@@ -42,7 +42,7 @@ module.exports=function(app) {
             if (!user){
 
                 var user = new User({
-                    nick: req.body.nick,
+                    name: req.body.name,
                     username: name,
                     password: passEncriptada,
                     email: req.body.email,
@@ -134,7 +134,9 @@ module.exports=function(app) {
                     if(user.password === passEncriptada)
                         res.send(user)
                     else
+
                         res.send('contrase�a incorrecta')
+
                         }else{
                     res.send('No existe este usuario!')
                 }
@@ -143,11 +145,24 @@ module.exports=function(app) {
              });
         }
 
+    //Get de user por id
+    findByUsername = function (req, res) {
+        User.findOne({"username": req.params.username}, function (err, user) {
+            if (!err) {
+                res.send(user);
+            }
+            else {
+                console.log('ERROR: ' + err);
+            }
+        });
+    }
+
 //endpoints
     app.get('/users', findAllUsers);
     app.get('/user/:_id', findUser);
     app.post('/users', addUser);
     app.put('/user/:_id', updateUser);
     app.delete('/user/:_id', deleteUser);
-    app.post('/login', loginUser)
+    app.post('/login', loginUser);
+    app.get('/user/username/:username', findByUsername)
 }
