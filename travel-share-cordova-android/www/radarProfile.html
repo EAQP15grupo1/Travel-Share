@@ -61,6 +61,7 @@
             width: 80%;
             margin: 50px auto;
         }
+
         #core_card {
             width: 96%;
             height: 100%;
@@ -75,7 +76,7 @@
         }
 
         #user_card {
-            width:75%;
+            width: 75%;
             height: 100%;
             border-top-left-radius: 2px;
             border-top-right-radius: 2px;
@@ -96,18 +97,21 @@
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
         }
+
         .imagen {
 
             height: 15%;
             width: 100%;
 
         }
+
         .descripcion {
 
             height: 35%;
             width: 100%;
 
         }
+
         @media (min-width: 481px) {
             #tabs {
                 width: 200px;
@@ -134,12 +138,14 @@
     <core-toolbar>Profile</core-toolbar>
 
     <div class="imagen">
-        <img src="img/logo.png" align="left" width="25%" height="100%"/>
+        <img src="img/logo.png" align="left" width="100px" height="120px"/>
+
         <div class="informacion">
             <core-card id="user_card" align="right" vertical layout start>
                 <div style="padding: 20px;">
                     <p></p><span id="userNick"></span></p>
                     <p><span id="userAge"></span></p>
+
                     <p><span id="userNation"></span></p>
                 </div>
             </core-card>
@@ -153,18 +159,16 @@
     </div>
 
 
-            <paper-tabs selected="{{ selected }}" selectedindex="0" id="paper-tabs" horizontal center layout>
-                <paper-tab id="tab1" inline flex center-center horizontal layout active>Necesita</paper-tab>
-                <paper-tab id="tab2" inline flex center-center horizontal layout>Ofrece</paper-tab>
-            </paper-tabs>
-                <core-pages selected="{{ selected }}" selectedindex="0" notap id="core-pages">
-                    <div>
-                        Lista de Necesidades
-                    </div>
-                    <div>Lista de ofertas</div>
-                </core-pages>
-
-
+    <paper-tabs selected="{{ selected }}" selectedindex="0" id="paper-tabs" horizontal center layout>
+        <paper-tab id="tab1" inline flex center-center horizontal layout active>Necesita</paper-tab>
+        <paper-tab id="tab2" inline flex center-center horizontal layout>Ofrece</paper-tab>
+    </paper-tabs>
+    <core-pages selected="{{ selected }}" selectedindex="0" notap id="core-pages">
+        <div>
+            Lista de Necesidades
+        </div>
+        <div>Lista de ofertas</div>
+    </core-pages>
 
 
     <paper-toast id="toast1" text="Boton para contactar"></paper-toast>
@@ -172,18 +176,17 @@
 <paper-fab icon="account-circle" onclick="document.querySelector('#toast1').show()"></paper-fab>
 
 <script>
-    var tabs =document.getElementById('paper-tabs');
+    var tabs = document.getElementById('paper-tabs');
 
-    var pages=document.getElementById('core-pages');
+    var pages = document.getElementById('core-pages');
 
-    tabs.addEventListener('core-select', function(){
-        pages.selected=tabs.selected;
+    tabs.addEventListener('core-select', function () {
+        pages.selected = tabs.selected;
     });
 
 </script>
 
 </body>
-
 
 
 </html>

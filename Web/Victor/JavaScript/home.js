@@ -33,7 +33,7 @@ var tags = [{
 (function() {
     var app = angular.module('Eventos', []);
     app.controller('CargarEventos', ['$http', '$log', function ($http, $log) {
-        $http.get('http://localhost:3000/events').success(function (data) {
+        $http.get('http://147.83.7.201:3000/events').success(function (data) {
             console.log(data);
             marcadores = data;
            /* for (var i = 0; i < data.length; i++) {

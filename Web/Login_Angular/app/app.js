@@ -13,13 +13,13 @@
         $scope.login=function()
         {
 
-            var res= $http.post('http://localhost:3000/login',box);
+            var res= $http.post('http://147.83.7.201:3000/login',box);
             res.success(function(data)
             {
                 if(data.username!=null)
                 {
                     alert("Username and password match");
-                    $window.location.href='http://localhost:63342/Travel-Share/Web/Victor/home.html';
+                    $window.location.href='http://147.83.7.201:63342/Travel-Share/Web/Victor/home.html';
                     $scope.userInfo.username='';
                     $scope.userInfo.password='';
                 }
