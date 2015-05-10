@@ -79,8 +79,9 @@
     </core-header-panel>
     <div tool>Travel Share</div>
 
-    <paper-tabs selected="{{ selected }}" selectedindex="0" id="paper-tabs" horizontal center layout>
-        <paper-tab id="tab1" inline flex center-center horizontal layout active>Radar</paper-tab>
+    <!--<paper-tabs selected="{{ selected }}" selectedindex="0" id="paper-tabs" horizontal center layout>-->
+    <paper-tabs selected="0" id="paper-tabs" horizontal center layout>
+        <paper-tab id="tab1" inline flex center-center horizontal layout>Radar</paper-tab>
         <paper-tab id="tab2" inline flex center-center horizontal layout>Eventos</paper-tab>
     </paper-tabs>
 
@@ -109,7 +110,7 @@
 </script>
 <script>
     $(document).ready(function () {
-        //$("#pagina1").load('primerapag.html');
+//        $("#pagina1").load('primerapag.html');
         $("#pagina2").load('segundapag.html');
 
     });
