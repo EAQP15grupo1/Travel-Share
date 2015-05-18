@@ -149,7 +149,7 @@ module.exports=function(app) {
                         var token = generateToken();
                         res.json({
                             token : token,
-                            userId: user._id,
+                            userId: user._id
                             //username:user.username
                         });
                     }
