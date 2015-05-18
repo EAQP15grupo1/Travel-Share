@@ -11,7 +11,7 @@ $("#LoginBtn").click(function () {
         console.log(data);
 
         $.ajax({
-            url: "http://localhost:3000/login",
+            url: "http://147.83.7.201:3000/login",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',

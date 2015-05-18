@@ -1,7 +1,7 @@
 window.onload = getEventData();
 
 function getEventData() {
-    var url_TS = "http://localhost:3000/event/" + getCookie("eventID");
+    var url_TS = "http://147.83.7.201:3000/event/" + getCookie("eventID");
     $.ajax({
         url: url_TS,
         type: 'GET',

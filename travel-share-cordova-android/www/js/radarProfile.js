@@ -1,7 +1,7 @@
 window.onload = getUser();
 
 function getUser() {
-    var url_TS = "http://localhost:3000/user/" + getCookie("userID");
+    var url_TS = "http://147.83.7.201:3000/user/" + getCookie("userID");
     $.ajax({
         url: url_TS,
         type: 'GET',

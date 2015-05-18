@@ -45,7 +45,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    var url_TS = "http://localhost:3000/users";
+    var url_TS = "http://147.83.7.201:3000/users";
     $.ajax({
         url: url_TS,
         type: 'GET',
