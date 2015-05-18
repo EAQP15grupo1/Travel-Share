@@ -146,15 +146,11 @@ module.exports=function(app) {
                 if(user){
                     if(user.password === passEncriptada) {
 
-                        var token = jwt.encode({
-                            iss: user._id,
-                            exp: expires
-                        }, app.get('jwtTokenSecret'));
-
+                        var token = generateToken();
                         res.json({
                             token : token,
                             userId: user._id,
-                            username:user.username
+                            //username:user.username
                         });
                     }
                     else
@@ -195,6 +191,17 @@ module.exports=function(app) {
             console.log("AuthToken Expired");
         }
         return succes;
+    }
+
+    generateToken=function(user){
+
+        var token = jwt.encode({
+            iss: user._id,
+            exp: expires
+        }, app.get('jwtTokenSecret'));
+
+        return token;
+
     }
 
 
