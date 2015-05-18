@@ -2,6 +2,10 @@ module.exports=function(app) {
 
     var User = require('../models/user/schema.js');
     var crypto = require('crypto');
+    var jwt = require('jwt-simple');
+    var moment = require('moment');
+    app.set('jwtTokenSecret', 'TravelShareAutenticationServer');
+    var expires = moment().add(7, 'days').valueOf();
 
 //GET users
 
@@ -20,13 +24,22 @@ module.exports=function(app) {
     findUser = function (req, res) {
         User.findOne({"_id": req.params._id}, function (err, user) {
             if (!err) {
-                res.send(user);
+                var tokenUser = req.params.authToken;
+                var decoded=checkToken(tokenUser);
+                //var decoded = jwt.decode(tokenUser, app.get('jwtTokenSecret'));
+                if (!decoded) {
+                    res.send("authToken expired");
+                } else if(decoded) {
+                    res.send(user);
+                }
+                console.log("token:", tokenUser);
             }
             else {
                 console.log('ERROR: ' + err);
             }
         });
     }
+
 
 //POST User
     addUser = function (req, res) {
@@ -131,8 +144,19 @@ module.exports=function(app) {
 
             User.findOne({"username": name}, function (err, user) {
                 if(user){
-                    if(user.password === passEncriptada)
-                        res.send(user)
+                    if(user.password === passEncriptada) {
+
+                        var token = jwt.encode({
+                            iss: user._id,
+                            exp: expires
+                        }, app.get('jwtTokenSecret'));
+
+                        res.json({
+                            token : token,
+                            userId: user._id,
+                            username:user.username
+                        });
+                    }
                     else
 
                         res.send('contrase�a incorrecta')
@@ -157,9 +181,26 @@ module.exports=function(app) {
         });
     }
 
+
+//funcion que comprueba el token
+
+    checkToken=function(token){
+        var succes;
+        var decode=jwt.decode(token,app.get('jwtTokenSecret'));
+        if (decode.exp <= Date.now()){
+            succes=false;
+            console.log("AuthToken Expired");
+        }else{
+            succes=true;
+            console.log("AuthToken Expired");
+        }
+        return succes;
+    }
+
+
 //endpoints
     app.get('/users', findAllUsers);
-    app.get('/user/:_id', findUser);
+    app.get('/user/:_id/:authToken', findUser);
     app.post('/users', addUser);
     app.put('/user/:_id', updateUser);
     app.delete('/user/:_id', deleteUser);
