@@ -136,7 +136,6 @@ module.exports = function (app) {
     }
 
     //Login
-
     loginUser = function (req, res) {
         console.log('LOGIN user');
 
@@ -148,15 +147,11 @@ module.exports = function (app) {
             if (user) {
                 if (user.password === passEncriptada) {
 
-                    var token = jwt.encode({
-                        iss: user._id,
-                        exp: expires
-                    }, app.get('jwtTokenSecret'));
-
+                    var token = generateToken();
                     res.json({
                         token: token,
-                        userId: user._id,
-                        username: user.username
+                        userId: user._id
+                        //username:user.username
                     });
                 }
                 else
@@ -165,8 +160,6 @@ module.exports = function (app) {
             } else {
                 res.send('No existe este usuario!')
             }
-
-
         });
     }
 
@@ -225,6 +218,18 @@ module.exports = function (app) {
             console.log("AuthToken Expired");
         }
         return succes;
+    }
+
+
+    generateToken = function (user) {
+
+        var token = jwt.encode({
+            iss: user._id,
+            exp: expires
+        }, app.get('jwtTokenSecret'));
+
+        return token;
+
     }
 
 //endpoints
