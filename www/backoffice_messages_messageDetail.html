@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="examen">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Detalle del mensaje</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Angular js-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!-- Main JavaScript -->
+    <script src="js/backoffice_messages_messageDetail.js"></script>
+</head>
+
+<body ng-controller="detailController as detailCtrl">
+<div class="container">
+    <!-- Barra de navegación superior -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 style="color: #ffffff">Detalle del mensaje</h1>
+            </div>
+        </div>
+    </nav>
+
+    <br> <br> <br> <br> <br>
+
+    <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 40px">
+            <div class="col-sm-11">
+                <label style="font-size: 150%">Información detallada del mensaje</label> <br>
+            </div>
+
+            <div class="col-sm-1">
+                <button id="addMessage" type="button" class="btn btn-info btn-lg" ng-click="goBack()">VOLVER A LA
+                    LISTA
+                </button>
+            </div>
+        </div>
+
+        <div class="col-sm-4 text-center">
+            <form name="myForm">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg text-center" placeholder="{{message.id}}"
+                           ng-model="newMessage.id" required disabled>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="{{message.content}}"
+                           ng-model="newMessage.content" required>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="{{message.username}}"
+                           ng-model="newMessage.username" required>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="{{message.eventid}}"
+                           ng-model="newMessage.eventid" required>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)"
+                            ng-disabled="!newMessage.id || !newMessage.content || !newMessage.username || !newMessage.eventid">
+                        UPDATE
+                    </button>
+                    <br>
+                    (Si no le das al botón, no se guardarán los cambios)
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-8" style="text-align: center">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div class="panel-body">
+                    <p><b>ID: </b>{{newMessage.id}}</p>
+
+                    <p><b>CONTENT: </b>{{newMessage.content}}</p>
+
+                    <p><b>USERNAME: </b>{{newMessage.username}}</p>
+
+                    <p><b>EVENTID: </b>{{newMessage.eventid}}</p>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

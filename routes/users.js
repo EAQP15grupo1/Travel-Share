@@ -1,9 +1,7 @@
-module.exports = function (app) {
+module.exports = function (app, passport, FacebookStrategy) {
 
     var User = require('../models/user/schema.js');
     var crypto = require('crypto');
-    var passport = require('passport');
-    var FacebookStrategy = require('passport-facebook').Strategy;
     var jwt = require('jwt-simple');
     var moment = require('moment');
     app.set('jwtTokenSecret', 'TravelShareAutenticationServer');

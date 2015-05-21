@@ -11,10 +11,11 @@
     "cors": "*",
     "debug": "~2.1.1",
     "express": "3.2.6",
+    "express-session": "^1.11.2",
+    "jwt-simple": "*",
+    "moment": "*",
     "mongoose": "3.6.11",
     "passport": "^0.2.1",
-    "passport-facebook": "^2.0.0",
-    "jwt-simple":"*",
-    "moment":"*"
+    "passport-facebook": "^2.0.0"
   }
 }
