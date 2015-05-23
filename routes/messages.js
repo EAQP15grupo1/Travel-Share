@@ -88,7 +88,25 @@ module.exports = function (app) {
         res.send('Message updated');
     }
 
-//Endpoints connections
+    //GET Message by ID
+    getMessagesByEventid = function (req, res) {
+        Message.find({"eventid": req.params.eventid}, function (err, data) {
+            if (!err) {
+                res.send(data);
+            }
+            else {
+                console.log('ERROR: ' + err);
+            }
+        });
+    }
+
+    //Endpoints connections
+    app.get('/messages', getMessages);
+    app.get('/message/:_id', getMessage);
+    app.get('/messages/event/:eventid', getMessagesByEventid);
+    app.post('/messages', postMessage);
+
+    //Endpoints backoffice
     app.get('/backoffice/messages', getMessages);
     app.get('/backoffice/message/:_id', getMessage);
     app.post('/backoffice/messages', postMessage);

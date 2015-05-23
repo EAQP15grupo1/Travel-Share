@@ -45,7 +45,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    var url_TS = "http://147.83.7.201:3000/users";
+    var url_TS = "http://192.168.2.103:3000/users";
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -59,7 +59,7 @@ function loadCircles() {
             drawCircle(context, 80, 250, "#CCFF99", 20, 3, "#336600", "white", "center", "bold 32px Arial", "3", circles, data[2]._id);
         },
         error: function () {
-            window.alert("FAIL: No se han obtenido los datos del evento");
+            window.alert("FAIL: Usuarios radar");
         }
     });
 
@@ -69,9 +69,8 @@ function loadCircles() {
 
         for (var i = 0; i < circles.length; i++) {
             if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
-                //alert('Se abre el perfil de usuario: ' + (circles[i].id));
-                //window.open('../www/radarProfile.html');
-                document.cookie = "userID=" + circles[i].id;
+                //document.cookie = "userID=" + circles[i].id;
+                window.localStorage.setItem("userID", circles[i].id);
                 window.location = '../www/radarProfile.html';
             }
         }

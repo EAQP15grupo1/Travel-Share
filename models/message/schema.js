@@ -6,7 +6,7 @@ var schema = new Schema({
         id: {type: Number},
         content: {type: String},
         username: {type: String},
-        eventid: {type: Number}
+        eventid: {type: String}
     },
     {
         versionKey: false
