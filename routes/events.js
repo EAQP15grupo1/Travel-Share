@@ -108,7 +108,6 @@ module.exports = function (app) {
     };
 
     //UPDATE
-
     updateEvent = function (req, res) {
         console.log('UPDATE event');
         Event.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, event) {
@@ -128,32 +127,51 @@ module.exports = function (app) {
         res.send('Event Modified');
     }
 
+    //UPDATE
+    joinEvent = function (req, res) {
+        console.log('JOIN event');
+
+        Event.findOneAndUpdate({"_id": req.params._id}, {$push: {attendees: req.body.attendees}}, req.body, function (err, event) {
+            console.log(event._id);
+
+            event.set(function (err) {
+                if (!err) {
+                    console.log('Updated');
+                }
+                else {
+                    console.log('ERROR' + err);
+                }
+
+            })
+        });
+
+        res.send('You have been added to the event');
+    }
+
     //POST advance
     addAdvance = function (req, res) {
         console.log('POST Advance');
 
-        var tag1=req.body.tags[0].tag;
-        if(req.body.tags[1] == null) {
+        var tag1 = req.body.tags[0].tag;
+        if (req.body.tags[1] == null) {
             console.log("es null");
-        }else {
-        var tag2 = req.body.tags[1].tag;
+        } else {
+            var tag2 = req.body.tags[1].tag;
         }
-        if(req.body.tags[2] == null){
+        if (req.body.tags[2] == null) {
             console.log("es null");
-        }else{
-            var tag3=req.body.tags[2].tag;
+        } else {
+            var tag3 = req.body.tags[2].tag;
         }
-        Event.find({$or:[{"tag": tag1},{"tag": tag2},{"tag": tag3}]}, function (err, events) {
+        Event.find({$or: [{"tag": tag1}, {"tag": tag2}, {"tag": tag3}]}, function (err, events) {
             if (!err) {
                 res.send(events);
             } else {
 
                 console.log('ERROR:' + err);
             }
-    });
-
-
-}
+        });
+    }
 
 
 //endpoints
@@ -164,6 +182,5 @@ module.exports = function (app) {
     app.delete('/event/:_id', deleteEvent);
     app.get('/events/:tag', findByTag);
     app.put('/event/:_id', updateEvent)
-
-
+    app.put('/event/join/:_id', joinEvent)
 }
