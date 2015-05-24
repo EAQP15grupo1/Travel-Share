@@ -1,7 +1,7 @@
 window.onload = getUser();
 
 function getUser() {
-    var url_TS = "http://localhost:3000/user/" + getCookie("userID");
+    var url_TS = "http://192.168.2.103:3000/user/" + window.localStorage.getItem("userID");
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -19,15 +19,4 @@ function getUser() {
         }
 
     });
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
 }

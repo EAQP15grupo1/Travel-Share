@@ -33,7 +33,9 @@
 
         };
 
-
+        $scope.backoffice = function () {
+            $window.location.href = 'backoffice.html';
+        };
     }]);
     /*app.controller('userController',['$scope','$log',function($scope,$log)
      {

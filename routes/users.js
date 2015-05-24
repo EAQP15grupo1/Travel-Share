@@ -1,4 +1,4 @@
-module.exports=function(app) {
+module.exports = function (app, passport, FacebookStrategy) {
 
     var User = require('../models/user/schema.js');
     var crypto = require('crypto');
@@ -25,11 +25,11 @@ module.exports=function(app) {
         User.findOne({"_id": req.params._id}, function (err, user) {
             if (!err) {
                 var tokenUser = req.params.authToken;
-                var decoded=checkToken(tokenUser);
+                var decoded = checkToken(tokenUser);
                 //var decoded = jwt.decode(tokenUser, app.get('jwtTokenSecret'));
                 if (!decoded) {
                     res.send("authToken expired");
-                } else if(decoded) {
+                } else if (decoded) {
                     res.send(user);
                 }
                 console.log("token:", tokenUser);
@@ -45,14 +45,14 @@ module.exports=function(app) {
     addUser = function (req, res) {
         console.log('POST user');
         console.log(req.body);
-        var name=req.body.username;
+        var name = req.body.username;
         var pass = req.body.password
         var passEncriptada = encriptar(name, pass)
 
 
-        User.findOne({username: name},function(err, user){
+        User.findOne({username: name}, function (err, user) {
 
-            if (!user){
+            if (!user) {
 
                 var user = new User({
                     name: req.body.name,
@@ -76,10 +76,10 @@ module.exports=function(app) {
                     }
                 })
 
-            res.send(user._id);
+                res.send(user._id);
 
             }
-            else{
+            else {
                 res.send('Usuario existe!')
             }
 
@@ -109,7 +109,7 @@ module.exports=function(app) {
 
     updateUser = function (req, res) {
         console.log('UPDATE user');
-        User.findOneAndUpdate({"_id": req.params._id},req.body, function (err, user) {
+        User.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, user) {
             console.log(user._id);
 
             user.set(function (err) {
@@ -134,36 +134,32 @@ module.exports=function(app) {
     }
 
     //Login
+    loginUser = function (req, res) {
+        console.log('LOGIN user');
 
-        loginUser = function (req, res){
-            console.log('LOGIN user');
+        var name = req.body.username;
+        var pass = req.body.password;
+        var passEncriptada = encriptar(name, pass)
 
-            var name=req.body.username;
-            var pass=req.body.password;
-            var passEncriptada = encriptar(name, pass)
+        User.findOne({"username": name}, function (err, user) {
+            if (user) {
+                if (user.password === passEncriptada) {
 
-            User.findOne({"username": name}, function (err, user) {
-                if(user){
-                    if(user.password === passEncriptada) {
-
-                        var token = generateToken();
-                        res.json({
-                            token : token,
-                            userId: user._id
-                            //username:user.username
-                        });
-                    }
-                    else
-
-                        res.send('contrase�a incorrecta')
-
-                        }else{
-                    res.send('No existe este usuario!')
+                    var token = generateToken();
+                    res.json({
+                        token: token,
+                        userId: user._id
+                        //username:user.username
+                    });
                 }
+                else
+                    res.send('contrase�a incorrecta')
 
-
-             });
-        }
+            } else {
+                res.send('No existe este usuario!')
+            }
+        });
+    }
 
     //Get de user por id
     findByUsername = function (req, res) {
@@ -177,23 +173,53 @@ module.exports=function(app) {
         });
     }
 
+    // Autenticación Facebook
+    var social = require('../config/social.js')
+    passport.use(new FacebookStrategy({
+            clientID: social.facebook.clientID,
+            clientSecret: social.facebook.clientSecret,
+            callbackURL: social.facebook.callbackURL,
+            enableProof: social.facebook.enableProof
+        },
+        function (accessToken, refreshToken, profile, done) {
+            var nameF = profile.id + "@facebook";
+            User.findOne({username: nameF}, function (err, user) {
+                if (!user) {
+                    var user = new User({
+                        name: profile.name,
+                        username: nameF
+                    });
+                    user.save(function (err) {
+                        if (!err) {
+                            console.log('User added');
+                        }
+                        else {
+                            console.log('ERROR', +err);
+                        }
+                    })
+                }
+                return done(err, user);
+            })
+        }
+    ));
 
 //funcion que comprueba el token
 
-    checkToken=function(token){
+    checkToken = function (token) {
         var succes;
-        var decode=jwt.decode(token,app.get('jwtTokenSecret'));
-        if (decode.exp <= Date.now()){
-            succes=false;
+        var decode = jwt.decode(token, app.get('jwtTokenSecret'));
+        if (decode.exp <= Date.now()) {
+            succes = false;
             console.log("AuthToken Expired");
-        }else{
-            succes=true;
+        } else {
+            succes = true;
             console.log("AuthToken Expired");
         }
         return succes;
     }
 
-    generateToken=function(user){
+
+    generateToken = function (user) {
 
         var token = jwt.encode({
             iss: user._id,
@@ -204,7 +230,6 @@ module.exports=function(app) {
 
     }
 
-
 //endpoints
     app.get('/users', findAllUsers);
     app.get('/user/:_id/:authToken', findUser);
@@ -212,5 +237,14 @@ module.exports=function(app) {
     app.put('/user/:_id', updateUser);
     app.delete('/user/:_id', deleteUser);
     app.post('/login', loginUser);
-    app.get('/user/username/:username', findByUsername)
+    app.get('/user/username/:username', findByUsername);
+
+    // Endpoints Facebook
+    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {failureRedirect: '/login'}),
+        function (req, res) {
+            // Successful authentication, redirect home.
+            res.redirect('/');
+        });
 }

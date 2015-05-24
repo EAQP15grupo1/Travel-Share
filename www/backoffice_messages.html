@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="examen">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Backoffice Mensajes</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Angular js-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+
+    <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script data-require="angular.js@*" data-semver="1.3.15"
+            src="https://code.angularjs.org/1.3.15/angular.js"></script>
+    <link data-require="bootstrap-css@2.3.2" data-semver="2.3.2" rel="stylesheet"
+          href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"/>
+    <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0"
+            src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>
+
+
+    <!-- Main JavaScript -->
+    <script src="js/backoffice_messages_app.js"></script>
+</head>
+
+<body ng-controller="messageController as messageCtrl">
+<div class="container">
+    <!-- Barra de navegación superior -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 style="color: #ffffff">Backoffice Mensajes</h1>
+            </div>
+        </div>
+    </nav>
+
+    <br> <br> <br>
+
+    <div class="jumbotron text-center">
+        <h1>Gestión de <strong>Mensajes</strong></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 40px">
+            <label style="font-size: 150%">Gestión de todos los mensajes de TravelShare</label> <br>
+
+            <div class="col-sm-2">
+                <label>Filtra mensajes por:</label>
+            </div>
+            <div class="col-sm-3">
+                <input style="width: 100%" type="text" class="form-control input-lg text-center"
+                       placeholder="Username"
+                       ng-value="filtro" ng-model="filtro.username">
+            </div>
+            <div class="col-sm-3">
+                <input style="width: 100%" type="text" class="form-control input-lg text-center"
+                       placeholder="ID de evento"
+                       ng-value="filtro" ng-model="filtro.eventid">
+            </div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-1">
+                <button id="addMessage" type="button" class="btn btn-info btn-lg" ng-click="addMessage()">ADD</button>
+            </div>
+        </div>
+
+        <div class="col-sm-12" style="text-align: center">
+            <label style="font-size: 150%">Lista completa de mensajes de la aplicación:</label> <br>
+
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+
+                <table class="table table-striped">
+                    <tr class="success text-center">
+                        <th><a href="" ng-click="predicate = 'id'; reverse=!reverse"><strong>ID</strong></a></th>
+                        <th><a href="" ng-click="predicate = 'content'; reverse=!reverse"><strong>Contenido</strong></a>
+                        </th>
+                        <th><a href="" ng-click="predicate = 'username'; reverse=!reverse"><strong>Username</strong></a>
+                        </th>
+                        <th><a href="" ng-click="predicate = 'eventid'; reverse=!reverse"><strong>ID de evento</strong></a>
+                        </th>
+                        <th><strong>Operaciones</strong></th>
+                    </tr>
+                    <tr class="text-center"
+                        ng-repeat="message in filteredTodos | filter: filtro | orderBy: predicate:reverse"
+                        ng-click="selectShoe(shoe)">
+                        <td>{{message.id}}</td>
+                        <td>{{message.content}}</td>
+                        <td>{{message.username}}</td>
+                        <td>{{message.eventid}}</td>
+                        <td>
+                            <button id="deleteMessage" type="submit" class="btn btn-danger btn-lg"
+                                    ng-click="deleteMessage(message)">
+                                DELETE
+                            </button>
+                            <button id="viewMessage" type="submit" class="btn btn-success btn-lg"
+                                    ng-click="viewMessage(message)">
+                                VIEW
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div data-pagination="" data-num-pages="numPages()"
+                     data-current-page="currentPage" data-max-size="maxSize"
+                     data-boundary-links="true"></div>
+
+                <!--<button id="previous" type="submit" class="btn btn-lg" ng-click=""><</button>-->
+                <!--<button id="next" type="submit" class="btn btn-lg" ng-click="">></button>-->
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
