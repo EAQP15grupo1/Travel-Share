@@ -15,7 +15,7 @@ var schema = new Schema({
         owner: {type: Schema.Types.ObjectId, ref: 'User'},
         attendees: [{type: Schema.Types.ObjectId, ref: 'User'}],
         place: [{type: Number}],
-        date: {type: String}
+        date: {type: Date}
     },
     {versionKey: false});
 

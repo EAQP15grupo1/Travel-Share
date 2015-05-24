@@ -155,10 +155,35 @@ module.exports = function (app) {
 
 }
 
+    //GET events
+    findAllEvents = function (req, res) {
+        Event.find(function (err, events) {
+            if (!err) {
+                res.send(events);
+            }
+            else {
+                console.log('ERROR: ' + err);
+            }
+        });
+    };
+
+    //GET events
+    findAllEventsByDate = function (req, res) {
+        Event.find({},{"_id":1,"eventname":1,"description":1,"tag":1,"owner":1,"date":1},{$orderby:{date:-1}},function (err, events) {
+            if (!err) {
+                res.send(events);
+            }
+            else {
+                console.log('ERROR: ' + err);
+            }
+        });
+    };
+
 
 //endpoints
     app.post("/events/advanced", addAdvance);
     app.get('/events', findAllEvents);
+    app.get('/events/date', findAllEventsByDate);
     app.get('/event/:_id', findEvent);
     app.post('/event', addEvent);
     app.delete('/event/:_id', deleteEvent);
