@@ -145,7 +145,7 @@ module.exports = function (app, passport, FacebookStrategy) {
             if (user) {
                 if (user.password === passEncriptada) {
 
-                    var token = generateToken();
+                    var token = generateToken(user);
                     res.json({
                         token: token,
                         userId: user._id
@@ -222,7 +222,7 @@ module.exports = function (app, passport, FacebookStrategy) {
     generateToken = function (user) {
 
         var token = jwt.encode({
-            //iss: user._id,
+            iss: user._id,
             exp: expires
         }, app.get('jwtTokenSecret'));
 
