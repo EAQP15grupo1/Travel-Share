@@ -4,7 +4,7 @@ window.onload = function () {
 };
 
 function getEventData() {
-    var url_TS = "http://192.168.2.103:3000/event/" + window.localStorage.getItem("eventID");
+    var url_TS = "http://192.168.1.52:3000/event/" + window.localStorage.getItem("eventID");
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -22,7 +22,7 @@ function getEventData() {
 };
 
 function getEventComments() {
-    var url_TS = "http://192.168.2.103:3000/messages/event/" + window.localStorage.getItem("eventID");
+    var url_TS = "http://192.168.1.52:3000/messages/event/" + window.localStorage.getItem("eventID");
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -57,7 +57,7 @@ $("#postBtn").click(function postMessage() {
         var data = JSON.stringify(message);
 
         $.ajax({
-            url: "http://192.168.2.103:3000/messages",
+            url: "http://192.168.1.52:3000/messages",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',
@@ -71,6 +71,33 @@ $("#postBtn").click(function postMessage() {
         });
     }
 });
+
+$("#joinBtn").click(function joinEvent() {
+
+
+        var joinURL = "http://192.168.1.52:3000/event/join/"+ window.localStorage.getItem("eventID");
+        var attendee = new Object();
+        attendee.attendees = "5562e79d4509ab9902000001";
+        var data = JSON.stringify(attendee);
+
+        $.ajax({
+            url: joinURL,
+            type: 'PUT',
+            crossDomain: true,
+            contentType: 'application/json',
+            data: data,
+            success: function () {
+                //window.location.reload();
+                document.querySelector('#toast1').show()
+            },
+            error: function () {
+                window.alert("FAIL: No se ha podido publicar el mensaje");
+            }
+        });
+
+});
+
+
 
 var maxLength = 150;
 $('textarea').keyup(function () {

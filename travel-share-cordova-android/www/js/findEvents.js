@@ -81,7 +81,7 @@ function getFilteredEventData() {
 
         var data = JSON.stringify(finalArray);
         $.ajax({
-            url: "http://192.168.2.103:3000/events/advanced",
+            url: "http://192.168.1.52:3000/events/advanced",
             type: 'POST',
             crossDomain: true,
             dataType: 'json',
@@ -104,7 +104,7 @@ window.onload = getAllEventData();
 // Obtener todos los eventos
 function getAllEventData() {
     $.ajax({
-        url: "http://192.168.2.103:3000/events",
+        url: "http://192.168.1.52:3000/events",
         type: 'GET',
         crossDomain: true,
         dataType: 'json',
