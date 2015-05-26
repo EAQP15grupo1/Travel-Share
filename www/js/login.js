@@ -1,49 +1,41 @@
 // Declare app level module which depends on views, and components
-(function (){
+(function () {
 
-    var obj={};
-    var box={};
-    var app=angular.module('loginApp', []);
+    var obj = {};
+    var box = {};
+    var app = angular.module('loginApp', []);
 
-    app.controller('loginController',['$http','$log','$scope','$window',function($http,$log,$scope,$window)
-    {
-        $scope.userInfo={};
-        box=$scope.userInfo;
+    app.controller('loginController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope, $window) {
+        $scope.userInfo = {};
+        box = $scope.userInfo;
         $log.debug(box);
-        $scope.login=function()
-        {
+        $scope.login = function () {
 
-            var res= $http.post('http://localhost:3000/login',box);
-            res.success(function(data)
-            {
-                if(data.username!=null)
-                {
+            var res = $http.post('http://147.83.7.201:3000/login', box);
+            res.success(function (data) {
+                if (data.username != null) {
                     alert("Username and password match");
-                    $window.location.href='http://localhost:63342/Travel-Share/www/home.html';
-                    $scope.userInfo.username='';
-                    $scope.userInfo.password='';
+                    $window.location.href = 'http://localhost:63342/Travel-Share/www/home.html';
+                    $scope.userInfo.username = '';
+                    $scope.userInfo.password = '';
                 }
-                else
-                {
+                else {
                     alert("Username or password invalid");
-                    $scope.userInfo.username='';
-                    $scope.userInfo.password='';
+                    $scope.userInfo.username = '';
+                    $scope.userInfo.password = '';
 
                 }
 
             });
-            res.error(function(error)
-            {
+            res.error(function (error) {
                 alert("An error has occured");
             });
 
         };
 
-
-
-
-
-
+        $scope.backoffice = function () {
+            $window.location.href = 'backoffice.html';
+        };
     }]);
     /*app.controller('userController',['$scope','$log',function($scope,$log)
      {

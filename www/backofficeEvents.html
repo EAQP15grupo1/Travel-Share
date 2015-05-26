@@ -1,0 +1,72 @@
+<!doctype html>
+<html ng-app="MainApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EXAMEN_EA_ANGULAR</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!--Angular-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!-- javascript con las funciones -->
+    <script src="js/backofficeEvents.js"></script>
+
+</head>
+<body ng-controller="mainController">
+<div class="container">
+
+    <div class="jumbotron text-center"style="background-color: skyblue" ng-prueba>
+        <h1>EXAMEN EA ANGULAR
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-7">
+            <input type="text" class="form-control input-lg text-center" placeholder="Buscar eventos por categoria"  ng-value="filtro" ng-model="filtro.tag">
+            <table class="table table-striped">
+
+                <tr class="info  text-center">
+                    <td>Eventname</td>
+                    <td>Description</td>
+                    <td>Owner</td>
+                    <td>Category</td>
+                    <td><a href="" ng-click="reverse=!reverse;order('date',reverse)">Date</a></td>
+
+                </tr>
+                <tr class="text-center" ng-repeat="event in events | filter:filtro " ng-click="selectEvent(event)">
+                    <td>{{event.eventname}}</td>
+                    <td>{{event.description}}</td>
+                    <td>{{event.owner}}</td>
+                    <td>{{event.tag}}</td>
+                    <td>{{event.date}}</td>
+                </tr>
+            </table>
+            <ul class="pager">
+                <li><a href="#">Previous</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-5 text-center">
+            <form name="myForm">
+                <div class="form-group col-sm-offset-1">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Eventname" ng-model="newEvent.eventname"required ng-disabled="notchange">
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Description" ng-model="newEvent.description" required>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="OwnerID" ng-model="newEvent.owner" required>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Tag(Deporte,Fiesta,Trabajo,Musica)" ng-model="newEvent.tag" required>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Date (DD/MM/YY)" ng-model="newEvent.date" required>
+                </div>
+
+
+                <!-- Botones del formulario -->
+                <button type="submit" class="btn btn-success btn-lg" ng-click="registrarEvent()" ng-disabled="myForm.$invalid || selected">Añadir</button>
+                <button type="submit" class="btn btn-warning btn-lg" ng-click="modificarEvent(newEvent)" ng-disabled="!newEvent.eventname || !newEvent.description|| !newEvent.owner|| !newEvent.tag ||!selected">Modificar</button>
+                <button type="submit" class="btn btn-danger btn-lg" ng-click="borrarEvent(newEvent)" ng-disabled="!newEvent.eventname || !selected">Borrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

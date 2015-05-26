@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Backoffice</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+
+    <!-- Main JavaScript -->
+    <script src="js/backoffice.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <!-- Barra de navegación superior -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 style="color: #ffffff">Backoffice</h1>
+            </div>
+        </div>
+    </nav>
+
+    <br> <br> <br>
+
+    <div class="jumbotron text-center">
+        <h1>Página de administración de <strong>TravelShare</strong></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 40px" align="center">
+            <button id="messagesBtn" type="submit" class="btn btn-info btn-lg" style="margin: 30px; width: 150px"
+                    onclick="backofficeMessages()">
+                MENSAJES
+            </button>
+            <button id="usersBtn" type="submit" class="btn btn-danger btn-lg" style="margin: 30px; width: 150px"
+                    onclick="backofficeUsers()">
+                USUARIOS
+            </button>
+            <button id="eventsBtn" type="submit" class="btn btn-success btn-lg" style="margin: 30px; width: 150px"
+                    onclick="backofficeEvents()">
+                EVENTOS
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

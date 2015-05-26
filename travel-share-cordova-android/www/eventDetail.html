@@ -18,7 +18,9 @@
     <link rel="import" href="bower_components/paper-toast/paper-toast.html">
     <link rel="import" href="bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+    <link rel="import" href="bower_components/paper-toast/paper-toast.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
     <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
     <link rel="import" href="bower_components/font-roboto/roboto.html">
@@ -62,18 +64,23 @@
         }
 
         .pageContent {
-            margin: 30px;
+            padding: 30px;
         }
 
         .textArea {
             width: 100%;
-            height: 100px;
         }
 
         core-header-panel {
             height: 100%;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
+        }
+        paper-fab {
+            position: fixed;
+            right: 40px;
+            top: 70px;
+            background-color: #03a9f4;
         }
 
         core-toolbar {
@@ -105,6 +112,52 @@
                 width: 400px;
             }
         }
+
+        paper-button.coloredPOST[raised] {
+            background: none repeat scroll 0% 0% #03a9f4;
+            color: #000000;
+            margin: 5px;
+            width: 120px;
+        }
+
+        .eventHeader {
+            background-color: #7FC7D7;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .eventContent {
+            height: 100px;
+            padding: 20px;
+            margin-right: 20px;
+            padding-bottom: 30px;
+            overflow: auto;
+        }
+
+        .box {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+
+        .box .row {
+            /*border: 1px dotted grey;*/
+            flex: 0 1 30px;
+        }
+
+        .box .row.header {
+            flex: 0 1 auto;
+        }
+
+        .box .row.content {
+            flex: 1 1 auto;
+            overflow: auto;
+            height: 200px;
+        }
+
+        .box .row.footer {
+            flex: 0 1 40px;
+        }
     </style>
 
 </head>
@@ -115,20 +168,39 @@
 
     <core-toolbar> Detalles del evento</core-toolbar>
 
-    <div class="pageContent">
-        <h1 id="eventName"></h1>
 
-        <h3 id="eventTag"></h3>
-        <label id="eventDate"></label>
+    <div class="box">
+        <div class="row header">
+            <h1 style="text-align: center" id="eventName"></h1>
+            <h3 id="eventTag"></h3>
+            <label id="eventDate"></label>
+            <br> <br>
+            <label>Comentarios:</label>
+        </div>
 
-        <hr>
+        <div class="row content">
+            <div>
+                <span id="comments"></span>
+            </div>
+        </div>
 
-        <paper-autogrow-textarea>
-            <textarea class="textArea" id="comment" placeholder="Escribe aquí un comentario"></textarea>
-        </paper-autogrow-textarea>
+        <div class="row footer">
+            <textarea class="textArea" id="comment" placeholder="Escribe tu comentario de hasta 150 caracteres"
+                      maxlength="150" style="width: 95%"></textarea>
+
+            <div style="text-align: right">
+                <label style="font-size: 80%">Te quedan <span id="chars">150</span> caracteres...</label><br>
+                <paper-button id="postBtn" class="coloredPOST" raised="true" role="button" tabindex="0">Publicar
+                </paper-button>
+            </div>
+        </div>
+
     </div>
 
 </core-header-panel>
+<paper-toast id="toast1" text="Te has unido al evento"></paper-toast>
+
+<paper-fab id="joinBtn" icon="check" onclick=""></paper-fab>
 
 <script type=" text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/eventDetail.js"></script>

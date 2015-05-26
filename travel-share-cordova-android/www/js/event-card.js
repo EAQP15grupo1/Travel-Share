@@ -1,6 +1,7 @@
 // event-card
 Polymer({
     buttonTapped: function (event, detail, sender) {
+        window.localStorage.setItem("eventID", this.eventID);
         window.location.href = 'eventDetail.html';
     },
     hideCards: function (event, detail, sender) {

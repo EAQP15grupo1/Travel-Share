@@ -17,7 +17,6 @@
     <link rel="import" href="bower_components/paper-button/paper-button.html">
 
 
-
     <style>
         html, body {
             height: 100%;
@@ -35,6 +34,7 @@
             bottom: 0;
             left: 0;
         }
+
         .wrapper {
             padding: 20px;
             text-align: center;
@@ -52,20 +52,21 @@
             background-color: #526E9C;
 
         }
+
         paper-input {
-            width: 90%;
+            width: 100%;
             margin-right: 20px;
         }
 
-        paper-button.coloredOK[raised] {
-            background: none repeat scroll 0% 0% #ADFFAD;
+        paper-button.coloredSignIn[raised] {
+            background: none repeat scroll 0% 0% #8ADCEB;
             color: #000000;
             margin: 5px;
             width: 120px;
         }
 
-        paper-button.coloredCancel[raised] {
-            background: none repeat scroll 0% 0% #FF4D4D;
+        paper-button.coloredSignUp[raised] {
+            background: none repeat scroll 0% 0% #BA97FF;
             color: #000000;
             margin: 5px;
             width: 120px;
@@ -76,30 +77,26 @@
 
 <body>
 <core-toolbar id="core_toolbar">TravelShare</core-toolbar>
-<div>
+<div class="wrapper">
     <form id="userForm">
         <p>
-            <paper-input label="Username" floatinglabel="true"></paper-input>
-
+            <paper-input id="username" label="Username" floatinglabel="true"></paper-input>
         </p>
 
         <p>
-            <paper-input label="Password" floatinglabel="true"></paper-input>
+            <paper-input id="password" label="Password" floatinglabel="true"></paper-input>
         </p>
-
 
     </form>
     <div class="wrapper">
-        <paper-button id="LoginBtn" class="coloredOK" raised="true" role="button" tabindex="0">Sign in</paper-button>
-        <paper-button id="RegisterBtn" class="coloredCancel" raised="true" role="button" tabindex="0">Sign up</paper-button>
+        <paper-button id="LoginBtn" class="coloredSignIn" raised="true" role="button" tabindex="0">Sign in
+        </paper-button>
+        <paper-button id="RegisterBtn" class="coloredSignUp" raised="true" role="button" tabindex="0">Sign up
+        </paper-button>
     </div>
 </div>
 
 <script type=" text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-
-<script type="text/javascript">
-    app.initialize();
-</script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 

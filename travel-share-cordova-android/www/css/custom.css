@@ -1,0 +1,134 @@
+/* Aquí se pueden encontrar los estilos CSS que vamos aplicando a nuestra aplicación */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+core-scaffold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #03a9f4;
+}
+
+core-scaffold::shadow core-toolbar {
+    background: #03a9f4;
+    color: #ffffff;
+}
+
+#core_toolbar {
+    color: rgb(255, 255, 255);
+    background-color: #03a9f4;
+}
+
+.wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+#core_toolbar {
+    color: rgb(255, 255, 255);
+    background-color: #03a9f4;
+}
+
+canvas {
+    margin: 10px;
+}
+
+paper-fab {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #526E9C;
+
+}
+
+paper-input {
+    width: 90%;
+    margin-right: 20px;
+}
+
+paper-button.coloredOK[raised] {
+    background: none repeat scroll 0% 0% #ADFFAD;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
+paper-button.coloredCancel[raised] {
+    background: none repeat scroll 0% 0% #FF4D4D;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
+/* Segundapga.html */
+.heading {
+    margin: 10px 5px 10px 5px;
+    padding: 10px 15px;
+    background-color: #f3f3f3;
+    border: 1px solid #dedede;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.content {
+    margin: 10px 5px 10px 5px;
+    padding: 15px;
+    border: 1px solid #dedede;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+paper-toggle-button.sport [checked] .toggle {
+    background-color: #FFCC66;
+}
+
+paper-toggle-button.music [checked] .toggle {
+    background-color: #FFFF99;
+}
+
+paper-toggle-button.job [checked] .toggle {
+    background-color: #E4E4E4;
+}
+
+paper-toggle-button.culture [checked] .toggle {
+    background-color: #99CCFF;
+}
+
+.wrapper {
+    padding: 20px;
+    text-align: right;
+}
+
+paper-button.colored[raised] {
+    background: none repeat scroll 0% 0% #CCCCFF;
+    color: #000000;
+    margin: 20px;
+    width: 120px;
+}
+
+paper-fab {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    background-color: #03a9f4;
+}
