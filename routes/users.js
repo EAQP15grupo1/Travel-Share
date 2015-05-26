@@ -230,6 +230,51 @@ module.exports = function (app, passport, FacebookStrategy) {
 
     }
 
+
+    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = deg2rad(lat2-lat1);  // deg2rad below
+        var dLon = deg2rad(lon2-lon1);
+        var a =
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon/2) * Math.sin(dLon/2)
+            ;
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var d = R * c; // Distance in km
+        d= d/1000;
+        return d; //en metros
+    }
+
+    function deg2rad(deg) {
+        return deg * (Math.PI/180)
+    }
+
+
+    findUsersOffersPlace = function (req, res){
+        User.find({"_id": req.params._id}, function (err, user){
+            var necesidades = user.needs;
+            if (!err) {
+              User.find({"offer":necesidades}, function (errr, users){
+                  if(!errr){
+                       var usuarios;
+                      for(var i=0; users.length; i++){
+                          var distancia=getDistanceFromLatLonInKm(user.latitude, user.longitude, users[i].lat, users[i].lon);
+                          if (distance<= 100){
+                              usuarios.append(users[i])
+                          }
+                      };
+                     res.send(usuarios);
+                 }
+              });
+            }
+            else {
+                console.log('ERROR: ' + err);
+            }
+        });
+    }
+
+
 //endpoints
     app.get('/users', findAllUsers);
     app.get('/user/:_id/:authToken', findUser);
@@ -238,6 +283,7 @@ module.exports = function (app, passport, FacebookStrategy) {
     app.delete('/user/:_id', deleteUser);
     app.post('/login', loginUser);
     app.get('/user/username/:username', findByUsername);
+    app.get('/users/find/:_id', findUsersOffersPlace);
 
     // Endpoints Facebook
     app.get('/auth/facebook', passport.authenticate('facebook'));
