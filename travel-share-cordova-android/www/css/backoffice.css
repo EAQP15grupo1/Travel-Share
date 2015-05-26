@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+
+paper-toast {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+paper-toast {
+    right: 10px;
+    left: auto;
+}
+paper-toast {
+    bottom: 40px;
+    left: 10px;
+}
+
+core-scaffold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+#core_toolbar {
+    color: rgb(255, 255, 255);
+    background-color: #03a9f4;
+}
+
+paper-fab {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #526E9C;
+
+}
+
+paper-input {
+    width: 100%;
+    margin-right: 20px;
+}
+
+paper-button.colored[raised] {
+    background: none repeat scroll 0% 0% #8ADCEB;
+    color: #ffffff;
+    margin: 5px;
+    width: 120px;
+}
+
+paper-button.coloredDelete[raised] {
+    background: none repeat scroll 0% 0% #F96262;
+    color: #ffffff;
+    margin: 5px;
+    width: 120px;
+}
