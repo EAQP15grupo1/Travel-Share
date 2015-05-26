@@ -11,13 +11,15 @@ $("#LoginBtn").click(function () {
         console.log(data);
 
         $.ajax({
-            url: "http://192.168.1.52:3000/login",
+            url: "http://localhost:3000/login",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',
             dataType: 'json',
             data: data,
             success: function (data_API) {
+                window.localStorage.setItem("username", user.username);
+                window.localStorage.setItem("userID", data_API.userId);
                 window.location.href = 'index.html';
             },
             error: function (error_API) {
