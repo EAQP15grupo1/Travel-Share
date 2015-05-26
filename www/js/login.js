@@ -51,7 +51,7 @@
 
             $scope.signUpInfo.value=!$scope.signUpInfo.value;
 
-             var res= $http.post(' http://localhost:3000/users',userInfo);
+             var res= $http.post('http://localhost:3000/users',userInfo);
              res.success(function(data)
              {
              if(data=="Usuario existe!")
@@ -87,11 +87,21 @@
         $log.debug(box);
         $scope.login = function () {
 
-            var res = $http.post('http://147.83.7.201:3000/login', box);
+            var res = $http.post('http://localhost:3000/login', box);
             res.success(function (data) {
-                if (data.username != null) {
+                if (data.token != null) {
+
+                    Cookies.set('username',box.username);
+                    Cookies.set('token',data.token);
+                    Cookies.set('userId',data.userId);
+                    var nombre=Cookies.get('username');
+                    var tok=Cookies.get('token');
+                    var id=Cookies.get('userId');
+                    $log.debug(nombre);
+                    $log.debug(tok);
+                    $log.debug(id);
                     alert("Username and password match");
-                    $window.location.href = 'http://localhost:63342/Travel-Share/www/home.html';
+                    //$window.location.href = '/Project EA/Travel-Share/www/home.html';
                     $scope.userInfo.username = '';
                     $scope.userInfo.password = '';
                 }
