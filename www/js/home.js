@@ -8,6 +8,7 @@ var markers=[];
 var new_marker;
 var filteredmarkers=[];
 var geolocation;
+var filter =0;
 var new_event_click= false;
 var usenrame= "prueba";
 var username_id="556324cff5dc436409000001";
@@ -39,23 +40,55 @@ var tags = [{
 }];
 
 
+function color_new_event(){
+    var e = document.getElementById("event_tag");
+    var id_value = e.options[e.selectedIndex].value;
+    document.getElementById("panel_new_event").style.borderColor = tags[id_value].color;
+    $(".fa.fa-times").css("color",tags[id_value].color);
+    $("#event_tag").css("background-color",tags[id_value].color);
 
+
+}
 function newevent(){
     document.getElementById("panel_tag").style.visibility = 'hidden';
     document.getElementById("panel_info").style.visibility = 'hidden';
     document.getElementById("panel_new_event").style.visibility = 'visible';
+    document.getElementById("new_event_button").style.visibility = 'hidden';
+
     new_event_click=true;
+    $(".fa.fa-times").css("color","black");
+    setAllMap(null,filter);
+    google.maps.event.addListener(map, 'click', function(e)
+    {
+        placeMarker(e.latLng, map);
+
+    });
 }
 
-function exitpanel(){
+function exitpanel2(){
     document.getElementById("panel_tag").style.visibility = 'visible';
     document.getElementById("panel_info").style.visibility = 'hidden';
     document.getElementById("panel_new_event").style.visibility = 'hidden';
+    document.getElementById("new_event_button").style.visibility = 'visible';
     //new_event_click=false;
-    setAllMap(map);
-    new_marker = "";
+    setAllMap(map,filter);
+    $("#new_eventname").val("");
+    $("#new_description").val("");
+    $("#datetimepicker6").val("");
+    document.getElementById("panel_new_event").style.borderColor = "black";
+    $(".fa.fa-times").css("color","black");
+    $("#event_tag").css("background-color","white");
+    var e = document.getElementById("event_tag");
+    e.value = 0;
+
+    if(new_marker != null || new_marker != "")
+    {
+        new_marker.setMap(null);
+        new_marker = "";
+    }
 
 }
+
 
 //Carga los marcadores de la API
 (function() {
@@ -104,11 +137,7 @@ function initialize() {
     }
 
     // Thread espera que se le clique
-    google.maps.event.addListener(map, 'click', function(e)
-    {
-        placeMarker(e.latLng, map);
 
-    });
 
     // se añanden los macadores y se añade sus valores
     for (var i = 0, j = marcadores.length; i < j; i++)
@@ -136,55 +165,76 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
-function setAllMap(map) {
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
+function setAllMap(map,x) {
+    if(x==0){
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
+    else{
+        for (var i = 0; i < filteredmarkers.length; i++) {
+            filteredmarkers[i].setMap(map);
+        }
     }
 }
+
+
 
 
 function new_marker_post(){
     var e = document.getElementById("event_tag");
     var idtag = e.options[e.selectedIndex].value;
-
-
-    var new_event =new Object();
-    new_event.eventname = $("#new_eventname").val();
-    new_event.tag = tags[idtag].tag;
-    new_event.idtag = idtag;
-    new_event.description = $("#new_description").val();
-    new_event.owner = username_id;
-    var lat = new_marker.position.lat();
-    var lng= new_marker.position.lng();
-    var place= new Array();
+    if(new_marker != null )
+    {
+        console.log(idtag);
+        var lat = new_marker.position.lat();
+        var lng= new_marker.position.lng();
+        var place= new Array();
         place[0] = ''+lat+'';
         place[1] = ''+lng+'';
-    //console.log('["'+new_marker.position.lat()+'","'+new_marker.position.lng()+'"]');
-    new_event.place = place;
-    new_event.date = $("#datetimepicker6").val();
-    console.log(place);
-    var data = JSON.stringify(new_event);
-    console.log(data);
-    $.ajax({
-            url: "http://localhost:3000/event",
-            type: 'POST',
-            crossDomain: true,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: data,
-            success: function (data) {
-                console.log("correct");
-            },
-            error: function () {
+    }
 
-            }
-        });
+
+
+    if($("#new_eventname").val()!="" && $("#new_description").val()!="" &&  place!=null && $("#datetimepicker6").val()!="" && idtag!="null"){
+            var new_event =new Object();
+            new_event.eventname = $("#new_eventname").val();
+            new_event.tag = tags[idtag].tag;
+            new_event.idtag = idtag;
+            new_event.description = $("#new_description").val();
+            new_event.owner = username_id;
+
+
+            //console.log('["'+new_marker.position.lat()+'","'+new_marker.position.lng()+'"]');
+            new_event.place = place;
+            new_event.date = $("#datetimepicker6").val();
+            console.log(place);
+            var data = JSON.stringify(new_event);
+            console.log(data);
+            $.ajax({
+                    url: "http://localhost:3000/event",
+                    type: 'POST',
+                    crossDomain: true,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: data,
+                    success: function (data) {
+                        console.log("correct post");
+                        exitpanel2();
+
+                    },
+                    error: function () {
+
+                    }
+                });
+    }
+    else
+    window.alert("error");
 }
 
 function placeMarker(position, map) {
     if(new_event_click==true)
     {
-        //setAllMap(null);
         new_marker= new google.maps.Marker
         ({
             position: position,
@@ -192,7 +242,6 @@ function placeMarker(position, map) {
             map: map
         });
         pushMarker(new_marker);
-       // var pos = new_marker.position.split("(")
         document.getElementById("label").innerText = new_marker.position.lat()+","+new_marker.position.lng();
         map.setCenter(new_marker.getPosition());
 
@@ -379,9 +428,11 @@ function filterMarkers(keyWord)
 {
     var i=0;
     var isFiltered=false;
+    var markers_count;
     if(keyWord=="Nada"){
         while(i<marcadores.length)
         {
+            filter =1;
             isFiltered=true;
             var content = marcadores[i].eventname;
             var event=marcadores[i].tag;
@@ -402,6 +453,7 @@ function filterMarkers(keyWord)
         {
             if(marcadores[i].tag==keyWord)
             {
+                filter =1;
                 isFiltered=true;
                 var content = marcadores[i].eventname;
                 var event =marcadores[i].tag;
@@ -413,8 +465,14 @@ function filterMarkers(keyWord)
                 var description = marcadores[i].description;
                 console.log("jijijijiji"+detalle);
                 addfilterMarker(position,detalle,map,content,event,tag,color,date,description);
+                markers_count++;
             }
             i++;
+            if(markers_count == 0)
+            {
+
+            }
+
         }
     }
     if(isFiltered==true)

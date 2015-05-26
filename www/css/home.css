@@ -20,6 +20,7 @@ html, body, #map-canvas {
     box-shadow: 3px 3px 3px 0px rgba(41, 41, 41, 0.3);
     z-index: 90;
     outline: none;
+    visibility: visible
 }
 
 .paper-button.paper-floating-action-button:hover {
@@ -41,6 +42,8 @@ html, body, #map-canvas {
 .fa.fa-times{
     color: #000000;
 }
+
+
 
 
 /*Panel busqueda No incluye el imput y boton */
