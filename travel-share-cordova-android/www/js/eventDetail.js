@@ -16,12 +16,13 @@ function getEventData() {
             var index = data.attendees.indexOf(window.localStorage.getItem("userID"));
             if (index > -1) {
                 $("#joinBtn").hide();
-                console.log("ESTOY");
+                //console.log("ESTOY");
             } else {
                 $("#joinBtn").show();
                 document.getElementById("comment").disabled = true;
+                document.getElementById("comment").placeholder = "ÚNETE AL EVENTO PARA COMENTAR";
                 document.getElementById("postBtn").disabled = true;
-                console.log("NO ESTOY");
+                //console.log("NO ESTOY");
             }
 
             $("#eventName").text(data.eventname);

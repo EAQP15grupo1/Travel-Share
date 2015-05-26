@@ -1,0 +1,101 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="signUpController" as signUpCtrl>
+    <div class="modal-dialog">
+        <div class="modal-content" ng-hide="signUpInfo.value">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" ng-bind-html="title"></h4>
+            </div>
+            <div class="modal-body" ng-show="content" >
+
+                <h4>Text in a modal</h4>
+                <p ng-bind-html="content"></p>
+                <pre>2 + 3 = {{ 2 + 3 }}</pre>
+
+                <h4>Popover in a modal</h4>
+                <p>This <a href="#" role="button" class="btn btn-default popover-test" data-title="A Title" data-content="And here's some amazing content. It's very engaging. right?" bs-popover>button</a> should trigger a popover on click.</p>
+
+                <h4>Tooltips in a modal</h4>
+                <p><a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>This link</a> and <a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>that link</a> should have tooltips on hover.</p>
+
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="label label-primary" style="float:left">Username:</span>
+                    <input type="text" class="form-control" placeholder="userEA" aria-describedby="basic-addon1" ng-model="signUpInfo.username">
+                    </div>
+
+                    <div class="col-md-4 col-sm-offset-2">
+                        <span class="label label-primary" style="float:left">Nacionalidad:</span>
+                    <input type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="signUpInfo.nacionalidad">
+                    </div>
+                </div>
+
+
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="label label-warning" style="float:left">Email:</span>
+                        <input type="text" class="form-control" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="signUpInfo.email">
+                    </div>
+
+                    <div class="col-md-4 col-sm-offset-2">
+                        <span class="label label-warning" style="float:left">Idiomas:</span>
+                        <input type="text" class="form-control" placeholder="ingles" aria-describedby="basic-addon1" ng-model="signUpInfo.idiomas">
+                    </div>
+
+                </div>
+
+
+
+                <br>
+
+                <div class="row">
+                <div class="col-md-4">
+                    <span class="label label-success" style="float:left">Password:</span>
+                    <input type="password" class="form-control" placeholder="contraseña" aria-describedby="basic-addon1" ng-model="signUpInfo.password">
+                </div>
+
+                    <div class="col-md-4 col-sm-offset-2">
+                        <span class="label label-success" style="float:left">Evento que busco:</span>
+                        <input type="text" class="form-control" placeholder="fiesta,cine" aria-describedby="basic-addon1" ng-model="signUpInfo.needs">
+                    </div>
+
+                </div>
+
+                <br>
+
+                <div class="row">
+                <div class="col-md-4">
+                    <span class="label label-danger" style="float:left">Password:</span>
+                    <input type="password" class="form-control" placeholder="repetir contraseña" aria-describedby="basic-addon1">
+                </div>
+
+                    <div class="col-md-4 col-sm-offset-2">
+                        <span class="label label-danger" style="float:left">Evento que ofrezco:</span>
+                        <input type="text" class="form-control" placeholder="clase de ingles,museo" aria-describedby="basic-addon1" ng-model="signUpInfo.offers">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                <div class="col-lg-10">
+                    <span class="label label-info" style="margin-right:480px ">Descripcion:</span>
+                    <textarea class="form-control" rows="3" style="margin-left: 1px" ng-model="signUpInfo.description"></textarea>
+                </div>
+
+            </div>
+
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+                <button type="button" class="btn btn-primary"ng-click="signupUser()">Save changes</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

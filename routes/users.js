@@ -63,7 +63,9 @@ module.exports = function (app, passport, FacebookStrategy) {
                     nation: req.body.nation,
                     needs: req.body.needs,
                     offers: req.body.offers,
-                    description: req.body.description
+                    description: req.body.description,
+                    latitude:req.body.latitude,
+                    longitude:req.body.longitude
                 });
                 user.save(function (err) {
 
@@ -242,7 +244,7 @@ module.exports = function (app, passport, FacebookStrategy) {
             ;
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         var d = R * c; // Distance in km
-        d= d/1000;
+        d= d*1000 //distancias en metros
         return d; //en metros
     }
 
@@ -252,19 +254,26 @@ module.exports = function (app, passport, FacebookStrategy) {
 
 
     findUsersOffersPlace = function (req, res){
-        User.find({"_id": req.params._id}, function (err, user){
-            var necesidades = user.needs;
+        User.findOne({"_id": req.params._id}, function (err, user){
+            console.log(user);
+              var necesidades = user.needs;
+            var latitud=user.latitude;
+            var longitud=user.longitude;
             if (!err) {
-              User.find({"offer":necesidades}, function (errr, users){
-                  if(!errr){
-                       var usuarios;
-                      for(var i=0; users.length; i++){
-                          var distancia=getDistanceFromLatLonInKm(user.latitude, user.longitude, users[i].lat, users[i].lon);
-                          if (distance<= 100){
-                              usuarios.append(users[i])
+              User.find({"offers":necesidades}, function (err, users){
+                  if(!err){
+                       var usuarios=[];
+                      for(var i=0; i<users.length; i++){
+                          var distancia=getDistanceFromLatLonInKm(latitud, longitud, users[i].latitude, users[i].longitude);
+                          if (distancia<= 100){
+                               var usuario=({
+                                  id:users[i]._id,
+                                  distance:distancia
+                              });
+                              usuarios.push(usuario);
                           }
                       };
-                     res.send(usuarios);
+                     res.send(JSON.stringify(usuarios));
                  }
               });
             }
@@ -273,6 +282,45 @@ module.exports = function (app, passport, FacebookStrategy) {
             }
         });
     }
+
+
+    // Importamos el modulo para subir ficheros
+    var fs = require('fs');
+
+    addImages = function(req, res) {
+        //console.log(req.files)
+        var tmp_path = req.files.photo.path;
+        // Ruta donde colocaremos las imagenes
+        var target_path = './avatar/' + req.files.photo.name;
+        // Comprobamos que el fichero es de tipo imagen
+        if (req.files.photo.type.indexOf('image')==-1){
+            res.send('El fichero que deseas subir no es una imagen');
+        } else {
+            // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
+            fs.rename(tmp_path, target_path, function(err) {
+                if (err) throw err;
+                // Eliminamos el fichero temporal
+                fs.unlink(tmp_path, function() {
+                    if (err) throw err;
+                    User.findOneAndUpdate({"_id": req.params._id},req.body.avatar, function (err, user) {
+                        console.log(user._id);
+                        req.files.photo.name = user._id
+                        user.avatar= req.file.photo.name.
+                        user.set(function (err) {
+                            if (!err) {
+                                console.log('Updated');
+                            }
+                            else {
+                                console.log('ERROR' + err);
+                            }
+
+                        })
+                    });
+
+                });
+            });
+        }
+    };
 
 
 //endpoints
@@ -284,7 +332,7 @@ module.exports = function (app, passport, FacebookStrategy) {
     app.post('/login', loginUser);
     app.get('/user/username/:username', findByUsername);
     app.get('/users/find/:_id', findUsersOffersPlace);
-
+    app.put('/user/avatar/:_id', addImages);
     // Endpoints Facebook
     app.get('/auth/facebook', passport.authenticate('facebook'));
     app.get('/auth/facebook/callback',

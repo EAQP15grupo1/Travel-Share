@@ -3,7 +3,83 @@
 
     var obj = {};
     var box = {};
-    var app = angular.module('loginApp', []);
+    var buffer={}
+    var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap','ngSanitize']);
+
+
+    app.controller('DemoController', function($scope, $modal,$log) {
+        // Show a basic modal from a controller
+        //var myModal = $modal({title: 'My Title', content: 'My Content', show: true});
+
+        // Pre-fetch an external template populated with a custom scope
+        myOtherModal = $modal({scope: $scope, template: 'modal.tpl.demo.html', show:false});
+        // Show when some event occurs (use $promise property to ensure the template has been loaded)
+        $scope.showModal = function()
+        {
+            myOtherModal.$promise.then(myOtherModal.show);
+        };
+
+
+        $scope.hideOtherModal=function()
+        {
+            $log.debug("Evalua la function");
+            myOtherModal.hide();
+        };
+    });
+
+    app.controller('signUpController',['$http','$log','$scope','$window',function($http,$log,$scope,$window)
+    {
+        $scope.signUpInfo={};
+        buffer=$scope.signUpInfo;
+        $scope.signUpInfo.value=false;
+        $scope.signupUser=function()
+        {
+            var needsArray=buffer.needs.split(",");
+            var offersArray=buffer.offers.split(",");
+
+
+            var userInfo= new Object();
+            userInfo.username=buffer.username;
+            userInfo.email=buffer.email;
+            userInfo.nacionalidad=buffer.nacionalidad;
+            userInfo.password=buffer.password;
+            userInfo.idiomas=buffer.idiomas;
+            userInfo.description=buffer.description;
+            userInfo.needs=needsArray;
+            userInfo.offers=offersArray;
+            $log.debug(userInfo);
+
+            $scope.signUpInfo.value=!$scope.signUpInfo.value;
+
+             var res= $http.post(' http://localhost:3000/users',userInfo);
+             res.success(function(data)
+             {
+             if(data=="Usuario existe!")
+             {
+             alert("Usuario ya existe");
+             $window.location.href='/Project EA/Travel-Share/www/index.html';
+             }
+             else
+             {
+             alert("Usuario creado");
+                 $window.location.href='/Project EA/Travel-Share/www/index.html';
+
+             }
+
+             });
+             res.error(function(error)
+             {
+             alert("An error has occured");
+             });
+
+        };
+
+    }]);
+
+
+
+
+
 
     app.controller('loginController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope, $window) {
         $scope.userInfo = {};

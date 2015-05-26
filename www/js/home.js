@@ -60,14 +60,8 @@ function exitpanel(){
 //Carga los marcadores de la API
 (function() {
     var app = angular.module('Eventos', []);
-<<<<<<< HEAD
     app.controller('CargarEventos', ['$http', '$log', function ($http) {
-
         $http.get('http://localhost:3000/events').success(function (data) {
-=======
-    app.controller('CargarEventos', ['$http', '$log', function ($http, $log) {
-        $http.get('http://147.83.7.201:3000/events').success(function (data) {
->>>>>>> a6ae290f09af02c20cff7df507e5ae0debf08fcf
             console.log(data);
             marcadores = data;
         });

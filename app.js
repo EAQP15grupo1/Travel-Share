@@ -33,6 +33,7 @@ app.get('/', function (req, res) {
 routes = require('./routes/users')(app, passport, FacebookStrategy);
 routes = require('./routes/events')(app);
 routes = require('./routes/messages')(app);
+routes = require('./routes/comments')(app);
 
 
 mongoose.connect('mongodb://localhost/TravelShare', function (err, res) {

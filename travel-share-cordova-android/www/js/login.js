@@ -1,6 +1,11 @@
+function backoffice(){
+    window.location.href = 'backoffice_mensajes.html';
+}
+
 $("#LoginBtn").click(function () {
     var username = $("#username").val();
     var password = $("#password").val();
+
 
     if (username != "" && password != "") {
         var user = new Object();
