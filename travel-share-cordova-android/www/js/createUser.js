@@ -20,7 +20,7 @@ $("#createBtn").click(function () {
         //window.location.href = 'index.html';
 
         $.ajax({
-            url: "http://192.168.1.52:3000/users",
+            url: "http://10.89.38.183:3000/users",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',
