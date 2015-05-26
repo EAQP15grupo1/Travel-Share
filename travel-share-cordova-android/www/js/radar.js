@@ -3,10 +3,13 @@ var context = canvas.getContext('2d');
 var circles = [];
 var imageObj = new Image();
 var users;
+var latitude;
+var longitude;
+var altitude;
 
 window.onload = function () {
-    //loadBackground();
     loadCircles();
+    onDeviceReady();
 }
 
 //function loadBackground() {
@@ -75,4 +78,62 @@ function loadCircles() {
             }
         }
     });
+
+}
+
+//Intentando la geolocalizacion
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// Cordova is ready
+
+function onDeviceReady() {
+    window.alert("Device Ready");
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
+
+// onSuccess Geolocation
+//
+function onSuccess(position) {
+
+    window.alert("latitudes");
+    latitude=position.coords.latitude;
+    longitude=position.coords.longitude;
+    altitude=position.coords.altitude;
+    updatePosition();
+}
+
+// onError Callback receives a PositionError object
+
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+    'message: ' + error.message + '\n');
+}
+
+function updatePosition() {
+
+        window.alert("Update");
+
+        var location = new Object();
+        location.latitude = latitude;
+        location.longitude = longitude;
+        location.altitude = altitude;
+        var data = JSON.stringify(location);
+
+        var locationURL="http://10.89.38.183:3000/user/"+"5562e79d4509ab9902000001";
+
+        $.ajax({
+            url: locationURL,
+            type: 'PUT',
+            crossDomain: true,
+            contentType: 'application/json',
+            data: data,
+            success: function () {
+                //window.location.reload();
+            },
+            error: function () {
+                window.alert("FAIL: No se ha podido publicar el mensaje");
+            }
+        });
+
 }
