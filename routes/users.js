@@ -255,7 +255,6 @@ module.exports = function (app, passport, FacebookStrategy) {
 
     findUsersOffersPlace = function (req, res){
         User.findOne({"_id": req.params._id}, function (err, user){
-            console.log(user);
               var necesidades = user.needs;
             var latitud=user.latitude;
             var longitud=user.longitude;
@@ -271,9 +270,10 @@ module.exports = function (app, passport, FacebookStrategy) {
                                   distance:distancia
                               });
                               usuarios.push(usuario);
+                              console.log(JSON.stringify(usuarios));
                           }
                       };
-                     res.send(JSON.stringify(usuarios));
+                     res.json(usuarios);
                  }
               });
             }
