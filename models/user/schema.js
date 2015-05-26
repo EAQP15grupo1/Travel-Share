@@ -18,7 +18,8 @@ var schema = new Schema({
         description:{type:String},
         latitude:{type:String},
         longitude:{type:String},
-        altitude:{type:String}
+        altitude:{type:String},
+        avatar:{type:String}
     },
     {versionKey: false});
 

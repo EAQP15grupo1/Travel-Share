@@ -48,7 +48,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    var url_TS = "http://192.168.1.52:3000/users";
+    var url_TS = "http://10.89.38.183:3000/users";
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -120,7 +120,7 @@ function updatePosition() {
         location.altitude = altitude;
         var data = JSON.stringify(location);
 
-        var locationURL="http://10.89.38.183:3000/user/"+"5562e79d4509ab9902000001";
+        var locationURL="http://10.89.40.14:3000/user/"+"5562e79d4509ab9902000001";
 
         $.ajax({
             url: locationURL,
@@ -130,10 +130,35 @@ function updatePosition() {
             data: data,
             success: function () {
                 //window.location.reload();
+                getMatches();
             },
             error: function () {
                 window.alert("FAIL: No se ha podido publicar el mensaje");
             }
         });
 
+}
+
+function getMatches(){
+
+    var userURL="http://10.89.40.14:3000/users/find/"+"5562e79d4509ab9902000001"
+
+    $.ajax({
+        url: userURL,
+        type: 'GET',
+        crossDomain: true,
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (results) {
+            window.alert("enviando usuarios");
+            var usuarios=results;
+            for(var i= 0; i<usuarios.length; i++)
+            {
+                console.log("id: "+usuarios[i].id + " distancia: "+usuarios[i].distance);
+            }
+        },
+        error: function () {
+            window.alert("FAIL: No se ha podido publicar el mensaje");
+        }
+    });
 }
