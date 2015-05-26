@@ -10,7 +10,8 @@ var filteredmarkers=[];
 var geolocation;
 var filter =0;
 var new_event_click= false;
-var usenrame= "prueba";
+var username= "prueba";
+$("#username").val(username);
 var username_id="556324cff5dc436409000001";
 
 var tags = [{
@@ -80,12 +81,18 @@ function exitpanel2(){
     $("#event_tag").css("background-color","white");
     var e = document.getElementById("event_tag");
     e.value = 0;
-
-    if(new_marker != null || new_marker != "")
+    google.maps.event.clearListeners(map, 'click', function(e){});
+    google.maps.event.clearListeners(map, 'dragend', function(e){});
+    console.log(new_marker);
+    if(new_marker != null && new_marker != "")
     {
         new_marker.setMap(null);
-        new_marker = "";
+        new_marker = null;
+        console.log(new_marker);
     }
+
+
+
 
 }
 

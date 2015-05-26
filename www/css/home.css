@@ -55,6 +55,16 @@ html, body, #map-canvas {
     margin-top: 17px;
     z-index: 5;
 }
+
+#my {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    top:17px;
+    right:80px;
+    z-index: 8;
+}
+
 #n-evento {
     position: absolute;
     width: 470px;
