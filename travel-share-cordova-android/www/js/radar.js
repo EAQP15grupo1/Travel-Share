@@ -197,9 +197,9 @@ function loadCircles() {
 
                 color = "#" + Math.random().toString(16).slice(2, 8);
                 username = data[i].username;
-                var text = username.substring(0, 1)
+                var text = username.substring(0, 1);
+                //console.log(data[i].distance);
                 drawCircle(context, width, height, color, 20, 3, "#000000", "black", "center", "bold 20px Arial", text, circles, data[i].id);
-                console.log(data[i].distance);
                 //drawCircle(context, 300, 100, "#FFFF99", 20, 3, "#FF9933", "white", "center", "bold 32px Arial", "1", circles, data[0].id);
             }
         }
