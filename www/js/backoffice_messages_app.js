@@ -6,7 +6,7 @@ function messageController($scope, $http) {
     $scope.selected = false;
 
     // Obtener lista completa de zapatos
-    $http.get('http://localhost:3000/backoffice/messages/').success(function (data) {
+    $http.get('http://147.83.7.201:3000/backoffice/messages/').success(function (data) {
         $scope.messages = data;
 
         $scope.filteredTodos = []
@@ -39,7 +39,7 @@ function messageController($scope, $http) {
 
     // Borrar mensaje de la lista
     $scope.deleteMessage = function (message) {
-        $http.delete('http://localhost:3000/backoffice/message/' + message._id)
+        $http.delete('http://147.83.7.201:3000/backoffice/message/' + message._id)
             .success(function (data) {
                 var index = $scope.messages.indexOf(message);
                 $scope.messages.splice(index, 1);
@@ -68,7 +68,7 @@ function messageController($scope, $http) {
 
     // Crear mensaje
     $scope.postMessage = function () {
-        $http.post('http://localhost:3000/backoffice/messages/', $scope.newMessage)
+        $http.post('http://147.83.7.201:3000/backoffice/messages/', $scope.newMessage)
             .success(function (data) {
                 $scope.newShoe = {}; // Borramos los datos del formulario
                 window.location.href = "backoffice_messages.html";

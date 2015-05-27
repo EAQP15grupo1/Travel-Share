@@ -8,7 +8,7 @@ function detailController($scope, $http) {
     $scope.selected = false;
 
     // Obtener lista completa de zapatos
-    $http.get('http://localhost:3000/backoffice/message/' + getCookie("messageID")).success(function (data) {
+    $http.get('http://147.83.7.201:3000/backoffice/message/' + getCookie("messageID")).success(function (data) {
         $scope.newMessage = data;
         console.log(data);
     }).error(function (error) {
@@ -18,7 +18,7 @@ function detailController($scope, $http) {
     // Modificar mensaje
     $scope.updateMessage = function (newMessage) {
         console.log(newMessage);
-        $http.put('http://localhost:3000/backoffice/message/' + getCookie("messageID"), $scope.newMessage)
+        $http.put('http://147.83.7.201:3000/backoffice/message/' + getCookie("messageID"), $scope.newMessage)
             .success(function (data) {
             })
             .error(function (data) {

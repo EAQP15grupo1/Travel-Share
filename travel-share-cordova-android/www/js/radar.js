@@ -113,7 +113,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    var userURL = "http://localhost:3000/users/find/" + "554f75dd5e437e4611000004";
+    var userURL = "http://147.83.7.201:3000/users/find/" + window.localStorage.getItem("userID");
     $.ajax({
         url: userURL,
         type: 'GET',
@@ -259,7 +259,8 @@ function updatePosition() {
     location.altitude = altitude;
     var data = JSON.stringify(location);
 
-    var locationURL = "http://10.89.40.14:3000/user/" + "5562e79d4509ab9902000001";
+    // HAY QUE DESCOMENTAR ESTA LÍNEA
+    //var locationURL = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
 
     $.ajax({
         url: locationURL,
@@ -272,13 +273,13 @@ function updatePosition() {
             getMatches();
         },
         error: function () {
-            window.alert("FAIL: No se ha podido publicar el mensaje");
+            window.alert("FAIL");
         }
     });
 }
 
 function getMatches() {
-    var userURL = "http://localhost:3000/users/find/" + "554f75dd5e437e4611000004";
+    var userURL = "http://147.83.7.201:3000/users/find/" + window.localStorage.getItem("userID");
 
     $.ajax({
         url: userURL,
@@ -293,7 +294,7 @@ function getMatches() {
             }
         },
         error: function () {
-            window.alert("FAIL: No se ha podido publicar el mensaje");
+            window.alert("FAIL");
         }
     });
 }
