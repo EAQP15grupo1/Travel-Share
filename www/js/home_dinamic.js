@@ -14,9 +14,6 @@ function expand(id_click) {
     }
 }
 
-function join(){
-    alert("Gracias por unirte!");
-}
 
 function exitpanel(){
     document.getElementById("panel_tag").style.visibility = 'visible';
