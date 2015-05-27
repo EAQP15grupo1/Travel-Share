@@ -101,7 +101,7 @@
                     $log.debug(tok);
                     $log.debug(id);
                     alert("Username and password match");
-                    //$window.location.href = '/Project EA/Travel-Share/www/home.html';
+                    $window.location.href = '/Travel-Share/www/home.html';
                     $scope.userInfo.username = '';
                     $scope.userInfo.password = '';
                 }

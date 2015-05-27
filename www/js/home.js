@@ -11,9 +11,14 @@ var geolocation;
 var filter =0;
 var id;
 var new_event_click= false;
-var username= "Thyr";
-$("#username").val(username);
-var username_id="5548d7f9acc1280c02000002";
+
+var username=Cookies.get('username');
+var token=Cookies.get('token');
+var username_id=Cookies.get('userId');
+console.log(username);
+console.log(token);
+console.log(username_id);
+
 
 var tags = [{
     nombre: "sin filtro",
