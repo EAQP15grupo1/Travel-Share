@@ -1,4 +1,20 @@
-function backoffice(){
+var base_URL;
+
+window.onload = function () {
+    $.ajax({
+        url: "js/URL.json",
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            base_URL = data.url;
+        },
+        error: function (error) {
+            window.alert("IP not found in file");
+        }
+    });
+}
+
+function backoffice() {
     window.location.href = 'backoffice_mensajes.html';
 }
 
@@ -16,7 +32,7 @@ $("#LoginBtn").click(function () {
         console.log(data);
 
         $.ajax({
-            url: "http://10.89.40.14:3000/login",
+            url: "http://" + base_URL + "/login",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',
