@@ -77,7 +77,8 @@ module.exports = function (app, passport, FacebookStrategy) {
                     offers: req.body.offers,
                     description: req.body.description,
                     latitude: req.body.latitude,
-                    longitude: req.body.longitude
+                    longitude: req.body.longitude,
+                    avatar:req.body.avatar
                 });
                 user.save(function (err) {
 
@@ -302,37 +303,47 @@ module.exports = function (app, passport, FacebookStrategy) {
 
     addImages = function (req, res) {
         //console.log(req.files)
-        var tmp_path = req.files.photo.path;
+        req.files.avatar.name = req.params._id +'.jpg';
+        var foto = req.files.avatar.name;
+
+        var tmp_path = req.files.avatar.path;
         // Ruta donde colocaremos las imagenes
-        var target_path = './avatar/' + req.files.photo.name;
+        var target_path = './avatar/' + req.files.avatar.name;
         // Comprobamos que el fichero es de tipo imagen
-        if (req.files.photo.type.indexOf('image') == -1) {
-            res.send('El fichero que deseas subir no es una imagen');
-        } else {
+        if (req.files.avatar.type.indexOf('image') == -1) {
+            //res.send('El fichero que deseas subir no es una imagen');
+       } else {
             // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
-            fs.rename(tmp_path, target_path, function (err) {
+            fs.rename(tmp_path, target_path , function (err) {
+                console.log(err);
                 if (err) throw err;
                 // Eliminamos el fichero temporal
                 fs.unlink(tmp_path, function () {
                     if (err) throw err;
-                    User.findOneAndUpdate({"_id": req.params._id}, req.body.avatar, function (err, user) {
-                        console.log(user._id);
-                        req.files.photo.name = user._id
-                        user.avatar = req.file.photo.name.
-                            user.set(function (err) {
-                                if (!err) {
-                                    console.log('Updated');
-                                }
-                                else {
-                                    console.log('ERROR' + err);
-                                }
 
-                            })
-                    });
+                    User.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, user) {
+                        console.log(user._id);
+                        console.log(foto);
+                       if(!err) {
+                           var nom = user._id;
+                           user.avatar = nom;
+                           console.log(user.avatar + 'pjflsa');
+                           user.save(function (err) {
+                               if (!err) {
+                                   console.log('Updated');
+                               }
+                               else {
+                                   console.log('ERROR' + err);
+                               }
+
+                           })
+                       }});
 
                 });
+
             });
-        }
+
+       }
     };
 
 
