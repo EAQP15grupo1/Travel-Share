@@ -9,13 +9,13 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
         eventname: {type: String},
         tag: {type: String, enum: ['Deporte', 'Fiesta', 'Cultura', 'Compania', 'Trabajo', 'Musica']},
-        idtag:{type: String},
+        idtag: {type: String},
         description: {type: String},
         color: {type: String},
         owner: {type: Schema.Types.ObjectId, ref: 'User'},
         attendees: [{type: Schema.Types.ObjectId, ref: 'User'}],
         place: [{type: Number}],
-        date: {type: Date}
+        date: {type: String}
     },
     {versionKey: false});
 
