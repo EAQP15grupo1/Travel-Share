@@ -20,8 +20,8 @@ module.exports = function (app, passport, FacebookStrategy) {
         });
     };
 
-//GET user by id
-    findUser = function (req, res) {
+//GET user by id con TOKEN
+    findUserToken = function (req, res) {
         User.findOne({"_id": req.params._id}, function (err, user) {
             if (!err) {
                 var tokenUser = req.params.authToken;
@@ -33,6 +33,18 @@ module.exports = function (app, passport, FacebookStrategy) {
                     res.send(user);
                 }
                 console.log("token:", tokenUser);
+            }
+            else {
+                console.log('ERROR: ' + err);
+            }
+        });
+    }
+
+    // Igual que la anterior pero sin token
+    findUser = function (req, res) {
+        User.findOne({"_id": req.params._id}, function (err, user) {
+            if (!err) {
+                res.send(user);
             }
             else {
                 console.log('ERROR: ' + err);
@@ -64,8 +76,8 @@ module.exports = function (app, passport, FacebookStrategy) {
                     needs: req.body.needs,
                     offers: req.body.offers,
                     description: req.body.description,
-                    latitude:req.body.latitude,
-                    longitude:req.body.longitude
+                    latitude: req.body.latitude,
+                    longitude: req.body.longitude
                 });
                 user.save(function (err) {
 
@@ -233,49 +245,50 @@ module.exports = function (app, passport, FacebookStrategy) {
     }
 
 
-    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
         var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = deg2rad(lon2-lon1);
+        var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+        var dLon = deg2rad(lon2 - lon1);
         var a =
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
                 Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                Math.sin(dLon/2) * Math.sin(dLon/2)
+                Math.sin(dLon / 2) * Math.sin(dLon / 2)
             ;
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
-        d= d*1000 //distancias en metros
+        d = d * 1000 //distancias en metros
         return d; //en metros
     }
 
     function deg2rad(deg) {
-        return deg * (Math.PI/180)
+        return deg * (Math.PI / 180)
     }
 
 
-    findUsersOffersPlace = function (req, res){
-        User.findOne({"_id": req.params._id}, function (err, user){
-            console.log(user);
-              var necesidades = user.needs;
-            var latitud=user.latitude;
-            var longitud=user.longitude;
+    findUsersOffersPlace = function (req, res) {
+        User.findOne({"_id": req.params._id}, function (err, user) {
+            var necesidades = user.needs;
+            var latitud = user.latitude;
+            var longitud = user.longitude;
             if (!err) {
-              User.find({"offers":necesidades}, function (err, users){
-                  if(!err){
-                       var usuarios=[];
-                      for(var i=0; i<users.length; i++){
-                          var distancia=getDistanceFromLatLonInKm(latitud, longitud, users[i].latitude, users[i].longitude);
-                          if (distancia<= 100){
-                               var usuario=({
-                                  id:users[i]._id,
-                                  distance:distancia
-                              });
-                              usuarios.push(usuario);
-                          }
-                      };
-                     res.send(JSON.stringify(usuarios));
-                 }
-              });
+                User.find({"offers": necesidades}, function (err, users) {
+                    if (!err) {
+                        var usuarios = [];
+                        for (var i = 0; i < users.length; i++) {
+                            var distancia = getDistanceFromLatLonInKm(latitud, longitud, users[i].latitude, users[i].longitude);
+                            if (distancia <= 300) {
+                                var usuario = ({
+                                    username: users[i].username,
+                                    id: users[i]._id,
+                                    distance: distancia
+                                });
+                                usuarios.push(usuario);
+                                console.log(JSON.stringify(usuarios));
+                            }
+                        }
+                        res.json(usuarios);
+                    }
+                });
             }
             else {
                 console.log('ERROR: ' + err);
@@ -287,34 +300,34 @@ module.exports = function (app, passport, FacebookStrategy) {
     // Importamos el modulo para subir ficheros
     var fs = require('fs');
 
-    addImages = function(req, res) {
+    addImages = function (req, res) {
         //console.log(req.files)
         var tmp_path = req.files.photo.path;
         // Ruta donde colocaremos las imagenes
         var target_path = './avatar/' + req.files.photo.name;
         // Comprobamos que el fichero es de tipo imagen
-        if (req.files.photo.type.indexOf('image')==-1){
+        if (req.files.photo.type.indexOf('image') == -1) {
             res.send('El fichero que deseas subir no es una imagen');
         } else {
             // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
-            fs.rename(tmp_path, target_path, function(err) {
+            fs.rename(tmp_path, target_path, function (err) {
                 if (err) throw err;
                 // Eliminamos el fichero temporal
-                fs.unlink(tmp_path, function() {
+                fs.unlink(tmp_path, function () {
                     if (err) throw err;
-                    User.findOneAndUpdate({"_id": req.params._id},req.body.avatar, function (err, user) {
+                    User.findOneAndUpdate({"_id": req.params._id}, req.body.avatar, function (err, user) {
                         console.log(user._id);
                         req.files.photo.name = user._id
-                        user.avatar= req.file.photo.name.
-                        user.set(function (err) {
-                            if (!err) {
-                                console.log('Updated');
-                            }
-                            else {
-                                console.log('ERROR' + err);
-                            }
+                        user.avatar = req.file.photo.name.
+                            user.set(function (err) {
+                                if (!err) {
+                                    console.log('Updated');
+                                }
+                                else {
+                                    console.log('ERROR' + err);
+                                }
 
-                        })
+                            })
                     });
 
                 });
@@ -325,7 +338,8 @@ module.exports = function (app, passport, FacebookStrategy) {
 
 //endpoints
     app.get('/users', findAllUsers);
-    app.get('/user/:_id/:authToken', findUser);
+    app.get('/user/:_id/:authToken', findUserToken);
+    app.get('/user/:_id', findUser);
     app.post('/users', addUser);
     app.put('/user/:_id', updateUser);
     app.delete('/user/:_id', deleteUser);

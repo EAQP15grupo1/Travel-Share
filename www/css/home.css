@@ -20,6 +20,7 @@ html, body, #map-canvas {
     box-shadow: 3px 3px 3px 0px rgba(41, 41, 41, 0.3);
     z-index: 90;
     outline: none;
+    visibility: visible
 }
 
 .paper-button.paper-floating-action-button:hover {
@@ -43,6 +44,8 @@ html, body, #map-canvas {
 }
 
 
+
+
 /*Panel busqueda No incluye el imput y boton */
 #search {
     position: absolute;
@@ -52,6 +55,16 @@ html, body, #map-canvas {
     margin-top: 17px;
     z-index: 5;
 }
+
+#my {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    top:17px;
+    right:80px;
+    z-index: 8;
+}
+
 #n-evento {
     position: absolute;
     width: 470px;

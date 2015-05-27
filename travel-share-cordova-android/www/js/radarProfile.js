@@ -1,7 +1,8 @@
 window.onload = getUser();
 
 function getUser() {
-    var url_TS = "http://10.89.38.183:3000/user/" + window.localStorage.getItem("userID");
+    var url_TS = "http://localhost:3000/user/" + window.localStorage.getItem("userID");
+    console.log(url_TS);
     $.ajax({
         url: url_TS,
         type: 'GET',

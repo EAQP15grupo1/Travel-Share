@@ -29,6 +29,9 @@
     <script src="bower_components/datetimepicker/jquery.js"></script>
     <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
 
+    <!--Cookies-->
+    <script src="bower_components/js-cookie/src/js.cookie.js"></script>
+
     <!--My Files-->
     <!--CSS-->
     <link rel="stylesheet" href="css/home.css">
@@ -52,6 +55,14 @@
                 </span>
         </div>
     </div>
+
+
+       <!-- <div id="my">
+            <div class="col-sm-6">
+            <img style="border-color: #004d40;width:140%" src="img/profil_dummy/perfil2.png">
+            </div>
+        </div>!-->
+
 
     <!--Tags Panel-->
     <div id="panel_tag">
@@ -104,24 +115,25 @@
     </div>
 
     <!-- boton crear evento-->
-    <button onclick="newevent()" type="button" class="paper-button paper-floating-action-button">+
+    <button id="new_event_button" onclick="newevent()" type="button" class="paper-button paper-floating-action-button" style="">+
         <div class="ripple"></div>
     </button>
 
     <!-- New event panel -->
     <div id="panel_new_event">
 
-        <button class="exit-button" onclick="exitpanel()"><i class="fa fa-times"></i></button>
+        <button class="exit-button" onclick="exitpanel2()"><i class="fa fa-times"></i></button>
 
         <div  class="col-sm-12 text-center" style="padding-top: 40px">
             <form name="myForm">
             <div class="form-group">
                 <div>
-                    <select id="event_tag" style="font-size: 20px">
-                        <option value="1"selected="selected">Deportes</option>
-                        <option value="2">Música</option>
-                        <option value="3">Cultura</option>
-                        <option value="4">Fiesta</option>
+                    <select id="event_tag" onclick="color_new_event()" style="font-size: 20px;width: auto">
+                        <option value ="null" disabled selected>Seleccione una etiqueta</option>
+                        <option value="1" style="background-color: lightgreen">Deportes</option>
+                        <option value="2" style="background-color:lightskyblue" >Música</option>
+                        <option value="3" style="background-color:yellow" >Cultura</option>
+                        <option value="4" style="background-color:palevioletred">Fiesta</option>
                     </select>
                 </div>
                 <br>
@@ -131,7 +143,7 @@
                 <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description">
                 <br>
-                    <input id="datetimepicker6" class="form-control input-lg text-center" type="text">
+                    <input id="datetimepicker6" class="form-control input-lg text-center" type="text" placeholder="Fecha">
                     <label id="label" style="display: none"></label>
                 </div>
             </div>

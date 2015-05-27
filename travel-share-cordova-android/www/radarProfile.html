@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="es">
+    <meta charset="utf-8">
     <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
@@ -154,7 +155,7 @@
 
     <div class="descripcion">
         <core-card id="core_card" vertical layout start>
-            <div style="padding: 20px;"><span id="userDescription"></span></div>
+            <div style="padding: 20px;"><span id="userDescription">Aquí va la descripción del usuario</span></div>
         </core-card>
     </div>
 
@@ -164,10 +165,18 @@
         <paper-tab id="tab2" inline flex center-center horizontal layout>Ofrece</paper-tab>
     </paper-tabs>
     <core-pages selected="{{ selected }}" selectedindex="0" notap id="core-pages">
-        <div>
+        <div style="padding: 10px">
             Lista de Necesidades
+            <br><label>- Necesidad 1</label>
+            <br><label>- Necesidad 2</label>
+            <br><label>- Necesidad 3</label>
         </div>
-        <div>Lista de ofertas</div>
+        <div style="padding: 10px">
+            Lista de Ofrecimientos
+            <br><label>- Ofrecimiento 1</label>
+            <br><label>- Ofrecimiento 2</label>
+            <br><label>- Ofrecimiento 3</label>
+        </div>
     </core-pages>
 
 
