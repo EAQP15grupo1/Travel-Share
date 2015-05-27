@@ -3,8 +3,8 @@ backofficeMessages = function () {
 }
 
 backofficeUsers = function () {
-    window.alert("Me voy al BackOffice de Usuarios");
-    //window.location.href = "backoffice_messages.html";
+    //window.alert("Me voy al BackOffice de Usuarios");
+    window.location.href = "backofficeusuario.html";
 }
 
 backofficeEvents = function () {

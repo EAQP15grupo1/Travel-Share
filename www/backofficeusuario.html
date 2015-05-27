@@ -1,0 +1,82 @@
+	<!doctype html>
+	<html ng-app="MainApp">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>BackOffice Usuarios</title>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<!-- Angular js-->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<!-- Cargamos el javascript de angular -->
+		<script src="js/backofficeusuario.js"></script>
+
+	</head>
+	<body ng-controller="mainController">
+		<div class="container">
+
+			<div class="jumbotron text-center"style="background-color: lightslategrey" ng-prueba>
+				<h1>BackOffice Usuarios
+
+				</h1>
+				<!--<div data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize"  data-boundary-links="true">jsdjgsgdjfgkdf</div>
+-->
+			</div>
+			<div class="row">
+							<div class="col-sm-7">
+
+								<input type="text" class="form-control input-lg text-center" placeholder="Name" ng-value="filtro" ng-model="filtro.name">
+								<table class="table table-striped" style="width: 100%">
+									<tr class="info  text-center">
+										<td>Name</td>
+										<td>Username</td>
+										<td>Password</td>
+										<td>Email</td>
+										<td>Age</td><!-- <a href="" ng-click="orderUser()"> -->
+										<td>Nation</td>
+										<td>description</td>
+
+									</tr>
+									<tr class="text-center" ng-repeat="usuario in usuarios |filter:filtro" ng-click="selectUsuario(usuario)">
+										<td>{{usuario.name}}</td>
+										<td>{{usuario.username}}</td>
+										<td>{{usuario.password}}</td>
+										<td>{{usuario.email}}</td>
+										<td>{{usuario.age}}</td>
+										<td>{{usuario.nation}}</td>
+										<td>{{usuario.description}}</td>
+									</tr>
+					</table>
+								</div>
+
+
+
+				<div class="col-sm-5 text-center">
+					<form name="myForm">
+						<div class="form-group col-sm-offset-1">
+							<input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="newUsuario.name"required>
+							<br>
+							<input type="text" class="form-control input-lg text-center" placeholder="Username" ng-model="newUsuario.username" required ng-disable="bloquear">
+							<br>
+							<input type="text" class="form-control input-lg text-center" placeholder="Password" ng-model="newUsuario.password" required>
+							<br>
+							<input type="text" class="form-control input-lg text-center" placeholder="Email" ng-model="newUsuario.email" required>
+							<br>
+							<input type="text" class="form-control input-lg text-center" placeholder="Age" ng-model="newUsuario.age" required>
+							<br>
+							<input type="text" class="form-control input-lg text-center" placeholder="Nation" ng-model="newUsuario.nation" required>
+							<br>
+							<input type="text" class="form-control input-lg text-center" placeholder="Description" ng-model="newUsuario.description" required>
+						</div>
+
+
+						<!-- Acciones que podemos realizar en el formulario -->
+						<button type="submit" class="btn btn-success btn-lg" ng-click="registrarUsuario()" ng-disabled="myForm.$invalid || selected">Registrar</button>
+						<button type="submit" class="btn btn-warning btn-lg" ng-click="modificarUsuario(newUsuario)" ng-disabled="!newUsuario.name || !newUsuario.username || !newUsuario.email || !newUsuario.age || !newUsuario.nation || !newUsuario.description || !selected">Modificar</button>
+						<button type="submit" class="btn btn-danger btn-lg" ng-click="borrarUsuari(newUsuario)" ng-disabled="!newUsuario.name || !newUsuario.username || !newUsuario.email || !newUsuario.age || !newUsuario.nation || !newUsuario.description ||!selected">Borrar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	</html>
