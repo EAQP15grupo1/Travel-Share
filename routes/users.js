@@ -308,7 +308,7 @@ module.exports = function (app, passport, FacebookStrategy) {
 
         var tmp_path = req.files.avatar.path;
         // Ruta donde colocaremos las imagenes
-        var target_path = './avatar/' + req.files.avatar.name;
+        var target_path = './www/avatar/' + req.files.avatar.name;
         // Comprobamos que el fichero es de tipo imagen
         if (req.files.avatar.type.indexOf('image') == -1) {
             res.send('El fichero que deseas subir no es una imagen');
