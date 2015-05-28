@@ -216,7 +216,7 @@ function loadCircles() {
         for (var i = 0; i < circles.length; i++) {
             if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
                 //document.cookie = "userID=" + circles[i].id;
-                window.localStorage.setItem("userID", circles[i].id);
+                window.localStorage.setItem("userProfileID", circles[i].id);
                 window.location = '../www/radarProfile.html';
             }
         }
@@ -270,7 +270,7 @@ function updatePosition() {
         data: data,
         success: function () {
             //window.location.reload();
-            getMatches();
+            loadCircles();
         },
         error: function () {
             window.alert("FAIL");

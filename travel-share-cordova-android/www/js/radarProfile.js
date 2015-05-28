@@ -1,7 +1,7 @@
-window.onload = zgetUser();
+window.onload = getUser();
 
 function getUser() {
-    var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
+    var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userProfileID");
     console.log(url_TS);
     $.ajax({
         url: url_TS,
