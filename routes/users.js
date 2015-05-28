@@ -304,14 +304,14 @@ module.exports = function (app, passport, FacebookStrategy) {
     addImages = function (req, res) {
         //console.log(req.files)
         req.files.avatar.name = req.params._id +'.jpg';
-        var foto = req.files.avatar.name;
+       // var foto = req.files.avatar.name;
 
         var tmp_path = req.files.avatar.path;
         // Ruta donde colocaremos las imagenes
         var target_path = './avatar/' + req.files.avatar.name;
         // Comprobamos que el fichero es de tipo imagen
         if (req.files.avatar.type.indexOf('image') == -1) {
-            //res.send('El fichero que deseas subir no es una imagen');
+            res.send('El fichero que deseas subir no es una imagen');
        } else {
             // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
             fs.rename(tmp_path, target_path , function (err) {
@@ -322,15 +322,16 @@ module.exports = function (app, passport, FacebookStrategy) {
                     if (err) throw err;
 
                     User.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, user) {
-                        console.log(user._id);
-                        console.log(foto);
+                        //console.log(user._id);
+                        //console.log(foto);
                        if(!err) {
                            var nom = user._id;
                            user.avatar = nom;
-                           console.log(user.avatar + 'pjflsa');
+                           //console.log(user.avatar + 'pjflsa');
                            user.save(function (err) {
                                if (!err) {
                                    console.log('Updated');
+                                   res.send('Update')
                                }
                                else {
                                    console.log('ERROR' + err);
