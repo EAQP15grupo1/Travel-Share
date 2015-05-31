@@ -21,3 +21,7 @@ function getUser() {
 
     });
 }
+
+function chat() {
+    window.location.href = "chat_create.html";
+}
