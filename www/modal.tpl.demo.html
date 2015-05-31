@@ -1,6 +1,6 @@
 <div class="modal" tabindex="-1" role="dialog" ng-controller="signUpController" as signUpCtrl>
     <div class="modal-dialog">
-        <div class="modal-content" ng-hide="signUpInfo.value">
+        <form  name="SignUpForm" class="modal-content"  ng-hide="signUpInfo.value" novalidate>
             <div class="modal-header" ng-show="title">
                 <button type="button" class="close" ng-click="$hide()">&times;</button>
                 <h4 class="modal-title" ng-bind-html="title"></h4>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <span class="label label-warning" style="float:left">Email:</span>
-                        <input type="text" class="form-control" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="signUpInfo.email">
+                        <input class="form-control"  type="email" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="signUpInfo.email" required>
                     </div>
 
                     <div class="col-md-4 col-sm-offset-2">
@@ -57,7 +57,7 @@
                 </div>
 
                     <div class="col-md-4 col-sm-offset-2">
-                        <span class="label label-success" style="float:left">Evento que busco:</span>
+                        <span class="label label-success" style="float:left">Evento que busco*:</span>
                         <input type="text" class="form-control" placeholder="fiesta,cine" aria-describedby="basic-addon1" ng-model="signUpInfo.needs">
                     </div>
 
@@ -72,7 +72,7 @@
                 </div>
 
                     <div class="col-md-4 col-sm-offset-2">
-                        <span class="label label-danger" style="float:left">Evento que ofrezco:</span>
+                        <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
                         <input type="text" class="form-control" placeholder="clase de ingles,museo" aria-describedby="basic-addon1" ng-model="signUpInfo.offers">
                     </div>
 
@@ -92,10 +92,10 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-                <button type="button" class="btn btn-primary"ng-click="signupUser()">Save changes</button>
+                <button type="button" class="btn btn-primary"ng-submit="SignUpForm.$valid && signupUser()" ng-disabled="SignUpForm.$invalid">Save changes</button>
 
             </div>
 
-        </div>
+        </form>
     </div>
 </div>
