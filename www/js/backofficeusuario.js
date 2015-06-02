@@ -7,7 +7,7 @@ function mainController($scope, $http) {
 
 	//GET LISTA
 
-			$http.get('http://localhost:3000/users/').success(function (data) {
+			$http.get('http://147.83.7.201:3000/users/').success(function (data) {
 				$scope.usuarios = data;
 				$scope.bloquear = false;
 				console.log(data);
@@ -41,7 +41,7 @@ function mainController($scope, $http) {
 
 	//GET LISTA edad
 	$scope.orderUser = function() {
-		$http.get('http://localhost:3000/users/age').success(function (data) {
+		$http.get('http://147.83.7.201:3000/users/age').success(function (data) {
 			$scope.usuarios = data;
 			console.log(data);
 		})
@@ -52,7 +52,7 @@ function mainController($scope, $http) {
 
 	//DELETE element
 	$scope.borrarUsuari = function(newUsuario) {
-		$http.delete('http://localhost:3000/user/' + $scope.newUsuario._id)
+		$http.delete('http://147.83.7.201:3000/user/' + $scope.newUsuario._id)
 			.success(function(data) {
 				console.log($scope.newUsuario._id);
 				//Borramos los datos añadidos en los imput boxes
@@ -78,7 +78,7 @@ function mainController($scope, $http) {
 
 	//POST LISTA
 	$scope.registrarUsuario = function() {
-		$http.post('http://localhost:3000/users/', $scope.newUsuario)
+		$http.post('http://147.83.7.201:3000/users/', $scope.newUsuario)
 		.success(function(data) {
 				$scope.newUsuario = {};
 				$scope.usuarios.push(data);
@@ -93,7 +93,7 @@ function mainController($scope, $http) {
 
 	//modificar
 	$scope.modificarUsuario = function(newUsuario) {
-		$http.put('http://localhost:3000/user/' + $scope.newUsuario._id, $scope.newUsuario)
+		$http.put('http://147.83.7.201:3000/user/' + $scope.newUsuario._id, $scope.newUsuario)
 		.success(function(data) {
 				$scope.newUsuario = {}; // Borramos los datos del formulario
 				$scope.usuarios = data;

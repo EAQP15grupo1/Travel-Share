@@ -9,7 +9,7 @@ var altitude;
 
 window.onload = function () {
     loadCircles();
-    onDeviceReady();
+    onOpen();
 }
 
 //function loadBackground() {
@@ -228,7 +228,7 @@ function loadCircles() {
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // Cordova is ready
-function onDeviceReady() {
+function onOpen() {
     //window.alert("Device Ready");
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
@@ -260,7 +260,7 @@ function updatePosition() {
     var data = JSON.stringify(location);
 
     // HAY QUE DESCOMENTAR ESTA LÍNEA
-    //var locationURL = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
+    var locationURL = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
 
     $.ajax({
         url: locationURL,
