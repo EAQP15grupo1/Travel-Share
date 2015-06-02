@@ -159,6 +159,7 @@
         </core-card>
     </div>
 
+    <button id="chat" onclick="chat()">CHAT</button>
 
     <paper-tabs selected="0" id="paper-tabs" horizontal center layout>
         <paper-tab id="tab1" inline flex center-center horizontal layout active>Necesita</paper-tab>
@@ -182,7 +183,7 @@
 
     <paper-toast id="toast1" text="Boton para contactar"></paper-toast>
 </core-header-panel>
-<paper-fab icon="account-circle" onclick="document.querySelector('#toast1').show()"></paper-fab>
+<paper-fab icon="account-circle" onclick="create()"></paper-fab>
 
 <script>
     var tabs = document.getElementById('paper-tabs');

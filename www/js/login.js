@@ -3,7 +3,17 @@
 
     var obj = {};
     var box = {};
-    var buffer={}
+    var buffer={};
+
+    var urlremota_login='http://147.83.7.201:3000/login';
+    var urlremota_createUser='http://147.83.7.201:3000/users';
+    var urllocal_login='http://localhost:3000/login';
+    var urllocal_createUser='http://localhost:3000/users';
+    var Windowlocationremota_login='home.html';
+    var Windowlocationremota_createUser='index.html';
+    var Windowlocationlocal_login='/Travel-Share/www/home.html';
+    var Windowlocationlocal_createUser='/Project EA/Travel-Share/www/index.html';
+
     var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap','ngSanitize']);
 
 

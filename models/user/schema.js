@@ -12,14 +12,14 @@ var schema = new Schema({
         password: {type: String},
         email: {type: String},
         age: {type: Number},
-        nation:{type:String},
-        offers:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
-        needs:[{type:String, enum:['Deporte','Fiesta','Cultura','Compania','Trabajo']}],
-        description:{type:String},
-        latitude:{type:String},
-        longitude:{type:String},
-        altitude:{type:String},
-        avatar:{type:String}
+        nation: {type: String},
+        offers: [{type: String, enum: ['Deporte', 'Fiesta', 'Cultura', 'Compania', 'Trabajo']}],
+        needs: [{type: String, enum: ['Deporte', 'Fiesta', 'Cultura', 'Compania', 'Trabajo']}],
+        description: {type: String},
+        latitude: {type: String},
+        longitude: {type: String},
+        chatID: {type: String},
+        avatar: {type: String}
     },
     {versionKey: false});
 

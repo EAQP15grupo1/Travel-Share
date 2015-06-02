@@ -61,7 +61,7 @@ function mainController($scope, $http) {
 				$scope.usuarios = null;
 				$scope.bloquear=false;
 
-				$http.get('http://localhost:3000/users/').success(function(data) {
+				$http.get('http://147.83.7.201:3000/users/').success(function(data) {
 					$scope.usuarios = data;
 				})
 					.error(function(data) {

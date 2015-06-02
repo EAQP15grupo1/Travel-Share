@@ -2,7 +2,7 @@ $("#createBtn").click(function () {
     var eventName = $("#eventName").val();
     var eventDescription = $("#eventDescription").val();
     var eventTag = "";
-    var eventDate = $("#sel").val();
+    var eventDate = $("#date").val();
 
     if (document.getElementById("sport").checked) {
         eventTag = "Deporte";
@@ -39,50 +39,46 @@ $("#cancelBtn").click(function () {
     window.location.href = 'index.html';
 });
 
+//$('#datetimepicker').datetimepicker();
 
-//var formData = JSON.stringify($("#userForm").serialize());
-////window.alert(formData);
-//
-//var o = {};
-//var a = $("#userForm").serializeArray();
-//$.each(a, function () {
-//    if (o[this.name] !== undefined) {
-//        if (!o[this.name].push) {
-//            o[this.name] = [o[this.name]];
-//        }
-//        o[this.name].push(this.value || '');
-//    } else {
-//        o[this.name] = this.value || '';
-//    }
-//});
-//
-//var dataOK = JSON.stringify(o);
-//window.alert(dataOK);
-//
-//$.ajax({
-//    url: "http://192.168.2.103:3000/users",
-//    method: "POST",
-//    contentType: "application/json",
-//    data: dataOK
-//}).done(function (data, status, jqxhr) {
-//    window.alert("OK");
-//}).fail(function () {
-//    window.alert("FAIL");
-//});
+$('#datetimepicker').datetimepicker({
+    inline: true,
+    lang: 'es',
+    minDate: '0',
+    onSelectDate: function (ct, $i) {
+        $("#date").val(ct.dateFormat('Y/m/d H:i'))
+    }
+});
 
-//$("#button").addEventListener("click", createUser);
-//
-//function createUser() {
-//
-//
-//    //$.post("https://example.com/Bank/CreditScore", {
-//    //    firstName: this.firstName.value,
-//    //    lastName: this.lastName.value
-//    //}).then(function (data) {
-//    //    if (data.score >= 500) {
-//    //        alert("Congratulations, you are eligible!");
-//    //    } else {
-//    //        alert("Sorry, but you are not eligible.");
-//    //    }
-//    //});
-//};
+// Google Maps - Geocoding
+var geocoder;
+var map;
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(41.275493, 1.986945);
+    var mapOptions = {
+        zoom: 11,
+        center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+}
+
+function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': address}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            $("#location").val(results[0].geometry.location.A + ", " + results[0].geometry.location.A);
+            console.log(results[0].geometry.location);
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(15);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
