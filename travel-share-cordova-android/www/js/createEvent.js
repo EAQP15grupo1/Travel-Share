@@ -21,7 +21,7 @@ $("#createBtn").click(function () {
     var data = JSON.stringify(event);
 
     $.ajax({
-        url: "http://10.89.56.116:3000/event",
+        url: "http://147.83.7.201:3000/event",
         type: 'POST',
         crossDomain: true,
         contentType: 'application/json',

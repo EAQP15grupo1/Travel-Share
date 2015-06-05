@@ -139,7 +139,7 @@
     <core-toolbar>Profile</core-toolbar>
 
     <div class="imagen">
-        <img src="img/logo.png" align="left" width="100px" height="120px"/>
+        <img id="avatar" src="img/logo.png" align="left" width="100px" height="100px"/>
 
         <div class="informacion">
             <core-card id="user_card" align="right" vertical layout start>
@@ -155,11 +155,9 @@
 
     <div class="descripcion">
         <core-card id="core_card" vertical layout start>
-            <div style="padding: 20px;"><span id="userDescription">Aquí va la descripción del usuario</span></div>
+            <div style="padding: 20px;"><span id="userDescription">Descripción del usuario</span></div>
         </core-card>
     </div>
-
-    <button id="chat" onclick="chat()">CHAT</button>
 
     <paper-tabs selected="0" id="paper-tabs" horizontal center layout>
         <paper-tab id="tab1" inline flex center-center horizontal layout active>Necesita</paper-tab>

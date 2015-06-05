@@ -4,7 +4,7 @@ window.onload = function () {
 };
 
 function getEventData() {
-    var url_TS = "http://10.89.56.116:3000/event/" + window.localStorage.getItem("eventID");
+    var url_TS = "http://147.83.7.201:3000/event/" + window.localStorage.getItem("eventID");
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -36,7 +36,7 @@ function getEventData() {
 };
 
 function getEventComments() {
-    var url_TS = "http://10.89.56.116:3000/messages/event/" + window.localStorage.getItem("eventID");
+    var url_TS = "http://147.83.7.201:3000/messages/event/" + window.localStorage.getItem("eventID");
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -71,7 +71,7 @@ $("#postBtn").click(function postMessage() {
         var data = JSON.stringify(message);
 
         $.ajax({
-            url: "http://10.89.56.116:3000/messages",
+            url: "http://147.83.7.201:3000/messages",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',
@@ -87,7 +87,7 @@ $("#postBtn").click(function postMessage() {
 });
 
 $("#joinBtn").click(function joinEvent() {
-    var joinURL = "http://10.89.56.116:3000/event/join/" + window.localStorage.getItem("eventID");
+    var joinURL = "http://147.83.7.201:3000/event/join/" + window.localStorage.getItem("eventID");
     var attendee = new Object();
     attendee.attendees = window.localStorage.getItem("userID");
     var data = JSON.stringify(attendee);

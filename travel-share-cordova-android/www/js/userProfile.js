@@ -1,12 +1,11 @@
 window.onload = getUser();
 
-function loadAvatar(){
-    document.getElementById("avatar").src="http://10.89.56.116/avatar/"+window.localStorage.getItem("userID")+".jpg";
+function loadAvatar() {
+    document.getElementById("avatar").src = "http://147.83.7.201/avatar/" + window.localStorage.getItem("userID") + ".jpg";
 }
 
 function getUser() {
-
-    var url_TS = "http://10.89.56.116:3000/user/" + window.localStorage.getItem("userID");
+    var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
     console.log(url_TS);
     $.ajax({
         url: url_TS,
@@ -23,6 +22,5 @@ function getUser() {
         }, error: function () {
             window.alert("FAIL: Los monos ya han tocado algo que no debian...");
         }
-
     });
 }

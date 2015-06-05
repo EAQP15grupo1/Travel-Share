@@ -113,7 +113,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    var userURL = "http://10.89.56.116:3000/users/find/" + window.localStorage.getItem("userID");
+    var userURL = "http://147.83.7.201:3000/users/find/" + window.localStorage.getItem("userID");
     $.ajax({
         url: userURL,
         type: 'GET',
@@ -235,7 +235,6 @@ function onOpen() {
 
 // onSuccess Geolocation
 function onSuccess(position) {
-
     //window.alert("latitudes");
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
@@ -259,8 +258,7 @@ function updatePosition() {
     location.altitude = altitude;
     var data = JSON.stringify(location);
 
-    // HAY QUE DESCOMENTAR ESTA LÍNEA
-    var locationURL = "http://10.89.56.116:3000/user/" + window.localStorage.getItem("userID");
+    var locationURL = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
 
     $.ajax({
         url: locationURL,
@@ -279,7 +277,7 @@ function updatePosition() {
 }
 
 function getMatches() {
-    var userURL = "http://10.89.56.116:3000/users/find/" + window.localStorage.getItem("userID");
+    var userURL = "http://147.83.7.201:3000/users/find/" + window.localStorage.getItem("userID");
 
     $.ajax({
         url: userURL,

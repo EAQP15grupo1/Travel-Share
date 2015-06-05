@@ -1,7 +1,7 @@
 window.onload = getUser();
 
 function getUser() {
-    var url_TS = "http://10.89.56.116:3000/user/" + window.localStorage.getItem("userProfileID")+"/"+window.localStorage.getItem("token");
+    var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userProfileID") + "/" + window.localStorage.getItem("token");
     console.log(url_TS);
     $.ajax({
         url: url_TS,
@@ -15,6 +15,9 @@ function getUser() {
             $("#userAge").text("Edad: " + user.age);
             $("#userNation").text("Nacionalidad: " + user.nation);
             $("#userDescription").text(user.description);
+
+            document.getElementById("avatar").src = "http://147.83.7.201/avatar/" + window.localStorage.getItem("userProfileID") + ".jpg";
+            window.localStorage.setItem("userProfileusername", user.username);
         }, error: function () {
             window.alert("FAIL: Los monos ya han tocado algo que no debian...");
         }
@@ -23,9 +26,8 @@ function getUser() {
 }
 
 function create() {
-    var url_TS = "http://10.89.56.116:3000/user/chat/" + window.localStorage.getItem("userID");
-    var url_TS2 = "http://10.89.56.116:3000/user/chat/" + window.localStorage.getItem("userProfileID");
-    var chatID = window.localStorage.getItem("userID") + "-" + window.localStorage.getItem("userProfileID");
+    var url_TS = "http://147.83.7.201:3000/user/chat/" + window.localStorage.getItem("userID");
+    var chatID = window.localStorage.getItem("username") + "-" + window.localStorage.getItem("userProfileusername");
     //var url_TS = "http://147.83.7.201:3000/user/chat/" + "5565d7c38c3ec1500e000004";
     //var url_TS2 = "http://147.83.7.201:3000/user/chat/" + "5565d7a08c3ec1500e000003";
     //var chatID = "aaa" + "-" + "bbb";
@@ -41,12 +43,17 @@ function create() {
         contentType: 'application/json',
         data: data,
         success: function () {
-
+            create2();
         },
         error: function () {
             window.alert("FAIL Own Chat");
         }
     });
+}
+
+function create2() {
+    var url_TS2 = "http://147.83.7.201:3000/user/chat/" + window.localStorage.getItem("userProfileID");
+    var chatID = window.localStorage.getItem("username") + "-" + window.localStorage.getItem("userProfileusername");
 
     $.ajax({
         url: url_TS2,

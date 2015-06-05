@@ -1,38 +1,35 @@
-/**
- * Created by Alejandro on 2/6/15.
- */
+window.onload = onDeviceReady();
 
-window.onload=onDeviceReady();
-
-function loadAvatar(){
+function loadAvatar() {
     window.alert(window.localStorage.getItem("userID"));
     //document.getElementById("avatarup").src="http://10.89.54.173/avatar/"+window.localStorage.getItem("userID")+".jpg";
 }
 
 function onDeviceReady() {
-    window.alert("device ready");
-    document.addEventListener("deviceready", onDeviceReady, false);}
+    //window.alert("device ready");
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
 
 $("#cancelBtn").click(function () {
     window.location.href = 'index.html';
 });
 
-    function selectPicture() {
-        navigator.camera.getPicture(onSuccess, onFail, {
-            sourceType: navigator.camera.PictureSourceType.CAMERA,
-            destinationType: navigator.camera.DestinationType.FILE_URI
-        });
-        //uploadPicture();
-    }
+function selectPicture() {
+    navigator.camera.getPicture(onSuccess, onFail, {
+        sourceType: navigator.camera.PictureSourceType.CAMERA,
+        destinationType: navigator.camera.DestinationType.FILE_URI
+    });
+    //uploadPicture();
+}
 
-    function onSuccess(imageURI) {
-        var image = document.getElementById('myImage');
-        image.src = imageURI;
-    }
+function onSuccess(imageURI) {
+    var image = document.getElementById('myImage');
+    image.src = imageURI;
+}
 
-    function onFail(message) {
-        alert('Failed because: ' + message);
-    }
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
 
 
 function uploadPicture() {
@@ -45,7 +42,7 @@ function uploadPicture() {
         return;
     }
     // Verify server has been entered
-    server = "http://10.89.56.116:3000/user/avatar/" + window.localStorage.getItem("userID");
+    server = "http://147.83.7.201:3000/user/avatar/" + window.localStorage.getItem("userID");
     if (server) {
         // Specify transfer options
         var options = new FileUploadOptions();
@@ -103,7 +100,7 @@ function uploadPicture() {
 
 function updateUser() {
 
-    var url_TS = "http://10.89.56.116:3000/user/" + window.localStorage.getItem("userID");
+    var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
     var email = $("#email").val();
     var nation = $("#nation").val();
     var descripcion = $("#description").val();
