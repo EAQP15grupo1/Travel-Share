@@ -1,7 +1,7 @@
 window.onload = getUser();
 
 function getUser() {
-    var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userProfileID") + "/" + window.localStorage.getItem("token");
+    var url_TS = "http://10.89.57.199:3000/user/" + window.localStorage.getItem("userProfileID") + "/" + window.localStorage.getItem("token");
     console.log(url_TS);
     $.ajax({
         url: url_TS,
@@ -28,9 +28,6 @@ function getUser() {
 function create() {
     var url_TS = "http://147.83.7.201:3000/user/chat/" + window.localStorage.getItem("userID");
     var chatID = window.localStorage.getItem("username") + "-" + window.localStorage.getItem("userProfileusername");
-    //var url_TS = "http://147.83.7.201:3000/user/chat/" + "5565d7c38c3ec1500e000004";
-    //var url_TS2 = "http://147.83.7.201:3000/user/chat/" + "5565d7a08c3ec1500e000003";
-    //var chatID = "aaa" + "-" + "bbb";
 
     var user = new Object();
     user.chatID = chatID;

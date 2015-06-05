@@ -6,7 +6,6 @@ window.onload = function () {
 
 function getChat() {
     var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
-    //var url_TS = "http://147.83.7.201:3000/user/" + "5565d7a08c3ec1500e000003";
 
     $.ajax({
         url: url_TS,

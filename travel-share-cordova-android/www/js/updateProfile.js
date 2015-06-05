@@ -1,12 +1,12 @@
 window.onload = onDeviceReady();
 
 function loadAvatar() {
-    window.alert(window.localStorage.getItem("userID"));
-    //document.getElementById("avatarup").src="http://10.89.54.173/avatar/"+window.localStorage.getItem("userID")+".jpg";
+
+    document.getElementById("myImage").src="http://10.89.54.173/avatar/"+window.localStorage.getItem("userID")+".jpg";
 }
 
 function onDeviceReady() {
-    //window.alert("device ready");
+    $("#archive").hide();
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 
@@ -15,36 +15,24 @@ $("#cancelBtn").click(function () {
 });
 
 function selectPicture() {
-    //if (!navigator.camera) {
-    //    alert("Camera API not supported", "Error");
-    //    return;
-    //}
-    //var options = {
-    //    quality: 50,
-    //    destinationType: Camera.DestinationType.DATA_URL,
-    //    sourceType: 0,      // 0:Photo Library, 1=Camera, 2=Saved Album
-    //    encodingType: 0     // 0=JPG 1=PNG
-    //};
-    //
-    //navigator.camera.getPicture(
-    //    function (imgData) {
-    //        $('.media-object', this.$el).attr('src', "data:image/jpeg;base64," + imgData);
-    //    },
-    //    function () {
-    //        alert('Error taking picture', 'Error');
-    //    },
-    //    options);
+    if (!navigator.camera) {
+        alert("Camera API not supported", "Error");
+        return;
+    }
+    var options = {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: 0,      // 0:Photo Library, 1=Camera, 2=Saved Album
+        encodingType: 0     // 0=JPG 1=PNG
+    };
 
-    navigator.camera.getPicture(onSuccess, onFail, {
-        sourceType: navigator.camera.PictureSourceType.CAMERA,
-        destinationType: navigator.camera.DestinationType.FILE_URI
-    });
-    //uploadPicture();
+    navigator.camera.getPicture(onSuccess, onFail, options);
 }
 
 function onSuccess(imageURI) {
     var image = document.getElementById('myImage');
     image.src = imageURI;
+    $("#selectbtn").hide();
 }
 
 function onFail(message) {
@@ -55,68 +43,23 @@ function onFail(message) {
 function uploadPicture() {
     window.alert("upload picture");
 // Get URI of picture to upload
-    var img = document.getElementById('camera_image');
-    var imageURI = img.src;
-    if (!imageURI || (img.style.display == "none")) {
-        document.getElementById('camera_status').innerHTML = "Take picture or select picture from library first.";
-        return;
-    }
-    // Verify server has been entered
-    server = "http://147.83.7.201:3000/user/avatar/" + window.localStorage.getItem("userID");
-    if (server) {
-        // Specify transfer options
-        var options = new FileUploadOptions();
-        options.fileKey = "file";
-        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-        options.mimeType = "image/jpeg";
-        options.chunkedMode = false;
-        // Transfer picture to server
-        var ft = new FileTransfer();
-        ft.upload(imageURI, server, function (r) {
-            document.getElementById('camera_status').innerHTML = "Upload successful: " + r.bytesSent + " bytes uploaded.";
-        }, function (error) {
-            document.getElementById('camera_status').innerHTML = "Upload failed: Code = " + error.code;
-        }, options);
-    }
+    var server = "http://147.83.7.201:3000/user/avatar/" + window.localStorage.getItem("userID");
+    var img = document.getElementById('myImage').src;
+    var options=new FileUploadOptions();
+    options.fileKey = "avatar";
+    options.fileName = img.substr(img.lastIndexOf('/') + 1);
+    options.httpMethod="PUT";
+
+    var ft=new FileTransfer();
+
+    ft.upload(img,encodeURI(server), function (data){
+        window.location.href='userProfile.html';
+    }, function fail(error){
+        window.alert("error al subir la foto"+error);
+    }, options, true);
+
+
 }
-
-//function uploadAvatar(){
-//
-//    var urlav="http://localhost:3000/user/avatar/"+window.localStorage.getItem("userID");
-//    var file = !!this.file ? this.file : [];
-//    //file=file.submit();
-//    //var file=$("#file").val();
-//    window.alert(file);
-//    var reader= new FileReader;
-//    //var filename = file.replace(/^.*\\/, "");
-//    var archivo=reader.readAsDataURL(file);
-//    //console.log(archivo);
-//
-//
-//    //var files = new Object();
-//    //files.avatar=archivo;
-//    window.alert(urlav);
-//
-//    $.ajax({
-//        url: urlav,
-//        type: 'PUT',
-//        data: false,
-//        files:archivo,
-//        processData:false,
-//        contentType:false,
-//        //dataType:'file',
-//        crossDomain: true,
-//        success: function (data) {
-//            window.location.href='userProfile.html';
-//        },
-//        error: function (data) {
-//            window.alert("fallo al subir foto");
-//            console.log("error");
-//        }
-//    });
-//
-//}
-
 
 function updateUser() {
 

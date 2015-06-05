@@ -10,10 +10,8 @@
     </author>
     <content src="login.html"/>
     <plugin name="cordova-plugin-whitelist" version="1"/>
-    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
-    <feature name="Camera">
-        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
-    </feature>
+    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+    <plugin name="Camera" value="org.apache.cordova.camera" />
     <access origin="*"/>
     <allow-intent href="http://*/*"/>
     <allow-intent href="https://*/*"/>

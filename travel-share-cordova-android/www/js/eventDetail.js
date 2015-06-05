@@ -71,7 +71,7 @@ $("#postBtn").click(function postMessage() {
         var data = JSON.stringify(message);
 
         $.ajax({
-            url: "http://147.83.7.201:3000/messages",
+            url: "http://10.89.57.199:3000/messages",
             type: 'POST',
             crossDomain: true,
             contentType: 'application/json',
@@ -87,7 +87,7 @@ $("#postBtn").click(function postMessage() {
 });
 
 $("#joinBtn").click(function joinEvent() {
-    var joinURL = "http://147.83.7.201:3000/event/join/" + window.localStorage.getItem("eventID");
+    var joinURL = "http://10.89.57.199:3000/event/join/" + window.localStorage.getItem("eventID");
     var attendee = new Object();
     attendee.attendees = window.localStorage.getItem("userID");
     var data = JSON.stringify(attendee);

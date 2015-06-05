@@ -26,9 +26,9 @@
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="bower_components/polymer/polymer.html">
     <link rel="import" href="bower_components/core-ajax/core-ajax.html">
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/updateProfile.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 
 
     <!--<link rel="stylesheet" type="text/css" href="css/radarProfile.css" />-->
@@ -102,10 +102,10 @@
             border-bottom-right-radius: 5px;
         }
 
-        .imagen {
+        #myImage {
 
-            height: 15%;
-            width: 100%;
+            height: 200px;
+            width: 200px;
 
         }
 
@@ -173,56 +173,50 @@
 <body unresolved="">
 <core-header-panel>
     <core-toolbar>Update Profile</core-toolbar>
-    <div class="imagen">
+<div class="imagen">
         <!--<input type="file" id="file" name="file">-->
         <!--<paper-button id="uploadAvatar" class="coloredCancel" raised="true" onclick="uploadAvatar()">Upload</paper-button>-->
 
+    <form enctype="multipart/form-data">
+    <input name="file" type="file" id="archive"/>
+    <input type="button" id="selectbtn" onclick="selectPicture();" value="Select Picture from Library" /><br/>
+    <input type="button" onclick="uploadPicture();" value="Upload Picture" /></div>
+    </form>
 
-        <input type="button" onclick="selectPicture();" value="Select Picture from Library"/><br/>
-        <input type="button" onclick="uploadPicture();" value="Upload Picture"/></div>
-
+<div>
     <div>
-        <div>
-            <img id="myImage">
-        </div>
+        <img id="myImage" onclick="selectPicture()">
+    </div>
 
 
-        <section class="wrapperInputs">
-            <paper-input type="email" id='email' name='email' label="Tu correo electrónico"
-                         floatinglabel="true"></paper-input>
-            <p>
-                <paper-input type="text" id='nation' name='nation' label="Tu nacionalidad"
-                             floatinglabel="true"></paper-input>
-            <p>
-                <paper-input type="description" id='description' name='description' label="Escribe sobre ti"
-                             floatinglabel="true"></paper-input>
-            <p>
-                Necesidades:
 
-            <p>
-                <paper-radio-group id="needs">
-                    <paper-radio-button id="sportN" name="sport" label="Deporte"></paper-radio-button>
-                    <paper-radio-button id="musicN" name="music" label="Musica"></paper-radio-button>
-                    <paper-radio-button id="jobN" name="job" label="Trabajo"></paper-radio-button>
-                    <paper-radio-button id="cultureN" name="culture" label="Cultura"></paper-radio-button>
-                </paper-radio-group>
-            <p>
-                Ofertas:
+    <section class="wrapperInputs">
+        <paper-input type="email" id='email' name='email' label="Tu correo electrónico"
+        floatinglabel="true"></paper-input><p>
+        <paper-input type="text" id='nation' name='nation' label="Tu nacionalidad"
+        floatinglabel="true"></paper-input><p>
+        <paper-input type="description" id='description' name='description' label="Escribe sobre ti"
+        floatinglabel="true"></paper-input><p>
+        Necesidades:<p>
+        <paper-radio-group id="needs">
+        <paper-radio-button id="sportN" name="sport" label="Deporte"></paper-radio-button>
+        <paper-radio-button id="musicN" name="music" label="Musica"></paper-radio-button>
+        <paper-radio-button id="jobN" name="job" label="Trabajo"></paper-radio-button>
+        <paper-radio-button id="cultureN" name="culture" label="Cultura"></paper-radio-button>
+        </paper-radio-group><p>
+        Ofertas: <p>
+        <paper-radio-group id="offers">
+        <paper-radio-button id="sportO" name="sport" label="Deporte"></paper-radio-button>
+        <paper-radio-button id="musicO" name="music" label="Musica"></paper-radio-button>
+        <paper-radio-button id="jobO" name="job" label="Trabajo"></paper-radio-button>
+        <paper-radio-button id="cultureO" name="culture" label="Cultura"></paper-radio-button>
+        </paper-radio-group>
 
-            <p>
-                <paper-radio-group id="offers">
-                    <paper-radio-button id="sportO" name="sport" label="Deporte"></paper-radio-button>
-                    <paper-radio-button id="musicO" name="music" label="Musica"></paper-radio-button>
-                    <paper-radio-button id="jobO" name="job" label="Trabajo"></paper-radio-button>
-                    <paper-radio-button id="cultureO" name="culture" label="Cultura"></paper-radio-button>
-                </paper-radio-group>
-
-                <section class="wrapper">
-                    <paper-button id="createBtn" class="coloredOK" raised="true" onclick="updateUser()">Crear
-                    </paper-button>
-                    <paper-button id="cancelBtn" class="coloredCancel" raised="true">Cancelar</paper-button>
-                </section>
+        <section class="wrapper">
+        <paper-button id="createBtn" class="coloredOK" raised="true" onclick="updateUser()">Crear</paper-button>
+        <paper-button id="cancelBtn" class="coloredCancel" raised="true">Cancelar</paper-button>
         </section>
+    </section>
 </core-header-panel>
 </div>
 
