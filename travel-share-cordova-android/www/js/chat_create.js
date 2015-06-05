@@ -4,8 +4,8 @@ window.onload = function () {
 }
 
 function createChat() {
-    var url_TS = "http://147.83.7.201:3000/user/chat/" + window.localStorage.getItem("userID");
-    var url_TS2 = "http://147.83.7.201:3000/user/chat/" + window.localStorage.getItem("userProfileID");
+    var url_TS = "http://10.89.56.116:3000/user/chat/" + window.localStorage.getItem("userID");
+    var url_TS2 = "http://10.89.56.116:3000/user/chat/" + window.localStorage.getItem("userProfileID");
     var chatID = window.localStorage.getItem("userID") + "-" + window.localStorage.getItem("userProfileID");
     //var url_TS = "http://147.83.7.201:3000/user/chat/" + "5565d7c38c3ec1500e000004";
     //var url_TS2 = "http://147.83.7.201:3000/user/chat/" + "5565d7a08c3ec1500e000003";
