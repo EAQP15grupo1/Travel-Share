@@ -113,7 +113,7 @@ function loadCircles() {
         circles.push(circle);
     };
 
-    var userURL ="http://10.89.57.199:3000/users/find/" + window.localStorage.getItem("userID");
+    var userURL ="http://147.83.7.201:3000/users/find/" + window.localStorage.getItem("userID");
     $.ajax({
         url: userURL,
         type: 'GET',
