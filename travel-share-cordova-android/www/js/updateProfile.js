@@ -15,6 +15,26 @@ $("#cancelBtn").click(function () {
 });
 
 function selectPicture() {
+    //if (!navigator.camera) {
+    //    alert("Camera API not supported", "Error");
+    //    return;
+    //}
+    //var options = {
+    //    quality: 50,
+    //    destinationType: Camera.DestinationType.DATA_URL,
+    //    sourceType: 0,      // 0:Photo Library, 1=Camera, 2=Saved Album
+    //    encodingType: 0     // 0=JPG 1=PNG
+    //};
+    //
+    //navigator.camera.getPicture(
+    //    function (imgData) {
+    //        $('.media-object', this.$el).attr('src', "data:image/jpeg;base64," + imgData);
+    //    },
+    //    function () {
+    //        alert('Error taking picture', 'Error');
+    //    },
+    //    options);
+
     navigator.camera.getPicture(onSuccess, onFail, {
         sourceType: navigator.camera.PictureSourceType.CAMERA,
         destinationType: navigator.camera.DestinationType.FILE_URI
