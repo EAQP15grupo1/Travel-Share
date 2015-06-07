@@ -173,50 +173,59 @@
 <body unresolved="">
 <core-header-panel>
     <core-toolbar>Update Profile</core-toolbar>
-<div class="imagen">
+    <div class="imagen">
         <!--<input type="file" id="file" name="file">-->
         <!--<paper-button id="uploadAvatar" class="coloredCancel" raised="true" onclick="uploadAvatar()">Upload</paper-button>-->
 
-    <form enctype="multipart/form-data">
-    <input name="file" type="file" id="archive"/>
-    <input type="button" id="selectbtn" onclick="selectPicture();" value="Select Picture from Library" /><br/>
-    <input type="button" onclick="uploadPicture();" value="Upload Picture" /></div>
+        <form enctype="multipart/form-data">
+            <input name="file" type="file" id="archive"/>
+            <input type="button" id="selectbtn" onclick="selectPicture();" value="Select Picture from Library"/><br/>
+            <input type="button" onclick="uploadPicture();" value="Upload Picture"/>
+    </div>
     </form>
 
-<div>
     <div>
-        <img id="myImage" onclick="selectPicture()">
-    </div>
+        <div>
+            <img id="myImage" onclick="selectPicture()">
+        </div>
 
 
+        <section class="wrapperInputs">
+            <paper-input type="email" id='email' name='email' label="Tu correo electrónico"
+                         floatinglabel="true"></paper-input>
+            <p>
+                <paper-input type="text" id='nation' name='nation' label="Tu nacionalidad"
+                             floatinglabel="true"></paper-input>
+            <p>
+                <paper-input type="description" id='description' name='description' label="Escribe sobre ti"
+                             floatinglabel="true"></paper-input>
+            <p>
+                Necesidades:
 
-    <section class="wrapperInputs">
-        <paper-input type="email" id='email' name='email' label="Tu correo electrónico"
-        floatinglabel="true"></paper-input><p>
-        <paper-input type="text" id='nation' name='nation' label="Tu nacionalidad"
-        floatinglabel="true"></paper-input><p>
-        <paper-input type="description" id='description' name='description' label="Escribe sobre ti"
-        floatinglabel="true"></paper-input><p>
-        Necesidades:<p>
-        <paper-radio-group id="needs">
-        <paper-radio-button id="sportN" name="sport" label="Deporte"></paper-radio-button>
-        <paper-radio-button id="musicN" name="music" label="Musica"></paper-radio-button>
-        <paper-radio-button id="jobN" name="job" label="Trabajo"></paper-radio-button>
-        <paper-radio-button id="cultureN" name="culture" label="Cultura"></paper-radio-button>
-        </paper-radio-group><p>
-        Ofertas: <p>
-        <paper-radio-group id="offers">
-        <paper-radio-button id="sportO" name="sport" label="Deporte"></paper-radio-button>
-        <paper-radio-button id="musicO" name="music" label="Musica"></paper-radio-button>
-        <paper-radio-button id="jobO" name="job" label="Trabajo"></paper-radio-button>
-        <paper-radio-button id="cultureO" name="culture" label="Cultura"></paper-radio-button>
-        </paper-radio-group>
+            <p>
+                <paper-radio-group id="needs">
+                    <paper-radio-button id="sportN" name="sport" label="Deporte"></paper-radio-button>
+                    <paper-radio-button id="musicN" name="music" label="Musica"></paper-radio-button>
+                    <paper-radio-button id="jobN" name="job" label="Trabajo"></paper-radio-button>
+                    <paper-radio-button id="cultureN" name="culture" label="Cultura"></paper-radio-button>
+                </paper-radio-group>
+            <p>
+                Ofertas:
 
-        <section class="wrapper">
-        <paper-button id="createBtn" class="coloredOK" raised="true" onclick="updateUser()">Crear</paper-button>
-        <paper-button id="cancelBtn" class="coloredCancel" raised="true">Cancelar</paper-button>
+            <p>
+                <paper-radio-group id="offers">
+                    <paper-radio-button id="sportO" name="sport" label="Deporte"></paper-radio-button>
+                    <paper-radio-button id="musicO" name="music" label="Musica"></paper-radio-button>
+                    <paper-radio-button id="jobO" name="job" label="Trabajo"></paper-radio-button>
+                    <paper-radio-button id="cultureO" name="culture" label="Cultura"></paper-radio-button>
+                </paper-radio-group>
+
+                <section class="wrapper">
+                    <paper-button id="createBtn" class="coloredOK" raised="true" onclick="updateUser()">Crear
+                    </paper-button>
+                    <paper-button id="cancelBtn" class="coloredCancel" raised="true">Cancelar</paper-button>
+                </section>
         </section>
-    </section>
 </core-header-panel>
 </div>
 
