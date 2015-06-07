@@ -1,22 +1,24 @@
 $("#createBtn").click(function () {
-    var usernick = $("#nick").val();
+    var username = $("#name").val();
     var userusername = $("#username").val();
     var usernation = $("#nation").val();
     var password = $("#password").val();
     var password2 = $("#password2").val();
     var needs = needsArray;
     var offers = offersArray;
+    var description = $("#description").val();
 
     if (password != password2) {
         window.alert("Las contraseñas no coinciden");
     } else {
         var user = new Object();
-        user.nick = usernick;
+        user.name = username;
         user.username = userusername;
         user.nation = usernation;
         user.password = password;
         user.needs = needs;
         user.offers = offers;
+        user.description = description;
         var data = JSON.stringify(user);
 
         $.ajax({
@@ -25,8 +27,8 @@ $("#createBtn").click(function () {
             crossDomain: true,
             contentType: 'application/json',
             data: data,
-            success: function () {
-                window.location.href = 'index.html';
+            success: function (data_API) {
+                window.location.href = 'login.html';
             },
             error: function () {
                 window.alert("FAIL");
@@ -187,4 +189,11 @@ $("#cultureO").change(function () {
         this.checked = false;
         countO--;
     }
+});
+
+var maxLength = 200;
+$('textarea').keyup(function () {
+    var length = $(this).val().length;
+    var length = maxLength - length;
+    $('#chars').text(length);
 });
