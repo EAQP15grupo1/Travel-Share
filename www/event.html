@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="MainApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EXAMEN_EA_ANGULAR</title>
+    <!--JQuery-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Angular js-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!--Library Google Maps-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="bower_components/js-cookie/src/js.cookie.js"></script>
+    <script src="js/event.js"></script>
+    <link rel="stylesheet" href="css/event.css">
+
+</head>
+<body ng-controller="mainController">
+<div class="container">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+
+                <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
+                    <img  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Cerrar Sesión</a></li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row">
+        <div class="col-sm-7">
+        <div class="panel panel-default">
+            <div class="panel-heading">Comentarios</div>
+            <div class="panel-body">
+                <br>
+                <div id="messages-panel" >
+                    <div  class="form" ng-repeat="message in messages" style="margin-bottom: 100px">
+                        <div class="col-sm-1">
+                                <img class="media-object" style="max-width: 30px; " src="img/profil_dummy/perfil1.png" data-holder-rendered="true">
+                        </div>
+                        <div class="col-sm-10" style="min-height:100px;border: transparent;border-style: solid;box-shadow: 5px 5px 5px #e2d9d4;">
+                            <h4 class="media-heading" id="top-aligned-media">{{message.username}}<a class="anchorjs-link" href="#top-aligned-media"><span class="anchorjs-icon"></span></a></h4>
+                            {{message.content}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form">
+                <div class="col-sm-8">
+                    <input style="margin-bottom: 10px; width: 100% ;height: 30px">
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: 10px;width: 100%">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <div class="col-sm-5">
+            <div id="map-canvas" style="height: 300px"></div>
+            <div id="directions-panel"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
