@@ -6,7 +6,7 @@ function loadAvatar() {
 
 function getUser() {
     var url_TS = "http://147.83.7.201:3000/user/" + window.localStorage.getItem("userID");
-    console.log(url_TS);
+
     $.ajax({
         url: url_TS,
         type: 'GET',
@@ -15,8 +15,8 @@ function getUser() {
         success: function (data) {
             var user = data;
 
-            $("#userNick").text("Username: " + user.username);
-            $("#userAge").text("Edad: " + user.age);
+            $("#userUsername").text(user.username);
+            $("#userName").text("Nombre: " + user.name);
             $("#userNation").text("Nacionalidad: " + user.nation);
             $("#userDescription").text(user.description);
 

@@ -11,8 +11,8 @@ function getUser() {
         success: function (data) {
             var user = data;
 
-            $("#userNick").text("Username: " + user.username);
-            $("#userAge").text("Edad: " + user.age);
+            $("#userNick").text(user.username);
+            $("#userAge").text("Nombre: " + user.name);
             $("#userNation").text("Nacionalidad: " + user.nation);
             $("#userDescription").text(user.description);
 
