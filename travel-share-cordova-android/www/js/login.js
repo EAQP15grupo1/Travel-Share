@@ -41,6 +41,7 @@ $("#LoginBtn").click(function () {
             success: function (data_API) {
                 window.localStorage.setItem("username", user.username);
                 window.localStorage.setItem("userID", data_API.userId);
+                window.localStorage.setItem("token",data_API.token);
                 window.location.href = 'index.html';
             },
             error: function (error_API) {

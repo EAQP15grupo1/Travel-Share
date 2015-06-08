@@ -58,10 +58,8 @@ html, body, #map-canvas {
 
 #my {
     position: absolute;
-    width: 60px;
-    height: 40px;
-    top:17px;
-    right:80px;
+    top:1px;
+    right:1px;
     z-index: 8;
 }
 

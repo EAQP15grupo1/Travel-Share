@@ -27,9 +27,26 @@
     <link rel="import" href="bower_components/polymer/polymer.html">
 
     <!-- Calendar -->
-    <script type='text/javascript' src='js/jquery.js'></script>
-    <script type='text/javascript' src='js/calendar.js'></script>
-    <link href='calendar.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css"/>
+    <script src="datetimepicker/jquery.js"></script>
+    <script src="datetimepicker/jquery.datetimepicker.js"></script>
+
+    <!-- Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <style>
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #panel {
+            top: 5px;
+            left: 50%;
+            z-index: 5;
+            padding: 5px;
+        }
+    </style>
 
     <style>
         html, body {
@@ -130,28 +147,20 @@
             <paper-radio-button id="culture" name="culture" label="Cultura"></paper-radio-button>
         </paper-radio-group>
         <br>
+        <hr>
         <label>Elige una fecha para el evento:</label> <br>
-        <paper-input class="dateInput" type='text' id='sel' disabled="true"></paper-input>
-        <core-icon-button
-                icon="event"
-                onclick="dispCal()">
-        </core-icon-button>
-        <section class="wrapper">
-            <table class='calendar' id='calendar' border=0 cellpadding=0 cellspacing=0>
-                <tr class='monthdisp'>
-                    <td class='navigate' align='left'><img src='img/calendar_previous.png' onclick='return prev()'/>
-                    </td>
-                    <td align='center' id='month'></td>
-                    <td class='navigate' align='right'><img src='img/calendar_next.png' onclick='return next()'/></td>
-                </tr>
-                <tr>
-                    <td colspan=3>
-                        <table id='dispDays' border=0 cellpadding=4 cellspacing=4>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </section>
+        <paper-input id="date" class="dateInput" disabled="true" style="width: 50%"></paper-input>
+        <paper-input id="datetimepicker" class="dateInput" disabled="true" style="width: 50%"></paper-input>
+
+        <hr>
+        <div id="panel">
+            <input id="address" type="textbox" value="EETAC, Castelldefels">
+            <input type="button" value="Geocode" onclick="codeAddress()">
+        </div>
+
+        <div id="map-canvas" style="width: 320px; height: 150px"></div>
+
+        <paper-input id="location" disabled="true" style="width: 70%"></paper-input>
     </section>
 
     <section class="wrapper">

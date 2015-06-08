@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Displaying text directions with <code>setPanel()</code></title>
+    <style>
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+        </style>
+        <style>
+        #directions-panel {
+            height: 100%;
+            float: right;
+            width: 390px;
+            overflow: auto;
+        }
+
+        #map-canvas {
+            margin-right: 400px;
+        }
+
+        @media print {
+        #map-canvas {
+                height: 500px;
+                margin: 0;
+            }
+
+        #directions-panel {
+                float: none;
+                width: auto;
+            }
+        }
+        </style>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        <script src="bower_components/js-cookie/src/js.cookie.js"></script>
+    <script>
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        var start_position= JSON.parse(Cookies.get('start_position'));
+        var end_position= JSON.parse(Cookies.get('end_position'));
+        console.log(start_position);
+        console.log(end_position);
+
+        function initialize() {
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            var mapOptions = {
+                zoom: 7,
+                center: new google.maps.LatLng(41.850033, -87.6500523)
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById('directions-panel'));
+            calcRoute();
+        }
+
+        function calcRoute() {
+            var start = new google.maps.LatLng(start_position.A, start_position.F);
+            var end = new google.maps.LatLng(end_position.A, end_position.F);
+            console.log(start);
+            console.log(end);
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.WALKING
+            };
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+</head>
+<body>
+
+/
+<div id="directions-panel"></div>
+<div id="map-canvas"></div>
+</body>
+</html>

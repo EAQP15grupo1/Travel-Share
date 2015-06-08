@@ -78,7 +78,7 @@ module.exports = function (app) {
                     description: req.body.description,
                     latitude: req.body.latitude,
                     longitude: req.body.longitude,
-                    avatar:req.body.avatar
+                    avatar: req.body.avatar
                 });
                 user.save(function (err) {
 
@@ -130,6 +130,23 @@ module.exports = function (app) {
             user.set(function (err) {
                 if (!err) {
                     console.log('Updated');
+                }
+                else {
+                    console.log('ERROR' + err);
+                }
+
+            })
+        });
+
+        res.send('User Modified');
+    }
+
+    updateUserChat = function (req, res) {
+        console.log('Change user chat');
+        User.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, user) {
+            user.set(function (err) {
+                if (!err) {
+                    console.log('Chat Updated');
                 }
                 else {
                     console.log('ERROR' + err);
@@ -298,18 +315,18 @@ module.exports = function (app) {
 
     addImages = function (req, res) {
         //console.log(req.files)
-        req.files.avatar.name = req.params._id +'.jpg';
-       // var foto = req.files.avatar.name;
+        req.files.avatar.name = req.params._id + '.jpg';
+        // var foto = req.files.avatar.name;
 
         var tmp_path = req.files.avatar.path;
         // Ruta donde colocaremos las imagenes
-        var target_path = './avatar/' + req.files.avatar.name;
+        var target_path = './www/avatar/' + req.files.avatar.name;
         // Comprobamos que el fichero es de tipo imagen
         if (req.files.avatar.type.indexOf('image') == -1) {
             res.send('El fichero que deseas subir no es una imagen');
-       } else {
+        } else {
             // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
-            fs.rename(tmp_path, target_path , function (err) {
+            fs.rename(tmp_path, target_path, function (err) {
                 console.log(err);
                 if (err) throw err;
                 // Eliminamos el fichero temporal
@@ -317,29 +334,31 @@ module.exports = function (app) {
                     if (err) throw err;
 
                     User.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, user) {
+
                         //console.log(user._id);
                         //console.log(foto);
-                       if(!err) {
-                           var nom = user._id;
-                           user.avatar = nom;
-                           //console.log(user.avatar + 'pjflsa');
-                           user.save(function (err) {
-                               if (!err) {
-                                   console.log('Updated');
-                                   res.send('Update')
-                               }
-                               else {
-                                   console.log('ERROR' + err);
-                               }
+                        if (!err) {
+                            var nom = user._id;
+                            user.avatar = nom;
+                            //console.log(user.avatar + 'pjflsa');
+                            user.save(function (err) {
+                                if (!err) {
+                                    console.log('Updated');
+                                    res.send('Update')
+                                }
+                                else {
+                                    console.log('ERROR' + err);
+                                }
 
-                           })
-                       }});
+                            })
+                        }
+                    });
 
                 });
 
             });
 
-       }
+        }
     };
 
 
@@ -349,6 +368,7 @@ module.exports = function (app) {
     app.get('/user/:_id', findUser);
     app.post('/users', addUser);
     app.put('/user/:_id', updateUser);
+    app.put('/user/chat/:_id', updateUserChat);
     app.delete('/user/:_id', deleteUser);
     app.post('/login', loginUser);
     app.get('/user/username/:username', findByUsername);

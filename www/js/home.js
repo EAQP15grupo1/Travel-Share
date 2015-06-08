@@ -15,10 +15,21 @@ var new_event_click= false;
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
+username = prueba;
+username_id = "556324cff5dc436409000001";
 console.log(username);
 console.log(token);
 console.log(username_id);
 
+/*
+$('#datetimepicker3').datetimepicker({
+    inline: true,
+    lang:'es',
+    minDate:'0',
+    onSelectDate:function(ct,$i){
+        alert(ct.dateFormat('d/m/Y'))
+    }
+});*/
 
 var tags = [{
     nombre: "sin filtro",
@@ -139,6 +150,7 @@ function initialize() {
             var event="none";
             var detalle = "Tú estas aquí";
             var tag = "0";
+
             addMarker(geolocation,detalle,map,content,event,tag);
             map.panTo(geolocation);
         }, function() {
@@ -256,13 +268,13 @@ function placeMarker(position, map) {
             map: map
         });
         pushMarker(new_marker);
-        document.getElementById("label").innerText = new_marker.position.lat()+","+new_marker.position.lng();
+        //document.getElementById("label").innerText = new_marker.position.lat()+","+new_marker.position.lng();
         map.setCenter(new_marker.getPosition());
 
         new_event_click = false;
 
         google.maps.event.addListener(new_marker, 'dragend', function(e) {
-            document.getElementById("label").innerText = e.latLng.lat() + ',' + e.latLng.lng();
+        //    document.getElementById("label").innerText = e.latLng.lat() + ',' + e.latLng.lng();
             map.setCenter(new_marker.getPosition());
         });
     }

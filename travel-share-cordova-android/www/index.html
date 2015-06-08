@@ -72,8 +72,10 @@
     <core-header-panel navigation flex mode="seamed">
         <core-toolbar id="core_toolbar">Menus</core-toolbar>
         <core-menu theme="core-light-theme">
-            <core-item icon="settings" label="Perfil"></core-item>
-            <core-item icon="settings" label="Buscar"></core-item>
+            <core-item icon="settings" label="Perfil" onclick="window.location.href='userProfile.html'"></core-item>
+            <core-item icon="settings" label="Chat" onclick="window.location.href = 'chat_open.html'"></core-item>
+            <core-item icon="settings" label="Actualizar Perfil"
+                       onclick="window.location.href = 'updateProfile.html'"></core-item>
         </core-menu>
     </core-header-panel>
     <div tool>Travel Share</div>
@@ -88,7 +90,7 @@
         <div>
             <body unresolved>
             <canvas id="radarCanvas" width="600" height="600"></canvas>
-            <paper-fab icon="cached" onclick="onDeviceReady()"></paper-fab>
+            <paper-fab icon="cached" onclick="onOpen()"></paper-fab>
             </body>
         </div>
         <div id="pagina2">
