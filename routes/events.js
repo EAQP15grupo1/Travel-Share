@@ -107,6 +107,22 @@ module.exports = function (app) {
         });
     };
 
+
+    //Get por evetes donde estoy registrado
+
+    findByAtenders = function (req, res) {
+        var participante = "attendees:ObjectId"+(req.params.attendees);
+        console.log(participante);
+        Event.find(participante, function (err, events) {
+            if (!err) {
+                res.send(events);
+            } else {
+
+                console.log('ERROR:' + err);
+            }
+        });
+    };
+
     //UPDATE
     updateEvent = function (req, res) {
         console.log('UPDATE event');
@@ -206,6 +222,9 @@ module.exports = function (app) {
     app.post('/event', addEvent);
     app.delete('/event/:_id', deleteEvent);
     app.get('/events/:tag', findByTag);
-    app.put('/event/:_id', updateEvent)
-    app.put('/event/join/:_id', joinEvent)
+    app.put('/event/:_id', updateEvent);
+    app.put('/event/join/:_id', joinEvent);
+    app.get('/events/calendario/:_id', findByAtenders);
+
+
 }

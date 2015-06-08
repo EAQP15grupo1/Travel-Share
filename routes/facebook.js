@@ -55,6 +55,7 @@ module.exports = function (app, passport) {
                     var user = new User({
                         name: nameF,
                         username: UnameF
+
                     });
                     user.save(function (err) {
 
