@@ -122,8 +122,8 @@
                     <select id="event_tag" onclick="color_new_event()" style="font-size: 20px;width: auto">
                         <option value ="null" disabled selected>Seleccione una etiqueta</option>
                         <option value="1" style="background-color: lightgreen">Deportes</option>
-                        <option value="2" style="background-color:lightskyblue" >Música</option>
-                        <option value="3" style="background-color:yellow" >Cultura</option>
+                        <option value="2" style="background-color:lightskyblue">Música</option>
+                        <option value="3" style="background-color:yellow">Cultura</option>
                         <option value="4" style="background-color:palevioletred">Fiesta</option>
                     </select>
                 </div>
@@ -134,11 +134,9 @@
                 <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description">
                 <br>
-                    <input id="datetimepicker6" class="form-control input-lg text-center" type="text" placeholder="Fecha">
-                    <label id="label" style="display: none"></label>
-                    <div id="datetimepicker3" class="date" onclick="prueba()" >
-                        <input data-format="yyyy-MM-dd hh:mm:ss" type="text">
-                    </div>
+                    <label>Seleccióna hora y luego dia:</label> <br>
+                    <input id="date" class="dateInput text-center"  style="width: 50%"></input>
+                    <input id="datetimepicker" class="dateInput" style="width: 50%"></input>
 
                 </div>
             </div>

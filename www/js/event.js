@@ -1,10 +1,13 @@
 angular.module('MainApp', [])
 var id_event;
-id_event = "55634674f5dc43640900000d";
+//id_event = "55634674f5dc43640900000d";
+id_event =Cookies.get('id_event');
 var id_user;
-id_user ="556324cff5dc436409000001";
+//id_user ="556324cff5dc436409000001";
+id_user = Cookies.get("id_user");
 var username;
-username = "prueba";
+username= Cookies.get("username");
+//username = "prueba";
 
 var map;
 var event_marker;
@@ -55,15 +58,37 @@ function mainController($scope, $http) {
             console.log('Error: ' + data);
         });
 
+
     $scope.messages = {};
-    //Get Messages from event
+    $scope.newMessage = {
+        username: username,
+        eventid: id_event
+    };
+        //Get Messages from event
     $http.get('http://localhost:3000/messages/event/'+id_event).success(function (data) {
         $scope.messages = data;
     }).error(function (error) {
         window.alert("FAIL: " + error);
     });
 
+    $scope.Comentar = function() {
 
+        console.log($scope.newMessage);
+        $http.post('http://localhost:3000/messages/', $scope.newMessage)
+            .success(function(data) {
+                $scope.messages.push(data);
+                $scope.newMessage = {
+                    username: username,
+                    eventid: id_event,
+                    content: ""
+                };
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+                window.alert('Error: ' + data);
+            });
+    };
 
 }
 
@@ -143,10 +168,10 @@ function RouteControl(controlDiv, map) {
 }
 
 function addGeoMarker(position) {
-   // var icon = "img/pos_0.png";
+   var icon = "img/pos_0.png";
     var marker= new google.maps.Marker
     ({
-        //icon: icon,
+        icon: icon,
         position: position,
         map: map
     });
@@ -162,12 +187,13 @@ function addGeoMarker(position) {
 }
 
 function addMarker(marcador) {
-    //var icon = "img/pos_"+marcador.idtag+".png"
+    var icon = "img/pos_"+marcador.idtag+".png"
     position = new google.maps.LatLng(marcador.place[0],marcador.place[1]);
     geocoder.geocode({'latLng': position}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             if (results[1]) {
                 marker = new google.maps.Marker({
+                    icon : icon,
                     position: position,
                     map: map,
                     animation: google.maps.Animation.DROP

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EXAMEN_EA_ANGULAR</title>
+    <title>Evento</title>
     <!--JQuery-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -18,7 +18,6 @@
 
 </head>
 <body ng-controller="mainController">
-<div class="container">
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -55,7 +54,6 @@
                         </ul>
                     </li>
                 </ul>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Cerrar Sesión</a></li>
 
@@ -70,13 +68,14 @@
             <div class="panel-body">
                 <br>
                 <div id="messages-panel" >
-                    <div  class="form" ng-repeat="message in messages" style="margin-bottom: 100px">
+                    <div  class="form" ng-repeat="message in messages" style="margin-bottom: 90px">
                         <div class="col-sm-1">
                                 <img class="media-object" style="max-width: 30px; " src="img/profil_dummy/perfil1.png" data-holder-rendered="true">
                         </div>
-                        <div class="col-sm-10" style="min-height:100px;border: transparent;border-style: solid;box-shadow: 5px 5px 5px #e2d9d4;">
-                            <h4 class="media-heading" id="top-aligned-media">{{message.username}}<a class="anchorjs-link" href="#top-aligned-media"><span class="anchorjs-icon"></span></a></h4>
+                        <div class="col-sm-10" >
+                            <h4 class="media-heading" id="top-aligned-media">{{message.username}}</h4>
                             {{message.content}}
+                            <hr>
                         </div>
                         <br>
                     </div>
@@ -85,22 +84,19 @@
 
             <div class="form">
                 <div class="col-sm-8">
-                    <input style="margin-bottom: 10px; width: 100% ;height: 30px">
+                    <input style="margin-bottom: 10px; width: 100%" name="content" type="text" class="form-control input-lg text-center" placeholder="Comentar el evento" ng-model="newMessage.content" ng-maxlength="80" vale required>
                 </div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: 10px;width: 100%">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-                    </button>
+                    <button style="margin-bottom: 10px;height: 100%" type="submit" class="btn btn-warning btn-lg" ng-click="Comentar()" ng-disabled="!newMessage.content">Comentar</button>
                 </div>
             </div>
 
         </div>
         </div>
-        <div class="col-sm-5">
-            <div id="map-canvas" style="height: 300px"></div>
+        <div class="col-sm-5" style="height: 300px">
+            <div id="map-canvas" ></div>
             <div id="directions-panel"></div>
         </div>
     </div>
-</div>
 </body>
 </html>
