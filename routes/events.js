@@ -120,6 +120,7 @@ module.exports = function (app) {
                             }
                     });
            };
+
     //UPDATE
     updateEvent = function (req, res) {
         console.log('UPDATE event');
@@ -222,7 +223,14 @@ module.exports = function (app) {
 
     //GET events
     findAllEventsByDate = function (req, res) {
-        Event.find({},{"_id":1,"eventname":1,"description":1,"tag":1,"owner":1,"date":1},{$orderby:{date:-1}},function (err, events) {
+        Event.find({}, {
+            "_id": 1,
+            "eventname": 1,
+            "description": 1,
+            "tag": 1,
+            "owner": 1,
+            "date": 1
+        }, {$orderby: {date: -1}}, function (err, events) {
             if (!err) {
                 res.send(events);
             }
