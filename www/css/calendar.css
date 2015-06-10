@@ -1,0 +1,15 @@
+#calendar-panel {
+    border: transparent;
+    border-style: solid;
+    box-shadow: 5px 5px 5px #e2d9d4;
+}
+#event-panel {
+    overflow:scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.calendar_event:hover {
+    background-color: #ff4060;
+}

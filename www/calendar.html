@@ -1,40 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html ng-app="CalendarApp">
+<head>
     <meta charset="UTF-8">
     <title>Calendario</title>
-
-    <!--JQuery-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- Angular js-->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <!--Library Google Maps-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <!--Cookies-->
     <script src="bower_components/js-cookie/src/js.cookie.js"></script>
-
     <!--Calendar-->
-    <link rel='stylesheet' href='bower_components/fullcalendar/fullcalendar.css' />
-    <script src='lib/jquery.min.js'></script>
-    <script src='lib/moment.min.js'></script>
-    <script src='fullcalendar/fullcalendar.js'></script>
+    <link rel='stylesheet' href='bower_components/lodash/fullcalendar/dist/fullcalendar.css' />
+    <script src='bower_components/lodash/jquery/dist/jquery.min.js'></script>
+    <script src='bower_components/lodash/moment/min/moment.min.js'></script>
+    <script src='bower_components/lodash/fullcalendar/dist/fullcalendar.js'></script>
 
-
-
-    <script src="js/event.js"></script>
-    <link rel="stylesheet" href="css/event.css">
+    <script src="js/calendar.js"></script>
+    <link rel="stylesheet" href="css/calendar.css">
 
 
 </head>
-<body>
+<body ng-controller="mainController">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
 
             <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
-                <img  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
+                <img class="img-circle img-responsive" style="width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -72,26 +65,40 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-
 <div class="col-sm-7">
-    <div class="panel panel-default">
-        <div class="panel-heading">Comentarios</div>
-        <div class="panel-body">
-
-            //CALENDAR
-
-
-
-
-        </div>
-
+    <div id="calendar-panel">
+        <div id='calendar'></div>
     </div>
 </div>
+
 <div class="col-sm-5">
-    <div id="map-canvas" style="height: 300px"></div>
-    <div id="directions-panel"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Eventos</div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <input type="text" class="form-control input-lg text-center" style="margin-bottom: 10px" placeholder="Filtro" ng-value="filtro" ng-model="filtro.eventname"required>
+            </div>
+            <br>
+            <div id="event-panel" >
+
+                <div class="form" ng-repeat="evento in eventos| filter:filtro">
+                     <a class="calendar_event" href="" id={{evento._id}} onclick="goToEvent(id)">
+                         <div  style="border: transparent;border-style: solid;box-shadow: 5px 5px 5px #e2d9d4;">
+                         <div class="col-sm-9">
+                             <h4 class="media-heading" id="top-aligned-media" style="text-decoration: underline;color:{{evento.color}}">{{evento.eventname}}</h4>
+                         </div>
+                         <div class="col-sm-3">
+                             <label class="text-right"style="margin:0px;width: 100%;font-size: 10px;color: black">{{evento.tag}}</label>
+                         </div>
+                         <label class="text-right" style="margin:0px;width: 100%;font-size: 10px;color: black">{{evento.date}}</label>
+                         </div>
+                     </a>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 </body>
 </html>
