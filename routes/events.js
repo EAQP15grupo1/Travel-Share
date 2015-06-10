@@ -110,16 +110,16 @@ module.exports = function (app) {
 
     //Get por evetes donde estoy registrado
 
-           findByAtenders = function (req, res) {
-               Event.find({"attendees": req.params._id}, function (err, events) {
-                       if (!err) {
-                                res.send(events);
-                            } else {
+    findByAtenders = function (req, res) {
+        Event.find({"attendees": req.params._id}, function (err, events) {
+            if (!err) {
+                res.send(events);
+            } else {
 
-                                   console.log('ERROR:' + err);
-                            }
-                    });
-           };
+                console.log('ERROR:' + err);
+            }
+        });
+    };
 
     //UPDATE
     updateEvent = function (req, res) {
@@ -145,7 +145,7 @@ module.exports = function (app) {
     joinEvent = function (req, res) {
         console.log('JOIN event');
 
-        Event.findOneAndUpdate({"_id": req.params._id}, {$push: {attendees: req.body.attendees}}, req.body, function (err, event) {
+        Event.findOneAndUpdate({"_id": req.params._id}, {$addToSet: {attendees: req.body.attendees}}, req.body, function (err, event) {
             console.log(event._id);
 
             event.set(function (err) {
@@ -180,8 +180,6 @@ module.exports = function (app) {
 
         res.send('You have been leave to the event');
     }
-
-
 
 
     //POST advance
@@ -221,24 +219,7 @@ module.exports = function (app) {
         });
     };
 
-    //GET events
-    findAllEventsByDate = function (req, res) {
-        Event.find({}, {
-            "_id": 1,
-            "eventname": 1,
-            "description": 1,
-            "tag": 1,
-            "owner": 1,
-            "date": 1
-        }, {$orderby: {date: -1}}, function (err, events) {
-            if (!err) {
-                res.send(events);
-            }
-            else {
-                console.log('ERROR: ' + err);
-            }
-        });
-    };
+
 
 
 //endpoints
@@ -253,7 +234,6 @@ module.exports = function (app) {
     app.put('/event/join/:_id', joinEvent);
     app.get('/events/calendario/:_id', findByAtenders);
     app.put('/event/leave/:_id', leaveEvent);
-
 
 
 }

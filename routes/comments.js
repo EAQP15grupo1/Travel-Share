@@ -1,4 +1,4 @@
-module.exports=function(app) {
+module.exports = function (app) {
     var Comment = require('../models/comments/SchemaComments.js');
 
 //GET
@@ -61,29 +61,29 @@ module.exports=function(app) {
 //POST User
     newComment = function (req, res) {
 
-                var data = new Comment({
-                    name: req.body.name,
-                    comments: req.body.comments,
-                    event: req.body.event,
-                    fecha:req.body.fecha
-                });
-                data.save(function (err) {
+        var data = new Comment({
+            name: req.body.name,
+            comments: req.body.comments,
+            event: req.body.event,
+            fecha: req.body.fecha
+        });
+        data.save(function (err) {
 
-                    if (!err) {
-                        console.log('New comment');
-                    }
-                    else {
-                        console.log('ERROR', +err);
-                    }
-                })
+            if (!err) {
+                console.log('New comment');
+            }
+            else {
+                console.log('ERROR', +err);
+            }
+        })
 
-                res.send(data);
+        res.send(data);
     };
 
     findByComment = function (req, res) {
         User.findOne({"name": req.params.name}, function (err, data) {
             if (!err) {
-             res.send(data);
+                res.send(data);
             }
             else {
                 console.log('ERROR: ' + err);
