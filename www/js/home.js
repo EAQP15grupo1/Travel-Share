@@ -15,10 +15,21 @@ var new_event_click= false;
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
+username = "prueba";
+username_id = "556324cff5dc436409000001";
 console.log(username);
 console.log(token);
 console.log(username_id);
 
+/*
+$('#datetimepicker3').datetimepicker({
+    inline: true,
+    lang:'es',
+    minDate:'0',
+    onSelectDate:function(ct,$i){
+        alert(ct.dateFormat('d/m/Y'))
+    }
+});*/
 
 var tags = [{
     nombre: "sin filtro",
@@ -46,6 +57,15 @@ var tags = [{
     color: "palevioletred"
 }];
 
+$('#datetimepicker6').datetimepicker({
+    inline: true,
+    lang: 'es',
+    minDate: '0',
+    onSelectDate: function (ct, $i) {
+        $("#datetimepicker6").val(ct.dateFormat('Y-m/d H:i'))
+    }
+});
+
 
 function color_new_event(){
     var e = document.getElementById("event_tag");
@@ -70,6 +90,14 @@ function newevent(){
         placeMarker(e.latLng, map);
 
     });
+    $('#datetimepicker').datetimepicker({
+        inline: true,
+        lang: 'es',
+        minDate: '0',
+        onSelectDate: function (ct, $i) {
+            $("#date").val(ct.dateFormat('Y-m-d H:i'))
+        }
+    });
 }
 
 function exitpanel2(){
@@ -82,6 +110,7 @@ function exitpanel2(){
     $("#new_eventname").val("");
     $("#new_description").val("");
     $("#datetimepicker6").val("");
+    $("#date").val("");
     document.getElementById("panel_new_event").style.borderColor = "black";
     $(".fa.fa-times").css("color","black");
     $("#event_tag").css("background-color","white");
@@ -139,6 +168,7 @@ function initialize() {
             var event="none";
             var detalle = "Tú estas aquí";
             var tag = "0";
+
             addMarker(geolocation,detalle,map,content,event,tag);
             map.panTo(geolocation);
         }, function() {
@@ -217,11 +247,12 @@ function new_marker_post(){
             new_event.idtag = idtag;
             new_event.description = $("#new_description").val();
             new_event.owner = username_id;
+            new_event.attendees = username_id;
 
 
             //console.log('["'+new_marker.position.lat()+'","'+new_marker.position.lng()+'"]');
             new_event.place = place;
-            new_event.date = $("#datetimepicker6").val();
+            new_event.date = $("#date").val();
             console.log(place);
             var data = JSON.stringify(new_event);
             console.log(data);
@@ -256,13 +287,13 @@ function placeMarker(position, map) {
             map: map
         });
         pushMarker(new_marker);
-        document.getElementById("label").innerText = new_marker.position.lat()+","+new_marker.position.lng();
+        //document.getElementById("label").innerText = new_marker.position.lat()+","+new_marker.position.lng();
         map.setCenter(new_marker.getPosition());
 
         new_event_click = false;
 
         google.maps.event.addListener(new_marker, 'dragend', function(e) {
-            document.getElementById("label").innerText = e.latLng.lat() + ',' + e.latLng.lng();
+        //    document.getElementById("label").innerText = e.latLng.lat() + ',' + e.latLng.lng();
             map.setCenter(new_marker.getPosition());
         });
     }

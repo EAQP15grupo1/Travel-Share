@@ -1,4 +1,4 @@
-module.exports = function (app, passport, FacebookStrategy) {
+module.exports = function (app) {
 
     var User = require('../models/user/schema.js');
     var crypto = require('crypto');
@@ -205,35 +205,30 @@ module.exports = function (app, passport, FacebookStrategy) {
         });
     }
 
-    // Autenticación Facebook
-    var social = require('../config/social.js')
-    passport.use(new FacebookStrategy({
-            clientID: social.facebook.clientID,
-            clientSecret: social.facebook.clientSecret,
-            callbackURL: social.facebook.callbackURL,
-            enableProof: social.facebook.enableProof
-        },
-        function (accessToken, refreshToken, profile, done) {
-            var nameF = profile.id + "@facebook";
-            User.findOne({username: nameF}, function (err, user) {
-                if (!user) {
-                    var user = new User({
-                        name: profile.name,
-                        username: nameF
-                    });
-                    user.save(function (err) {
-                        if (!err) {
-                            console.log('User added');
-                        }
-                        else {
-                            console.log('ERROR', +err);
-                        }
-                    })
-                }
-                return done(err, user);
-            })
-        }
-    ));
+    //// Autenticación Facebook
+
+    //
+    //    function (accessToken, refreshToken, profile, done) {
+    //        var nameF = profile.id + "@facebook";
+    //        User.findOne({username: nameF}, function (err, user) {
+    //            if (!user) {
+    //                var user = new User({
+    //                    name: profile.name,
+    //                    username: nameF
+    //                });
+    //                user.save(function (err) {
+    //                    if (!err) {
+    //                        console.log('User added');
+    //                    }
+    //                    else {
+    //                        console.log('ERROR', +err);
+    //                    }
+    //                })
+    //            }
+    //            return done(err, user);
+    //        })
+    //    }
+    //));
 
 //funcion que comprueba el token
 
@@ -380,11 +375,11 @@ module.exports = function (app, passport, FacebookStrategy) {
     app.get('/users/find/:_id', findUsersOffersPlace);
     app.put('/user/avatar/:_id', addImages);
     // Endpoints Facebook
-    app.get('/auth/facebook', passport.authenticate('facebook'));
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {failureRedirect: '/login'}),
-        function (req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
+    //app.get('/auth/facebook', passport.authenticate('facebook'));
+    //app.get('/auth/facebook/callback',
+    //passport.authenticate('facebook', {failureRedirect: '/login'}),
+    //function (req, res) {
+    //    // Successful authentication, redirect home.
+    //    res.redirect('/');
+    //});
 }

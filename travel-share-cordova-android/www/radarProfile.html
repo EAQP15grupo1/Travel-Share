@@ -144,8 +144,9 @@
         <div class="informacion">
             <core-card id="user_card" align="right" vertical layout start>
                 <div style="padding: 20px;">
-                    <p></p><span id="userNick"></span></p>
-                    <p><span id="userAge"></span></p>
+                    <p></p><span id="userUsername"
+                                 style="font-size: 150%; font-style: italic; font-weight: bold"></span></p>
+                    <p><span id="userName"></span></p>
 
                     <p><span id="userNation"></span></p>
                 </div>
@@ -166,15 +167,15 @@
     <core-pages selected="{{ selected }}" selectedindex="0" notap id="core-pages">
         <div style="padding: 10px">
             Lista de Necesidades
-            <br><label>- Necesidad 1</label>
-            <br><label>- Necesidad 2</label>
-            <br><label>- Necesidad 3</label>
+            <br><label id="N1"></label>
+            <br><label id="N2"></label>
+            <br><label id="N3"></label>
         </div>
         <div style="padding: 10px">
             Lista de Ofrecimientos
-            <br><label>- Ofrecimiento 1</label>
-            <br><label>- Ofrecimiento 2</label>
-            <br><label>- Ofrecimiento 3</label>
+            <br><label id="O1"></label>
+            <br><label id="O2"></label>
+            <br><label id="O3"></label>
         </div>
     </core-pages>
 

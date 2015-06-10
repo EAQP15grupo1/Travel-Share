@@ -11,10 +11,19 @@ function getUser() {
         success: function (data) {
             var user = data;
 
-            $("#userNick").text("Username: " + user.username);
-            $("#userAge").text("Edad: " + user.age);
+            $("#userNick").text(user.username);
+            $("#userAge").text("Nombre: " + user.name);
             $("#userNation").text("Nacionalidad: " + user.nation);
             $("#userDescription").text(user.description);
+
+
+            for (var i = 1; i <= user.needs.length; i++) {
+                $("#N" + i).text(" - " + user.needs[i - 1]);
+            }
+
+            for (var j = 1; j <= user.offers.length; j++) {
+                $("#O" + j).text(" - " + user.offers[j - 1]);
+            }
 
             document.getElementById("avatar").src = "http://147.83.7.201/avatar/" + window.localStorage.getItem("userProfileID") + ".jpg";
             window.localStorage.setItem("userProfileusername", user.username);

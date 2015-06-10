@@ -1,0 +1,17 @@
+body,head,#map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: transparent;
+    border-style: solid;
+    box-shadow: 5px 5px 5px #e2d9d4;
+}
+
+#messages-panel {
+    overflow:scroll;
+    overflow-x: hidden;
+    height:400px;
+    width: 100%;
+}
+
+
