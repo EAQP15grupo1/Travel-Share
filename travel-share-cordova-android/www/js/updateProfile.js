@@ -2,7 +2,7 @@ window.onload = onDeviceReady();
 
 function loadAvatar() {
 
-    document.getElementById("myImage").src="http://10.89.54.173/avatar/"+window.localStorage.getItem("userID")+".jpg";
+    document.getElementById("myImage").src="http://147.83.7.201/avatar/"+window.localStorage.getItem("userID")+".jpg";
 }
 
 function onDeviceReady() {
