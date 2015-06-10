@@ -41,7 +41,7 @@ $("#LoginBtn").click(function () {
             success: function (data_API) {
                 window.localStorage.setItem("username", user.username);
                 window.localStorage.setItem("userID", data_API.userId);
-                window.localStorage.setItem("token",data_API.token);
+                window.localStorage.setItem("token", data_API.token);
                 window.location.href = 'index.html';
             },
             error: function (error_API) {
@@ -55,4 +55,23 @@ $("#LoginBtn").click(function () {
 
 $("#RegisterBtn").click(function () {
     window.location.href = "createUser.html"
+});
+
+$("#FacebookBtn").click(function () {
+    $.ajax({
+        url: "http://" + base_URL + "/facebook",
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function () {
+            window.location.href = 'updateProfile.html';
+        },
+        error: function (error_API) {
+            window.alert("ERROR");
+            //window.alert(error_API.response);
+            window.localStorage.setItem("userID", error_API.userId);
+            window.localStorage.setItem("token", error_API.token);
+            window.location.href = 'updateProfile.html';
+        }
+    });
 });

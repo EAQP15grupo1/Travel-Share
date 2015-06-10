@@ -2,7 +2,7 @@ window.onload = onDeviceReady();
 
 function loadAvatar() {
 
-    document.getElementById("myImage").src="http://10.89.54.173/avatar/"+window.localStorage.getItem("userID")+".jpg";
+    document.getElementById("myImage").src = "http://10.89.54.173/avatar/" + window.localStorage.getItem("userID") + ".jpg";
 }
 
 function onDeviceReady() {
@@ -45,17 +45,17 @@ function uploadPicture() {
 // Get URI of picture to upload
     var server = "http://147.83.7.201:3000/user/avatar/" + window.localStorage.getItem("userID");
     var img = document.getElementById('myImage').src;
-    var options=new FileUploadOptions();
+    var options = new FileUploadOptions();
     options.fileKey = "avatar";
-    options.fileName = img.substr(img.lastIndexOf('/') + 1);
-    options.httpMethod="PUT";
+    options.fileName = "patata";
+    options.httpMethod = "PUT";
 
-    var ft=new FileTransfer();
+    var ft = new FileTransfer();
 
-    ft.upload(img,encodeURI(server), function (data){
-        window.location.href='userProfile.html';
-    }, function fail(error){
-        window.alert("error al subir la foto"+error);
+    ft.upload(img, encodeURI(server), function (data) {
+        window.location.href = 'userProfile.html';
+    }, function fail(error) {
+        window.alert("error al subir la foto" + error);
     }, options, true);
 
 
