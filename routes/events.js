@@ -111,9 +111,10 @@ module.exports = function (app) {
     //Get por evetes donde estoy registrado
 
     findByAtenders = function (req, res) {
-        var participante = "attendees:ObjectId"+(req.params.attendees);
+        var participante = "attendees:ObjectId\"" + (req.params._id) + "\"";
         console.log(participante);
-        Event.find(participante, function (err, events) {
+        //Event.find(participante, function (err, events) {
+        Event.find({"attendees": req.params._id}, function (err, events) {
             if (!err) {
                 res.send(events);
             } else {
@@ -203,7 +204,14 @@ module.exports = function (app) {
 
     //GET events
     findAllEventsByDate = function (req, res) {
-        Event.find({},{"_id":1,"eventname":1,"description":1,"tag":1,"owner":1,"date":1},{$orderby:{date:-1}},function (err, events) {
+        Event.find({}, {
+            "_id": 1,
+            "eventname": 1,
+            "description": 1,
+            "tag": 1,
+            "owner": 1,
+            "date": 1
+        }, {$orderby: {date: -1}}, function (err, events) {
             if (!err) {
                 res.send(events);
             }
