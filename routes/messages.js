@@ -23,7 +23,8 @@ module.exports = function (app) {
             id: req.body.id,
             content: req.body.content,
             username: req.body.username,
-            eventid: req.body.eventid
+            eventid: req.body.eventid,
+            fecha: req.body.fecha
         });
 
         message.save(function (err) {
