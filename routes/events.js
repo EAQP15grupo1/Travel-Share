@@ -110,19 +110,16 @@ module.exports = function (app) {
 
     //Get por evetes donde estoy registrado
 
-    findByAtenders = function (req, res) {
-        var participante = "attendees:ObjectId"+(req.params.attendees);
-        console.log(participante);
-        Event.find(participante, function (err, events) {
-            if (!err) {
-                res.send(events);
-            } else {
+           findByAtenders = function (req, res) {
+               Event.find({"attendees": req.params._id}, function (err, events) {
+                       if (!err) {
+                                res.send(events);
+                            } else {
 
-                console.log('ERROR:' + err);
-            }
-        });
-    };
-
+                                   console.log('ERROR:' + err);
+                            }
+                    });
+           };
     //UPDATE
     updateEvent = function (req, res) {
         console.log('UPDATE event');
@@ -163,6 +160,28 @@ module.exports = function (app) {
 
         res.send('You have been added to the event');
     }
+
+    //UPDATE Salir del evento
+    leaveEvent = function (req, res) {
+        Event.findOneAndUpdate({"_id": req.params._id}, {$pull: {attendees: req.body.attendees}}, req.body, function (err, event) {
+            console.log(event._id);
+
+            event.set(function (err) {
+                if (!err) {
+                    console.log('Updated');
+                }
+                else {
+                    console.log('ERROR' + err);
+                }
+
+            })
+        });
+
+        res.send('You have been leave to the event');
+    }
+
+
+
 
     //POST advance
     addAdvance = function (req, res) {
@@ -225,6 +244,8 @@ module.exports = function (app) {
     app.put('/event/:_id', updateEvent);
     app.put('/event/join/:_id', joinEvent);
     app.get('/events/calendario/:_id', findByAtenders);
+    app.put('/event/leave/:_id', leaveEvent);
+
 
 
 }
