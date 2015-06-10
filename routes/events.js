@@ -225,7 +225,6 @@ module.exports = function (app) {
 //endpoints
     app.post("/events/advanced", addAdvance);
     app.get('/events', findAllEvents);
-    app.get('/events/date', findAllEventsByDate);
     app.get('/event/:_id', findEvent);
     app.post('/event', addEvent);
     app.delete('/event/:_id', deleteEvent);
