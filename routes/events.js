@@ -159,7 +159,7 @@ module.exports = function (app) {
             })
         });
 
-        res.send('You have been added to the event');
+        res.status(200).send('You have been added to the event');
     }
 
     //UPDATE Salir del evento
