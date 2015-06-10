@@ -1,6 +1,6 @@
 <div class="modal" tabindex="-1" role="dialog" ng-controller="signUpController" as signUpCtrl>
     <div class="modal-dialog">
-        <form  name="SignUpForm" class="modal-content"  ng-hide="signUpInfo.value" novalidate>
+        <form  name="SignUpForm" class="modal-content"  hg novalidate>
             <div class="modal-header" ng-show="title">
                 <button type="button" class="close" ng-click="$hide()">&times;</button>
                 <h4 class="modal-title" ng-bind-html="title"></h4>
@@ -58,7 +58,7 @@
 
                     <div class="col-md-4 col-sm-offset-2">
                         <span class="label label-success" style="float:left">Evento que busco*:</span>
-                        <input type="text" class="form-control" placeholder="fiesta,cine" aria-describedby="basic-addon1" ng-model="signUpInfo.needs">
+                        <input type="text" class="form-control" placeholder="fiesta,cine" aria-describedby="basic-addon1" ng-model="signUpInfo.needs" required>
                     </div>
 
                 </div>
@@ -73,7 +73,7 @@
 
                     <div class="col-md-4 col-sm-offset-2">
                         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
-                        <input type="text" class="form-control" placeholder="clase de ingles,museo" aria-describedby="basic-addon1" ng-model="signUpInfo.offers">
+                        <input type="text" class="form-control" placeholder="clase de ingles,museo" aria-describedby="basic-addon1" ng-model="signUpInfo.offers" required>
                     </div>
 
                 </div>
@@ -92,9 +92,12 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-                <button type="button" class="btn btn-primary"ng-submit="SignUpForm.$valid && signupUser()" ng-disabled="SignUpForm.$invalid">Save changes</button>
+                <button type="button" class="btn btn-primary" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo2.html" bs-modal="modal">Save changes</button>
 
-            </div>
+                <!--
+                ng-click="signupUser()" ng-disabled="SignUpForm.$invalid"
+                -->
+           </div>
 
         </form>
     </div>
