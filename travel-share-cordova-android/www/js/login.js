@@ -29,8 +29,6 @@ $("#LoginBtn").click(function () {
         user.password = password;
         var data = JSON.stringify(user);
 
-        console.log(data);
-
         $.ajax({
             url: "http://" + base_URL + "/login",
             type: 'POST',
@@ -58,20 +56,39 @@ $("#RegisterBtn").click(function () {
 });
 
 $("#FacebookBtn").click(function () {
+    //$.ajax({
+    //    url: "http://147.83.7.201:3000/facebook",
+    //    type: 'GET',
+    //    crossDomain: true,
+    //    dataType: 'json',
+    //    success: function (data) {
+    //        //window.location.href = 'updateProfile.html';
+    //        console.log(data);
+    //    },
+    //    error: function (error_API) {
+    //        console.log(error_API);
+    //        //window.alert(error_API.response);
+    //        window.localStorage.setItem("userID", error_API.userId);
+    //        window.localStorage.setItem("token", error_API.token);
+    //        //window.location.href = 'updateProfile.html';
+    //    }
+    //});
+
     $.ajax({
-        url: "http://" + base_URL + "/facebook",
+        url: "http://147.83.7.201:3000/facebook",
         type: 'GET',
         crossDomain: true,
-        dataType: 'json',
-        success: function () {
-            window.location.href = 'updateProfile.html';
+        dataType: 'jsonp',
+        success: function (data) {
+            //window.location.href = 'updateProfile.html';
+            console.log(data);
         },
         error: function (error_API) {
-            window.alert("ERROR");
+            console.log(error_API);
             //window.alert(error_API.response);
             window.localStorage.setItem("userID", error_API.userId);
-            window.localStorage.setItem("token", error_API.token);
-            window.location.href = 'updateProfile.html';
+            //window.localStorage.setItem("token", error_API.token);
+            //window.location.href = 'updateProfile.html';
         }
     });
 });
