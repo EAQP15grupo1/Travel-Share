@@ -47,7 +47,8 @@ module.exports = function (app, passport) {
     app.get('/facebook/callback',
         passport.authenticate('facebook', {session: false, failureRedirect: '/login'}),
         function (req, res) {
-            console.log("hola" + req.user.displayName);
+            console.log("Hola " + req.user.displayName);
+            res.redirect("/updateProfile");
             var UnameF = (req.user.id + "@facebook");
             var nameF = (req.user.displayName);
             User.findOne({username: UnameF}, function (err, user) {

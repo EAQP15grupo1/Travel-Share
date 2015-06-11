@@ -56,23 +56,27 @@ $("#RegisterBtn").click(function () {
 });
 
 $("#FacebookBtn").click(function () {
-    $.ajax({
-        url: "http://147.83.7.201:3000/facebook",
-        type: 'GET',
-        crossDomain: true,
-        dataType: 'json',
-        success: function (data) {
-            //window.location.href = 'updateProfile.html';
-            console.log(data);
-        },
-        error: function (error_API) {
-            console.log(error_API);
-            //window.alert(error_API.response);
-            //window.localStorage.setItem("userID", error_API.userId);
-            //window.localStorage.setItem("token", error_API.token);
-            //window.location.href = 'updateProfile.html';
-        }
-    });
+    //window.location.href = "http://147.83.7.201:3000/facebook";
+
+    window.location = (window.location.protocol + "//147.83.7.201:3000/facebook");
+
+    //$.ajax({
+    //    url: "http://147.83.7.201:3000/facebook",
+    //    type: 'GET',
+    //    crossDomain: true,
+    //    dataType: 'json',
+    //    success: function (data) {
+    //        //window.location.href = 'updateProfile.html';
+    //        console.log(data);
+    //    },
+    //    error: function (error_API) {
+    //        console.log(error_API);
+    //        //window.alert(error_API.response);
+    //        //window.localStorage.setItem("userID", error_API.userId);
+    //        //window.localStorage.setItem("token", error_API.token);
+    //        //window.location.href = 'updateProfile.html';
+    //    }
+    //});
 
     //var url = "http://localhost:3000/facebook";
     //var method = "GET";
