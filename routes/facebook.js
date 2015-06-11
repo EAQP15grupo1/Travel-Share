@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
 //var router = express.Router();
 
 
-    app.get('/auth/facebook', passport.authenticate('facebook'), function (req, res) {
+    app.get('/facebook', passport.authenticate('facebook'), function (req, res) {
 
         console.log("paquito" + res.user);
         // The request will be redirected to Facebook for authentication, so this
@@ -44,7 +44,7 @@ module.exports = function (app, passport) {
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-    app.get('/auth/facebook/callback',
+    app.get('/facebook/callback',
         passport.authenticate('facebook', {session: false, failureRedirect: '/login'}),
         function (req, res) {
             console.log("hola" + req.user.displayName);
