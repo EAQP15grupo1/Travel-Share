@@ -47,49 +47,48 @@ module.exports = function (app, passport) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {session: false, failureRedirect: '/login'}),
         function (req, res) {
-            res.redirect("/");
-            //console.log("hola"+ req.user.displayName);
-            //var UnameF = (req.user.id + "@facebook");
-            //var nameF = (req.user.displayName);
-            //User.findOne({username: UnameF}, function (err, user) {
-            //    if (!user) {
-            //        var user = new User({
-            //            name: nameF,
-            //            username: UnameF
-            //
-            //        });
-            //        user.save(function (err) {
-            //
-            //            if (!err) {
-            //                console.log('User added');
-            //            }
-            //            else {
-            //
-            //                console.log('ERROR', +err);
-            //            }
-            //        })
-            //        var token = generateToken(user);
-            //        res.json({
-            //            token: token,
-            //            userId: user._id
-            //            //username:user.username
-            //        });
-            //
-            //    }
-            //    else {
-            //        User.findOne({username: UnameF}, function (err, user) {
-            //            var token = generateToken(user);
-            //            res.json({
-            //                token: token,
-            //                userId: user._id
-            //                //username:user.username
-            //
-            //            });
-            //        })
-            //    }
-            //
-            //})
-            // res.redirect('/');
+            console.log("hola" + req.user.displayName);
+            var UnameF = (req.user.id + "@facebook");
+            var nameF = (req.user.displayName);
+            User.findOne({username: UnameF}, function (err, user) {
+                if (!user) {
+                    var user = new User({
+                        name: nameF,
+                        username: UnameF
+
+                    });
+                    user.save(function (err) {
+
+                        if (!err) {
+                            console.log('User added');
+                        }
+                        else {
+
+                            console.log('ERROR', +err);
+                        }
+                    })
+                    var token = generateToken(user);
+                    res.json({
+                        token: token,
+                        userId: user._id
+                        //username:user.username
+                    });
+
+                }
+                else {
+                    User.findOne({username: UnameF}, function (err, user) {
+                        var token = generateToken(user);
+                        res.json({
+                            token: token,
+                            userId: user._id
+                            //username:user.username
+
+                        });
+                    })
+                }
+
+            })
+            //res.redirect('/');
         }
     );
 }
