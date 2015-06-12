@@ -48,7 +48,7 @@ module.exports = function (app) {
 
             res.send(message)
         });
-    }
+    };
 
     //DELETE Message
     deleteMessage = function (req, res) {
@@ -66,7 +66,7 @@ module.exports = function (app) {
         });
 
         res.send('Message removed');
-    }
+    };
 
     //GET Message by ID
     getMessage = function (req, res) {
@@ -78,29 +78,28 @@ module.exports = function (app) {
                 console.log('ERROR: ' + err);
             }
         });
-    }
+    };
 
     //UPDATE Message
     updateMessage = function (req, res) {
         console.log('UPDATE message');
 
-        Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, data) {
-            console.log(data);
-            //console.log(data._id);
+        Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, message) {
+            console.log(message._id);
 
-            data.set(function (err) {
+            message.set(function (err) {
                 if (!err) {
                     console.log('Updated');
                 }
                 else {
-                    console.log('ERROR: ' + err);
+                    console.log('ERROR' + err);
                 }
 
             })
         });
 
         res.send('Message updated');
-    }
+    };
 
     //GET Message by ID
     getMessagesByEventid = function (req, res) {
@@ -112,7 +111,7 @@ module.exports = function (app) {
                 console.log('ERROR: ' + err);
             }
         });
-    }
+    };
 
     //Endpoints connections
     app.get('/messages', getMessages);
