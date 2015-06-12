@@ -59,9 +59,10 @@
                        ng-value="filtro" ng-model="filtro.eventid">
             </div>
             <div class="col-sm-3"></div>
-            <div class="col-sm-1">
-                <button id="addMessage" type="button" class="btn btn-info btn-lg" ng-click="addMessage()">ADD</button>
-            </div>
+            <!-- DESCOMENTAR ESTO PARA PODER CREAR MENSAJES -->
+            <!--<div class="col-sm-1">-->
+                <!--<button id="addMessage" type="button" class="btn btn-info btn-lg" ng-click="addMessage()">ADD</button>-->
+            <!--</div>-->
         </div>
 
         <div class="col-sm-12" style="text-align: center">
@@ -72,7 +73,7 @@
 
                 <table class="table table-striped">
                     <tr class="success text-center">
-                        <th><a href="" ng-click="predicate = 'id'; reverse=!reverse"><strong>ID</strong></a></th>
+                        <th><a href="" ng-click="predicate = '_id'; reverse=!reverse"><strong>ID</strong></a></th>
                         <th><a href="" ng-click="predicate = 'content'; reverse=!reverse"><strong>Contenido</strong></a>
                         </th>
                         <th><a href="" ng-click="predicate = 'username'; reverse=!reverse"><strong>Username</strong></a>
@@ -84,7 +85,7 @@
                     <tr class="text-center"
                         ng-repeat="message in filteredTodos | filter: filtro | orderBy: predicate:reverse"
                         ng-click="selectShoe(shoe)">
-                        <td>{{message.id}}</td>
+                        <td>{{message._id}}</td>
                         <td>{{message.content}}</td>
                         <td>{{message.username}}</td>
                         <td>{{message.eventid}}</td>
