@@ -34,7 +34,7 @@ module.exports = function (app, passport) {
 
     app.get('/facebook', passport.authenticate('facebook'), function (req, res) {
 
-        console.log("paquito"+res.user);
+        console.log("paquito" + res.user);
         // The request will be redirected to Facebook for authentication, so this
         // function will not be called.
     });
@@ -47,8 +47,9 @@ module.exports = function (app, passport) {
     app.get('/facebook/callback',
         passport.authenticate('facebook', {session: false, failureRedirect: '/login'}),
         function (req, res) {
-            //console.log("hola"+ req.user.displayName);
-            var UnameF= (req.user.id+"@facebook");
+            console.log("Hola " + req.user.displayName);
+
+            var UnameF = (req.user.id + "@facebook");
             var nameF = (req.user.displayName);
             User.findOne({username: UnameF}, function (err, user) {
                 if (!user) {
@@ -67,7 +68,7 @@ module.exports = function (app, passport) {
                             console.log('ERROR', +err);
                         }
                     })
-                    var token =  generateToken(user);
+                    var token = generateToken(user);
                     res.json({
                         token: token,
                         userId: user._id
@@ -76,18 +77,19 @@ module.exports = function (app, passport) {
 
                 }
                 else {
-                    User.findOne({username: UnameF}, function (err, user){
-                    res.json({
-                        token: token,
-                        userId: user._id
-                        //username:user.username
+                    User.findOne({username: UnameF}, function (err, user) {
+                        var token = generateToken(user);
+                        res.json({
+                            token: token,
+                            userId: user._id
+                            //username:user.username
 
-                    });
-                })
-                    }
+                        });
+                    })
+                }
 
             })
-           // res.redirect('/');
+            //res.redirect('/');
         }
     );
 }

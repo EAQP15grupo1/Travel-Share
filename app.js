@@ -23,9 +23,6 @@ app.get('/', function (req, res) {
 });
 
 
-
-
-
 routes = require('./routes/users')(app);
 routes = require('./routes/events')(app);
 routes = require('./routes/messages')(app);

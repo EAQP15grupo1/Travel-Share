@@ -21,13 +21,13 @@
     <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
     <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
     <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="bower_components/polymer/polymer.html">
     <link rel="import" href="bower_components/core-ajax/core-ajax.html">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/updateProfile.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
 
 
@@ -181,8 +181,8 @@
             <input name="file" type="file" id="archive"/>
             <input type="button" id="selectbtn" onclick="selectPicture();" value="Select Picture from Library"/><br/>
             <input type="button" onclick="uploadPicture();" value="Upload Picture"/>
+        </form>
     </div>
-    </form>
 
     <div>
         <div>
@@ -193,53 +193,47 @@
         <section class="wrapperInputs">
             <paper-input type="email" id='email' name='email' label="Tu correo electrónico"
                          floatinglabel="true"></paper-input>
-            <p>
-                <paper-input type="text" id='nation' name='nation' label="Tu nacionalidad"
-                             floatinglabel="true"></paper-input>
-            <p>
-                <paper-input type="description" id='description' name='description' label="Escribe sobre ti"
-                             floatinglabel="true"></paper-input>
-            <p>
-                Necesidades:
+            <paper-input type="text" id='nation' name='nation' label="Tu nacionalidad"
+                         floatinglabel="true"></paper-input>
+
+            <textarea id="description" placeholder="Escribe una descripción sobre tí, o sobre tus necesidades y ofertas"
+                      maxlength="200" style="width: 100%; height: 50px"></textarea>
+
+            <div style="text-align: right">
+                <label style="font-size: 80%">Te quedan <span id="chars">200</span> caracteres...</label><br>
+            </div>
 
             <p>
-                <paper-radio-group id="needs">
-                    <paper-radio-button id="sportN" name="sport" label="Deporte"></paper-radio-button>
-                    <paper-radio-button id="musicN" name="music" label="Musica"></paper-radio-button>
-                    <paper-radio-button id="jobN" name="job" label="Trabajo"></paper-radio-button>
-                    <paper-radio-button id="cultureN" name="culture" label="Cultura"></paper-radio-button>
-                </paper-radio-group>
-            <p>
-                Ofertas:
+                Necesidades (elige hasta 3):
+            </p>
 
             <p>
-                <paper-radio-group id="offers">
-                    <paper-radio-button id="sportO" name="sport" label="Deporte"></paper-radio-button>
-                    <paper-radio-button id="musicO" name="music" label="Musica"></paper-radio-button>
-                    <paper-radio-button id="jobO" name="job" label="Trabajo"></paper-radio-button>
-                    <paper-radio-button id="cultureO" name="culture" label="Cultura"></paper-radio-button>
-                </paper-radio-group>
+                <paper-checkbox id="sportN" label="Deporte"></paper-checkbox>
+                <paper-checkbox id="musicN" label="Musica"></paper-checkbox>
+                <paper-checkbox id="jobN" label="Trabajo"></paper-checkbox>
+                <paper-checkbox id="cultureN" label="Cultura"></paper-checkbox>
+            </p>
+            <p>
+                Ofertas (elige hasta 3):
+            </p>
 
-                <section class="wrapper">
-                    <paper-button id="createBtn" class="coloredOK" raised="true" onclick="updateUser()">Crear
-                    </paper-button>
-                    <paper-button id="cancelBtn" class="coloredCancel" raised="true">Cancelar</paper-button>
-                </section>
+            <p>
+                <paper-checkbox id="sportO" label="Deporte"></paper-checkbox>
+                <paper-checkbox id="musicO" label="Musica"></paper-checkbox>
+                <paper-checkbox id="jobO" label="Trabajo"></paper-checkbox>
+                <paper-checkbox id="cultureO" label="Cultura"></paper-checkbox>
+            </p>
+
+            <section class="wrapper">
+                <paper-button id="createBtn" class="coloredOK" raised="true" onclick="updateUser()">Crear
+                </paper-button>
+                <paper-button id="cancelBtn" class="coloredCancel" raised="true">Cancelar</paper-button>
+            </section>
         </section>
+    </div>
 </core-header-panel>
-</div>
 
-
-<script>
-    var tabs = document.getElementById('paper-tabs');
-
-    var pages = document.getElementById('core-pages');
-
-    tabs.addEventListener('core-select', function () {
-        pages.selected = tabs.selected;
-    });
-
-</script>
+<script type="text/javascript" src="js/updateProfile.js"></script>
 
 </body>
 
