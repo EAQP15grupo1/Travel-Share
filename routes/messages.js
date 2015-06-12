@@ -1,7 +1,6 @@
 module.exports = function (app) {
 
     var Message = require('../models/message/schema.js');
-    var Message = require('../models/event/schema.js');
 
     //GET messages
     getMessages = function (req, res) {
@@ -20,25 +19,41 @@ module.exports = function (app) {
         console.log('POST message');
         console.log(req.body);
         var evetoid;
-
-        var message = new Message({
-            id: req.body.id,
-            content: req.body.content,
-            username: req.body.username,
-            eventid: req.body.eventid,
-            fecha: req.body.fecha
-        });
-
-        message.save(function (err) {
+        Message.find({"eventid": req.body.eventid}, function (err, mesage) {
             if (!err) {
-                console.log('Message added');
+                var contador = mesage.length;
+                console.log(contador);
+                if (contador >=0){
+                var message = new Message({
+                    id: contador+1,
+                    content: req.body.content,
+                    username: req.body.username,
+                    userid: req.body.userid,
+                    eventid: req.body.eventid,
+                    fecha: req.body.fecha
+                });
+                }
             }
             else {
-                console.log('ERROR: ', +err);
+                console.log('ERROR: ' + err);
             }
-        })
+            message.save(function (err) {
+                if (!err) {
+                    console.log('Message added');
+                }
+                else {
+                    console.log('ERROR: ', +err);
+                }
+            })
+            ;
 
-        res.send(message);
+            res.send(message)
+        });
+
+
+
+
+
     }
 
     //DELETE Message
