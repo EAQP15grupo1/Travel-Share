@@ -1,6 +1,7 @@
 module.exports = function (app) {
 
     var Message = require('../models/message/schema.js');
+    var Message = require('../models/event/schema.js');
 
     //GET messages
     getMessages = function (req, res) {
@@ -18,6 +19,7 @@ module.exports = function (app) {
     postMessage = function (req, res) {
         console.log('POST message');
         console.log(req.body);
+        var evetoid;
 
         var message = new Message({
             id: req.body.id,

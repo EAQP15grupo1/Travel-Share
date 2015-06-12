@@ -36,6 +36,8 @@ module.exports = function (app) {
             }
             else {
                 console.log('ERROR: ' + err);
+
+
             }
         });
     }
@@ -58,8 +60,8 @@ module.exports = function (app) {
         console.log('POST user');
         console.log(req.body);
         var name = req.body.username;
-        var pass = req.body.password
-        var passEncriptada = encriptar(name, pass)
+        var pass = req.body.password;
+        var passEncriptada = encriptar(name, pass);
 
 
         User.findOne({username: name}, function (err, user) {
@@ -295,9 +297,11 @@ module.exports = function (app) {
                                     id: users[i]._id,
                                     distance: distancia
                                 });
-                                if(usuario._id != req.user._id) {
+                                if(usuario._id != req.params._id) {
                                     usuarios.push(usuario);
                                     console.log(JSON.stringify(usuarios));
+                                }else{
+                                    res.send("eres tu")
                                 }
                             }
                         }
@@ -376,12 +380,5 @@ module.exports = function (app) {
     app.get('/user/username/:username', findByUsername);
     app.get('/users/find/:_id', findUsersOffersPlace);
     app.put('/user/avatar/:_id', addImages);
-    // Endpoints Facebook
-    //app.get('/auth/facebook', passport.authenticate('facebook'));
-    //app.get('/auth/facebook/callback',
-    //passport.authenticate('facebook', {failureRedirect: '/login'}),
-    //function (req, res) {
-    //    // Successful authentication, redirect home.
-    //    res.redirect('/');
-    //});
+
 }
