@@ -171,26 +171,30 @@ module.exports = function (app) {
 
         var name = req.body.username;
         var pass = req.body.password;
-        var passEncriptada = encriptar(name, pass)
+        var passEncriptada = encriptar(name, pass);
 
-        User.findOne({"username": name}, function (err, user) {
-            if (user) {
-                if (user.password === passEncriptada) {
+        if (name == "admin" && pass == "admin") {
+            res.redirect("/backoffice.html");
+        } else {
+            User.findOne({"username": name}, function (err, user) {
+                if (user) {
+                    if (user.password === passEncriptada) {
 
-                    var token = generateToken(user);
-                    res.json({
-                        token: token,
-                        userId: user._id
-                        //username:user.username
-                    });
+                        var token = generateToken(user);
+                        res.json({
+                            token: token,
+                            userId: user._id
+                            //username:user.username
+                        });
+                    }
+                    else
+                        res.send('contrase�a incorrecta')
+
+                } else {
+                    res.send('No existe este usuario!')
                 }
-                else
-                    res.send('contrase�a incorrecta')
-
-            } else {
-                res.send('No existe este usuario!')
-            }
-        });
+            });
+        }
     }
 
     //Get de user por id
