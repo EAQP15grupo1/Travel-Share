@@ -48,14 +48,14 @@
                            ng-model="newMessage.content" required>
                     <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="{{message.username}}"
-                           ng-model="newMessage.username" required>
+                           ng-model="newMessage.username" required disabled>
                     <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="{{message.eventid}}"
-                           ng-model="newMessage.eventid" required>
+                           ng-model="newMessage.eventid" required disabled>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)"
-                            ng-disabled="!newMessage.id || !newMessage.content || !newMessage.username || !newMessage.eventid">
+                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)">
+                            <!--ng-disabled="!newMessage.id || !newMessage.content || !newMessage.username || !newMessage.eventid">-->
                         UPDATE
                     </button>
                     <br>

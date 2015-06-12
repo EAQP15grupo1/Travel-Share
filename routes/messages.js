@@ -23,20 +23,20 @@ module.exports = function (app) {
             if (!err) {
                 var contador = mesage.length;
                 console.log(contador);
-                if (contador >=0){
-                var message = new Message({
-                    id: contador+1,
-                    content: req.body.content,
-                    username: req.body.username,
-                    userid: req.body.userid,
-                    eventid: req.body.eventid,
-                    fecha: req.body.fecha
-                });
+                if (contador >= 0) {
+                    var message = new Message({
+                        id: contador + 1,
+                        content: req.body.content,
+                        username: req.body.username,
+                        userid: req.body.userid,
+                        eventid: req.body.eventid,
+                        fecha: req.body.fecha
+                    });
                 }
-            }
-            else {
+            } else {
                 console.log('ERROR: ' + err);
             }
+
             message.save(function (err) {
                 if (!err) {
                     console.log('Message added');
@@ -44,16 +44,10 @@ module.exports = function (app) {
                 else {
                     console.log('ERROR: ', +err);
                 }
-            })
-            ;
+            });
 
             res.send(message)
         });
-
-
-
-
-
     }
 
     //DELETE Message
@@ -90,7 +84,7 @@ module.exports = function (app) {
     updateMessage = function (req, res) {
         console.log('UPDATE message');
         Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, data) {
-            console.log(data._id);
+            //console.log(data._id);
 
             data.set(function (err) {
                 if (!err) {
