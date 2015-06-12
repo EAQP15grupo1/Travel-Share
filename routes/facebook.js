@@ -85,8 +85,8 @@ module.exports = function (app, passport) {
                             token: token,
                             userId: user._id
                             //username:user.username
-
                         });
+                        //res.send("PROBANDO");
                     })
                 }
 
