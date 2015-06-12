@@ -49,6 +49,8 @@ module.exports = function (app, passport) {
         function (req, res) {
             console.log("Hola " + req.user.displayName);
 
+            //res.redirect("updateProfile.html");
+
             var UnameF = (req.user.id + "@facebook");
             var nameF = (req.user.displayName);
             User.findOne({username: UnameF}, function (err, user) {
