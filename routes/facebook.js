@@ -81,12 +81,13 @@ module.exports = function (app, passport) {
                 else {
                     User.findOne({username: UnameF}, function (err, user) {
                         var token = generateToken(user);
-                        res.json({
-                            token: token,
-                            userId: user._id
-                            //username:user.username
-
-                        });
+                        //res.json({
+                        //    token: token,
+                        //    userId: user._id
+                        //    //username:user.username
+                        //
+                        //});
+                        res.send("PROBANDO");
                     })
                 }
 

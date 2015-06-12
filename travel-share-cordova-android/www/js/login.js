@@ -56,7 +56,7 @@ $("#RegisterBtn").click(function () {
 });
 
 $("#FacebookBtn").click(function () {
-    window.location.href = "http://147.83.7.201:3000/facebook";
+    //window.location.href = "http://147.83.7.201:3000/facebook";
 
     //xmlhttp = new XMLHttpRequest();
     //xmlhttp.open("GET", "http://147.83.7.201:3000/facebook", true);
@@ -101,7 +101,45 @@ $("#FacebookBtn").click(function () {
     //    }
     //});
 
-    //var url = "http://localhost:3000/facebook";
+    $.ajax({
+
+        // The 'type' property sets the HTTP method.
+        // A value of 'PUT' or 'DELETE' will trigger a preflight request.
+        type: 'GET',
+
+        // The URL to make the request to.
+        url: 'http://147.83.7.201:3000/facebook',
+
+        // The 'contentType' property sets the 'Content-Type' header.
+        // The JQuery default for this property is
+        // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
+        // a preflight. If you set this value to anything other than
+        // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
+        // you will trigger a preflight request.
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+
+        xhrFields: {
+            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+            // This can be used to set the 'withCredentials' property.
+            // Set the value to 'true' if you'd like to pass cookies to the server.
+            // If this is enabled, your server must respond with the header
+            // 'Access-Control-Allow-Credentials: true'.
+            withCredentials: false
+        },
+
+        success: function () {
+            // Here's where you handle a successful response.
+        },
+
+        error: function () {
+            // Here's where you handle an error response.
+            // Note that if the error was due to a CORS issue,
+            // this function will still fire, but there won't be any additional
+            // information about the error.
+        }
+    });
+
+    //var url = "http://147.83.7.201:3000/facebook";
     //var method = "GET";
     //
     //var xhr = new XMLHttpRequest();
