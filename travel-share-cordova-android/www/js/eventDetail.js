@@ -28,6 +28,7 @@ function getEventData() {
             $("#eventName").text(data.eventname);
             $("#eventTag").text(data.tag);
             $("#eventDate").text(data.date);
+            $("#eventDescription").text(data.description);
         },
         error: function () {
             window.alert("FAIL: No se han obtenido los datos del evento");
@@ -47,7 +48,7 @@ function getEventComments() {
                 if (data[i].username == window.localStorage.getItem("username"))
                     $('<div style="background-color: #FFF6CB; width: 90%; text-align: right; padding: 10px">' + '<label style="margin: 10px; font-size: 150%"> <strong>' + data[i].username + '</strong> <br> </label>' + '<label>' + data[i].content + '</label>' + '</div>').appendTo($('#comments'));
                 else
-                    $('<div style="background-color: #ffffff; width: 90%; text-align: left; padding: 10px">' + '<label style="margin: 10px; font-size: 150%"> <strong>' + data[i].username + '</strong> <br> </label>' + '<label>' + data[i].content + '</label>' + '</div>').appendTo($('#comments'));
+                    $('<div style="background-color: #BAE4F7; width: 90%; text-align: left; padding: 10px">' + '<label style="margin: 10px; font-size: 150%"> <strong>' + data[i].username + '</strong> <br> </label>' + '<label>' + data[i].content + '</label>' + '</div>').appendTo($('#comments'));
 
                 $('<br>').appendTo($('#comments'));
             }

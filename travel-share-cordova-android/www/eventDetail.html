@@ -68,7 +68,9 @@
         }
 
         .textArea {
-            width: 100%;
+            width: 90%;
+            padding: 5px;
+            margin: 5px;
         }
 
         core-header-panel {
@@ -80,7 +82,7 @@
         paper-fab.join {
             position: fixed;
             right: 20px;
-            top: 150px;
+            top: 180px;
             background-color: #03a9f4;
         }
 
@@ -148,6 +150,7 @@
 
         .box .row.header {
             flex: 0 1 auto;
+            padding: 10px;
         }
 
         .box .row.content {
@@ -173,9 +176,10 @@
     <div class="box">
         <div class="row header">
             <h1 style="text-align: center" id="eventName"></h1>
-
-            <h3 id="eventTag"></h3>
-            <label id="eventDate"></label>
+            <label id="eventTag" style="font-weight: bold; float: left; width: 50%"></label>
+            <label id="eventDate" style="text-align: right; float: right"></label>
+            <br>
+            <label id="eventDescription"></label>
             <br> <br>
             <label>Comentarios:</label>
         </div>

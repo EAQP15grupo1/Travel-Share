@@ -53,27 +53,30 @@ var needsArray = [];
 $("#sportN").change(function () {
     if (this.checked) {
         countN++;
-        needsArray.push("Deporte");
-    }
-    else {
+        if (countN > 3) {
+            this.checked = false;
+            countN--;
+        } else {
+            needsArray.push("Deporte");
+        }
+    } else {
         countN--;
         var index = needsArray.indexOf("Deporte");
         if (index > -1) {
             needsArray.splice(index, 1);
         }
     }
-
-    if (countN > 3) {
-        this.checked = false;
-        countN--;
-    }
 });
 $("#musicN").change(function () {
     if (this.checked) {
         countN++;
-        needsArray.push("Musica");
-    }
-    else {
+        if (countN > 3) {
+            this.checked = false;
+            countN--;
+        } else {
+            needsArray.push("Musica");
+        }
+    } else {
         countN--;
         var index = needsArray.indexOf("Musica");
         if (index > -1) {
@@ -89,9 +92,13 @@ $("#musicN").change(function () {
 $("#jobN").change(function () {
     if (this.checked) {
         countN++;
-        needsArray.push("Trabajo");
-    }
-    else {
+        if (countN > 3) {
+            this.checked = false;
+            countN--;
+        } else {
+            needsArray.push("Trabajo");
+        }
+    } else {
         countN--;
         var index = needsArray.indexOf("Trabajo");
         if (index > -1) {
@@ -107,9 +114,13 @@ $("#jobN").change(function () {
 $("#cultureN").change(function () {
     if (this.checked) {
         countN++;
-        needsArray.push("Cultura");
-    }
-    else {
+        if (countN > 3) {
+            this.checked = false;
+            countN--;
+        } else {
+            needsArray.push("Cultura");
+        }
+    } else {
         countN--;
         var index = needsArray.indexOf("Cultura");
         if (index > -1) {
@@ -128,9 +139,13 @@ var offersArray = [];
 $("#sportO").change(function () {
     if (this.checked) {
         countO++;
-        offersArray.push("Deporte");
-    }
-    else {
+        if (countO > 3) {
+            this.checked = false;
+            countO--;
+        } else {
+            offersArray.push("Deporte");
+        }
+    } else {
         countO--;
         var index = offersArray.indexOf("Deporte");
         if (index > -1) {
@@ -146,9 +161,13 @@ $("#sportO").change(function () {
 $("#musicO").change(function () {
     if (this.checked) {
         countO++;
-        offersArray.push("Musica");
-    }
-    else {
+        if (countO > 3) {
+            this.checked = false;
+            countO--;
+        } else {
+            offersArray.push("Musica");
+        }
+    } else {
         countO--;
         var index = offersArray.indexOf("Musica");
         if (index > -1) {
@@ -164,9 +183,13 @@ $("#musicO").change(function () {
 $("#jobO").change(function () {
     if (this.checked) {
         countO++;
-        offersArray.push("Trabajo");
-    }
-    else {
+        if (countO > 3) {
+            this.checked = false;
+            countO--;
+        } else {
+            offersArray.push("Trabajo");
+        }
+    } else {
         countO--;
         var index = offersArray.indexOf("Trabajo");
         if (index > -1) {
@@ -182,9 +205,13 @@ $("#jobO").change(function () {
 $("#cultureO").change(function () {
     if (this.checked) {
         countO++;
-        offersArray.push("Cultura");
-    }
-    else {
+        if (countO > 3) {
+            this.checked = false;
+            countO--;
+        } else {
+            offersArray.push("Cultura");
+        }
+    } else {
         countO--;
         var index = offersArray.indexOf("Cultura");
         if (index > -1) {
