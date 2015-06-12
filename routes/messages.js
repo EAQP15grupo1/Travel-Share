@@ -84,7 +84,7 @@ module.exports = function (app) {
     updateMessage = function (req, res) {
         console.log('UPDATE message');
 
-        Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, message) {
+        Message.findOneAndUpdate({"_id": req.params.idMessage}, req.body, function (err, message) {
             console.log(message._id);
 
             message.set(function (err) {
@@ -124,6 +124,6 @@ module.exports = function (app) {
     app.get('/backoffice/messages', getMessages);
     app.get('/backoffice/message/:_id', getMessage);
     app.post('/backoffice/messages', postMessage);
-    app.put('/backoffice/message/:_id', updateMessage);
+    app.put('/backoffice/message/:idMessage', updateMessage);
     app.delete('/backoffice/message/:_id', deleteMessage);
 }

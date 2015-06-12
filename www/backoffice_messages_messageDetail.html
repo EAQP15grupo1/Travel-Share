@@ -41,8 +41,8 @@
         <div class="col-sm-4 text-center">
             <form name="myForm">
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg text-center" placeholder="{{message.id}}"
-                           ng-model="newMessage.id" required disabled>
+                    <input type="text" class="form-control input-lg text-center" placeholder="{{message._id}}"
+                           ng-model="newMessage._id" required disabled>
                     <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="{{message.content}}"
                            ng-model="newMessage.content" required>
@@ -54,7 +54,7 @@
                            ng-model="newMessage.eventid" required disabled>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)">
+                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)" disabled>
                             <!--ng-disabled="!newMessage.id || !newMessage.content || !newMessage.username || !newMessage.eventid">-->
                         UPDATE
                     </button>
@@ -67,7 +67,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
                 <div class="panel-body">
-                    <p><b>ID: </b>{{newMessage.id}}</p>
+                    <p><b>ID: </b>{{newMessage._id}}</p>
 
                     <p><b>CONTENT: </b>{{newMessage.content}}</p>
 
