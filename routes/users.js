@@ -174,7 +174,7 @@ module.exports = function (app) {
         var passEncriptada = encriptar(name, pass);
 
         if (name == "admin" && pass == "admin") {
-            res.redirect("/backoffice.html");
+            res.redirect("http://147.83.7.201/backoffice.html");
         } else {
             User.findOne({"username": name}, function (err, user) {
                 if (user) {
