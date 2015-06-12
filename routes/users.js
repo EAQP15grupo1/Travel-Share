@@ -295,7 +295,7 @@ module.exports = function (app) {
                                     id: users[i]._id,
                                     distance: distancia
                                 });
-                                if(usuario._id != req.user._id) {
+                                if (usuario.id != req.user._id) {
                                     usuarios.push(usuario);
                                     console.log(JSON.stringify(usuarios));
                                 }

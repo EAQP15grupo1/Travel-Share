@@ -58,7 +58,30 @@ $("#RegisterBtn").click(function () {
 $("#FacebookBtn").click(function () {
     //window.location.href = "http://147.83.7.201:3000/facebook";
 
-    window.location = (window.location.protocol + "//147.83.7.201:3000/facebook");
+    //xmlhttp = new XMLHttpRequest();
+    //xmlhttp.open("GET", "http://147.83.7.201:3000/facebook", true);
+    //xmlhttp.send();
+
+    $.ajax({
+        type: "GET",
+        dataType: 'jsonp',
+        url: "http://147.83.7.201:3000/facebook",
+        crossDomain: true,
+        jsonpCallback: 'callback',
+        xhrFields: {
+            withCredentials: true
+        }, success: function (data) {
+            //window.location.href = 'updateProfile.html';
+            console.log(data);
+        },
+        error: function (error_API) {
+            console.log(error_API);
+            //window.alert(error_API.response);
+            //window.localStorage.setItem("userID", error_API.userId);
+            //window.localStorage.setItem("token", error_API.token);
+            //window.location.href = 'updateProfile.html';
+        }
+    });
 
     //$.ajax({
     //    url: "http://147.83.7.201:3000/facebook",

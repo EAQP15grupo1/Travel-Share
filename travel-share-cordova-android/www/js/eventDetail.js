@@ -64,9 +64,14 @@ $("#postBtn").click(function postMessage() {
     if (content == "") {
         window.alert("No se pueden publicar mensajes vacíos");
     } else {
+        var currentdate = new Date();
+        var datetime = ((currentdate.getDate() < 10) ? "0" : "") + currentdate.getDate() + "-" + (((currentdate.getMonth() + 1) < 10) ? "0" : "") + (currentdate.getMonth() + 1) + "-" + currentdate.getFullYear() + " " + ((currentdate.getHours() < 10) ? "0" : "") + currentdate.getHours() + ":" + ((currentdate.getMinutes() < 10) ? "0" : "") + currentdate.getMinutes() + ":" + ((currentdate.getSeconds() < 10) ? "0" : "") + currentdate.getSeconds();
+
         var message = new Object();
         message.username = window.localStorage.getItem("username");
+        message.userid = window.localStorage.getItem("userID");
         message.content = content;
+        message.date = datetime;
         message.eventid = window.localStorage.getItem("eventID");
         var data = JSON.stringify(message);
 

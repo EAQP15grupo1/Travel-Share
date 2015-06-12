@@ -1,41 +1,48 @@
 $("#createBtn").click(function () {
-    var username = $("#name").val();
-    var userusername = $("#username").val();
-    var usernation = $("#nation").val();
-    var password = $("#password").val();
-    var password2 = $("#password2").val();
-    var needs = needsArray;
-    var offers = offersArray;
-    var description = $("#description").val();
+        var username = $("#name").val();
+        var userusername = $("#username").val();
+        var usernation = $("#nation").val();
+        var password = $("#password").val();
+        var password2 = $("#password2").val();
+        var needs = needsArray;
+        var offers = offersArray;
+        var description = $("#description").val();
 
-    if (password != password2) {
-        window.alert("Las contraseñas no coinciden");
-    } else {
-        var user = new Object();
-        user.name = username;
-        user.username = userusername;
-        user.nation = usernation;
-        user.password = password;
-        user.needs = needs;
-        user.offers = offers;
-        user.description = description;
-        var data = JSON.stringify(user);
+        if (username != "" && userusername != "" && usernation != "" && password != "" && password2 != "" && description != "") {
 
-        $.ajax({
-            url: "http://147.83.7.201:3000/users",
-            type: 'POST',
-            crossDomain: true,
-            contentType: 'application/json',
-            data: data,
-            success: function (data_API) {
-                window.location.href = 'login.html';
-            },
-            error: function () {
-                window.alert("FAIL");
+            if (password != password2) {
+                window.alert("Las contraseñas no coinciden");
+            } else {
+                var user = new Object();
+                user.name = username;
+                user.username = userusername;
+                user.nation = usernation;
+                user.password = password;
+                user.needs = needs;
+                user.offers = offers;
+                user.description = description;
+                var data = JSON.stringify(user);
+
+                $.ajax({
+                    url: "http://147.83.7.201:3000/users",
+                    type: 'POST',
+                    crossDomain: true,
+                    contentType: 'application/json',
+                    data: data,
+                    success: function (data_API) {
+                        window.location.href = 'login.html';
+                    },
+                    error: function () {
+                        window.alert("No se ha podido crear el usuario");
+                    }
+                });
             }
-        });
+        } else {
+            window.alert("Todos los campos son obligatorios");
+        }
     }
-});
+)
+;
 
 $("#cancelBtn").click(function () {
     window.location.href = 'login.html';
