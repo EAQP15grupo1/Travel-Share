@@ -71,13 +71,24 @@
             margin: 5px;
             width: 120px;
         }
+
+        paper-button.coloredFb[raised] {
+            background: none repeat scroll 0% 0% dodgerblue;
+            color: #3B5998;
+            margin: 5px;
+            width: 80px;
+            height: 80px;
+            background-image: url(img/facebook.png);
+            background-size: 80px 80px;
+        }
     </style>
 </head>
 
 <body>
 <core-toolbar id="core_toolbar">
     <span flex>TravelShare</span>
-    <core-icon-button icon="assignment" onclick="backoffice()" style="display: block"> BackOffice Comentarios</core-icon-button>
+    <core-icon-button icon="assignment" onclick="backoffice()" style="display: block"> BackOffice Comentarios
+    </core-icon-button>
 </core-toolbar>
 <div class="wrapper">
     <form id="userForm">
@@ -91,9 +102,11 @@
 
     </form>
     <div class="wrapper">
-        <paper-button id="LoginBtn" class="coloredSignIn" raised="true" role="button" tabindex="0">Sign in
+        <paper-button id="LoginBtn" class="coloredSignIn" raised="true" role="button" tabindex="0">Entrar
         </paper-button>
-        <paper-button id="RegisterBtn" class="coloredSignUp" raised="true" role="button" tabindex="0">Sign up
+        <paper-button id="RegisterBtn" class="coloredSignUp" raised="true" role="button" tabindex="0">Registro
+        </paper-button>
+        <paper-button id="FacebookBtn" class="coloredFb" raised="true" role="button" tabindex="0">
         </paper-button>
     </div>
 </div>

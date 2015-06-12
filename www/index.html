@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>Travel & Share Login</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
@@ -28,7 +28,7 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="container">
+<div class="container" ng-controller="signUpController" as signUpCtrl >
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -65,7 +65,7 @@
 
                     <div style="margin-top:10px" class="form-group">
                         <!-- Button -->
-                        <div class="col-sm-12 controls">
+                        <div class="col-lg-12 controls">
                             <a id="btn-login" href="#" class="btn btn-success" ng-click="login()">Login </a>
                             <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
                             <a id="btn-backoffice" href="#" class="btn btn-info" ng-click="backoffice()">Acceder a
@@ -75,10 +75,10 @@
 
 
                     <div class="form-group"  ng-controller="DemoController" as DemoCtrl>
-                        <div class="col-md-12 control">
+                        <div class="col-md-12 control" >
                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
                                 Don't have an account!
-                                <a href="#" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo.html" bs-modal="modal">
+                                <a href="#" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo.html" bs-modal="modal" >
                                     Sign Up Here
                                 </a>
                             </div>
@@ -186,7 +186,6 @@
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 <script src="bower_components/js-cookie/src/js.cookie.js"></script>
 <script src="js/login.js"></script>
-
-
+<script src="js/ng-flow-standalone.js"></script>
 </body>
 </html>

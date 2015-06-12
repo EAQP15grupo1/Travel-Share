@@ -297,7 +297,11 @@ module.exports = function (app) {
                                     id: users[i]._id,
                                     distance: distancia
                                 });
+<<<<<<< HEAD
                                 if(usuario._id != req.params._id) {
+=======
+                                if (usuario.id != req.params._id) {
+>>>>>>> 580c8334f5096d8a7db8a6f70199d9b8550dd834
                                     usuarios.push(usuario);
                                     console.log(JSON.stringify(usuarios));
                                 }else{
@@ -321,19 +325,24 @@ module.exports = function (app) {
 
     addImages = function (req, res) {
         //console.log(req.files)
-        req.files.avatar.name = req.params._id + '.jpg';
+
+        console.log(req.files.file);
+        req.files.file.name = req.params._id + '.jpg';
         // var foto = req.files.avatar.name;
 
-        var tmp_path = req.files.avatar.path;
+        var tmp_path = req.files.file.path;
+        console.log(tmp_path);
         // Ruta donde colocaremos las imagenes
-        var target_path = './www/avatar/' + req.files.avatar.name;
+        var target_path = './www/avatar/' + req.files.file.name;
+        console.log(target_path);
         // Comprobamos que el fichero es de tipo imagen
-        if (req.files.avatar.type.indexOf('image') == -1) {
+        if (req.files.file.type.indexOf('image') == -1) {
             res.send('El fichero que deseas subir no es una imagen');
         } else {
             // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
             fs.rename(tmp_path, target_path, function (err) {
                 console.log(err);
+
                 if (err) throw err;
                 // Eliminamos el fichero temporal
                 fs.unlink(tmp_path, function () {
@@ -379,6 +388,18 @@ module.exports = function (app) {
     app.post('/login', loginUser);
     app.get('/user/username/:username', findByUsername);
     app.get('/users/find/:_id', findUsersOffersPlace);
+<<<<<<< HEAD
     app.put('/user/avatar/:_id', addImages);
 
+=======
+    app.post('/user/avatar/:_id', addImages);
+    // Endpoints Facebook
+    //app.get('/auth/facebook', passport.authenticate('facebook'));
+    //app.get('/auth/facebook/callback',
+    //passport.authenticate('facebook', {failureRedirect: '/login'}),
+    //function (req, res) {
+    //    // Successful authentication, redirect home.
+    //    res.redirect('/');
+    //});
+>>>>>>> 580c8334f5096d8a7db8a6f70199d9b8550dd834
 }
