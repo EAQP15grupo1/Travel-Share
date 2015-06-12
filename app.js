@@ -1,14 +1,15 @@
 var express = require("express"),
+    cors = require('cors'),
     app = express(),
     passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     session = require('express-session'),
     http = require("http"),
     server = http.createServer(app),
-    cors = require('cors'),
     path = require('path'),
     mongoose = require('mongoose');
 
+app.options('*', cors());
 
 app.configure(function () {
     app.use(express.bodyParser());
