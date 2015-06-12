@@ -84,7 +84,7 @@ module.exports = function (app) {
     updateMessage = function (req, res) {
         console.log('UPDATE message');
         Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, data) {
-            //console.log(data._id);
+            console.log(data._id);
 
             data.set(function (err) {
                 if (!err) {
