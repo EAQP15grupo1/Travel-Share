@@ -92,7 +92,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-                <button type="button" class="btn btn-primary" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo2.html" bs-modal="modal">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="signupUser()" ng-disabled="SignUpForm.$invalid" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo2.html" bs-modal="modal">Save changes</button>
 
                 <!--
                 ng-click="signupUser()" ng-disabled="SignUpForm.$invalid"

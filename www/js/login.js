@@ -117,6 +117,7 @@
              else
              {
              alert("Usuario creado");
+                 console.log(data);
 
 
              }
