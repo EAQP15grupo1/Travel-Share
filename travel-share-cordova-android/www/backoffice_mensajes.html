@@ -25,7 +25,7 @@
 
 <body>
 
-<paper-fab icon="add" id="new" onclick="newpost()" title="arrow-forward" role="button" tabindex="0" style="display:none;background-color:#6187ff;position: fixed;z-index: 99;buttom:20px"  aria-label="arrow-forward"></paper-fab>
+<paper-fab icon="add" id="new" onclick="newpost()" title="arrow-forward" role="button" tabindex="0" style="display:visible;background-color:#6187ff;position: fixed;z-index: 99;buttom:20px"  aria-label="arrow-forward"></paper-fab>
 
 
 <core-toolbar style="background-color:#6187ff;position:fixed;z-index:99;right:0%;left:0%" >
@@ -48,17 +48,10 @@
 <form id="B" style="position:relative;top: 50px;display: none">
     <div class="wrapper">
         <label style="font-size: 30px">Nuevo Comentario</label>
-        <paper-input id="name" label="Nombre" floatinglabel="true"></paper-input>
-        <paper-input id="comments" label="Comentario" floatinglabel="true"></paper-input>
-        <label> Seleccione un evento</label>
+        <paper-input id="username" label="Nombre" floatinglabel="true" ></paper-input>
+        <paper-input id="content" label="Comentario" floatinglabel="true"></paper-input>
+        <paper-input id="eventid" label="Inserte el id del evento" floatinglabel="true"></paper-input>
 
-        <select id="event" style="font-size: 20px;alignment: left">
-            <option value="Evento1"selected="selected">Evento1</option>
-            <option value="Evento2">Evento2</option>
-            <option value="Evento3">Evento3</option>
-            <option value="Evento4">Evento4</option>
-            <option value="Evento5">Evento5</option>
-        </select>
         <paper-button style="position: fixed; left:10px;bottom: 10px"onclick="post()" class="colored" raised="true" role="button">POST</paper-button>
         <paper-toast id="warning1" text="Completa todo los campos"!></paper-toast>
         <paper-toast id="warning2" style="background-color: red" text="YA EXISTE"!></paper-toast>
@@ -68,9 +61,9 @@
 <form id="C" style="position:relative;top: 50px;display: none">
     <div class="wrapper">
         <label style="font-size: 30px"> Actualiza el comentario</label>
-        <paper-input id="nameu" label="Nombre" floatinglabel="true"></paper-input>
-        <paper-input id="commentsu" label="Comentario" floatinglabel="true"></paper-input>
-        <paper-input id="eventu" label="Evento" floatinglabel="true"></paper-input>
+        <paper-input id="usernameu" label="Nombre" floatinglabel="true"></paper-input>
+        <paper-input id="contentu" label="Comentario" floatinglabel="true"></paper-input>
+        <paper-input id="eventidu" label="IDevento" floatinglabel="true"></paper-input>
 
         <paper-button style="position: fixed; left:10px;bottom: 10px;background-color:#ffcf24"onclick="update()" class="colored" raised="true" role="button">UPDATE</paper-button>
         <paper-toast id="warning6" text="Completa todo los campos!"></paper-toast>

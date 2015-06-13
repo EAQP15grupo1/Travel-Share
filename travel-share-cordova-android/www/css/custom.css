@@ -273,19 +273,19 @@ paper-button.colored[raised] {
 }
 
 paper-toggle-button.sport::shadow [checked] .toggle {
-    background-color: #FFCC66;
+    background-color: #90EE90;
 }
 
 paper-toggle-button.music::shadow [checked] .toggle {
-    background-color: #FFFF99;
+    background-color: #87CEFA;
 }
 
 paper-toggle-button.job::shadow [checked] .toggle {
-    background-color: #E4E4E4;
+    background-color: #DB7093;
 }
 
 paper-toggle-button.culture::shadow [checked] .toggle {
-    background-color: #99CCFF;
+    background-color: #FFFF00;
 }
 
 /* Login */

@@ -34,21 +34,32 @@
 </head>
 <body unresolved="">
 <core-header-panel>
-    <core-toolbar>Update Profile</core-toolbar>
+    <core-toolbar>
+        <span flex>Actualizar perfil</span>
+        <core-icon-button icon="home" onclick="window.location.href = 'index.html'"
+                          style="display: block"></core-icon-button>
+    </core-toolbar>
     <div class="imagen">
         <!--<input type="file" id="file" name="file">-->
         <!--<paper-button id="uploadAvatar" class="coloredCancel" raised="true" onclick="uploadAvatar()">Upload</paper-button>-->
-
-        <form enctype="multipart/form-data">
-            <input name="file" type="file" id="archive"/>
-            <input type="button" id="selectbtn" onclick="selectPicture();" value="Select Picture from Library"/><br/>
-            <input type="button" onclick="uploadPicture();" value="Upload Picture"/>
-        </form>
     </div>
 
     <div>
-        <div>
+        <div class="wrapper">
             <img id="myImage" onclick="selectPicture()">
+
+            <form enctype="multipart/form-data">
+                <input name="file" type="file" id="archive"/>
+
+                <!--<paper-button id="selectBtn" class="colored" raised="true" onclick="selectPicture();">Elegir-->
+                <!--imagen-->
+                <!--</paper-button>-->
+                <!--<paper-button id="uploadBtn" class="colored" raised="true" onclick="uploadPicture();">Actualizar-->
+                <!--imagen-->
+                <!--</paper-button>-->
+                <input type="button" id="selectbtn" onclick="selectPicture();" value="Elegir imagen"/><br/>
+                <input type="button" onclick="uploadPicture();" value="Actualizar imagen"/>
+            </form>
         </div>
 
 

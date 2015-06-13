@@ -35,24 +35,29 @@ module.exports = function (app) {
         console.log(req.body);
 
         var color = "";
+        var idtag = "";
         if (req.body.tag == "Deporte") {
-            color = "#FFCC66";
+            color = "#90EE90";
+            idtag = 1;
         } else if (req.body.tag == "Fiesta") {
             color = "#FFCCFF";
         } else if (req.body.tag == "Cultura") {
-            color = "#99CCFF";
+            color = "#FFFF00";
+            idtag = 3;
         } else if (req.body.tag == "Compania") {
             color = "#99FF99";
         } else if (req.body.tag == "Trabajo") {
-            color = "#E4E4E4";
+            color = "#DB7093";
+            idtag = 4;
         } else if (req.body.tag == "Musica") {
-            color = "#FFFF99";
+            color = "#87CEFA";
+            idtag = 2;
         }
 
         var event = new Event({
             eventname: req.body.eventname,
             tag: req.body.tag,
-            idtag: req.body.idtag,
+            idtag: idtag,
             description: req.body.description,
             color: color,
             owner: req.body.owner,

@@ -8,11 +8,18 @@ var filter =0;
 var id;
 var new_event_click= false;
 
+
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
-username = "prueba";
-username_id = "556324cff5dc436409000001";
+if (token == null)
+{
+    window.location.href="index.html";
+}
+username = "123";
+username_id = "554c7d88c863dda837000002";
+
+document.getElementById("img_perfil").src = "avatar/"+username_id;
 
 
 var tags = [{
@@ -35,8 +42,8 @@ var tags = [{
     id: 3,
     color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
     color: "palevioletred"
 }];
@@ -86,8 +93,15 @@ function info_evento(marker){
     var color = tags[marker.tag].color;
     document.getElementById("panel_tag").style.visibility = 'hidden';
     document.getElementById("panel_info").style.visibility = 'visible';
+    document.getElementById("buttonjoin").style.backgroundColor = color;
+    document.getElementById("buttonjoin").style.visibility = 'visible';
+    if(marker.owner == username_id){
+        document.getElementById("buttonjoin").style.visibility = 'hidden';
+    }
 
+    document.getElementById("img_owner").src = "avatar/"+marker.owner;
     document.getElementById("panel_info").style.borderColor = color;
+
     $(".fa.fa-times").css("color",color);
 
     document.getElementById("A").innerHTML = marker.event;
@@ -131,7 +145,7 @@ function exitpanel2(){
 (function() {
     var app = angular.module('Eventos', []);
     app.controller('CargarEventos', ['$http', '$log', function ($http) {
-        $http.get('http://localhost:3000/events').success(function (data) {
+        $http.get('http://147.83.7.201:3000/events').success(function (data) {
             marcadores = data;
             my_position();
             filterMarkers("Nada");
@@ -277,14 +291,14 @@ function new_marker_post(){
             new_event.date = $("#date").val();
             var data = JSON.stringify(new_event);
             $.ajax({
-                    url: "http://localhost:3000/event",
+                    url: "http://147.83.7.201:3000/event",
                     type: 'POST',
                     crossDomain: true,
                     dataType: 'json',
                     contentType: 'application/json',
                     data: data,
                     success: function (data) {
-                        Console.log("Correct post");
+                        console.log("CorrectPost");
                         joinToEvent(data._id);
 
                     },
@@ -306,7 +320,7 @@ function joinToEvent(id){
     new_attednees.attendees = username_id;
     var data = JSON.stringify(new_attednees);
     $.ajax({
-        url: "http://localhost:3000/event/join/"+id,
+        url: "http://147.83.7.201:3000/event/join/"+id,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
@@ -329,7 +343,7 @@ function join(){
     join.attendees = username_id;
     var data = JSON.stringify(join);
     $.ajax({
-        url: "http://localhost:3000/event/join/"+id,
+        url: "http://147.83.7.201:3000/event/join/"+id,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
@@ -361,8 +375,14 @@ function Filter(type){
 function pushMarker(marker){
     markers.push(marker);
 }
-function addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id){
-    var icon = "img/pos_"+tag+".png"
+function addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id,owner){
+    if(username_id ==  owner){
+        var icon = "img/posmy_"+tag+".png"
+    }
+    else{
+        var icon = "img/pos_"+tag+".png"
+    }
+
 
     var marker= new google.maps.Marker
     ({
@@ -377,7 +397,8 @@ function addfilterMarker(position,detalle,map,content,event,tag,color,date,descr
         detalle:detalle,
         color:color,
         date:date,
-        description :description
+        description :description,
+        owner: owner
     });
     pushfilterMarker(marker);
     var infowindow2 = new google.maps.InfoWindow
@@ -461,8 +482,9 @@ function filterMarkers(keyWord){
             var date = marcadores[i].date;
             var description = marcadores[i].description;
             var id = marcadores[i]._id;
+            var owner = marcadores[i].owner;
 
-            addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id);
+            addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id,owner);
             i++;
 
         }
@@ -483,8 +505,9 @@ function filterMarkers(keyWord){
                 var date = marcadores[i].date;
                 var description = marcadores[i].description;
                 var id = marcadores[i]._id;
+                var owner = marcadores[i].owner;
 
-                addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id);
+                addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id,owner);
 
             }
             i++;

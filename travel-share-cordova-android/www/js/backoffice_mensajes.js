@@ -1,9 +1,11 @@
-console.log("Bievenido al examen de EA");
+
 window.onload = get();
 var order = 0;
 var today;
 var element = new Object();
 var elementu = new Object();
+$("#username").attr('disabled', 'disabled');
+
 
 function warning(id) {
     document.getElementById('warning' + id).show();
@@ -25,9 +27,9 @@ function newpost() {
     document.getElementById("new").style.visibility = 'hidden';
     document.getElementById("back").style.display = 'block';
     $("#A").hide();
-
-    $("#name").val("");
-    $("#comments").val('');
+    $("#username").val("admin");
+    $("#content").val('');
+    $("#eventid").val('');
 }
 function back() {
     document.getElementById("A").style.visibility = 'visible';
@@ -54,7 +56,7 @@ function back2() {
 
 function get_id(id) {
     info();
-    var url = "http://147.83.7.201:3000/comment/" + id;
+    var url = "http://147.83.7.201:3000/backoffice/message/"+ id;
     $.ajax({
         url: url,
         type: 'GET',
@@ -63,18 +65,21 @@ function get_id(id) {
         success: function (data) {
             console.log(data);
 
-            var id = data._id;
-            var nameu = data.name;
-            var commentsu = data.comments;
-            var eventu = data.event;
+            var _id = data._id;
+            var usernameu = data.username;
+            var contentu = data.content;
+            var eventidu = data.eventid;
 
-            $("#nameu").val(nameu);
-            $("#commentsu").val(commentsu);
-            $("#eventu").val(eventu);
-            $("#eventu").attr('disabled', 'disabled');
+            $("#usernameu").val(usernameu);
+            $("#contentu").val(contentu);
+            $("#eventidu").val(eventidu);
+            $("#eventidu").attr('disabled', 'disabled');
+            $("#usernameu").attr('disabled', 'disabled');
             console.log(id);
-            elementu._id = id;
-            elementu.event = eventu;
+            elementu._id = _id;
+            elementu.eventid = eventidu;
+            elementu.username = usernameu;
+            console.log(elementu);
         },
         error: function (data) {
             window.alert(data);
@@ -84,17 +89,15 @@ function get_id(id) {
 
 function update() {
     console.log(elementu);
-
-    var nameu = $("#nameu").val();
-    var commentsu = $("#commentsu").val();
-    if (nameu != "" && commentsu != "") {
+    var contentu = $("#contentu").val();
+    if ( contentu != "") {
         fecha();
         elementu.fecha = today;
-        elementu.name = nameu;
-        elementu.comments = commentsu;
+
+        elementu.content = contentu;
         var data = JSON.stringify(elementu);
         console.log(elementu)
-        var url = "http://147.83.7.201:3000/comment/" + elementu._id;
+        var url = "http://147.83.7.201:3000/backoffice/message/" + elementu._id;
         $.ajax({
             url: url,
             type: 'PUT',
@@ -123,12 +126,13 @@ function update() {
 }
 
 function delete_id(id) {
-    var url = "http://147.83.7.201:3000/comment/" + id;
+    var url = "http://147.83.7.201:3000/backoffice/message/"+id;
     $.ajax({
         url: url,
         type: 'DELETE',
         crossDomain: true,
         success: function (data) {
+            console.log(data);
             $('#getlist').text('')
             get();
             warning(4);
@@ -143,19 +147,20 @@ function get() {
     var i;
     $('#getlist').text('');
     $.ajax({
-        url: "http://147.83.7.201:3000/comments",
+        url: "http://147.83.7.201:3000/messages",
         type: 'GET',
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
+            console.log(data);
             if (order == 0) {
                 for (i = data.length - 1; i >= 0; i--) {
-                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].name + '</h2><strong> Comentario: </strong> ' + data[i].comments + '<br><strong> Evento: </strong> ' + data[i].event + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button><br><br></div><br>').appendTo($('#getlist'));
+                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].username + '</h2><strong> Comentario: </strong> ' + data[i].content + '<br><strong> Evento_id: </strong> ' + data[i].eventid + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button><br><br></div><br>').appendTo($('#getlist'));
                 }
             }
             else {
                 for (i = 0; i < data.length; i++) {
-                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].name + '</h2><strong> Comentario: </strong> ' + data[i].comments + '<br><strong> Evento: </strong> ' + data[i].event + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button><br><br></div><br>').appendTo($('#getlist'));
+                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].username + '</h2><strong> Comentario: </strong> ' + data[i].content + '<br><strong> Evento: </strong> ' + data[i].eventid + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button><br><br></div><br>').appendTo($('#getlist'));
                 }
             }
         },
@@ -179,34 +184,31 @@ function fecha() {
     if (mm < 10) {
         mm = '0' + mm
     }
-    today = datetext + ' - ' + dd + '/' + mm + '/' + yyyy;
+    today = yyyy + '/' + mm + '/' + dd +" - "+ datetext ;
     console.log(today);
 }
 
 function post() {
-    var name = $("#name").val();
-    var comments = $("#comments").val();
-    var e = document.getElementById("event");
-    var event = e.options[e.selectedIndex].value;
-    if (name != "" && comments != "") {
-
+    var username = $("#username").val();
+    var content = $("#content").val();
+    var eventid = $("#eventid").val();
+    if (username != "" && content != "" && eventid !="") {
         fecha();
-        element.name = name;
-        element.comments = comments;
-        element.event = event;
+        element.username = username;
+        element.content = content;
+        element.eventid = eventid;
         element.fecha = today;
         var data = JSON.stringify(element);
         console.log(data);
-
         $.ajax({
-            url: "http://147.83.7.201:3000/comments",
+            url: "http://147.83.7.201:3000/messages",
             type: 'POST',
             crossDomain: true,
             dataType: 'json',
             contentType: 'application/json',
             data: data,
             success: function (data) {
-
+                console.log(data);
                 document.getElementById("A").style.visibility = 'visible';
                 document.getElementById("B").style.display = 'none';
                 document.getElementById("new").style.visibility = 'visible';

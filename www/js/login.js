@@ -125,6 +125,9 @@ var userid;
                 });
             }
         };
+        $scope.loginFB = function () {
+            $window.location.href = 'http://147.83.7.201:3000/facebook';
+        };
         $scope.backoffice = function () {
             $window.location.href = 'backoffice.html';
         };

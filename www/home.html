@@ -44,6 +44,28 @@
 
 <body ng-controller="CargarEventos" as CargarEventos>
 
+<nav class="navbar navbar-default ">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
+                <img  id="img_perfil"  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Mi perfil</a></li>
+                <li><a href="index.html.html">Cerrar Sesión</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
 
 <!--Tags Panel-->
     <div id="panel_tag">
@@ -62,9 +84,9 @@
                 <span class="fa fa-film" ></span>
             </span>
         </button>
-        <button id="4" onclick="expand(id),Filter('Fiesta')" class="list-group-item list-group-item-danger">Fiesta
+        <button id="4" onclick="expand(id),Filter('Trabajo')" class="list-group-item list-group-item-danger">Fiesta
             <span class="badge">
-                <span class="fa fa-venus-mars" ></span>
+                <span class="fa fa-briefcase" ></span>
             </span>
         </button>
         <!--TagSinFiltro-->
@@ -74,24 +96,36 @@
 
     <div id="panel_info">
         <button class="exit-button" onclick="exitpanel()"><i class="fa fa-times"></i></button>
-        <div>
-        <img style="padding: 10px 10px 10px 10px;position: absolute;border-color: #004d40" src="img/profil_dummy/perfil2.png">
-        </div>
-        <div  style="padding-left:20px;height: 100px;margin-left: 100px;padding-top:5%;position: relative;text-align:left">
-            <p ><span id="A"style="font:300% sans-serif"></span></p>
-            <p style="text-align: center"><span id="B"></span></p>
+        <div class="form">
+                <img id="img_owner" style="padding: 10px 10px 10px 10px;position:absolute;border-color: #004d40;max-height:100px;max-width: 100px" src="img/profil_dummy/perfil2.png">
+                <div class="col-sm-12">
+                <div  style="height: 100px;padding-top:5%;text-align:center">
+                    <p><span id="A"style="font:300% sans-serif"></span></p>
+                    <p style="text-align: center"><span style="font:150% sans-serif" id="B"></span></p>
+                    <hr>
+                </div>
+                </div>
+
         </div>
 
-        <div style="position: relative;  margin-top: 100px;margin-left: 10px;margin-right: 10px;text-align: justify">
+        <div class="form "style="font-size:20px; margin-top: 140px;margin-left: 10px;margin-right: 10px">
             <dl class="dl-horizontal">
-                <dt>Descripción:</dt>
-                <dd id="description"></dd>
-                <dt>Fecha:</dt>
-                <dd id="fecha"></dd>
+                <div style="font-size: 20px">
+                    <b>Descripción:</b>
+                </div>
+
+                <div class="text-center" id="description"></div>
+
+                <div style="font-size: 20px">
+                    <b>Fecha:</b>
+                </div>
+                <div class="text-center" id="fecha"></div>
+                <hr>
             </dl>
+
         </div>
 
-        <button type="button" onclick="join()" class="btn btn-info btn-lg join-button">
+        <button type="button" id="buttonjoin" onclick="join()" class="btn btn-lg join-button">
             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
         </button>
     </div>
@@ -117,15 +151,15 @@
                         <option value="1" style="background-color: lightgreen">Deportes</option>
                         <option value="2" style="background-color:lightskyblue">Música</option>
                         <option value="3" style="background-color:yellow">Cultura</option>
-                        <option value="4" style="background-color:palevioletred">Fiesta</option>
+                        <option value="4" style="background-color:palevioletred">Trabajo</option>
                     </select>
                 </div>
                 <br>
                 <pr></pr>
                 <div>
-                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del evento" id="new_eventname">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del evento" id="new_eventname" maxlength="20">
                 <br>
-                    <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description" maxlength="50">
                 <br>
                     <label>Seleccióna hora y dia:</label> <br>
                     <input id="date" class="dateInput text-center"  disabled style="width: 50%;display: none">

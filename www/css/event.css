@@ -11,7 +11,4 @@ body,head,#map-canvas {
     overflow:scroll;
     overflow-x: hidden;
     height:400px;
-    width: 100%;
 }
-
-
