@@ -9,7 +9,7 @@ var userid;
 
 
 
-    var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap', 'ngSanitize','ngTagsInput']);
+    var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap', 'ngSanitize']);
 
 
     app.controller('DemoController', function ($scope, $modal, $log) {
@@ -36,8 +36,8 @@ var userid;
         $scope.signUpInfo.isHide = false;
         $scope.signUpInfo.isDisabled=true;
         $scope.signupUser = function () {
-            var needsArray = buffer.needs.split(",");
-            var offersArray = buffer.offers.split(",");
+            var needsArray = buffer.needs;
+            var offersArray = buffer.offers;
 
 
             var userInfo = new Object();

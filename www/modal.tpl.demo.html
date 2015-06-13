@@ -270,7 +270,7 @@
                     <div class="col-md-4 col-sm-offset-2">
                         <span class="label label-success" style="float:left">Evento que busco*:</span>
 
-                        <input disabled type="text" class="form-control" aria-describedby="basic-addon1" ng-init="signUpInfo.needs='Deporte'" ng-model="signUpInfo.needs" required>
+                        <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="signUpInfo.needs='Deporte'" ng-model="signUpInfo.needs" required>
 
                             <select multiple ng-model="signUpInfo.needs" required style="width: 170px">
 
@@ -283,7 +283,11 @@
                                 <option value="Fiesta">Fiesta</option>
 
                             </select>
-
+                      <!--
+                        <p>
+                            {{signUpInfo.needs}}
+                        </p>
+                      -->
 
                     </div>
 
@@ -299,7 +303,7 @@
 
                     <div class="col-md-4 col-sm-offset-2">
                         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
-                        <input disabled type="text" class="form-control" ng-init="signUpInfo.offers='Deporte'" aria-describedby="basic-addon1" ng-model="signUpInfo.offers" required>
+                        <input  type="text" class="form-control" ng-init="signUpInfo.offers='Deporte'" aria-describedby="basic-addon1" ng-model="signUpInfo.offers" required>
 
                         <select multiple ng-model="signUpInfo.offers" required style="width: 170px">
 
@@ -312,6 +316,11 @@
                             <option value="Fiesta">Fiesta</option>
 
                         </select>
+                     <!--
+                        <p>
+                            {{signUpInfo.offers}}
+                        </p>
+                        -->
 
                     </div>
 
