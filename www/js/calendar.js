@@ -12,6 +12,8 @@ id_user = Cookies.get("id_user");
 var username;
 username= Cookies.get("username");
 
+document.getElementById("img_perfil").src = "avatar/"+id_user;
+
 var eventos=[];
 var my_event=[];
 var formattedEventData;
@@ -46,7 +48,7 @@ function mainController($scope, $http) {
     //GET Event
     $scope.eventos = {};
     //Get Messages from event
-    $http.get('http://localhost:3000/events/calendario/'+id_user).success(function (data) {
+    $http.get('http://147.83.7.201:3000/events/calendario/'+id_user).success(function (data) {
 
         //Scope.Eventos(Eventos a la derecha de la web en forma de lista)
         $scope.eventos = data;

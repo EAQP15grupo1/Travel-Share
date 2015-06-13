@@ -145,7 +145,7 @@ function exitpanel2(){
 (function() {
     var app = angular.module('Eventos', []);
     app.controller('CargarEventos', ['$http', '$log', function ($http) {
-        $http.get('http://localhost:3000/events').success(function (data) {
+        $http.get('http://147.83.7.201:3000/events').success(function (data) {
             marcadores = data;
             my_position();
             filterMarkers("Nada");
@@ -291,7 +291,7 @@ function new_marker_post(){
             new_event.date = $("#date").val();
             var data = JSON.stringify(new_event);
             $.ajax({
-                    url: "http://localhost:3000/event",
+                    url: "http://147.83.7.201:3000/event",
                     type: 'POST',
                     crossDomain: true,
                     dataType: 'json',
@@ -320,7 +320,7 @@ function joinToEvent(id){
     new_attednees.attendees = username_id;
     var data = JSON.stringify(new_attednees);
     $.ajax({
-        url: "http://localhost:3000/event/join/"+id,
+        url: "http://147.83.7.201:3000/event/join/"+id,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
@@ -343,7 +343,7 @@ function join(){
     join.attendees = username_id;
     var data = JSON.stringify(join);
     $.ajax({
-        url: "http://localhost:3000/event/join/"+id,
+        url: "http://147.83.7.201:3000/event/join/"+id,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',

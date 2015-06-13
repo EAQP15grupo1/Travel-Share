@@ -23,6 +23,7 @@ var geocoder;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
+document.getElementById("img_perfil").src = "avatar/"+id_user;
 
 
 var tags = [{
@@ -54,7 +55,7 @@ var tags = [{
 function mainController($scope, $http) {
     $scope.messages = {};
     //GET Event
-    $http.get('http://localhost:3000/event/'+id_event).success(function(data) {
+    $http.get('http://147.83.7.201:3000/event/'+id_event).success(function(data) {
         console.log(data);
         event_marker=data;
         geocoder = new google.maps.Geocoder();
@@ -73,7 +74,7 @@ function mainController($scope, $http) {
         userid : id_user,
     };
     //Get Messages from event
-    $http.get('http://localhost:3000/messages/event/'+id_event).success(function (data) {
+    $http.get('http://147.83.7.201:3000/messages/event/'+id_event).success(function (data) {
         $scope.messages = data;
     }).error(function (error) {
         window.alert("FAIL: " + error);
@@ -81,7 +82,7 @@ function mainController($scope, $http) {
 
     $scope.Comentar = function() {
         fecha();
-        $http.post('http://localhost:3000/messages/', $scope.newMessage)
+        $http.post('http://147.83.7.201:3000/messages/', $scope.newMessage)
             .success(function(data) {
                 $scope.messages.push(data);
                 $scope.newMessage = {
@@ -116,7 +117,7 @@ function leave(){
     var data = JSON.stringify(leave);
     console.log(data);
     $.ajax({
-        url: "http://localhost:3000/event/leave/"+id_event,
+        url: "http://147.83.7.201:3000/event/leave/"+id_event,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
