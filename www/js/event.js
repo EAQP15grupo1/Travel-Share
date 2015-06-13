@@ -64,7 +64,8 @@ function mainController($scope, $http) {
 
     $scope.newMessage = {
         username: username,
-        eventid: id_event
+        eventid: id_event,
+        userid : id_user,
     };
     //Get Messages from event
     $http.get('http://localhost:3000/messages/event/'+id_event).success(function (data) {

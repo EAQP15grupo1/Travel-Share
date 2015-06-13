@@ -92,6 +92,7 @@ function info_evento(marker){
         document.getElementById("buttonjoin").style.visibility = 'hidden';
     }
 
+    document.getElementById("img_owner").src = "avatar/"+marker.owner;
     document.getElementById("panel_info").style.borderColor = color;
 
     $(".fa.fa-times").css("color",color);
