@@ -144,7 +144,7 @@
                         $log.debug(tok);
                         $log.debug(id);
                         alert("Username and password match");
-                        $window.location.href = '/Travel-Share/www/home.html';
+                        $window.location.href = 'home.html';
                         $scope.userInfo.username = '';
                         $scope.userInfo.password = '';
                     }
@@ -158,6 +158,9 @@
                     alert("An error has occured");
                 });
             }
+        };
+        $scope.loginFB = function () {
+            $window.location.href = 'http://147.83.7.201:3000/facebook';
         };
         $scope.backoffice = function () {
             $window.location.href = 'backoffice.html';
