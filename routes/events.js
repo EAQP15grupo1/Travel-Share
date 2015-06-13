@@ -220,8 +220,6 @@ module.exports = function (app) {
     };
 
 
-
-
 //endpoints
     app.post("/events/advanced", addAdvance);
     app.get('/events', findAllEvents);

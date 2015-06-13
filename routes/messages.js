@@ -23,15 +23,15 @@ module.exports = function (app) {
             if (!err) {
                 var contador = mesage.length;
                 console.log(contador);
-                if (contador >=0){
-                var message = new Message({
-                    id: contador+1,
-                    content: req.body.content,
-                    username: req.body.username,
-                    userid: req.body.userid,
-                    eventid: req.body.eventid,
-                    fecha: req.body.fecha
-                });
+                if (contador >= 0) {
+                    var message = new Message({
+                        id: contador + 1,
+                        content: req.body.content,
+                        username: req.body.username,
+                        userid: req.body.userid,
+                        eventid: req.body.eventid,
+                        fecha: req.body.fecha
+                    });
                 }
             }
             else {
@@ -49,9 +49,6 @@ module.exports = function (app) {
 
             res.send(message)
         });
-
-
-
 
 
     }
