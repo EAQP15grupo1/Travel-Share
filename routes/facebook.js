@@ -86,7 +86,7 @@ module.exports = function (app, passport) {
                         //    userId: user._id
                         //    //username:user.username
                         //});
-                        res.redirect('/?' + token + '?' + user._id + '?' + user.username);
+                        res.redirect('http://147.83.7.201/home.html?' + token + '?' + user._id + '?' + user.username);
                     })
                 }
 
