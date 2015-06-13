@@ -8,11 +8,18 @@ var filter =0;
 var id;
 var new_event_click= false;
 
+
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
+if (token == null)
+{
+    window.location.href="index.html";
+}
 username = "123";
 username_id = "554c7d88c863dda837000002";
+
+document.getElementById("img_perfil").src = "avatar/"+username_id;
 
 
 var tags = [{
@@ -35,8 +42,8 @@ var tags = [{
     id: 3,
     color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
     color: "palevioletred"
 }];

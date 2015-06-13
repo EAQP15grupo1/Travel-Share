@@ -1,4 +1,5 @@
 angular.module('MainApp', [])
+var token=Cookies.get('token');
 var id_event;
 //id_event = "55634674f5dc43640900000d";
 id_event =Cookies.get('id_event');
@@ -8,6 +9,10 @@ id_user = Cookies.get("id_user");
 var username;
 username= Cookies.get("username");
 //username = "prueba";
+if (token == null)
+{
+    window.location.href="index.html";
+}
 
 var map;
 var event_marker;
@@ -40,8 +45,8 @@ var tags = [{
     id: 3,
     color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
     color: "palevioletred"
 }];
