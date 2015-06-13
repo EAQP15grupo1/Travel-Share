@@ -16,84 +16,36 @@
     <link rel="import" href="bower_components/paper-input/paper-input.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
 
-
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            font-family: sans-serif;
-        }
-
-        core-scaffold {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        .wrapper {
-            padding: 20px;
-            text-align: center;
-        }
-
-        #core_toolbar {
-            color: rgb(255, 255, 255);
-            background-color: #03a9f4;
-        }
-
-        paper-fab {
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
-            background-color: #526E9C;
-
-        }
-
-        paper-input {
-            width: 100%;
-            margin-right: 20px;
-        }
-
-        paper-button.coloredSignIn[raised] {
-            background: none repeat scroll 0% 0% #8ADCEB;
-            color: #000000;
-            margin: 5px;
-            width: 120px;
-        }
-
-        paper-button.coloredSignUp[raised] {
-            background: none repeat scroll 0% 0% #BA97FF;
-            color: #000000;
-            margin: 5px;
-            width: 120px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 
 <body>
 <core-toolbar id="core_toolbar">
     <span flex>TravelShare</span>
-    <core-icon-button icon="assignment" onclick="backoffice()" style="display: block"> BackOffice Comentarios</core-icon-button>
+    <!--<core-icon-button icon="assignment" onclick="backoffice()" style="display: block"> BackOffice Comentarios-->
+    <!--</core-icon-button>-->
 </core-toolbar>
 <div class="wrapper">
     <form id="userForm">
-        <p>
-            <paper-input id="username" label="Username" floatinglabel="true"></paper-input>
+        <p style="text-align: center">
+            <!--<paper-input id="username" label="Username" floatinglabel="true"></paper-input>-->
+            <input style="width: 80%; height: 25px; text-align: center" id="username" label="Username"
+                   placeholder="Username">
         </p>
 
         <p>
-            <paper-input id="password" label="Password" floatinglabel="true"></paper-input>
+            <!--<paper-input id="password" label="Password" type="password" floatinglabel="true"></paper-input>-->
+            <input style="width: 80%; height: 25px; text-align: center" id="password" label="Password"
+                   placeholder="Password" type="password">
         </p>
 
     </form>
     <div class="wrapper">
-        <paper-button id="LoginBtn" class="coloredSignIn" raised="true" role="button" tabindex="0">Sign in
+        <paper-button id="LoginBtn" class="coloredSignIn" raised="true" role="button" tabindex="0">Entrar
         </paper-button>
-        <paper-button id="RegisterBtn" class="coloredSignUp" raised="true" role="button" tabindex="0">Sign up
+        <paper-button id="RegisterBtn" class="coloredSignUp" raised="true" role="button" tabindex="0">Registro
+        </paper-button>
+        <paper-button id="FacebookBtn" class="coloredFb" raised="true" role="button" tabindex="0">
         </paper-button>
     </div>
 </div>

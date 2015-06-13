@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
         id: {type: Number},
         content: {type: String},
+        userid: {type:String},
         username: {type: String},
         eventid: {type: String},
         fecha: {type: String}

@@ -18,26 +18,38 @@ module.exports = function (app) {
     postMessage = function (req, res) {
         console.log('POST message');
         console.log(req.body);
-
-        var message = new Message({
-            id: req.body.id,
-            content: req.body.content,
-            username: req.body.username,
-            eventid: req.body.eventid,
-            fecha: req.body.fecha
-        });
-
-        message.save(function (err) {
+        var evetoid;
+        Message.find({"eventid": req.body.eventid}, function (err, mesage) {
             if (!err) {
-                console.log('Message added');
+                var contador = mesage.length;
+                console.log(contador);
+                if (contador >= 0) {
+                    var message = new Message({
+                        id: contador + 1,
+                        content: req.body.content,
+                        username: req.body.username,
+                        userid: req.body.userid,
+                        eventid: req.body.eventid,
+                        fecha: req.body.fecha
+                    });
+                }
+            } else {
+                console.log('ERROR: ' + err);
             }
-            else {
-                console.log('ERROR: ', +err);
-            }
-        })
 
-        res.send(message);
-    }
+            message.save(function (err) {
+                if (!err) {
+                    console.log('Message added');
+                }
+                else {
+                    console.log('ERROR: ', +err);
+                }
+            });
+
+            res.send(message)
+        });
+    };
+
 
     //DELETE Message
     deleteMessage = function (req, res) {
@@ -55,7 +67,7 @@ module.exports = function (app) {
         });
 
         res.send('Message removed');
-    }
+    };
 
     //GET Message by ID
     getMessage = function (req, res) {
@@ -67,27 +79,28 @@ module.exports = function (app) {
                 console.log('ERROR: ' + err);
             }
         });
-    }
+    };
 
     //UPDATE Message
     updateMessage = function (req, res) {
         console.log('UPDATE message');
-        Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, data) {
-            console.log(data._id);
 
-            data.set(function (err) {
+        Message.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, message) {
+            console.log(message._id);
+
+            message.set(function (err) {
                 if (!err) {
                     console.log('Updated');
                 }
                 else {
-                    console.log('ERROR: ' + err);
+                    console.log('ERROR' + err);
                 }
 
             })
         });
 
         res.send('Message updated');
-    }
+    };
 
     //GET Message by ID
     getMessagesByEventid = function (req, res) {
@@ -99,18 +112,19 @@ module.exports = function (app) {
                 console.log('ERROR: ' + err);
             }
         });
-    }
+    };
 
     //Endpoints connections
     app.get('/messages', getMessages);
     app.get('/message/:_id', getMessage);
     app.get('/messages/event/:eventid', getMessagesByEventid);
     app.post('/messages', postMessage);
+    app.put('/message/:_id', updateMessage);
 
     //Endpoints backoffice
     app.get('/backoffice/messages', getMessages);
     app.get('/backoffice/message/:_id', getMessage);
     app.post('/backoffice/messages', postMessage);
-    app.put('/backoffice/message/:_id', updateMessage);
+    app.put('/backoffice/message/:idMessage', updateMessage);
     app.delete('/backoffice/message/:_id', deleteMessage);
 }

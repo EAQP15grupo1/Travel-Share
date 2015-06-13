@@ -1,19 +1,33 @@
 var express = require("express"),
+    cors = require('cors'),
     app = express(),
     passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     session = require('express-session'),
     http = require("http"),
     server = http.createServer(app),
-    cors = require('cors'),
     path = require('path'),
     mongoose = require('mongoose');
 
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};
 
 app.configure(function () {
+    app.use(allowCrossDomain);
     app.use(express.bodyParser());
     app.use(express.static(path.join(__dirname, 'public')));
-    app.use(cors());
+    //app.use(cors());
     app.use(app.router);
     app.use(passport.initialize());
 });

@@ -61,6 +61,10 @@ function create2() {
     var url_TS2 = "http://147.83.7.201:3000/user/chat/" + window.localStorage.getItem("userProfileID");
     var chatID = window.localStorage.getItem("username") + "-" + window.localStorage.getItem("userProfileusername");
 
+    var user = new Object();
+    user.chatID = chatID;
+    var data = JSON.stringify(user);
+
     $.ajax({
         url: url_TS2,
         type: 'PUT',

@@ -24,123 +24,13 @@
     <link rel="import" href="bower_components/font-roboto/roboto.html">
     <link rel="import" href="bower_components/polymer/polymer.html">
 
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
     <!--<link rel="import" href="post-card.html">-->
     <link rel="import" href="event-card.html">
-
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 8px 24px;
-        }
-
-        .heading {
-            margin: 10px 5px 10px 5px;
-            padding: 10px 15px;
-            background-color: #f3f3f3;
-            border: 1px solid #dedede;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-
-        .content {
-            margin: 10px 5px 10px 5px;
-            padding: 15px;
-            border: 1px solid #dedede;
-            border-top: none;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-
-        paper-toggle-button.sport::shadow [checked] .toggle {
-            background-color: #FFCC66;
-        }
-
-        paper-toggle-button.music::shadow [checked] .toggle {
-            background-color: #FFFF99;
-        }
-
-        paper-toggle-button.job::shadow [checked] .toggle {
-            background-color: #E4E4E4;
-        }
-
-        paper-toggle-button.culture::shadow [checked] .toggle {
-            background-color: #99CCFF;
-        }
-    </style>
-
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            background-color: #E5E5E5;
-            font-family: 'RobotoDraft', sans-serif;
-        }
-
-        core-header-panel {
-            height: 100%;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        core-toolbar {
-            background: #03a9f4;
-            color: white;
-        }
-
-        #tabs {
-            width: 100%;
-            margin: 0;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            text-transform: uppercase;
-        }
-
-        .container {
-            width: 80%;
-            margin: 50px auto;
-        }
-
-        @media (min-width: 481px) {
-            #tabs {
-                width: 200px;
-            }
-
-            .container {
-                width: 400px;
-            }
-        }
-    </style>
-
-    <style>
-        .wrapper {
-            padding: 20px;
-            text-align: right;
-        }
-
-        paper-button.colored[raised] {
-            background: none repeat scroll 0% 0% #CCCCFF;
-            color: #000000;
-            margin: 20px;
-            width: 120px;
-        }
-
-        paper-fab {
-            position: fixed;
-            right: 40px;
-            bottom: 40px;
-            background-color: #03a9f4;
-        }
-    </style>
-
 </head>
 
 <body unresolved>
-
 
 <div class="heading" onclick="document.querySelector('#collapse1').toggle();">Filtrar por categoría</div>
 <core-collapse class="core-collapse-closed" style="overflow: hidden; height: 0px;" id="collapse1">

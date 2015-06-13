@@ -28,6 +28,7 @@ function getEventData() {
             $("#eventName").text(data.eventname);
             $("#eventTag").text(data.tag);
             $("#eventDate").text(data.date);
+            $("#eventDescription").text(data.description);
         },
         error: function () {
             window.alert("FAIL: No se han obtenido los datos del evento");
@@ -47,7 +48,7 @@ function getEventComments() {
                 if (data[i].username == window.localStorage.getItem("username"))
                     $('<div style="background-color: #FFF6CB; width: 90%; text-align: right; padding: 10px">' + '<label style="margin: 10px; font-size: 150%"> <strong>' + data[i].username + '</strong> <br> </label>' + '<label>' + data[i].content + '</label>' + '</div>').appendTo($('#comments'));
                 else
-                    $('<div style="background-color: #ffffff; width: 90%; text-align: left; padding: 10px">' + '<label style="margin: 10px; font-size: 150%"> <strong>' + data[i].username + '</strong> <br> </label>' + '<label>' + data[i].content + '</label>' + '</div>').appendTo($('#comments'));
+                    $('<div style="background-color: #BAE4F7; width: 90%; text-align: left; padding: 10px">' + '<label style="margin: 10px; font-size: 150%"> <strong>' + data[i].username + '</strong> <br> </label>' + '<label>' + data[i].content + '</label>' + '</div>').appendTo($('#comments'));
 
                 $('<br>').appendTo($('#comments'));
             }
@@ -64,9 +65,14 @@ $("#postBtn").click(function postMessage() {
     if (content == "") {
         window.alert("No se pueden publicar mensajes vacíos");
     } else {
+        var currentdate = new Date();
+        var datetime = ((currentdate.getDate() < 10) ? "0" : "") + currentdate.getDate() + "-" + (((currentdate.getMonth() + 1) < 10) ? "0" : "") + (currentdate.getMonth() + 1) + "-" + currentdate.getFullYear() + " " + ((currentdate.getHours() < 10) ? "0" : "") + currentdate.getHours() + ":" + ((currentdate.getMinutes() < 10) ? "0" : "") + currentdate.getMinutes() + ":" + ((currentdate.getSeconds() < 10) ? "0" : "") + currentdate.getSeconds();
+
         var message = new Object();
         message.username = window.localStorage.getItem("username");
+        message.userid = window.localStorage.getItem("userID");
         message.content = content;
+        message.date = datetime;
         message.eventid = window.localStorage.getItem("eventID");
         var data = JSON.stringify(message);
 

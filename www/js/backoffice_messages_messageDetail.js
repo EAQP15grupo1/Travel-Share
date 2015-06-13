@@ -21,7 +21,7 @@ function detailController($scope, $http) {
         $http.put('http://147.83.7.201:3000/backoffice/message/' + getCookie("messageID"), $scope.newMessage)
             .success(function (data) {
             })
-            .error(function (data) {
+            .error(function (error) {
                 window.alert("FAIL: " + error);
             });
     };
