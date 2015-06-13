@@ -389,6 +389,6 @@ module.exports = function (app) {
     app.post('/login', loginUser);
     app.get('/user/username/:username', findByUsername);
     app.get('/users/find/:_id', findUsersOffersPlace);
-    app.put('/user/avatar/:_id', addImages);
+    app.post('/user/avatar/:_id', addImages);
 
 }
