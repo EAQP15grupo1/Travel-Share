@@ -97,7 +97,7 @@ html, body, #map-canvas {
 #panel_new_event {
     position: absolute;
     width: 400px;
-    height: 575px;
+    height: 585px;
     margin-left: 12px;
     margin-top: 20px;
     z-index: 6;
@@ -123,18 +123,4 @@ html, body, #map-canvas {
     height: 40px;
 }
 
-
-/*Panel evento*/
-#panelevento {
-    position: absolute;
-    background-color: #fff;
-    width: 400px;
-    height: 400px;
-    height: auto;
-    margin-left: 12px;
-    margin-top: 65px;
-    border-color: #4d90fe;
-    z-index: 5;
-    padding: 11px 11px 11px 11px;
-}
 

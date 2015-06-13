@@ -11,8 +11,8 @@ var new_event_click= false;
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
-username = "prueba";
-username_id = "556324cff5dc436409000001";
+username = "123";
+username_id = "554c7d88c863dda837000002";
 
 
 var tags = [{
@@ -86,8 +86,14 @@ function info_evento(marker){
     var color = tags[marker.tag].color;
     document.getElementById("panel_tag").style.visibility = 'hidden';
     document.getElementById("panel_info").style.visibility = 'visible';
+    document.getElementById("buttonjoin").style.backgroundColor = color;
+    document.getElementById("buttonjoin").style.visibility = 'visible';
+    if(marker.owner == username_id){
+        document.getElementById("buttonjoin").style.visibility = 'hidden';
+    }
 
     document.getElementById("panel_info").style.borderColor = color;
+
     $(".fa.fa-times").css("color",color);
 
     document.getElementById("A").innerHTML = marker.event;
@@ -284,7 +290,7 @@ function new_marker_post(){
                     contentType: 'application/json',
                     data: data,
                     success: function (data) {
-                        Console.log("Correct post");
+                        console.log("CorrectPost");
                         joinToEvent(data._id);
 
                     },
@@ -361,8 +367,14 @@ function Filter(type){
 function pushMarker(marker){
     markers.push(marker);
 }
-function addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id){
-    var icon = "img/pos_"+tag+".png"
+function addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id,owner){
+    if(username_id ==  owner){
+        var icon = "img/posmy_"+tag+".png"
+    }
+    else{
+        var icon = "img/pos_"+tag+".png"
+    }
+
 
     var marker= new google.maps.Marker
     ({
@@ -377,7 +389,8 @@ function addfilterMarker(position,detalle,map,content,event,tag,color,date,descr
         detalle:detalle,
         color:color,
         date:date,
-        description :description
+        description :description,
+        owner: owner
     });
     pushfilterMarker(marker);
     var infowindow2 = new google.maps.InfoWindow
@@ -461,8 +474,9 @@ function filterMarkers(keyWord){
             var date = marcadores[i].date;
             var description = marcadores[i].description;
             var id = marcadores[i]._id;
+            var owner = marcadores[i].owner;
 
-            addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id);
+            addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id,owner);
             i++;
 
         }
@@ -483,8 +497,9 @@ function filterMarkers(keyWord){
                 var date = marcadores[i].date;
                 var description = marcadores[i].description;
                 var id = marcadores[i]._id;
+                var owner = marcadores[i].owner;
 
-                addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id);
+                addfilterMarker(position,detalle,map,content,event,tag,color,date,description,id,owner);
 
             }
             i++;

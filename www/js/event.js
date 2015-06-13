@@ -13,7 +13,7 @@ var map;
 var event_marker;
 var geolocation;
 var position;
-
+var today;
 var geocoder;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
@@ -47,24 +47,26 @@ var tags = [{
 }];
 
 function mainController($scope, $http) {
+    $scope.messages = {};
     //GET Event
     $http.get('http://localhost:3000/event/'+id_event).success(function(data) {
+        console.log(data);
         event_marker=data;
         geocoder = new google.maps.Geocoder();
+        evento();
         marker();
         geoposition();
-        })
+    })
         .error(function(data) {
             console.log('Error: ' + data);
         });
 
 
-    $scope.messages = {};
     $scope.newMessage = {
         username: username,
         eventid: id_event
     };
-        //Get Messages from event
+    //Get Messages from event
     $http.get('http://localhost:3000/messages/event/'+id_event).success(function (data) {
         $scope.messages = data;
     }).error(function (error) {
@@ -72,8 +74,7 @@ function mainController($scope, $http) {
     });
 
     $scope.Comentar = function() {
-
-        console.log($scope.newMessage);
+        fecha();
         $http.post('http://localhost:3000/messages/', $scope.newMessage)
             .success(function(data) {
                 $scope.messages.push(data);
@@ -92,6 +93,56 @@ function mainController($scope, $http) {
 
 }
 
+function evento(){
+    var color = tags[event_marker.idtag].color;
+
+    document.getElementById("A").innerHTML = tags[event_marker.idtag].nombre
+    $("#A").css("color",color);
+    document.getElementById("B").innerHTML = event_marker.eventname;
+
+    document.getElementById("description").innerHTML = event_marker.description;
+    document.getElementById("fecha").innerHTML = event_marker.date;
+    id= marker.id;
+}
+function leave(){
+    var leave =new Object();
+    leave.attendees = id_user;
+    var data = JSON.stringify(leave);
+    console.log(data);
+    $.ajax({
+        url: "http://localhost:3000/event/leave/"+id_event,
+        type: 'PUT',
+        crossDomain: true,
+        dataType: 'json',
+        data : data,
+        contentType: 'application/json',
+        success: function (data) {
+        },
+        error: function () {console.log("data");
+            window.location.href="home.html"
+
+        }
+    });
+
+}
+
+function fecha() {
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    d = new Date();
+    datetext = d.toTimeString();
+    datetext = datetext.split(' ')[0];
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    today = yyyy + '/' + mm + '/' + dd +" - "+ datetext ;
+    console.log(today);
+}
 function geoposition(){
     // Try HTML5 geolocation
     if(navigator.geolocation)

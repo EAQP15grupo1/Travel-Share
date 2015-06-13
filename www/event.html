@@ -20,7 +20,7 @@
 </head>
 <body ng-controller="mainController">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default ">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -62,42 +62,85 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
+
     <div class="row">
-        <div class="col-sm-7">
-        <div class="panel panel-default">
-            <div class="panel-heading">Comentarios</div>
-            <div class="panel-body">
-                <br>
-                <div id="messages-panel" >
-                    <div  class="form" ng-repeat="message in messages" style="margin-bottom: 90px">
-                        <div class="col-sm-1">
-                                <img class="media-object" style="max-width: 30px; " src="img/profil_dummy/perfil1.png" data-holder-rendered="true">
-                        </div>
-                        <div class="col-sm-10" >
-                            <h4 class="media-heading" id="top-aligned-media">{{message.username}}</h4>
-                            {{message.content}}
+        <div class="col-sm-6"  style="padding-left: 20px">
+            <div class="panel panel-default">
+                <div class="panel-heading">Evento</div>
+                <div class="panel-body">
+                <div class="form" >
+
+                    <div class="col-sm-12">
+                        <div  style="text-align:center">
+                            <p><span id="A"style="font:400% sans-serif"></span></p>
+                            <p style="text-align: center"><span style="font:150% sans-serif" id="B"></span></p>
                             <hr>
                         </div>
-                        <br>
+                    </div>
+                </div>
+                <div class="form "style="font-size:20px; margin-top: 140px;margin-left: 10px;margin-right: 10px">
+                    <dl class="dl-horizontal">
+                        <div style="font-size: 20px">
+                            <b>Descripción:</b>
+                        </div>
+
+                        <div class="text-center" id="description"></div>
+
+                        <div style="font-size: 20px">
+                            <b>Fecha:</b>
+                        </div>
+                        <div class="text-center" id="fecha"></div>
+                        <hr>
+                    </dl>
+                </div>
+                <button type="button" id="buttonleave" onclick="leave()" class="btn btn-danger btn-lg join-button">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Salir del grupo
+                </button>
+            </div>
+            </div>
+
+            <div class="col-sm-12" style="height: 300px">
+                <div id="map-canvas" ></div>
+                <div id="directions-panel"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6" style="padding-right: 20px;height: 100%">
+            <div class="panel panel-default">
+                <div class="panel-heading">Comentarios</div>
+                <div class="panel-body">
+                    <br>
+                    <div id="messages-panel" >
+                        <div  class="form" ng-repeat="message in messages | orderBy:'-id'" style="margin-bottom: 90px">
+                            <div class="col-sm-1">
+                                <img class="media-object" style="max-width: 30px; " src="img/profil_dummy/perfil1.png" data-holder-rendered="true">
+                            </div>
+                            <div class="col-sm-10" >
+                                <h4 class="media-heading" id="top-aligned-media">{{message.username}}</h4>
+                                {{message.content}}
+                                <hr>
+                            </div>
+                            <br>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="form">
+                        <div class="col-sm-9">
+                            <input style="margin-bottom: 10px; width: 100%" name="content" type="text" class="form-control input-lg text-center" placeholder="Comentar el evento" ng-model="newMessage.content" ng-maxlength="80" vale required>
+                        </div>
+                        <div class="col-sm-3">
+                            <button style="margin-bottom: 10px;height: 100%" type="submit" class="btn btn-warning btn-lg" ng-click="Comentar()" ng-disabled="!newMessage.content">Comentar</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="form">
-                <div class="col-sm-8">
-                    <input style="margin-bottom: 10px; width: 100%" name="content" type="text" class="form-control input-lg text-center" placeholder="Comentar el evento" ng-model="newMessage.content" ng-maxlength="80" vale required>
-                </div>
-                <div class="col-sm-4">
-                    <button style="margin-bottom: 10px;height: 100%" type="submit" class="btn btn-warning btn-lg" ng-click="Comentar()" ng-disabled="!newMessage.content">Comentar</button>
-                </div>
-            </div>
-
-        </div>
-        </div>
-        <div class="col-sm-5" style="height: 300px">
-            <div id="map-canvas" ></div>
-            <div id="directions-panel"></div>
-        </div>
     </div>
 </body>
+
+
+
 </html>

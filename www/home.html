@@ -74,24 +74,36 @@
 
     <div id="panel_info">
         <button class="exit-button" onclick="exitpanel()"><i class="fa fa-times"></i></button>
-        <div>
-        <img style="padding: 10px 10px 10px 10px;position: absolute;border-color: #004d40" src="img/profil_dummy/perfil2.png">
-        </div>
-        <div  style="padding-left:20px;height: 100px;margin-left: 100px;padding-top:5%;position: relative;text-align:left">
-            <p ><span id="A"style="font:300% sans-serif"></span></p>
-            <p style="text-align: center"><span id="B"></span></p>
+        <div class="form">
+                <img style="padding: 10px 10px 10px 10px;position:absolute;border-color: #004d40;max-height:100px;max-width: 100px" src="img/profil_dummy/perfil2.png">
+                <div class="col-sm-12">
+                <div  style="height: 100px;padding-top:5%;text-align:center">
+                    <p><span id="A"style="font:300% sans-serif"></span></p>
+                    <p style="text-align: center"><span style="font:150% sans-serif" id="B"></span></p>
+                    <hr>
+                </div>
+                </div>
+
         </div>
 
-        <div style="position: relative;  margin-top: 100px;margin-left: 10px;margin-right: 10px;text-align: justify">
+        <div class="form "style="font-size:20px; margin-top: 140px;margin-left: 10px;margin-right: 10px">
             <dl class="dl-horizontal">
-                <dt>Descripción:</dt>
-                <dd id="description"></dd>
-                <dt>Fecha:</dt>
-                <dd id="fecha"></dd>
+                <div style="font-size: 20px">
+                    <b>Descripción:</b>
+                </div>
+
+                <div class="text-center" id="description"></div>
+
+                <div style="font-size: 20px">
+                    <b>Fecha:</b>
+                </div>
+                <div class="text-center" id="fecha"></div>
+                <hr>
             </dl>
+
         </div>
 
-        <button type="button" onclick="join()" class="btn btn-info btn-lg join-button">
+        <button type="button" id="buttonjoin" onclick="join()" class="btn btn-lg join-button">
             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
         </button>
     </div>
@@ -123,9 +135,9 @@
                 <br>
                 <pr></pr>
                 <div>
-                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del evento" id="new_eventname">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del evento" id="new_eventname" maxlength="20">
                 <br>
-                    <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description" maxlength="50">
                 <br>
                     <label>Seleccióna hora y dia:</label> <br>
                     <input id="date" class="dateInput text-center"  disabled style="width: 50%;display: none">
