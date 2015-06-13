@@ -43,6 +43,7 @@ function mainController($scope, $http) {
 
         //Scope.Eventos(Eventos a la derecha de la web en forma de lista)
         $scope.eventos = data;
+        console.log(data);
         my_events = data;
         myevents();
     })
@@ -82,7 +83,7 @@ function calendar() {
                 Cookies.set('id_event',event.id);
                 Cookies.set('id_user',id_user);
                 Cookies.set('username',username);
-               // window.location(event.url);
+               window.location(event.url);
                 //window.open(event.url);
             }
         }

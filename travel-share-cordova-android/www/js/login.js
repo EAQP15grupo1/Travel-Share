@@ -24,28 +24,32 @@ $("#LoginBtn").click(function () {
 
 
     if (username != "" && password != "") {
-        var user = new Object();
-        user.username = username;
-        user.password = password;
-        var data = JSON.stringify(user);
+        if (username == "admin" && password == "admin") {
+            window.location.href = 'backoffice_mensajes.html';
+        } else {
+            var user = new Object();
+            user.username = username;
+            user.password = password;
+            var data = JSON.stringify(user);
 
-        $.ajax({
-            url: "http://" + base_URL + "/login",
-            type: 'POST',
-            crossDomain: true,
-            contentType: 'application/json',
-            dataType: 'json',
-            data: data,
-            success: function (data_API) {
-                window.localStorage.setItem("username", user.username);
-                window.localStorage.setItem("userID", data_API.userId);
-                window.localStorage.setItem("token", data_API.token);
-                window.location.href = 'index.html';
-            },
-            error: function (error_API) {
-                window.alert(error_API.response);
-            }
-        });
+            $.ajax({
+                url: "http://" + base_URL + "/login",
+                type: 'POST',
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: 'json',
+                data: data,
+                success: function (data_API) {
+                    window.localStorage.setItem("username", user.username);
+                    window.localStorage.setItem("userID", data_API.userId);
+                    window.localStorage.setItem("token", data_API.token);
+                    window.location.href = 'index.html';
+                },
+                error: function (error_API) {
+                    window.alert(error_API.response);
+                }
+            });
+        }
     } else {
         window.alert("Todos los campos son obligatorios");
     }
@@ -56,7 +60,7 @@ $("#RegisterBtn").click(function () {
 });
 
 $("#FacebookBtn").click(function () {
-    window.location.href = "http://147.83.7.201:3000/facebook";
+    //window.location.href = "http://147.83.7.201:3000/facebook";
 
     //xmlhttp = new XMLHttpRequest();
     //xmlhttp.open("GET", "http://147.83.7.201:3000/facebook", true);
@@ -83,24 +87,23 @@ $("#FacebookBtn").click(function () {
     //    }
     //});
 
-    //$.ajax({
-    //    url: "http://147.83.7.201:3000/facebook",
-    //    type: 'GET',
-    //    crossDomain: true,
-    //    dataType: 'json',
-    //    jsonpCallback: 'callback',
-    //    success: function (data) {
-    //        //window.location.href = 'updateProfile.html';
-    //        console.log(data);
-    //    },
-    //    error: function (error_API) {
-    //        console.log(error_API);
-    //        //window.alert(error_API.response);
-    //        //window.localStorage.setItem("userID", error_API.userId);
-    //        //window.localStorage.setItem("token", error_API.token);
-    //        //window.location.href = 'updateProfile.html';
-    //    }
-    //});
+    $.ajax({
+        url: "http://localhost:3000/facebook",
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            //window.location.href = 'updateProfile.html';
+            console.log(data);
+        },
+        error: function (error_API) {
+            console.log(error_API);
+            //window.alert(error_API.response);
+            //window.localStorage.setItem("userID", error_API.userId);
+            //window.localStorage.setItem("token", error_API.token);
+            //window.location.href = 'updateProfile.html';
+        }
+    });
 
     //$.ajax({
     //

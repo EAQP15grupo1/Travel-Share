@@ -79,8 +79,7 @@
                 <input type="text" class="form-control input-lg text-center" style="margin-bottom: 10px" placeholder="Filtro" ng-value="filtro" ng-model="filtro.eventname"required>
             </div>
             <br>
-            <div id="event-panel" >
-
+            <div id="event-panel" style="max-height: 100%;">
                 <div class="form" ng-repeat="evento in eventos| filter:filtro">
                      <a class="calendar_event" href="" id={{evento._id}} onclick="goToEvent(id)">
                          <div  style="border: transparent;border-style: solid;box-shadow: 5px 5px 5px #e2d9d4;">

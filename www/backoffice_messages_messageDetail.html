@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Detalle del mensaje</title>
+    <link href='img/web_page_icon/icon_web.png' rel='shortcut icon' type='image/png'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- Angular js-->
@@ -41,21 +42,21 @@
         <div class="col-sm-4 text-center">
             <form name="myForm">
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg text-center" placeholder="{{message.id}}"
-                           ng-model="newMessage.id" required disabled>
+                    <input type="text" class="form-control input-lg text-center" placeholder="{{message._id}}"
+                           ng-model="newMessage._id" required disabled>
                     <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="{{message.content}}"
                            ng-model="newMessage.content" required>
                     <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="{{message.username}}"
-                           ng-model="newMessage.username" required>
+                           ng-model="newMessage.username" required disabled>
                     <br>
                     <input type="text" class="form-control input-lg text-center" placeholder="{{message.eventid}}"
-                           ng-model="newMessage.eventid" required>
+                           ng-model="newMessage.eventid" required disabled>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)"
-                            ng-disabled="!newMessage.id || !newMessage.content || !newMessage.username || !newMessage.eventid">
+                    <button type="submit" class="btn btn-info btn-lg" ng-click="updateMessage(newMessage)" disabled>
+                            <!--ng-disabled="!newMessage.id || !newMessage.content || !newMessage.username || !newMessage.eventid">-->
                         UPDATE
                     </button>
                     <br>
@@ -67,7 +68,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
                 <div class="panel-body">
-                    <p><b>ID: </b>{{newMessage.id}}</p>
+                    <p><b>ID: </b>{{newMessage._id}}</p>
 
                     <p><b>CONTENT: </b>{{newMessage.content}}</p>
 
