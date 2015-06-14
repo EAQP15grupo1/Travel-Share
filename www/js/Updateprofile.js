@@ -14,8 +14,6 @@
 
         //document.getElementById("img_perfil").src = "avatar/" + id_user;
         var Urlactual=window.location;
-
-
         $log.debug('Url actual con parametros',Urlactual);
 
         $log.debug('Url.href',Urlactual.href);
@@ -37,6 +35,9 @@
         Cookies.set('token',userData[1]);
         Cookies.set('userId',userData[2]);
         Cookies.set('username',username[0]);
+
+
+        window.location.href='UpdateUser.html';
 
 
         $scope.signUpInfo = {};

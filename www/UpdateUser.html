@@ -15,7 +15,7 @@
 <body>
 
 <nav class="navbar navbar-default ">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="UpdateController" as UpdateCtrl>
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
@@ -35,11 +35,14 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="row" ng-controller="UpdateController" as UpdateCtrl>
+<div class="row">
+
+    <!--
     <div class="col-md-4">
         <span class="label label-primary" style="float:left">Username:</span>
         <input type="text" class="form-control" placeholder="userEA" aria-describedby="basic-addon1" ng-model="signUpInfo.username">
     </div>
+    -->
 
 
     <div class="col-md-4 col-sm-offset-2">
@@ -276,10 +279,13 @@
 <br>
 
 <div class="row">
+
+    <!--
     <div class="col-md-4">
         <span class="label label-success" style="float:left">Password:</span>
         <input type="password" class="form-control" placeholder="contraseña" aria-describedby="basic-addon1" ng-model="signUpInfo.password">
     </div>
+    -->
 
     <div class="col-md-4 col-sm-offset-2">
         <span class="label label-success" style="float:left">Evento que busco*:</span>
@@ -306,10 +312,12 @@
 <br>
 
 <div class="row">
+    <!--
     <div class="col-md-4">
         <span class="label label-danger" style="float:left">Password:</span>
         <input type="password" class="form-control" placeholder="repetir contraseña" aria-describedby="basic-addon1">
     </div>
+    -->
 
     <div class="col-md-4 col-sm-offset-2">
         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
@@ -341,11 +349,10 @@
 
 </div>
 
-
+<div >
     <button type="button" class="btn btn-default">Close</button>
-    <button type="button" class="btn btn-primary" ng-click="signupUser()">Save changes</button>
-
-
+    <button type="button" class="btn btn-primary" onclick="signupUser()">Save changes</button>
+</div>
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
