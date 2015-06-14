@@ -67,7 +67,7 @@ var userid;
                     userid=data;
                     $log.debug("valor del userid",userid);
 
-                    Cookies.set('userid', data);
+                    Cookies.set('userId', data);
 
                     window.location.href="image-preview/upload.html";
 
@@ -196,6 +196,7 @@ var userid;
                     //window.location.reload();
                 }
                 else {
+
                     Cookies.set('userId', data);
                     window.location.href="image-preview/upload.html";
                 }

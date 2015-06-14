@@ -3,6 +3,10 @@ $("#createBtn").click(function () {
     var eventDescription = $("#eventDescription").val();
     var eventTag = "";
     var eventDate = $("#date").val();
+    var pl = $("#location").val();
+    var place = new Array();
+    place[0] = pl.split(', ')[0];
+    place[1] = pl.split(', ')[1];
 
     if (document.getElementById("sport").checked) {
         eventTag = "Deporte";
@@ -18,7 +22,9 @@ $("#createBtn").click(function () {
     event.eventname = eventName;
     event.tag = eventTag;
     event.date = eventDate;
+    event.description = eventDescription;
     event.owner = window.localStorage.getItem("userID");
+    event.place = place;
     var data = JSON.stringify(event);
 
     $.ajax({
@@ -48,6 +54,9 @@ $('#datetimepicker').datetimepicker({
     minDate: '0',
     onSelectDate: function (ct, $i) {
         $("#date").val(ct.dateFormat('Y-m-d H:i'))
+    },
+    onSelectTime: function (ct, $i) {
+        $("#date").val(ct.dateFormat('Y-m-d H:i'))
     }
 });
 
@@ -68,7 +77,7 @@ function codeAddress() {
     var address = document.getElementById('address').value;
     geocoder.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            $("#location").val(results[0].geometry.location.A + ", " + results[0].geometry.location.A);
+            $("#location").val(results[0].geometry.location.A + ", " + results[0].geometry.location.F);
             console.log(results[0].geometry.location);
             map.setCenter(results[0].geometry.location);
             map.setZoom(15);
