@@ -40,7 +40,7 @@ var id;
 
             var userInfo = new Object();
             userInfo.username = buffer.username;
-            user.Info.name=buffer.name;
+            userInfo.name=buffer.name;
             userInfo.email = buffer.email;
             userInfo.nation = buffer.nacionalidad;
             userInfo.password = buffer.password;
@@ -185,6 +185,7 @@ var id;
             userInfo.description = buffer.description;
             userInfo.needs = needsArray;
             userInfo.offers = offersArray;
+
             console.log(userInfo);
 
             id=Cookies.get('userId');
@@ -197,8 +198,9 @@ var id;
                     //alert("Usuario ya existe");
                     //window.location.reload();
                 }
-                else {
-
+                else
+                {
+                    alert("User Updated");
                     window.location.href="image-preview/upload.html";
                 }
 
