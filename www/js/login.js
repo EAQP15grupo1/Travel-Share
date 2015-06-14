@@ -136,39 +136,37 @@ var userid;
     app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
 
         //document.getElementById("img_perfil").src = "avatar/" + id_user;
-        var Urlactual=window.location;
-
-
-        $log.debug('Url actual con parametros',Urlactual);
-
-        $log.debug('Url.href',Urlactual.href);
-
-        var userData=Urlactual.href.split("?");
-
-        $log.debug('userData value',userData);
-
-
-        var username=userData[3].split("@");
-
-        $log.debug('token',userData[1]);
-        $log.debug('userId',userData[2]);
-        $log.debug('username',username[0]);
-
-
-        var userId=userData[2];
-
-        Cookies.set('token',userData[1]);
-        Cookies.set('userId',userData[2]);
-        Cookies.set('username',username[0]);
-
-
-
-
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
-        $scope.signUpInfo.isHide = false;
-        $scope.signUpInfo.isDisabled=true;
+
         $scope.signupUser = function () {
+
+            var Urlactual=window.location;
+
+
+            $log.debug('Url actual con parametros',Urlactual);
+
+            $log.debug('Url.href',Urlactual.href);
+
+            var userData=Urlactual.href.split("?");
+
+            $log.debug('userData value',userData);
+
+
+            var username=userData[3].split("@");
+
+            $log.debug('token',userData[1]);
+            $log.debug('userId',userData[2]);
+            $log.debug('username',username[0]);
+
+
+            var userId=userData[2];
+
+            Cookies.set('token',userData[1]);
+            Cookies.set('userId',userData[2]);
+            Cookies.set('username',username[0]);
+
+
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
@@ -184,31 +182,19 @@ var userid;
             userInfo.offers = offersArray;
             $log.debug(userInfo);
 
-            $scope.signUpInfo.isHide = !$scope.signUpInfo.isHide;
 
-            $scope.signUpInfo.isDisabled=!$scope.signUpInfo.isDisabled;
-
-            var res = $http.post('http://147.83.7.201:3000/users', userInfo);
+            var res = $http.put('http://147.83.7.201:3000/user'+userId, userInfo);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
                     //alert("Usuario ya existe");
                     //window.location.reload();
                 }
                 else {
-
                     alert("Usuario creado");
-
                     userid=data;
                     $log.debug("valor del userid",userid);
-
                     Cookies.set('userid', data);
-
                     window.location.href="image-preview/upload.html";
-
-
-
-
-
                 }
 
             });
