@@ -88,7 +88,6 @@
                 <div id="directions-panel"></div>
             </div>
         </div>
-
         <div class="col-sm-6" style="padding-right: 20px;height: 100%">
             <div class="panel panel-default">
                 <div class="panel-heading">Comentarios</div>
@@ -97,7 +96,7 @@
                     <div id="messages-panel" >
                         <div  class="form" ng-repeat="message in messages | orderBy:'-id'" style="margin-bottom: 90px">
                             <div class="col-sm-1">
-                                <img class="media-object" style="max-width: 30px; " src="avatar/{{message.userid}}" data-holder-rendered="true">
+                                <img class="media-object" style="max-width: 30px; " ng-src="avatar/{{message.userid}}" data-holder-rendered="true">
                             </div>
                             <div class="col-sm-10" >
                                 <h4 class="media-heading" id="top-aligned-media">{{message.username}}</h4>
