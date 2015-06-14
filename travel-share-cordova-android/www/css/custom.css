@@ -64,10 +64,10 @@ core-scaffold::shadow core-toolbar {
 }
 
 /*paper-fab {*/
-    /*position: absolute;*/
-    /*right: 20px;*/
-    /*bottom: 20px;*/
-    /*background-color: #526E9C;*/
+/*position: absolute;*/
+/*right: 20px;*/
+/*bottom: 20px;*/
+/*background-color: #526E9C;*/
 /*}*/
 
 paper-fab {
@@ -391,6 +391,7 @@ canvas {
     #tabs {
         width: 200px;
     }
+
     .container {
         width: 400px;
     }
