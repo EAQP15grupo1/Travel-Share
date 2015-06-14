@@ -67,7 +67,7 @@ var userid;
                     userid=data;
                     $log.debug("valor del userid",userid);
 
-                    Cookies.set('userid', data);
+                    Cookies.set('userId', data);
 
                     window.location.href="image-preview/upload.html";
 
@@ -205,8 +205,8 @@ var userid;
                 else {
                     alert("Usuario creado");
                     userid=data;
-                    $log.debug("valor del userid",userid);
-                    Cookies.set('userid', data);
+                    $log.debug("valor del userId",userid);
+                    Cookies.set('userId', data);
                     window.location.href="image-preview/upload.html";
                 }
 
