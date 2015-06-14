@@ -1,7 +1,7 @@
 window.onload = function() {
     onDeviceReady();
     loadAvatar();
-    window.alert("http://147.83.7.201/avatar/" + window.localStorage.getItem("userID") + ".jpg");
+    //window.alert("http://147.83.7.201/avatar/" + window.localStorage.getItem("userID") + ".jpg");
 }
 function loadAvatar() {
     document.getElementById("myImage").src = "http://147.83.7.201/avatar/" + window.localStorage.getItem("userID") + ".jpg";
@@ -43,7 +43,7 @@ function onFail(message) {
 
 
 function uploadPicture() {
-    window.alert("upload picture");
+    //window.alert("upload picture");
 // Get URI of picture to upload
     var server = "http://147.83.7.201:3000/user/avatar/" + window.localStorage.getItem("userID");
     var img = document.getElementById('myImage').src;
