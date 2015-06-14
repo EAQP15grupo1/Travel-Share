@@ -27,23 +27,25 @@
 
         var username=userData[3].split("@");
 
-        $log.debug('token_F',userData[1]);
-        $log.debug('userid_F',userData[2]);
-        $log.debug('username_F',username[0]);
-
-        Cookies.set('token_F',userData[1]);
-        Cookies.set('userid_F',userData[2]);
-        Cookies.set('username_F',username[0]);
+        $log.debug('token',userData[1]);
+        $log.debug('userId',userData[2]);
+        $log.debug('username',username[0]);
 
 
+        var userId=userData[2];
 
+        Cookies.set('token',userData[1]);
+        Cookies.set('userId',userData[2]);
+        Cookies.set('username',username[0]);
 
 
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
         $scope.signUpInfo.isHide = false;
         $scope.signUpInfo.isDisabled=true;
-        $scope.signupUser = function () {
+
+        $scope.signupUserF = function ()
+        {
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
@@ -63,7 +65,7 @@
 
             $scope.signUpInfo.isDisabled=!$scope.signUpInfo.isDisabled;
 
-            var res = $http.put('http://147.83.7.201:3000/user/'+userData[2], userInfo);
+            var res = $http.put('http://147.83.7.201:3000/user/'+userId, userInfo);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
                     //alert("Usuario ya existe");
