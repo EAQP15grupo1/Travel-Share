@@ -40,13 +40,13 @@
 <div class="row">
     <div class="col-md-4">
         <span class="label label-primary" style="float:left">Name:</span>
-        <input type="text" class="form-control" placeholder="Pepe" aria-describedby="basic-addon1" ng-model="signUpInfo.name">
+        <input type="text" class="form-control" placeholder="Pepe" aria-describedby="basic-addon1" ng-model="UpdateInfo.name">
     </div>
 
 
     <div class="col-md-4 col-sm-offset-2">
 
-        <select name="nationality" ng-model="signUpInfo.nacionalidad" ng-init="signUpInfo.nacionalidad='spanish'">
+        <select name="nationality" ng-model="UpdateInfo.nacionalidad" ng-init="UpdateInfo.nacionalidad='spanish'">
             <option value="">-- select one --</option>
             <option value="afghan">Afghan</option>
             <option value="albanian">Albanian</option>
@@ -242,7 +242,7 @@
             <option value="zimbabwean">Zimbabwean</option>
         </select>
 
-        <input disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="signUpInfo.nacionalidad">
+        <input disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="UpdateInfo.nacionalidad">
 
     </div>
 </div>
@@ -252,14 +252,14 @@
 <div class="row">
     <div class="col-md-4">
         <span class="label label-warning" style="float:left">Email:</span>
-        <input class="form-control"  type="email" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="signUpInfo.email" required>
+        <input class="form-control"  type="email" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="UpdateInfo.email" required>
     </div>
 
 
 
     <div class="col-md-4 col-sm-offset-2">
 
-        <select name="nationality" ng-model="signUpInfo.idiomas" ng-init="signUpInfo.idiomas='Español'" style="width: 170px">
+        <select name="nationality" ng-model="UpdateInfo.idiomas" ng-init="signUpInfo.idiomas='Español'" style="width: 170px">
             <option value="">-- select one --</option>
             <option value="English">  English    </option>
             <option value="Español">  Español    </option>
@@ -267,7 +267,7 @@
             <option value="Chino">     中文          </option>
         </select>
 
-        <input  disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="signUpInfo.idiomas">
+        <input  disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="UpdateInfo.idiomas">
 
     </div>
 
@@ -281,9 +281,9 @@
 
     <div class="col-md-4 col-sm-offset-2" style="margin-left: 3px">
         <span class="label label-success" style="float:left">Evento que busco*:</span>
-        <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="signUpInfo.needs='Deporte'" ng-model="signUpInfo.needs" required>
+        <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="UpdateInfo.needs='Deporte'" ng-model="UpdateInfo.needs" required>
 
-        <select multiple ng-model="signUpInfo.needs" required style="width: 170px">
+        <select multiple ng-model="UpdateInfo.needs" required style="width: 170px">
 
             <option value="Deporte">Deporte</option>
 
@@ -299,9 +299,9 @@
 
     <div class="col-md-4 col-sm-offset-2">
         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
-        <input  type="text" class="form-control" ng-init="signUpInfo.offers='Deporte'" aria-describedby="basic-addon1" ng-model="signUpInfo.offers" required>
+        <input  type="text" class="form-control" ng-init="signUpInfo.offers='Deporte'" aria-describedby="basic-addon1" ng-model="UpdateInfo.offers" required>
 
-        <select multiple ng-model="signUpInfo.offers" required style="width: 170px">
+        <select multiple ng-model="UpdateInfo.offers" required style="width: 170px">
 
             <option value="Deporte">Deporte</option>
 
@@ -321,7 +321,7 @@
 <div class="row">
     <div class="col-lg-10">
         <span class="label label-info" style="margin-right:480px ">Descripcion:</span>
-        <textarea class="form-control" rows="3" style="margin-left: 1px" ng-model="signUpInfo.description"></textarea>
+        <textarea class="form-control" rows="3" style="margin-left: 1px" ng-model="UpdateInfo.description"></textarea>
     </div>
 
 </div>

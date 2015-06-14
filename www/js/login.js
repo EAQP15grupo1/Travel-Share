@@ -166,9 +166,9 @@ var id;
 
         signupUser = function () {
 
-            signUpInfo = {};
+            UpdateInfo = {};
 
-            buffer = signUpInfo;
+            buffer = UpdateInfo;
 
 
             var needsArray = buffer.needs;
