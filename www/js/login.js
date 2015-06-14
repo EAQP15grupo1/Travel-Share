@@ -171,7 +171,7 @@ var id;
 
         $scope.updateUser = function () {
 
-            $window.alert('dentro de la function');
+
 
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
@@ -203,7 +203,7 @@ var id;
                 else
                 {
                     //alert("User Updated");
-                    //window.location.href="image-preview/upload.html";
+                    window.location.href="image-preview/upload.html";
                 }
 
             });
