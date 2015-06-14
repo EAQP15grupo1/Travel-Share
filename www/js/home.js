@@ -8,7 +8,6 @@ var filter =0;
 var id;
 var new_event_click= false;
 
-
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
