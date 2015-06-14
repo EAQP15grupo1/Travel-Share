@@ -7,8 +7,6 @@ var userid;
     var buffer = {};
 
 
-
-
     var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap', 'ngSanitize']);
 
 
@@ -109,7 +107,7 @@ var userid;
                         $log.debug(nombre);
                         $log.debug(tok);
                         $log.debug(id);
-                        alert("Username and password match");
+                        //alert("Username and password match");
                         $window.location.href = 'home.html';
                         $scope.userInfo.username = '';
                         $scope.userInfo.password = '';
@@ -135,7 +133,7 @@ var userid;
 
 
 
-    app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
+    /*app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
 
         //document.getElementById("img_perfil").src = "avatar/" + id_user;
         var Urlactual=window.location;
@@ -202,7 +200,7 @@ var userid;
 
         };
 
-    }]);
+    }]);*/
 
 
 
