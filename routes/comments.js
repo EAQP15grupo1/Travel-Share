@@ -42,9 +42,7 @@ module.exports = function (app) {
 
 //UPDATE
     updateComment = function (req, res) {
-        //console.log('UPDATE film');
         Comment.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, data) {
-            //console.log(user._id);
             data.set(function (err) {
                 if (!err) {
                     console.log('Updated');
