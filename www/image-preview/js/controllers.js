@@ -55,7 +55,7 @@ angular
         uploader.onErrorItem = function(fileItem, response, status, headers) {
             alert("An Error has occured");
             console.info('onErrorItem', fileItem, response, status, headers);
-            window.location.href='../index.html';
+            window.location.href='../home.html';
         };
         uploader.onCancelItem = function(fileItem, response, status, headers) {
             alert("Upload Canceled");
@@ -64,11 +64,11 @@ angular
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             alert("Upload Completed");
             console.info('onCompleteItem', fileItem, response, status, headers);
-            window.location.href='../index.html';
+            window.location.href='../home.html';
         };
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
-            window.location.href='../index.html';
+            window.location.href='../home.html';
         };
 
         console.info('uploader', uploader);
