@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Chat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,69 +17,15 @@
     <link rel="import" href="bower_components/paper-button/paper-button.html">
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-
-
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            font-family: sans-serif;
-        }
-
-        core-scaffold {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        .wrapper {
-            padding: 20px;
-            text-align: center;
-        }
-
-        #core_toolbar {
-            color: rgb(255, 255, 255);
-            background-color: #03a9f4;
-        }
-
-        paper-fab {
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
-            background-color: #526E9C;
-
-        }
-
-        paper-input {
-            width: 100%;
-            margin-right: 20px;
-        }
-
-        paper-button.coloredSignIn[raised] {
-            background: none repeat scroll 0% 0% #8ADCEB;
-            color: #000000;
-            margin: 5px;
-            width: 120px;
-        }
-
-        paper-button.coloredSignUp[raised] {
-            background: none repeat scroll 0% 0% #BA97FF;
-            color: #000000;
-            margin: 5px;
-            width: 120px;
-        }
-    </style>
 </head>
 
 <body>
 
 <core-toolbar id="core_toolbar">
     <span flex id="span">Chat</span>
+    <core-icon-button icon="home" onclick="window.location.href = 'index.html'"
+                      style="display: block"></core-icon-button>
+</core-toolbar>
 </core-toolbar>
 <div style="padding: 10px">
     <div flex>
@@ -88,7 +34,7 @@
 
     <!--<section layout vertical fit>-->
     <div style="position: fixed; bottom: 0px; width: 95%; padding: 6px" layout horizontal>
-        <paper-input flex label="Escribe un mensaje" id="input"></paper-input>
+        <paper-input class="chat" flex label="Escribe un mensaje" id="input"></paper-input>
         <paper-fab icon="send" id="sendButton" onclick="send()" disabled></paper-fab>
     </div>
     <!--</section>-->

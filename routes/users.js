@@ -36,6 +36,8 @@ module.exports = function (app) {
             }
             else {
                 console.log('ERROR: ' + err);
+
+
             }
         });
     }
@@ -58,8 +60,8 @@ module.exports = function (app) {
         console.log('POST user');
         console.log(req.body);
         var name = req.body.username;
-        var pass = req.body.password
-        var passEncriptada = encriptar(name, pass)
+        var pass = req.body.password;
+        var passEncriptada = encriptar(name, pass);
 
 
         User.findOne({username: name}, function (err, user) {
@@ -171,26 +173,30 @@ module.exports = function (app) {
 
         var name = req.body.username;
         var pass = req.body.password;
-        var passEncriptada = encriptar(name, pass)
+        var passEncriptada = encriptar(name, pass);
 
-        User.findOne({"username": name}, function (err, user) {
-            if (user) {
-                if (user.password === passEncriptada) {
+        if (name == "admin" && pass == "admin") {
+            res.redirect("http://147.83.7.201/backoffice.html");
+        } else {
+            User.findOne({"username": name}, function (err, user) {
+                if (user) {
+                    if (user.password === passEncriptada) {
 
-                    var token = generateToken(user);
-                    res.json({
-                        token: token,
-                        userId: user._id
-                        //username:user.username
-                    });
+                        var token = generateToken(user);
+                        res.json({
+                            token: token,
+                            userId: user._id
+                            //username:user.username
+                        });
+                    }
+                    else
+                        res.send('contrase�a incorrecta')
+
+                } else {
+                    res.send('No existe este usuario!')
                 }
-                else
-                    res.send('contrase�a incorrecta')
-
-            } else {
-                res.send('No existe este usuario!')
-            }
-        });
+            });
+        }
     }
 
     //Get de user por id
@@ -296,8 +302,11 @@ module.exports = function (app) {
                                     distance: distancia
                                 });
                                 if (usuario.id != req.params._id) {
+
                                     usuarios.push(usuario);
                                     console.log(JSON.stringify(usuarios));
+                                } else {
+                                    res.send("eres tu")
                                 }
                             }
                         }
@@ -381,12 +390,5 @@ module.exports = function (app) {
     app.get('/user/username/:username', findByUsername);
     app.get('/users/find/:_id', findUsersOffersPlace);
     app.post('/user/avatar/:_id', addImages);
-    // Endpoints Facebook
-    //app.get('/auth/facebook', passport.authenticate('facebook'));
-    //app.get('/auth/facebook/callback',
-    //passport.authenticate('facebook', {failureRedirect: '/login'}),
-    //function (req, res) {
-    //    // Successful authentication, redirect home.
-    //    res.redirect('/');
-    //});
+
 }

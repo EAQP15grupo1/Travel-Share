@@ -28,7 +28,7 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="container" ng-controller="signUpController" as signUpCtrl >
+<div class="container" ng-controller="signUpController" as signUpCtrl  ng-app="fileUpload" ng-controller="MyCtrl">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -67,21 +67,33 @@
                         <!-- Button -->
                         <div class="col-lg-12 controls">
                             <a id="btn-login" href="#" class="btn btn-success" ng-click="login()">Login </a>
-                            <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
-                            <a id="btn-backoffice" href="#" class="btn btn-info" ng-click="backoffice()">Acceder a
-                                Backoffice</a>
+                            <a id="btn-fblogin" href="#" class="btn btn-primary" ng-click="loginFB()">Login with
+                                Facebook</a>
+                            <!--<a id="btn-backoffice" href="#" class="btn btn-info" ng-click="backoffice()">Acceder a-->
+                            <!--Backoffice</a>-->
                         </div>
                     </div>
 
 
-                    <div class="form-group"  ng-controller="DemoController" as DemoCtrl>
-                        <div class="col-md-12 control" >
+                    <div class="form-group" ng-controller="DemoController" as DemoCtrl>
+                        <div class="col-md-12 control">
                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
                                 Don't have an account!
-                                <a href="#" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo.html" bs-modal="modal" >
+                                <a href="#" data-animation="am-fade-and-slide-top" data-template="modal.tpl.demo.html"
+                                   bs-modal="modal">
                                     Sign Up Here
                                 </a>
+
+
+
+                                <!--
+                                <a href="image-preview/upload.html">Upload a profile picture</a>
+                                -->
+
+                                    </div>
+                                </div>
                             </div>
+                         </form>
                         </div>
                     </div>
                 </form>
@@ -186,6 +198,5 @@
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 <script src="bower_components/js-cookie/src/js.cookie.js"></script>
 <script src="js/login.js"></script>
-<script src="js/ng-flow-standalone.js"></script>
 </body>
 </html>

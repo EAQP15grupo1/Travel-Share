@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Evento</title>
+    <link href='img/web_page_icon/icon_web.png' rel='shortcut icon' type='image/png'>
     <!--JQuery-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -19,84 +20,110 @@
 </head>
 <body ng-controller="mainController">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default ">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
 
                 <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
-                    <img  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
+                    <img  id="img_perfil" style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
                 </a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Brand</a>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
+
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Cerrar Sesión</a></li>
-
+                    <li><a href="#">Mi perfil</a></li>
+                    <li><a href="index.html">Cerrar Sesión</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
     <div class="row">
-        <div class="col-sm-7">
-        <div class="panel panel-default">
-            <div class="panel-heading">Comentarios</div>
-            <div class="panel-body">
-                <br>
-                <div id="messages-panel" >
-                    <div  class="form" ng-repeat="message in messages" style="margin-bottom: 90px">
-                        <div class="col-sm-1">
-                                <img class="media-object" style="max-width: 30px; " src="img/profil_dummy/perfil1.png" data-holder-rendered="true">
-                        </div>
-                        <div class="col-sm-10" >
-                            <h4 class="media-heading" id="top-aligned-media">{{message.username}}</h4>
-                            {{message.content}}
+        <div class="col-sm-6"  style="padding-left: 20px">
+            <div class="panel panel-default">
+                <div class="panel-heading">Evento</div>
+                <div class="panel-body">
+                <div class="form" >
+
+                    <div class="col-sm-12">
+                        <div  style="text-align:center">
+                            <p><span id="A"style="font:400% sans-serif"></span></p>
+                            <p style="text-align: center"><span style="font:150% sans-serif" id="B"></span></p>
                             <hr>
                         </div>
-                        <br>
+                    </div>
+                </div>
+                <div class="form "style="font-size:20px; margin-top: 140px;margin-left: 10px;margin-right: 10px">
+                    <dl class="dl-horizontal">
+                        <div style="font-size: 20px">
+                            <b>Descripción:</b>
+                        </div>
+
+                        <div class="text-center" id="description"></div>
+
+                        <div style="font-size: 20px">
+                            <b>Fecha:</b>
+                        </div>
+                        <div class="text-center" id="fecha"></div>
+                        <hr>
+                    </dl>
+                </div>
+                <button type="button" id="buttonleave" onclick="leave()" class="btn btn-danger btn-lg join-button">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Salir del grupo
+                </button>
+            </div>
+            </div>
+
+            <div class="col-sm-12" style="height: 300px">
+                <div id="map-canvas" ></div>
+                <div id="directions-panel"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6" style="padding-right: 20px;height: 100%">
+            <div class="panel panel-default">
+                <div class="panel-heading">Comentarios</div>
+                <div class="panel-body">
+                    <br>
+                    <div id="messages-panel" >
+                        <div  class="form" ng-repeat="message in messages | orderBy:'-id'" style="margin-bottom: 90px">
+                            <div class="col-sm-1">
+                                <img class="media-object" style="max-width: 30px; " src="avatar/{{message.userid}}" data-holder-rendered="true">
+                            </div>
+                            <div class="col-sm-10" >
+                                <h4 class="media-heading" id="top-aligned-media">{{message.username}}</h4>
+                                {{message.content}}
+                                <hr>
+                            </div>
+                            <br>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="form">
+                        <div class="col-sm-9">
+                            <input style="margin-bottom: 10px; width: 100%" name="content" type="text" class="form-control input-lg text-center" placeholder="Comentar el evento" ng-model="newMessage.content" ng-maxlength="80" vale required>
+                        </div>
+                        <div class="col-sm-3">
+                            <button style="margin-bottom: 10px;height: 100%" type="submit" class="btn btn-warning btn-lg" ng-click="Comentar()" ng-disabled="!newMessage.content">Comentar</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="form">
-                <div class="col-sm-8">
-                    <input style="margin-bottom: 10px; width: 100%" name="content" type="text" class="form-control input-lg text-center" placeholder="Comentar el evento" ng-model="newMessage.content" ng-maxlength="80" vale required>
-                </div>
-                <div class="col-sm-4">
-                    <button style="margin-bottom: 10px;height: 100%" type="submit" class="btn btn-warning btn-lg" ng-click="Comentar()" ng-disabled="!newMessage.content">Comentar</button>
-                </div>
-            </div>
-
-        </div>
-        </div>
-        <div class="col-sm-5" style="height: 300px">
-            <div id="map-canvas" ></div>
-            <div id="directions-panel"></div>
-        </div>
     </div>
 </body>
+
+
+
 </html>

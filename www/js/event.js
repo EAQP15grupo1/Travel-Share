@@ -1,4 +1,5 @@
 angular.module('MainApp', [])
+var token=Cookies.get('token');
 var id_event;
 //id_event = "55634674f5dc43640900000d";
 id_event =Cookies.get('id_event');
@@ -8,16 +9,21 @@ id_user = Cookies.get("id_user");
 var username;
 username= Cookies.get("username");
 //username = "prueba";
+if (token == null)
+{
+    window.location.href="index.html";
+}
 
 var map;
 var event_marker;
 var geolocation;
 var position;
-
+var today;
 var geocoder;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
+document.getElementById("img_perfil").src = "avatar/"+id_user;
 
 
 var tags = [{
@@ -40,41 +46,43 @@ var tags = [{
     id: 3,
     color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
     color: "palevioletred"
 }];
 
 function mainController($scope, $http) {
+    $scope.messages = {};
     //GET Event
-    $http.get('http://localhost:3000/event/'+id_event).success(function(data) {
+    $http.get('http://147.83.7.201:3000/event/'+id_event).success(function(data) {
+        console.log(data);
         event_marker=data;
         geocoder = new google.maps.Geocoder();
+        evento();
         marker();
         geoposition();
-        })
+    })
         .error(function(data) {
             console.log('Error: ' + data);
         });
 
 
-    $scope.messages = {};
     $scope.newMessage = {
         username: username,
-        eventid: id_event
+        eventid: id_event,
+        userid : id_user,
     };
-        //Get Messages from event
-    $http.get('http://localhost:3000/messages/event/'+id_event).success(function (data) {
+    //Get Messages from event
+    $http.get('http://147.83.7.201:3000/messages/event/'+id_event).success(function (data) {
         $scope.messages = data;
     }).error(function (error) {
         window.alert("FAIL: " + error);
     });
 
     $scope.Comentar = function() {
-
-        console.log($scope.newMessage);
-        $http.post('http://localhost:3000/messages/', $scope.newMessage)
+        fecha();
+        $http.post('http://147.83.7.201:3000/messages/', $scope.newMessage)
             .success(function(data) {
                 $scope.messages.push(data);
                 $scope.newMessage = {
@@ -92,6 +100,56 @@ function mainController($scope, $http) {
 
 }
 
+function evento(){
+    var color = tags[event_marker.idtag].color;
+
+    document.getElementById("A").innerHTML = tags[event_marker.idtag].nombre
+    $("#A").css("color",color);
+    document.getElementById("B").innerHTML = event_marker.eventname;
+
+    document.getElementById("description").innerHTML = event_marker.description;
+    document.getElementById("fecha").innerHTML = event_marker.date;
+    id= marker.id;
+}
+function leave(){
+    var leave =new Object();
+    leave.attendees = id_user;
+    var data = JSON.stringify(leave);
+    console.log(data);
+    $.ajax({
+        url: "http://147.83.7.201:3000/event/leave/"+id_event,
+        type: 'PUT',
+        crossDomain: true,
+        dataType: 'json',
+        data : data,
+        contentType: 'application/json',
+        success: function (data) {
+        },
+        error: function () {console.log("data");
+            window.location.href="home.html"
+
+        }
+    });
+
+}
+
+function fecha() {
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    d = new Date();
+    datetext = d.toTimeString();
+    datetext = datetext.split(' ')[0];
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    today = yyyy + '/' + mm + '/' + dd +" - "+ datetext ;
+    console.log(today);
+}
 function geoposition(){
     // Try HTML5 geolocation
     if(navigator.geolocation)

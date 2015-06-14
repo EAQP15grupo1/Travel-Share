@@ -47,9 +47,9 @@ function uploadPicture() {
     var server = "http://147.83.7.201:3000/user/avatar/" + window.localStorage.getItem("userID");
     var img = document.getElementById('myImage').src;
     var options = new FileUploadOptions();
-    options.fileKey = "avatar";
+    options.fileKey = "file";
     options.fileName = "patata";
-    options.httpMethod = "PUT";
+    options.httpMethod = "POST";
 
     var ft = new FileTransfer();
 

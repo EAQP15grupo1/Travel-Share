@@ -1,13 +1,22 @@
 angular.module('CalendarApp', [])
+var token=Cookies.get('token');
+if (token == null)
+{
+    window.location.href="index.html";
+}
+
 var id_event;
-id_event = "55634674f5dc43640900000d";
+id_event =Cookies.get('id_event');
 var id_user;
-id_user ="556324cff5dc436409000001";
+id_user = Cookies.get("id_user");
 var username;
-username = "prueba";
+username= Cookies.get("username");
+
+document.getElementById("img_perfil").src = "avatar/"+id_user;
+
 var eventos=[];
 var my_event=[];
-var formattedEventData
+var formattedEventData;
 var id;
 var tags = [{
     nombre: "sin filtro",
@@ -17,32 +26,33 @@ var tags = [{
     nombre: "Deporte",
     tag: "Deporte",
     id: 1,
-    color : "#dff0d8"
+    color : "lightgreen"
 },{
     nombre: "Música",
     tag: "Musica",
     id: 2,
-    color: "#d9edf7"
+    color: "lightskyblue"
 },{
     nombre: "Cultura",
     tag: "Cultura",
     id: 3,
-    color : "#fcf8e3"
+    color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
-    color: "#f2dede"
+    color: "palevioletred"
 }];
 
 function mainController($scope, $http) {
     //GET Event
     $scope.eventos = {};
     //Get Messages from event
-    $http.get('http://localhost:3000/events/calendario/'+id_user).success(function (data) {
+    $http.get('http://147.83.7.201:3000/events/calendario/'+id_user).success(function (data) {
 
         //Scope.Eventos(Eventos a la derecha de la web en forma de lista)
         $scope.eventos = data;
+        console.log(data);
         my_events = data;
         myevents();
     })
@@ -82,7 +92,7 @@ function calendar() {
                 Cookies.set('id_event',event.id);
                 Cookies.set('id_user',id_user);
                 Cookies.set('username',username);
-               // window.location(event.url);
+               window.location(event.url);
                 //window.open(event.url);
             }
         }

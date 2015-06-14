@@ -11,8 +11,8 @@ function messageController($scope, $http) {
 
         $scope.filteredTodos = []
             , $scope.currentPage = 1
-            , $scope.numPerPage = 3
-            , $scope.maxSize = 5;
+            , $scope.numPerPage = 5
+            , $scope.maxSize = 10;
 
         $scope.makeTodos = function () {
             $scope.todos = [];

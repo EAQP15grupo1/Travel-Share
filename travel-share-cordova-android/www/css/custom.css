@@ -1,14 +1,47 @@
 /* Aquí se pueden encontrar los estilos CSS que vamos aplicando a nuestra aplicación */
 
+.rcorners1 {
+    border-radius: 30px 10px;
+    border: 2px solid #FA6666;
+    background-color: white;
+    padding: 10px;
+    text-align: left;
+    margin: 5px;
+    clear: both;
+    float: left;
+}
+
+.rcorners2 {
+    border-radius: 10px 30px;
+    border: 2px solid #8AC007;
+    background-color: white;
+    padding: 10px;
+    text-align: right;
+    margin: 5px;
+    clear: both;
+    float: right;
+}
+
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #E5E5E5;
-    font-family: 'RobotoDraft', sans-serif;
 }
 
 body {
     font-family: sans-serif;
+}
+
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
+
+#panel {
+    top: 5px;
+    left: 50%;
+    z-index: 5;
+    padding: 5px;
 }
 
 core-scaffold {
@@ -30,31 +63,55 @@ core-scaffold::shadow core-toolbar {
     background-color: #03a9f4;
 }
 
+/*paper-fab {*/
+    /*position: absolute;*/
+    /*right: 20px;*/
+    /*bottom: 20px;*/
+    /*background-color: #526E9C;*/
+/*}*/
+
+paper-fab {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    background-color: #03a9f4;
+}
+
+paper-input.chat {
+    width: 100%;
+    margin-right: 20px;
+}
+
+paper-button.coloredSignIn[raised] {
+    background: none repeat scroll 0% 0% #8ADCEB;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
+paper-button.coloredSignUp[raised] {
+    background: none repeat scroll 0% 0% #BA97FF;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
 .wrapper {
     padding: 20px;
     text-align: center;
 }
 
-#core_toolbar {
-    color: rgb(255, 255, 255);
-    background-color: #03a9f4;
-}
-
-canvas {
-    margin: 10px;
-}
-
-paper-fab {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    background-color: #526E9C;
-
+.wrapperInputs {
+    padding: 20px;
+    text-align: left;
 }
 
 paper-input {
-    width: 90%;
-    margin-right: 20px;
+    width: 100%;
+}
+
+paper-input.dateInput {
+    width: 100px;
 }
 
 paper-button.coloredOK[raised] {
@@ -71,7 +128,191 @@ paper-button.coloredCancel[raised] {
     width: 120px;
 }
 
-/* Segundapga.html */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+}
+
+core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+core-toolbar {
+    background: #03a9f4;
+    color: white;
+}
+
+#tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-transform: uppercase;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+@media (min-width: 481px) {
+    #tabs {
+        width: 200px;
+    }
+
+    .container {
+        width: 400px;
+    }
+}
+
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
+
+#panel {
+    top: 5px;
+    left: 50%;
+    z-index: 5;
+    padding: 5px;
+}
+
+/* Event Detail */
+.content {
+    margin: 10px 5px 10px 5px;
+    padding: 15px;
+    border: 1px solid #dedede;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.textArea {
+    width: 90%;
+    padding: 5px;
+    margin: 5px;
+}
+
+paper-fab.join {
+    position: fixed;
+    right: 20px;
+    top: 180px;
+    background-color: #03a9f4;
+}
+
+paper-button.coloredPOST[raised] {
+    background: none repeat scroll 0% 0% #03a9f4;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
+.eventHeader {
+    background-color: #7FC7D7;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.eventContent {
+    height: 100px;
+    padding: 20px;
+    margin-right: 20px;
+    padding-bottom: 30px;
+    overflow: auto;
+}
+
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.box .row {
+    /*border: 1px dotted grey;*/
+    flex: 0 1 30px;
+}
+
+.box .row.header {
+    flex: 0 1 auto;
+    padding: 10px;
+}
+
+.box .row.content {
+    flex: 1 1 auto;
+    overflow: auto;
+    height: 200px;
+}
+
+.box .row.footer {
+    flex: 0 1 40px;
+}
+
+/* Find Events - SegundaPag */
+paper-button.colored[raised] {
+    background: none repeat scroll 0% 0% #CCCCFF;
+    color: #000000;
+    margin: 20px;
+    width: 120px;
+}
+
+#tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-transform: uppercase;
+}
+
+paper-toggle-button.sport::shadow [checked] .toggle {
+    background-color: #90EE90;
+}
+
+paper-toggle-button.music::shadow [checked] .toggle {
+    background-color: #87CEFA;
+}
+
+paper-toggle-button.job::shadow [checked] .toggle {
+    background-color: #DB7093;
+}
+
+paper-toggle-button.culture::shadow [checked] .toggle {
+    background-color: #FFFF00;
+}
+
+/* Login */
+paper-button.coloredSignIn[raised] {
+    background: none repeat scroll 0% 0% #8ADCEB;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
+paper-button.coloredSignUp[raised] {
+    background: none repeat scroll 0% 0% #BA97FF;
+    color: #000000;
+    margin: 5px;
+    width: 120px;
+}
+
+paper-button.coloredFb[raised] {
+    background: none repeat scroll 0% 0% dodgerblue;
+    color: #3B5998;
+    margin: 5px;
+    width: 80px;
+    height: 80px;
+    background-image: url(../img/facebook.png);
+    background-size: 80px 80px;
+}
+
 .heading {
     margin: 10px 5px 10px 5px;
     padding: 10px 15px;
@@ -93,65 +334,69 @@ paper-button.coloredCancel[raised] {
     border-bottom-right-radius: 5px;
 }
 
-.container {
-    width: 80%;
-    margin: 50px auto;
+/* Radar */
+canvas {
+    margin: 10px;
 }
 
-paper-toggle-button.sport [checked] .toggle {
-    background-color: #FFCC66;
-}
-
-paper-toggle-button.music [checked] .toggle {
-    background-color: #FFFF99;
-}
-
-paper-toggle-button.job [checked] .toggle {
-    background-color: #E4E4E4;
-}
-
-paper-toggle-button.culture [checked] .toggle {
-    background-color: #99CCFF;
-}
-
-.wrapper {
-    padding: 20px;
-    text-align: right;
-}
-
-paper-button.colored[raised] {
-    background: none repeat scroll 0% 0% #CCCCFF;
-    color: #000000;
-    margin: 20px;
-    width: 120px;
-}
-
-paper-fab {
-    position: fixed;
-    right: 40px;
-    bottom: 40px;
-    background-color: #03a9f4;
-}
-
-.rcorners1 {
-    border-radius: 30px 10px;
-    border: 2px solid #FA6666;
-    background-color: white;
-    padding: 10px;
+/* Radar Profile*/
+#core_card {
+    width: 96%;
+    height: 100%;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
     text-align: left;
-    margin: 5px;
-    clear:both;
-    float:left;
 }
 
-.rcorners2 {
+#user_card {
+    width: 75%;
+    height: 100%;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+    margin: 2%;
+    background-color: #E5E5E5;
+    text-align: left;
+}
 
-    border-radius: 10px 30px;
-    border: 2px solid #8AC007;
-    background-color: white;
-    padding: 10px;
-    text-align: right;
-    margin: 5px;
-    clear:both;
-    float:right;
+.informacion {
+    margin: 10px 5px 10px 5px;
+    height: 10%;
+    padding: 15px;
+    border: 1px solid #dedede;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.imagen {
+    height: 15%;
+    width: 100%;
+}
+
+.descripcion {
+    height: 35%;
+    width: 100%;
+}
+
+@media (min-width: 481px) {
+    #tabs {
+        width: 200px;
+    }
+    .container {
+        width: 400px;
+    }
+}
+
+/* Update Profile */
+#myImage {
+    height: 200px;
+    width: 200px;
 }

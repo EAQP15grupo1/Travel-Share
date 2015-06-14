@@ -1,7 +1,9 @@
 <!DOCTYPE html>
     <html>
     <head>
+        <link href='img/web_page_icon/icon_web.png' rel='shortcut icon' type='image/png'>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
     <meta charset="utf-8">
     <title>Displaying text directions with <code>setPanel()</code></title>
     <style>
@@ -38,6 +40,12 @@
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
         <script src="bower_components/js-cookie/src/js.cookie.js"></script>
     <script>
+        var token=Cookies.get('token');
+        if (token == null)
+        {
+            window.location.href="index.html";
+        }
+
         var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();
         var start_position= JSON.parse(Cookies.get('start_position'));

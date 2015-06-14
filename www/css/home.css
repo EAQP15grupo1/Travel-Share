@@ -27,6 +27,7 @@ html, body, #map-canvas {
     background-color: #ff4060;
 }
 
+/*Boton salir de info y nuevo evento*/
 .exit-button{
     top: 0px;
     right:0px;
@@ -43,18 +44,6 @@ html, body, #map-canvas {
     color: #000000;
 }
 
-
-
-
-/*Panel busqueda No incluye el imput y boton */
-#search {
-    position: absolute;
-    width: 470px;
-    height: 40px;
-    margin-left: 12px;
-    margin-top: 17px;
-    z-index: 5;
-}
 
 #my {
     position: absolute;
@@ -87,7 +76,7 @@ html, body, #map-canvas {
     width: 400px;
     height: auto;
     margin-left: 12px;
-    margin-top: 65px;
+    margin-top: 20px;
     z-index: 99;
     visibility: visible;
 }
@@ -98,7 +87,7 @@ html, body, #map-canvas {
     width: 400px;
     height: 400px;
     margin-left: 12px;
-    margin-top: 65px;
+    margin-top: 20px;
     z-index: 6;
     border-style: solid;
     background-color: #ffffff;
@@ -108,9 +97,9 @@ html, body, #map-canvas {
 #panel_new_event {
     position: absolute;
     width: 400px;
-    height: 550px;
+    height: 585px;
     margin-left: 12px;
-    margin-top: 65px;
+    margin-top: 20px;
     z-index: 6;
     border-style: solid;
     background-color: #ffffff;
@@ -135,40 +124,3 @@ html, body, #map-canvas {
 }
 
 
-/*Panel evento*/
-#panelevento {
-    position: absolute;
-    background-color: #fff;
-    width: 400px;
-    height: 400px;
-    height: auto;
-    margin-left: 12px;
-    margin-top: 65px;
-    border-color: #4d90fe;
-    z-index: 5;
-    padding: 11px 11px 11px 11px;
-}
-
-
-/* Botton seach
-#pac-input {
-    background-color: #fff;
-    font-family: Roboto;
-    width: 400px;
-    height: 40px;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-    margin-top: 12px;
-    padding: 11px 11px 11px 11px;
-    text-overflow: ellipsis;
-
-}
-/*Boton seach
-#pac-input:focus {
-    border-color: #4d90fe;
-}
-.pac-container {
-    font-family: Roboto;
-}
-*/
