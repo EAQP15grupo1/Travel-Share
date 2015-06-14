@@ -16,8 +16,6 @@ if (token == null)
 {
     window.location.href="index.html";
 }
-username = "123";
-username_id = "554c7d88c863dda837000002";
 
 document.getElementById("img_perfil").src = "avatar/"+username_id;
 
