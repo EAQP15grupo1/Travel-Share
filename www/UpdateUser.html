@@ -19,7 +19,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
-                <img  id="img_perfil"  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil_dummy/perfil1.png">
+                <img  id="img_perfil"  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil/logo.png">
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,12 +37,12 @@
 
 <div class="row">
 
-    <!--
+
     <div class="col-md-4">
-        <span class="label label-primary" style="float:left">Username:</span>
-        <input type="text" class="form-control" placeholder="userEA" aria-describedby="basic-addon1" ng-model="signUpInfo.username">
+        <span class="label label-primary" style="float:left">Name:</span>
+        <input type="text" class="form-control" placeholder="userEA" aria-describedby="basic-addon1" ng-model="signUpInfo.name">
     </div>
-    -->
+
 
 
     <div class="col-md-4 col-sm-offset-2">
@@ -278,16 +278,11 @@
 
 <br>
 
+
 <div class="row">
 
-    <!--
     <div class="col-md-4">
-        <span class="label label-success" style="float:left">Password:</span>
-        <input type="password" class="form-control" placeholder="contraseña" aria-describedby="basic-addon1" ng-model="signUpInfo.password">
-    </div>
-    -->
 
-    <div class="col-md-4 col-sm-offset-2">
         <span class="label label-success" style="float:left">Evento que busco*:</span>
 
         <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="signUpInfo.needs='Deporte'" ng-model="signUpInfo.needs" required>
@@ -303,23 +298,15 @@
             <option value="Fiesta">Fiesta</option>
 
         </select>
+        </div>
 
 
-    </div>
 
-</div>
 
-<br>
 
-<div class="row">
-    <!--
-    <div class="col-md-4">
-        <span class="label label-danger" style="float:left">Password:</span>
-        <input type="password" class="form-control" placeholder="repetir contraseña" aria-describedby="basic-addon1">
-    </div>
-    -->
 
-    <div class="col-md-4 col-sm-offset-2">
+
+        <div class="col-md-4" style="margin-left: 230px">
         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
         <input  type="text" class="form-control" ng-init="signUpInfo.offers='Deporte'" aria-describedby="basic-addon1" ng-model="signUpInfo.offers" required>
 
@@ -334,6 +321,7 @@
             <option value="Fiesta">Fiesta</option>
 
         </select>
+        </div>
 
     </div>
 

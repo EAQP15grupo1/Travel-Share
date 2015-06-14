@@ -10,13 +10,13 @@ angular
     .controller('AppController', ['$scope', 'FileUploader', function($scope, FileUploader) {
 
 
-        var userid=Cookies.get('userid');
+        var userId=Cookies.get('userId');
 
         console.log("userid en controller.js",userid);
 
 
         var uploader = $scope.uploader = new FileUploader({
-            url: 'http://147.83.7.201:3000/user/avatar/'+userid
+            url: 'http://147.83.7.201:3000/user/avatar/'+userId
         });
 
         // FILTERS
@@ -55,14 +55,14 @@ angular
         uploader.onErrorItem = function(fileItem, response, status, headers) {
             alert("An Error has occured");
             console.info('onErrorItem', fileItem, response, status, headers);
-            window.location.href='../home.html';
+            window.location.href='../index.html';
         };
         uploader.onCancelItem = function(fileItem, response, status, headers) {
             alert("Upload Canceled");
             console.info('onCancelItem', fileItem, response, status, headers);
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            alert("Upload Completed");
+            //alert("Upload Completed");
             console.info('onCompleteItem', fileItem, response, status, headers);
             window.location.href='../home.html';
         };

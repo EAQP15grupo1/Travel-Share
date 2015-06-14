@@ -1,6 +1,5 @@
 // Declare app level module which depends on views, and components
 var userid;
-//var isLocated=false;
 (function () {
 
     var obj = {};
@@ -32,17 +31,18 @@ var userid;
     app.controller('signUpController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
-        $scope.signUpInfo.isHide = false;
-        $scope.signUpInfo.isDisabled=true;
         $scope.signupUser = function () {
+
+
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
 
             var userInfo = new Object();
             userInfo.username = buffer.username;
+            user.Info.name=buffer.name;
             userInfo.email = buffer.email;
-            userInfo.nacionalidad = buffer.nacionalidad;
+            userInfo.nation = buffer.nacionalidad;
             userInfo.password = buffer.password;
             userInfo.idiomas = buffer.idiomas;
             userInfo.description = buffer.description;
@@ -136,7 +136,6 @@ var userid;
 
     app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
 
-        //document.getElementById("img_perfil").src = "avatar/" + id_user;
 
 
             var Urlactual=window.location;
@@ -165,30 +164,23 @@ var userid;
             Cookies.set('username',username[0]);
 
 
-
-           // window.location.href='UpdateUser.html';
-
-
-
-
-
-
         signupUser = function () {
 
             signUpInfo = {};
 
             buffer = signUpInfo;
-            window.alert('dentro de la function singupUser');
-            //var userId='5565eb90bec2562e17000001';
+
+
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
 
             var userInfo = new Object();
-            userInfo.username = buffer.username;
+            //userInfo.username = buffer.username;
+            userInfo.name=buffer.name;
             userInfo.email = buffer.email;
-            userInfo.nacionalidad = buffer.nacionalidad;
-            userInfo.password = buffer.password;
+            userInfo.nation = buffer.nacionalidad;
+            //userInfo.password = buffer.password;
             userInfo.idiomas = buffer.idiomas;
             userInfo.description = buffer.description;
             userInfo.needs = needsArray;
@@ -196,6 +188,7 @@ var userid;
             console.log(userInfo);
 
               var userId=Cookies.get('userId')
+
             var res = $http.put('http://147.83.7.201:3000/user/'+userId, userInfo);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
@@ -203,10 +196,7 @@ var userid;
                     //window.location.reload();
                 }
                 else {
-                    alert("Usuario creado");
-                    userid=data;
-                    $log.debug("valor del userid",userid);
-                    Cookies.set('userid', data);
+                    Cookies.set('userId', data);
                     window.location.href="image-preview/upload.html";
                 }
 
@@ -218,26 +208,4 @@ var userid;
         };
 
     }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })();
