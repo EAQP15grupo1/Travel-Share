@@ -133,15 +133,33 @@ var userid;
 
 
 
-    /*app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
+    app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
 
         //document.getElementById("img_perfil").src = "avatar/" + id_user;
         var Urlactual=window.location;
+
+
         $log.debug('Url actual con parametros',Urlactual);
 
-        var userData=Urlactual.split("?");
+        $log.debug('Url.href',Urlactual.href);
+
+        var userData=Urlactual.href.split("?");
 
         $log.debug('userData value',userData);
+
+
+        var username=userData[3].split("@");
+
+        $log.debug('token',userData[1]);
+        $log.debug('userId',userData[2]);
+        $log.debug('username',username[0]);
+
+
+        var userId=userData[2];
+
+        Cookies.set('token',userData[1]);
+        Cookies.set('userId',userData[2]);
+        Cookies.set('username',username[0]);
 
 
 
@@ -200,7 +218,7 @@ var userid;
 
         };
 
-    }]);*/
+    }]);
 
 
 
