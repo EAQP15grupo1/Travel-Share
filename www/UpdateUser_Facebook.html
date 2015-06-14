@@ -268,7 +268,7 @@
             <option value="Chino">     中文          </option>
         </select>
 
-        <input  disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="UpdateInfo.idiomas">
+        <input  disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="UpdateInfo_Facebook.idiomas">
 
     </div>
 
@@ -284,7 +284,7 @@
         <span class="label label-success" style="float:left">Evento que busco*:</span>
         <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="UpdateInfo_Facebook.needs='Deporte'" ng-model="UpdateInfo_Facebook.needs" required>
 
-        <select multiple ng-model="UpdateInfo.needs" required style="width: 170px">
+        <select multiple ng-model="UpdateInfo_Facebook.needs" required style="width: 170px">
 
             <option value="Deporte">Deporte</option>
 
@@ -302,7 +302,7 @@
         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
         <input  type="text" class="form-control" ng-init="UpdateInfo_Facebook.offers='Deporte'" aria-describedby="basic-addon1" ng-model="UpdateInfo_Facebook.offers" required>
 
-        <select multiple ng-model="UpdateInfo.offers" required style="width: 170px">
+        <select multiple ng-model="UpdateInfo_Facebook.offers" required style="width: 170px">
 
             <option value="Deporte">Deporte</option>
 
