@@ -22,7 +22,6 @@ module.exports = function (app) {
         Message.find({"eventid": req.body.eventid}, function (err, mesage) {
             if (!err) {
                 var contador = mesage.length;
-                console.log(contador);
                 if (contador >= 0) {
                     var message = new Message({
                         id: contador + 1,

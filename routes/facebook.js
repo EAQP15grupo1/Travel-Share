@@ -17,9 +17,6 @@ module.exports = function (app, passport) {
         function (accessToken, refreshToken, profile, done) {
             // asynchronous verification, for effect...
             process.nextTick(function () {
-                //console.log(profile);
-                //console.log("nombre es este!!!!!!!!" + profile.displayName);
-
                 // To keep the example simple, the user's Facebook profile is returned to
                 // represent the logged-in user.  In a typical application, you would want
                 // to associate the Facebook account with a user record in your database,
@@ -33,8 +30,6 @@ module.exports = function (app, passport) {
 
 
     app.get('/facebook', passport.authenticate('facebook'), function (req, res) {
-
-        console.log("paquito" + res.user);
         // The request will be redirected to Facebook for authentication, so this
         // function will not be called.
     });
@@ -47,10 +42,6 @@ module.exports = function (app, passport) {
     app.get('/facebook/callback',
         passport.authenticate('facebook', {session: false, failureRedirect: '/login'}),
         function (req, res) {
-            console.log("Hola " + req.user.displayName);
-
-            //res.redirect("updateProfile.html");
-
             var UnameF = (req.user.id + "@facebook");
             var nameF = (req.user.displayName);
             User.findOne({username: UnameF}, function (err, user) {
@@ -81,17 +72,12 @@ module.exports = function (app, passport) {
                 else {
                     User.findOne({username: UnameF}, function (err, user) {
                         var token = generateToken(user);
-                        //res.json({
-                        //    token: token,
-                        //    userId: user._id
-                        //    //username:user.username
-                        //});
-                        res.redirect('http://147.83.7.201/home.html?' + token + '?' + user._id + '?' + user.username);
+                        res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username);
                     })
                 }
 
             })
-            //res.redirect('/');
+
         }
     );
 }

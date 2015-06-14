@@ -97,7 +97,10 @@ function update() {
         elementu.content = contentu;
         var data = JSON.stringify(elementu);
         console.log(elementu)
+
         var url = "http://147.83.7.201:3000/backoffice/message/" + elementu._id;
+        console.log(url);
+
         $.ajax({
             url: url,
             type: 'PUT',
@@ -155,12 +158,13 @@ function get() {
             console.log(data);
             if (order == 0) {
                 for (i = data.length - 1; i >= 0; i--) {
-                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].username + '</h2><strong> Comentario: </strong> ' + data[i].content + '<br><strong> Evento_id: </strong> ' + data[i].eventid + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button><br><br></div><br>').appendTo($('#getlist'));
+                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].username + '</h2><strong> Comentario: </strong> ' + data[i].content + '<br><strong> Evento_id: </strong> ' + data[i].eventid + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><br><br></div><br>').appendTo($('#getlist'));
+                //<paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button>
                 }
             }
             else {
                 for (i = 0; i < data.length; i++) {
-                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].username + '</h2><strong> Comentario: </strong> ' + data[i].content + '<br><strong> Evento: </strong> ' + data[i].eventid + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><paper-button id=' + data[i]._id + ' class="colored" style="background-color:#ffcf24" raised="true" role="button" onclick="get_id(id)">UPDATE</paper-button><br><br></div><br>').appendTo($('#getlist'));
+                    $('<div  style="border:solid;border-color:#DDDDDD;box-shadow: 5px 5px 5px #e2d9d4"><h2> ' + data[i].username + '</h2><strong> Comentario: </strong> ' + data[i].content + '<br><strong> Evento: </strong> ' + data[i].eventid + '</h2><strong> Date: </strong> ' + data[i].fecha + '<br><br><paper-button id=' + data[i]._id + ' class="coloredDelete" raised="true" role="button" onclick="delete_id(id)">DELETE</paper-button><br><br></div><br>').appendTo($('#getlist'));
                 }
             }
         },

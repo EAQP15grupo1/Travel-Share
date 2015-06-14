@@ -201,7 +201,10 @@ module.exports = function (app) {
 
     //Get de user por id
     findByUsername = function (req, res) {
-        User.findOne({"username": req.params.username}, function (err, user) {
+        var usuario = "username:" + req.params._id;
+        console.log("hola");
+
+        User.findOne(usuario, function (err, user) {
             if (!err) {
                 res.send(user);
             }
@@ -211,30 +214,6 @@ module.exports = function (app) {
         });
     }
 
-    //// Autenticación Facebook
-
-    //
-    //    function (accessToken, refreshToken, profile, done) {
-    //        var nameF = profile.id + "@facebook";
-    //        User.findOne({username: nameF}, function (err, user) {
-    //            if (!user) {
-    //                var user = new User({
-    //                    name: profile.name,
-    //                    username: nameF
-    //                });
-    //                user.save(function (err) {
-    //                    if (!err) {
-    //                        console.log('User added');
-    //                    }
-    //                    else {
-    //                        console.log('ERROR', +err);
-    //                    }
-    //                })
-    //            }
-    //            return done(err, user);
-    //        })
-    //    }
-    //));
 
 //funcion que comprueba el token
 
@@ -305,12 +284,10 @@ module.exports = function (app) {
 
                                     usuarios.push(usuario);
                                     console.log(JSON.stringify(usuarios));
-                                } else {
-                                    res.send("eres tu")
                                 }
                             }
                         }
-                        res.json(usuarios);
+                        res.status(200).json(usuarios);
                     }
                 });
             }
@@ -325,17 +302,13 @@ module.exports = function (app) {
     var fs = require('fs');
 
     addImages = function (req, res) {
-        //console.log(req.files)
-
-        console.log(req.files.file);
         req.files.file.name = req.params._id + '.jpg';
-        // var foto = req.files.avatar.name;
 
         var tmp_path = req.files.file.path;
-        console.log(tmp_path);
+
         // Ruta donde colocaremos las imagenes
         var target_path = './www/avatar/' + req.files.file.name;
-        console.log(target_path);
+
         // Comprobamos que el fichero es de tipo imagen
         if (req.files.file.type.indexOf('image') == -1) {
             res.send('El fichero que deseas subir no es una imagen');
@@ -351,12 +324,10 @@ module.exports = function (app) {
 
                     User.findOneAndUpdate({"_id": req.params._id}, req.body, function (err, user) {
 
-                        //console.log(user._id);
-                        //console.log(foto);
                         if (!err) {
                             var nom = user._id;
                             user.avatar = nom;
-                            //console.log(user.avatar + 'pjflsa');
+
                             user.save(function (err) {
                                 if (!err) {
                                     console.log('Updated');
@@ -387,7 +358,7 @@ module.exports = function (app) {
     app.put('/user/chat/:_id', updateUserChat);
     app.delete('/user/:_id', deleteUser);
     app.post('/login', loginUser);
-    app.get('/user/username/:username', findByUsername);
+    app.get('/user/username/:_id', findByUsername);
     app.get('/users/find/:_id', findUsersOffersPlace);
     app.post('/user/avatar/:_id', addImages);
 

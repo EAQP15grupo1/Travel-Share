@@ -22,7 +22,7 @@ var geocoder;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
-//document.getElementById("img_perfil").src = "avatar/" + id_user;
+document.getElementById("img_perfil").src = "avatar/" + id_user;
 
 
 var tags = [{
