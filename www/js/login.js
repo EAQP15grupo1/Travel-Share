@@ -31,6 +31,9 @@ var id;
     app.controller('signUpController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
+
+
+
         $scope.signupUser = function () {
 
 
@@ -163,14 +166,14 @@ var id;
             Cookies.set('userId',userData[2]);
             Cookies.set('username',username[0]);
 
+        $scope.UpdateInfo = {};
+        buffer = $scope.UpdateInfo;
+
+
 
         signupUser = function () {
 
-            $scope.UpdateInfo = {};
-
-            buffer = $scope.UpdateInfo;
-
-
+            
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
