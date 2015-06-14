@@ -68,12 +68,12 @@ module.exports = function (app, passport) {
                     //    //username:user.username
                     //});
                     var token = generateToken(user);
-                    res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username+'?'+user.name);
+                    res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username);
                 }
                 else {
                     User.findOne({username: UnameF}, function (err, user) {
                         var token = generateToken(user);
-                        res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username+'?'+user.name);
+                        res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username);
                     })
                 }
 
