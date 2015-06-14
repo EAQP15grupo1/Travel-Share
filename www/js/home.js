@@ -16,8 +16,6 @@ if (token == null)
     window.location.href="index.html";
 }
 
-document.getElementById("img_perfil").src = "avatar/"+username_id;
-
 
 var tags = [{
     nombre: "sin filtro",

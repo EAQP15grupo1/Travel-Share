@@ -12,7 +12,6 @@ id_user = Cookies.get("id_user");
 var username;
 username= Cookies.get("username");
 
-document.getElementById("img_perfil").src = "avatar/"+id_user;
 
 var eventos=[];
 var my_event=[];
@@ -28,7 +27,7 @@ var tags = [{
     id: 1,
     color : "lightgreen"
 },{
-    nombre: "Música",
+    nombre: "Mï¿½sica",
     tag: "Musica",
     id: 2,
     color: "lightskyblue"
