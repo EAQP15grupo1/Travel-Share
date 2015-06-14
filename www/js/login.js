@@ -28,7 +28,7 @@ var id;
 
     });
 
-    app.controller('signUpController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
+    app.controller('signUpController', ['$http', '$log', '$scope', function ($http, $log, $scope) {
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
 
@@ -137,11 +137,12 @@ var id;
 
 
 
-    app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
+    app.controller('UpdateController', ['$http', '$log', '$scope','$window', function ($http, $log, $scope,$window) {
 
+            $scope.UpdateInfo = {};
+            buffer = $scope.UpdateInfo;
 
-
-            var Urlactual=window.location;
+            var Urlactual=$window.location;
 
 
             $log.debug('Url actual con parametros',Urlactual);
@@ -166,13 +167,11 @@ var id;
             Cookies.set('userId',userData[2]);
             Cookies.set('username',username[0]);
 
-        $scope.UpdateInfo = {};
-        buffer = $scope.UpdateInfo;
 
 
+        $scope.updateUser = function () {
 
-        signupUser = function () {
-
+            $window.alert('dentro de la function');
 
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
