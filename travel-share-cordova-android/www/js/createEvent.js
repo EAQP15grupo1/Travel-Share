@@ -22,6 +22,7 @@ $("#createBtn").click(function () {
     event.eventname = eventName;
     event.tag = eventTag;
     event.date = eventDate;
+    event.description = eventDescription;
     event.owner = window.localStorage.getItem("userID");
     event.place = place;
     var data = JSON.stringify(event);
