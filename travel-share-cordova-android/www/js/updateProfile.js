@@ -2,11 +2,8 @@ window.onload = onDeviceReady();
 
 function loadAvatar() {
 
-<<<<<<< HEAD
     document.getElementById("myImage").src="http://147.83.7.201/avatar/"+window.localStorage.getItem("userID")+".jpg";
-=======
-    document.getElementById("myImage").src = "http://10.89.54.173/avatar/" + window.localStorage.getItem("userID") + ".jpg";
->>>>>>> 2c7ba1532f497b68b5cd9a622a5db83f2365a153
+
 }
 
 function onDeviceReady() {
