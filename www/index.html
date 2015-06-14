@@ -28,7 +28,7 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="container" ng-controller="signUpController" as signUpCtrl>
+<div class="container" ng-controller="signUpController" as signUpCtrl  ng-app="fileUpload" ng-controller="MyCtrl">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -83,7 +83,17 @@
                                    bs-modal="modal">
                                     Sign Up Here
                                 </a>
+
+
+
+                                <!--
+                                <a href="image-preview/upload.html">Upload a profile picture</a>
+                                -->
+
+                                    </div>
+                                </div>
                             </div>
+                         </form>
                         </div>
                     </div>
                 </form>
@@ -188,6 +198,5 @@
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 <script src="bower_components/js-cookie/src/js.cookie.js"></script>
 <script src="js/login.js"></script>
-<script src="js/ng-flow-standalone.js"></script>
 </body>
 </html>
