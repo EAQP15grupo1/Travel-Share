@@ -82,10 +82,6 @@
 
                     window.location.href="image-preview/upload.html";
 
-
-
-
-
                 }
 
             });
