@@ -137,10 +137,10 @@ var id;
 
 
 
-    app.controller('UpdateController', ['$http', '$log', '$scope','$window', function ($http, $log, $scope,$window) {
+    app.controller('UpdateController_Facebook', ['$http', '$log', '$scope','$window', function ($http, $log, $scope,$window) {
 
-            $scope.UpdateInfo = {};
-            buffer = $scope.UpdateInfo;
+            $scope.UpdateInfo_Facebook = {};
+            buffer = $scope.UpdateInfo_Facebook;
 
             var Urlactual=$window.location;
 
@@ -168,6 +168,62 @@ var id;
             Cookies.set('username',username[0]);
 
 
+
+        $scope.updateUser_Facebook = function () {
+
+
+
+            var needsArray = buffer.needs;
+            var offersArray = buffer.offers;
+
+
+            var UpdateInfo_Facebook = new Object();
+
+            UpdateInfo_Facebook.name=buffer.name;
+            UpdateInfo_Facebook.email = buffer.email;
+            UpdateInfo_Facebook.nation = buffer.nacionalidad;
+            UpdateInfo_Facebook.idiomas = buffer.idiomas;
+            UpdateInfo_Facebook.description = buffer.description;
+            UpdateInfo_Facebook.needs = needsArray;
+            UpdateInfo_Facebook.offers = offersArray;
+
+            console.log(UpdateInfo_Facebook);
+
+            id=Cookies.get('userId');
+            console.log("userId cookie",id)
+            Cookies.set('userId',id);
+
+            var res = $http.put('http://147.83.7.201:3000/user/'+id, UpdateInfo_Facebook);
+            res.success(function (data) {
+                if (data == "Usuario existe!") {
+                    //alert("Usuario ya existe");
+                    //window.location.reload();
+                }
+                else
+                {
+                    //alert("User Updated");
+                    window.location.href="image-preview/upload.html";
+                }
+
+            });
+            res.error(function (error) {
+                alert("An error has occured");
+            });
+
+        };
+
+    }]);
+
+
+
+    app.controller('UpdateController', ['$http', '$log', '$scope','$window', function ($http, $log, $scope,$window) {
+
+        $scope.UpdateInfo = {};
+        buffer = $scope.UpdateInfo;
+
+
+
+        var id=Cookies.get('userId');
 
         $scope.updateUser = function () {
 
@@ -214,4 +270,14 @@ var id;
         };
 
     }]);
+
+
+
+
+
+
+
+
+
+
 })();

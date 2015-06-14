@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="loginApp" ng-controller="UpdateController" as updateCtrl>
+<html ng-app="loginApp" ng-controller="UpdateController_Facebook" as updateCtrl_F>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Modify the User profile</title>
@@ -40,9 +40,9 @@
 <div class="row">
     <div class="col-md-4">
         <span class="label label-primary" style="float:left">Name:</span>
-        <input type="text" class="form-control" placeholder="Pepe" aria-describedby="basic-addon1" ng-model="UpdateInfo.name">
+        <input type="text" class="form-control" placeholder="Pepe" aria-describedby="basic-addon1" ng-model="UpdateInfo_Facebook.name">
         <p>
-            {{UpdateInfo.name}}
+            {{UpdateInfo_Facebook.name}}
         </p>
 
     </div>
@@ -50,7 +50,7 @@
 
     <div class="col-md-4 col-sm-offset-2">
 
-        <select name="nationality" ng-model="UpdateInfo.nacionalidad" ng-init="UpdateInfo.nacionalidad='spanish'">
+        <select name="nationality" ng-model="UpdateInfo_Facebook.nacionalidad" ng-init="UpdateInfo_Facebook.nacionalidad='spanish'">
             <option value="">-- select one --</option>
             <option value="afghan">Afghan</option>
             <option value="albanian">Albanian</option>
@@ -246,7 +246,7 @@
             <option value="zimbabwean">Zimbabwean</option>
         </select>
 
-        <input disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="UpdateInfo.nacionalidad">
+        <input disabled type="text" class="form-control" placeholder="Español" aria-describedby="basic-addon1" ng-model="UpdateInfo_Facebook.nacionalidad">
 
     </div>
 </div>
@@ -256,14 +256,14 @@
 <div class="row">
     <div class="col-md-4">
         <span class="label label-warning" style="float:left">Email:</span>
-        <input class="form-control"  type="email" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="UpdateInfo.email" required>
+        <input class="form-control"  type="email" placeholder="userEA@example.com" aria-describedby="basic-addon1" ng-model="UpdateInfo_Facebook.email" required>
     </div>
 
 
 
     <div class="col-md-4 col-sm-offset-2">
 
-        <select name="nationality" ng-model="UpdateInfo.idiomas" ng-init="UpdateInfo.idiomas='Español'" style="width: 170px">
+        <select name="nationality" ng-model="UpdateInfo_Facebook.idiomas" ng-init="UpdateInfo_Facebook.idiomas='Español'" style="width: 170px">
             <option value="">-- select one --</option>
             <option value="English">  English    </option>
             <option value="Español">  Español    </option>
@@ -285,7 +285,7 @@
 
     <div class="col-md-4 col-sm-offset-2" style="margin-left: 3px">
         <span class="label label-success" style="float:left">Evento que busco*:</span>
-        <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="UpdateInfo.needs='Deporte'" ng-model="UpdateInfo.needs" required>
+        <input  type="text" class="form-control" aria-describedby="basic-addon1" ng-init="UpdateInfo_Facebook.needs='Deporte'" ng-model="UpdateInfo_Facebook.needs" required>
 
         <select multiple ng-model="UpdateInfo.needs" required style="width: 170px">
 
@@ -303,7 +303,7 @@
 
     <div class="col-md-4 col-sm-offset-2">
         <span class="label label-danger" style="float:left">Evento que ofrezco*:</span>
-        <input  type="text" class="form-control" ng-init="signUpInfo.offers='Deporte'" aria-describedby="basic-addon1" ng-model="UpdateInfo.offers" required>
+        <input  type="text" class="form-control" ng-init="UpdateInfo_Facebook.offers='Deporte'" aria-describedby="basic-addon1" ng-model="UpdateInfo_Facebook.offers" required>
 
         <select multiple ng-model="UpdateInfo.offers" required style="width: 170px">
 
@@ -325,7 +325,7 @@
 <div class="row">
     <div class="col-lg-10">
         <span class="label label-info" style="margin-right:480px ">Descripcion:</span>
-        <textarea class="form-control" rows="3" style="margin-left: 1px" ng-model="UpdateInfo.description"></textarea>
+        <textarea class="form-control" rows="3" style="margin-left: 1px" ng-model="UpdateInfo_Facebook.description"></textarea>
     </div>
 
 </div>
@@ -335,7 +335,7 @@
 
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="updateUser()">Save changes</button>
+    <button type="button" class="btn btn-primary" ng-click="updateUser_Facebook()">Save changes</button>
 
 
 </div>
