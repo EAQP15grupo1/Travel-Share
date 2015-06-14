@@ -14,9 +14,13 @@
 
         //document.getElementById("img_perfil").src = "avatar/" + id_user;
         var Urlactual=window.location;
+
+
         $log.debug('Url actual con parametros',Urlactual);
 
-        var userData=Urlactual.split("?");
+        $log.debug('Url.href',Urlactual.href);
+
+        var userData=Urlactual.href.split("?");
 
         $log.debug('userData value',userData);
 
