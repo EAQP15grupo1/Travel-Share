@@ -173,7 +173,7 @@ var id;
 
         signupUser = function () {
 
-            
+
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
@@ -189,13 +189,13 @@ var id;
             UpdateInfo.needs = needsArray;
             UpdateInfo.offers = offersArray;
 
-            console.log(userInfo);
+            console.log(UpdateInfo);
 
             id=Cookies.get('userId');
             console.log("userId cookie",id)
             Cookies.set('userId',id);
 
-            var res = $http.put('http://147.83.7.201:3000/user/'+id, userInfo);
+            var res = $http.put('http://147.83.7.201:3000/user/'+id, UpdateInfo);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
                     //alert("Usuario ya existe");
