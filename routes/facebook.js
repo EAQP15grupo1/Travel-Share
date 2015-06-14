@@ -61,13 +61,14 @@ module.exports = function (app, passport) {
                             console.log('ERROR', +err);
                         }
                     })
+                    //var token = generateToken(user);
+                    //res.json({
+                    //    token: token,
+                    //    userId: user._id
+                    //    //username:user.username
+                    //});
                     var token = generateToken(user);
-                    res.json({
-                        token: token,
-                        userId: user._id
-                        //username:user.username
-                    });
-
+                    res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username);
                 }
                 else {
                     User.findOne({username: UnameF}, function (err, user) {
