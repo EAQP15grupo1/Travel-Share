@@ -12,7 +12,7 @@ angular
 
         var userId=Cookies.get('userId');
 
-        console.log("userid en controller.js",userid);
+        console.log("userid en controller.js",userId);
 
 
         var uploader = $scope.uploader = new FileUploader({
