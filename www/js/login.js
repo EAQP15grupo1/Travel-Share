@@ -65,7 +65,7 @@ var id;
                 }
                 else {
 
-                    alert("Usuario creado");
+                    //alert("Usuario creado");
 
                     userid=data;
                     $log.debug("valor del userid",userid);
@@ -74,10 +74,7 @@ var id;
 
                     window.location.href="image-preview/upload.html";
 
-
-
-
-
+                    
                 }
 
             });
@@ -154,7 +151,7 @@ var id;
             $log.debug('userData value',userData);
 
 
-            var username=userData[3].split("@");
+            var username=userData[3].split("#");
 
             $log.debug('token',userData[1]);
             $log.debug('userId',userData[2]);
