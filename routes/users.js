@@ -204,7 +204,7 @@ module.exports = function (app) {
         var usuario = "username:" + req.params._id;
         console.log("hola");
 
-        User.findOne( usuario , function (err, user) {
+        User.findOne(usuario, function (err, user) {
             if (!err) {
                 res.send(user);
             }

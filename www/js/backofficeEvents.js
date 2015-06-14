@@ -2,15 +2,11 @@ angular.module('MainApp', [])
 
 function mainController($scope, $http, $filter) {
     var orderBy = $filter('orderBy');
-    $scope.newEvent = {};
-    $scope.events = {};
+    //$scope.newEvent = {};
+    $scope.routes = {};
     $scope.selected = false;
-    $scope.order =function(predicate,reverse){
-        $scope.events = orderBy($scope.events,predicate,reverse);
-    }
-    $scope.order('-date',false);
 
-    //GET LISTA
+    //GET LISTA RUTAS EN CONCURSO
     $http.get('http://147.83.7.201:3000/events/').success(function(data) {
         $scope.events = data;
         console.log(data);
