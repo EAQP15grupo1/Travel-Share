@@ -1,5 +1,5 @@
 // Declare app level module which depends on views, and components
-var userid;
+var id;
 (function () {
 
     var obj = {};
@@ -187,9 +187,11 @@ var userid;
             userInfo.offers = offersArray;
             console.log(userInfo);
 
-              var userId=Cookies.get('userId')
+            id=Cookies.get('userId');
+            console.log("userId cookie",id)
+            Cookies.set('userId',id);
 
-            var res = $http.put('http://147.83.7.201:3000/user/'+userId, userInfo);
+            var res = $http.put('http://147.83.7.201:3000/user/'+id, userInfo);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
                     //alert("Usuario ya existe");
@@ -197,7 +199,6 @@ var userid;
                 }
                 else {
 
-                    Cookies.set('userId', data);
                     window.location.href="image-preview/upload.html";
                 }
 

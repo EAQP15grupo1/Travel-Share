@@ -10,13 +10,13 @@ angular
     .controller('AppController', ['$scope', 'FileUploader', function($scope, FileUploader) {
 
 
-        var userId=Cookies.get('userId');
+        var id=Cookies.get('userId');
 
-        console.log("userid en controller.js",userId);
+        console.log("userid en controller.js",id);
 
 
         var uploader = $scope.uploader = new FileUploader({
-            url: 'http://147.83.7.201:3000/user/avatar/'+userId
+            url: 'http://147.83.7.201:3000/user/avatar/'+id
         });
 
         // FILTERS
