@@ -15,5 +15,6 @@ function exitpanel(){
     document.getElementById("panel_tag").style.visibility = 'visible';
     document.getElementById("panel_info").style.visibility = 'hidden';
     document.getElementById("panel_new_event").style.visibility = 'hidden';
+    document.getElementById("buttonjoin").style.visibility = 'hidden';
 }
 

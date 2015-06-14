@@ -1,14 +1,11 @@
 angular.module('MainApp', [])
 var token = Cookies.get('token');
 var id_event;
-//id_event = "5566bf1433bb78cc32000002";
 id_event = Cookies.get('id_event');
 var id_user;
-//id_user ="5565d7c38c3ec1500e000004";
-id_user = Cookies.get("id_user");
+id_user = Cookies.get("userId");
 var username;
 username = Cookies.get("username");
-//username = "victor";
 if (token == null) {
     window.location.href = "index.html";
 }

@@ -115,7 +115,7 @@ function exitpanel2(){
     document.getElementById("panel_info").style.visibility = 'hidden';
     document.getElementById("panel_new_event").style.visibility = 'hidden';
     document.getElementById("new_event_button").style.visibility = 'visible';
-
+    document.getElementById("buttonjoin").style.visibility = 'hidden';
     setAllMap(map,filter);
     $("#new_eventname").val("");
     $("#new_description").val("");
@@ -345,15 +345,10 @@ function join(){
         contentType: 'application/json',
         data: data,
         success: function (x) {
-            Cookies.set('id_event',id);
-            Cookies.set('id_user',username_id);
-            Cookies.set('username',username);
         },
         error: function (x) {
             exitpanel();
             Cookies.set('id_event',id);
-            Cookies.set('id_user',username_id);
-            Cookies.set('username',username);
             window.location.href="event.html";
         }
     });

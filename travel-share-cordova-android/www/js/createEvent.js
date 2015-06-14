@@ -18,6 +18,7 @@ $("#createBtn").click(function () {
     event.eventname = eventName;
     event.tag = eventTag;
     event.date = eventDate;
+    event.owner = window.localStorage.getItem("userID");
     var data = JSON.stringify(event);
 
     $.ajax({
@@ -46,7 +47,7 @@ $('#datetimepicker').datetimepicker({
     lang: 'es',
     minDate: '0',
     onSelectDate: function (ct, $i) {
-        $("#date").val(ct.dateFormat('Y/m/d H:i'))
+        $("#date").val(ct.dateFormat('Y-m-d H:i'))
     }
 });
 
