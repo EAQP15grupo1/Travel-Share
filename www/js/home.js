@@ -345,15 +345,10 @@ function join(){
         contentType: 'application/json',
         data: data,
         success: function (x) {
-            Cookies.set('id_event',id);
-            Cookies.set('id_user',username_id);
-            Cookies.set('username',username);
         },
         error: function (x) {
             exitpanel();
             Cookies.set('id_event',id);
-            Cookies.set('id_user',username_id);
-            Cookies.set('username',username);
             window.location.href="event.html";
         }
     });

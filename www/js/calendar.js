@@ -4,11 +4,9 @@ if (token == null)
 {
     window.location.href="index.html";
 }
-
 var id_event;
-id_event =Cookies.get('id_event');
 var id_user;
-id_user = Cookies.get("id_user");
+id_user = Cookies.get("userId");
 var username;
 username= Cookies.get("username");
 
@@ -89,8 +87,6 @@ function calendar() {
         eventClick: function(event) {
             if (event.url) {
                 Cookies.set('id_event',event.id);
-                Cookies.set('id_user',id_user);
-                Cookies.set('username',username);
                window.location(event.url);
                 //window.open(event.url);
             }
