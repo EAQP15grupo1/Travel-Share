@@ -166,25 +166,25 @@ var id;
 
         signupUser = function () {
 
-            UpdateInfo = {};
+            $scope.UpdateInfo = {};
 
-            buffer = UpdateInfo;
+            buffer = $scope.UpdateInfo;
 
 
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
 
-            var userInfo = new Object();
+            var UpdateInfo = new Object();
             //userInfo.username = buffer.username;
-            userInfo.name=buffer.name;
-            userInfo.email = buffer.email;
-            userInfo.nation = buffer.nacionalidad;
+            UpdateInfo.name=buffer.name;
+            UpdateInfo.email = buffer.email;
+            UpdateInfo.nation = buffer.nacionalidad;
             //userInfo.password = buffer.password;
-            userInfo.idiomas = buffer.idiomas;
-            userInfo.description = buffer.description;
-            userInfo.needs = needsArray;
-            userInfo.offers = offersArray;
+            UpdateInfo.idiomas = buffer.idiomas;
+            UpdateInfo.description = buffer.description;
+            UpdateInfo.needs = needsArray;
+            UpdateInfo.offers = offersArray;
 
             console.log(userInfo);
 
@@ -200,8 +200,8 @@ var id;
                 }
                 else
                 {
-                    alert("User Updated");
-                    window.location.href="image-preview/upload.html";
+                    //alert("User Updated");
+                    //window.location.href="image-preview/upload.html";
                 }
 
             });
