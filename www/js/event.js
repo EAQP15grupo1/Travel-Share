@@ -1,17 +1,16 @@
 angular.module('MainApp', [])
-var token=Cookies.get('token');
+var token = Cookies.get('token');
 var id_event;
-//id_event = "55634674f5dc43640900000d";
-id_event =Cookies.get('id_event');
+//id_event = "5566bf1433bb78cc32000002";
+id_event = Cookies.get('id_event');
 var id_user;
-//id_user ="556324cff5dc436409000001";
+//id_user ="5565d7c38c3ec1500e000004";
 id_user = Cookies.get("id_user");
 var username;
-username= Cookies.get("username");
-//username = "prueba";
-if (token == null)
-{
-    window.location.href="index.html";
+username = Cookies.get("username");
+//username = "victor";
+if (token == null) {
+    window.location.href = "index.html";
 }
 
 var map;
@@ -23,29 +22,29 @@ var geocoder;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
-document.getElementById("img_perfil").src = "avatar/"+id_user;
+//document.getElementById("img_perfil").src = "avatar/" + id_user;
 
 
 var tags = [{
     nombre: "sin filtro",
     id: 0,
-    color : "white"
-},{
+    color: "white"
+}, {
     nombre: "Deporte",
     tag: "Deporte",
     id: 1,
-    color : "lightgreen"
-},{
+    color: "lightgreen"
+}, {
     nombre: "Música",
     tag: "Musica",
     id: 2,
     color: "lightskyblue"
-},{
+}, {
     nombre: "Cultura",
     tag: "Cultura",
     id: 3,
-    color : "yellow"
-},{
+    color: "yellow"
+}, {
     nombre: "Trabajo",
     tag: "Trabajo",
     id: 4,
@@ -55,35 +54,39 @@ var tags = [{
 function mainController($scope, $http) {
     $scope.messages = {};
     //GET Event
-    $http.get('http://147.83.7.201:3000/event/'+id_event).success(function(data) {
+    $http.get('http://147.83.7.201:3000/event/' + id_event).success(function (data) {
         console.log(data);
-        event_marker=data;
+        event_marker = data;
         geocoder = new google.maps.Geocoder();
         evento();
         marker();
         geoposition();
     })
-        .error(function(data) {
+        .error(function (data) {
             console.log('Error: ' + data);
         });
 
 
-    $scope.newMessage = {
-        username: username,
-        eventid: id_event,
-        userid : id_user,
-    };
-    //Get Messages from event
-    $http.get('http://147.83.7.201:3000/messages/event/'+id_event).success(function (data) {
+//Get Messages from event
+    $http.get('http://147.83.7.201:3000/messages/event/' + id_event).success(function (data) {
         $scope.messages = data;
     }).error(function (error) {
         window.alert("FAIL: " + error);
     });
 
-    $scope.Comentar = function() {
+    $scope.Comentar = function () {
         fecha();
+        var mensaje = $scope.newMessage.content;
+        console.log(mensaje);
+        $scope.newMessage = {
+            username: username,
+            eventid: id_event,
+            userid: id_user,
+            content: mensaje,
+            fecha: today
+        }
         $http.post('http://147.83.7.201:3000/messages/', $scope.newMessage)
-            .success(function(data) {
+            .success(function (data) {
                 $scope.messages.push(data);
                 $scope.newMessage = {
                     username: username,
@@ -92,7 +95,7 @@ function mainController($scope, $http) {
                 };
                 console.log(data);
             })
-            .error(function(data) {
+            .error(function (data) {
                 console.log('Error: ' + data);
                 window.alert('Error: ' + data);
             });
@@ -100,33 +103,34 @@ function mainController($scope, $http) {
 
 }
 
-function evento(){
+function evento() {
     var color = tags[event_marker.idtag].color;
 
     document.getElementById("A").innerHTML = tags[event_marker.idtag].nombre
-    $("#A").css("color",color);
+    $("#A").css("color", color);
     document.getElementById("B").innerHTML = event_marker.eventname;
 
     document.getElementById("description").innerHTML = event_marker.description;
     document.getElementById("fecha").innerHTML = event_marker.date;
-    id= marker.id;
+    id = marker.id;
 }
-function leave(){
-    var leave =new Object();
+function leave() {
+    var leave = new Object();
     leave.attendees = id_user;
     var data = JSON.stringify(leave);
     console.log(data);
     $.ajax({
-        url: "http://147.83.7.201:3000/event/leave/"+id_event,
+        url: "http://147.83.7.201:3000/event/leave/" + id_event,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
-        data : data,
+        data: data,
         contentType: 'application/json',
         success: function (data) {
         },
-        error: function () {console.log("data");
-            window.location.href="home.html"
+        error: function () {
+            console.log("data");
+            window.location.href = "home.html"
 
         }
     });
@@ -147,18 +151,17 @@ function fecha() {
     if (mm < 10) {
         mm = '0' + mm
     }
-    today = yyyy + '/' + mm + '/' + dd +" - "+ datetext ;
+    today = yyyy + '/' + mm + '/' + dd + " - " + datetext;
     console.log(today);
 }
-function geoposition(){
+function geoposition() {
     // Try HTML5 geolocation
-    if(navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(function(position) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             geolocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             addGeoMarker(geolocation);
             console.log(geolocation)
-        }, function() {
+        }, function () {
             handleNoGeolocation(true);
         });
     } else {
@@ -172,9 +175,9 @@ function marker() {
     var mapOptions = {
         zoom: 15,
         draggable: true,
-        zoomControl : true,
+        zoomControl: true,
         disableDefaultUI: true,
-        center: { lat: event_marker.place[0], lng: event_marker.place[1]}
+        center: {lat: event_marker.place[0], lng: event_marker.place[1]}
     };
 
     directionsDisplay.setMap(map);
@@ -200,7 +203,7 @@ function RouteControl(controlDiv, map) {
     controlUI.style.cursor = 'pointer';
     controlUI.style.marginBottom = '22px';
     controlUI.style.textAlign = 'center';
-    controlUI.style.marginLeft="10px"
+    controlUI.style.marginLeft = "10px"
     controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior
@@ -216,54 +219,52 @@ function RouteControl(controlDiv, map) {
 
     // Setup the click event listeners: simply set the map to
     // Chicago
-    google.maps.event.addDomListener(controlUI, 'click', function() {
-        Cookies.set('start_position',JSON.stringify(geolocation));
-        Cookies.set('end_position',JSON.stringify(position));
+    google.maps.event.addDomListener(controlUI, 'click', function () {
+        Cookies.set('start_position', JSON.stringify(geolocation));
+        Cookies.set('end_position', JSON.stringify(position));
         console.log(geolocation);
-        window.location.href='route_event.html';
+        window.location.href = 'route_event.html';
     });
 
 }
 
 function addGeoMarker(position) {
-   var icon = "img/pos_0.png";
-    var marker= new google.maps.Marker
+    var icon = "img/pos_0.png";
+    var marker = new google.maps.Marker
     ({
         icon: icon,
         position: position,
         map: map
     });
-    google.maps.event.addListener(marker, 'mouseover', function()
-    {
+    google.maps.event.addListener(marker, 'mouseover', function () {
         infowindow.setContent("Tú estas aquí!");
         infowindow.open(map, marker);
     });
-    google.maps.event.addListener(marker, 'mouseout', function() {
+    google.maps.event.addListener(marker, 'mouseout', function () {
         infowindow.close(map, marker);
     });
 
 }
 
 function addMarker(marcador) {
-    var icon = "img/pos_"+marcador.idtag+".png"
-    position = new google.maps.LatLng(marcador.place[0],marcador.place[1]);
-    geocoder.geocode({'latLng': position}, function(results, status) {
+    var icon = "img/pos_" + marcador.idtag + ".png"
+    position = new google.maps.LatLng(marcador.place[0], marcador.place[1]);
+    geocoder.geocode({'latLng': position}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             if (results[1]) {
                 marker = new google.maps.Marker({
-                    icon : icon,
+                    icon: icon,
                     position: position,
                     map: map,
                     animation: google.maps.Animation.DROP
                 });
 
-                google.maps.event.addListener(marker, 'click', function()
-                {
+                google.maps.event.addListener(marker, 'click', function () {
                     infowindow.setContent(results[1].formatted_address);
                     infowindow.open(map, marker);
                 });
-                google.maps.event.addListener(map, 'center_changed', function() {
-                    window.setTimeout(function() {
+                google.maps.event.addListener(map, 'center_changed', function () {
+                    window.setTimeout(function () {
                         map.panTo(marker.getPosition());
                     }, 1000);
                 });
