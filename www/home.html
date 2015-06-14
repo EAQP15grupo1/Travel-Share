@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" ng-app="Eventos">
 <head>
     <title>Home</title>
@@ -37,8 +38,8 @@
     <!--<link rel="stylesheet" href="css/materialize.css">-->
 
     <!--JS-->
-    <script type="text/javascript" src="js/home.js"></script>
-    <script type="text/javascript" src="js/home_dinamic.js"></script>
+    <script type="text/javascript"  src="js/home.js"></script>
+    <script type="text/javascript"  src="js/home_dinamic.js"></script>
 </head>
 
 <body ng-controller="CargarEventos" as CargarEventos>
@@ -48,8 +49,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" style="padding: 0px;width: 90px;height: 50px">
-                <img id="img_perfil" style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; "
-                     src="img/profil/logo.png">
+                <img  id="img_perfil"  style="max-width: 35px;margin-left: 27.5%;margin-top:7.5%; " src="img/profil/logo.png">
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,98 +62,92 @@
                 <li><a href="UpdateUser.html">Mi perfil</a></li>
                 <li><a href="index.html">Cerrar Sesión</a></li>
             </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
 
 
 <!--Tags Panel-->
-<div id="panel_tag">
-    <button id="1" onclick="expand(id),Filter('Deporte')" class="list-group-item list-group-item-success">Deporte
+    <div id="panel_tag">
+        <button id="1" onclick="expand(id),Filter('Deporte')" class="list-group-item list-group-item-success">Deporte
              <span class="badge">
-                 <span class="fa fa-futbol-o"></span>
+                 <span class="fa fa-futbol-o" ></span>
              </span>
-    </button>
-    <button id="2" onclick="expand(id),Filter('Musica')" class="list-group-item list-group-item-info">Música
+        </button>
+        <button id="2" onclick="expand(id),Filter('Musica')" class="list-group-item list-group-item-info">Música
             <span class="badge">
-                <span class="fa fa-music"></span>
+                <span class="fa fa-music" ></span>
             </span>
-    </button>
-    <button id="3" onclick="expand(id),Filter('Cultura')" class="list-group-item list-group-item-warning">Cultura
+        </button>
+        <button id="3" onclick="expand(id),Filter('Cultura')" class="list-group-item list-group-item-warning">Cultura
             <span class="badge">
-                <span class="fa fa-film"></span>
+                <span class="fa fa-film" ></span>
             </span>
-    </button>
-    <button id="4" onclick="expand(id),Filter('Trabajo')" class="list-group-item list-group-item-danger">Trabajo
+        </button>
+        <button id="4" onclick="expand(id),Filter('Trabajo')" class="list-group-item list-group-item-danger">Trabajo
             <span class="badge">
-                <span class="fa fa-briefcase"></span>
+                <span class="fa fa-briefcase" ></span>
             </span>
-    </button>
-    <!--TagSinFiltro-->
-    <button id="5" onclick="expand(id),Filter('Nada')" class="list-group-item">Sin Filtro</button>
-</div>
+        </button>
+        <!--TagSinFiltro-->
+        <button id="5" onclick="expand(id),Filter('Nada')" class="list-group-item">Sin Filtro</button>
+    </div>
 
 
-<div id="panel_info">
-    <button class="exit-button" onclick="exitpanel()"><i class="fa fa-times"></i></button>
-    <div class="form">
-        <img id="img_owner"
-             style="padding: 10px 10px 10px 10px;position:absolute;border-color: #004d40;max-height:100px;max-width: 100px">
+    <div id="panel_info">
+        <button class="exit-button" onclick="exitpanel()"><i class="fa fa-times"></i></button>
+        <div class="form">
+                <img id="img_owner" style="padding: 10px 10px 10px 10px;position:absolute;border-color: #004d40;max-height:100px;max-width: 100px">
+                <div class="col-sm-12">
+                <div  style="height: 100px;padding-top:5%;text-align:center">
+                    <p><span id="A"style="font:300% sans-serif"></span></p>
+                    <p style="text-align: center"><span style="font:150% sans-serif" id="B"></span></p>
+                    <hr>
+                </div>
+                </div>
 
-        <div class="col-sm-12">
-            <div style="height: 100px;padding-top:5%;text-align:center">
-                <p><span id="A" style="font:300% sans-serif"></span></p>
-
-                <p style="text-align: center"><span style="font:150% sans-serif" id="B"></span></p>
-                <hr>
-            </div>
         </div>
 
+        <div class="form "style="font-size:20px; margin-top: 140px;margin-left: 10px;margin-right: 10px">
+            <dl class="dl-horizontal">
+                <div style="font-size: 20px">
+                    <b>Descripción:</b>
+                </div>
+
+                <div class="text-center" id="description"></div>
+
+                <div style="font-size: 20px">
+                    <b>Fecha:</b>
+                </div>
+                <div class="text-center" id="fecha"></div>
+                <hr>
+            </dl>
+
+        </div>
+
+        <button type="button" id="buttonjoin" onclick="join()" class="btn btn-lg join-button">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
+        </button>
     </div>
 
-    <div class="form " style="font-size:20px; margin-top: 140px;margin-left: 10px;margin-right: 10px">
-        <dl class="dl-horizontal">
-            <div style="font-size: 20px">
-                <b>Descripción:</b>
-            </div>
-
-            <div class="text-center" id="description"></div>
-
-            <div style="font-size: 20px">
-                <b>Fecha:</b>
-            </div>
-            <div class="text-center" id="fecha"></div>
-            <hr>
-        </dl>
-
-    </div>
-
-    <button type="button" id="buttonjoin" onclick="join()" class="btn btn-lg join-button">
-        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Unirse
+    <!-- boton crear evento-->
+    <button id="new_event_button" onclick="newevent()" type="button" class="paper-button paper-floating-action-button" style="">+
+        <div class="ripple"></div>
     </button>
-</div>
 
-<!-- boton crear evento-->
-<button id="new_event_button" onclick="newevent()" type="button" class="paper-button paper-floating-action-button"
-        style="">+
-    <div class="ripple"></div>
-</button>
+    <!-- New event panel -->
+    <div id="panel_new_event">
 
-<!-- New event panel -->
-<div id="panel_new_event">
+        <button class="exit-button" onclick="exitpanel2()"><i class="fa fa-times"></i></button>
 
-    <button class="exit-button" onclick="exitpanel2()"><i class="fa fa-times"></i></button>
-
-    <div class="col-sm-12 text-center" style="padding-top: 10px">
-        <h2>Crea un nuevo evento</h2>
-        <hr>
-        <form name="myForm">
+        <div class="col-sm-12 text-center" style="padding-top: 10px">
+            <h2>Crea un nuevo evento</h2>
+            <hr>
+            <form name="myForm">
             <div class="form-group">
                 <div>
                     <select id="event_tag" onclick="color_new_event()" style="font-size: 20px;width: auto">
-                        <option value="null" disabled selected>Seleccione una etiqueta</option>
+                        <option value ="null" disabled selected>Seleccione una etiqueta</option>
                         <option value="1" style="background-color: lightgreen">Deportes</option>
                         <option value="2" style="background-color:lightskyblue">Música</option>
                         <option value="3" style="background-color:yellow">Cultura</option>
@@ -163,29 +157,27 @@
                 <br>
                 <pr></pr>
                 <div>
-                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del evento"
-                           id="new_eventname" maxlength="20">
-                    <br>
-                    <input type="text" class="form-control input-lg text-center" placeholder="Descripcion"
-                           id="new_description" maxlength="50">
-                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Nombre del evento" id="new_eventname" maxlength="20">
+                <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Descripcion" id="new_description" maxlength="50">
+                <br>
                     <label>Seleccióna hora y dia:</label> <br>
-                    <input id="date" class="dateInput text-center" disabled style="width: 50%;display: none">
+                    <input id="date" class="dateInput text-center"  disabled style="width: 50%;display: none">
                     <input id="datetimepicker" class="dateInput" style="width: 50%">
 
                 </div>
             </div>
-        </form>
+            </form>
+        </div>
+
+        <button type="button"  onclick="new_marker_post()" class="btn btn-primary btn-lg btn-block join-button" >
+            <span aria-hidden="true"></span> Crear
+        </button>
+
     </div>
 
-    <button type="button" onclick="new_marker_post()" class="btn btn-primary btn-lg btn-block join-button">
-        <span aria-hidden="true"></span> Crear
-    </button>
-
-</div>
-
-<!--Google Map-->
-<div id="map-canvas"></div>
+    <!--Google Map-->
+    <div id="map-canvas"></div>
 
 </body>
 </html>

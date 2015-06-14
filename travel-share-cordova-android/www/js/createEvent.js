@@ -18,6 +18,7 @@ $("#createBtn").click(function () {
     event.eventname = eventName;
     event.tag = eventTag;
     event.date = eventDate;
+    event.owner = window.localStorage.getItem("userID");
     var data = JSON.stringify(event);
 
     $.ajax({
