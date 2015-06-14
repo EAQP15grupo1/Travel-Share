@@ -1,9 +1,10 @@
-window.onload = onDeviceReady();
-
+window.onload = function() {
+    onDeviceReady();
+    loadAvatar();
+    window.alert("http://147.83.7.201/avatar/" + window.localStorage.getItem("userID") + ".jpg");
+}
 function loadAvatar() {
-
-    document.getElementById("myImage").src="http://147.83.7.201/avatar/"+window.localStorage.getItem("userID")+".jpg";
-
+    document.getElementById("myImage").src = "http://147.83.7.201/avatar/" + window.localStorage.getItem("userID") + ".jpg";
 }
 
 function onDeviceReady() {
@@ -33,7 +34,7 @@ function selectPicture() {
 function onSuccess(imageURI) {
     var image = document.getElementById('myImage');
     image.src = imageURI;
-    $("#selectbtn").hide();
+    //$("#selectbtn").hide();
 }
 
 function onFail(message) {
