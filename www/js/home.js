@@ -8,11 +8,18 @@ var filter =0;
 var id;
 var new_event_click= false;
 
+
 var username=Cookies.get('username');
 var token=Cookies.get('token');
 var username_id=Cookies.get('userId');
+if (token == null)
+{
+    window.location.href="index.html";
+}
 username = "123";
 username_id = "554c7d88c863dda837000002";
+
+document.getElementById("img_perfil").src = "avatar/"+username_id;
 
 
 var tags = [{
@@ -35,8 +42,8 @@ var tags = [{
     id: 3,
     color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
     color: "palevioletred"
 }];
@@ -138,7 +145,7 @@ function exitpanel2(){
 (function() {
     var app = angular.module('Eventos', []);
     app.controller('CargarEventos', ['$http', '$log', function ($http) {
-        $http.get('http://localhost:3000/events').success(function (data) {
+        $http.get('http://147.83.7.201:3000/events').success(function (data) {
             marcadores = data;
             my_position();
             filterMarkers("Nada");
@@ -284,7 +291,7 @@ function new_marker_post(){
             new_event.date = $("#date").val();
             var data = JSON.stringify(new_event);
             $.ajax({
-                    url: "http://localhost:3000/event",
+                    url: "http://147.83.7.201:3000/event",
                     type: 'POST',
                     crossDomain: true,
                     dataType: 'json',
@@ -313,7 +320,7 @@ function joinToEvent(id){
     new_attednees.attendees = username_id;
     var data = JSON.stringify(new_attednees);
     $.ajax({
-        url: "http://localhost:3000/event/join/"+id,
+        url: "http://147.83.7.201:3000/event/join/"+id,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
@@ -336,7 +343,7 @@ function join(){
     join.attendees = username_id;
     var data = JSON.stringify(join);
     $.ajax({
-        url: "http://localhost:3000/event/join/"+id,
+        url: "http://147.83.7.201:3000/event/join/"+id,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',

@@ -1,63 +1,15 @@
 // Declare app level module which depends on views, and components
+var userid;
 (function () {
 
     var obj = {};
     var box = {};
     var buffer = {};
 
-    var urlremota_login = 'http://147.83.7.201:3000/login';
-    var urlremota_createUser = 'http://147.83.7.201:3000/users';
-    var urllocal_login = 'http://147.83.7.201:3000/login';
-    var urllocal_createUser = 'http://147.83.7.201:3000/users';
-    var Windowlocationremota_login = 'home.html';
-    var Windowlocationremota_createUser = 'index.html';
-    var Windowlocationlocal_login = '/Travel-Share/www/home.html';
-    var Windowlocationlocal_createUser = '/Project EA/Travel-Share/www/index.html';
-
-    var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap', 'ngSanitize', 'flow']);
-
-    /*app.controller('FilesCtrl',function($scope) {
-     $scope.uploader={};
-     $scope.upload=function()
-     {
-     $scope.uploader.flow.upload();
-     }
-     });*/
-
-    app.config(['flowFactoryProvider', function (flowFactoryProvider) {
-        flowFactoryProvider.defaults = {
-            target: 'http://147.83.7.201:3000/user/avatar/5577efde30154da90f000003',
-            permanetErrors: [404, 500, 501],
-            maxChunkRetries: 1,
-            chunkRetryInterval: 5000,
-            simultaneousUploads: 4,
-            singleFile: true
-        };
-        flowFactoryProvider.on('catchAll', function (event) {
-            console.log('catchAll', arguments);
-        });
-    }]);
-
-    /*app.controller('imageUpload', function($scope, $timeout,$location, $http,$file)
-     {
-     $scope.media=[]
-
-     $scope.media=$file[0]
-     $http({
-
-     method:'PUT',
-     url:'http://147.83.7.201:3000/user/avatar/55645c8ebf408a2e26000007',
-     data:{image_video: $scope.media, text: "text"}
-     }).success(data)
-     {
-     console.log(data);
-     }
 
 
 
-
-
-     });*/
+    var app = angular.module('loginApp', ['ngAnimate', 'mgcrea.ngStrap', 'ngSanitize']);
 
 
     app.controller('DemoController', function ($scope, $modal, $log) {
@@ -78,13 +30,14 @@
 
     });
 
-    app.controller('signUpController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope, $window, $modal) {
+    app.controller('signUpController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
-        $scope.signUpInfo.value = false;
+        $scope.signUpInfo.isHide = false;
+        $scope.signUpInfo.isDisabled=true;
         $scope.signupUser = function () {
-            var needsArray = buffer.needs.split(",");
-            var offersArray = buffer.offers.split(",");
+            var needsArray = buffer.needs;
+            var offersArray = buffer.offers;
 
 
             var userInfo = new Object();
@@ -98,16 +51,29 @@
             userInfo.offers = offersArray;
             $log.debug(userInfo);
 
-            $scope.signUpInfo.value = !$scope.signUpInfo.value;
+            $scope.signUpInfo.isHide = !$scope.signUpInfo.isHide;
+
+            $scope.signUpInfo.isDisabled=!$scope.signUpInfo.isDisabled;
 
             var res = $http.post('http://147.83.7.201:3000/users', userInfo);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
-                    alert("Usuario ya existe");
-                    window.location.reload();
+                    //alert("Usuario ya existe");
+                    //window.location.reload();
                 }
                 else {
+
                     alert("Usuario creado");
+
+                    userid=data;
+                    $log.debug("valor del userid",userid);
+
+                    Cookies.set('userid', data);
+
+                    window.location.href="image-preview/upload.html";
+
+
+
 
 
                 }
@@ -166,4 +132,8 @@
             $window.location.href = 'backoffice.html';
         };
     }]);
+
+
+
+
 })();

@@ -56,7 +56,7 @@ function back2() {
 
 function get_id(id) {
     info();
-    var url = "http://localhost:3000/backoffice/message/"+ id;
+    var url = "http://147.83.7.201:3000/backoffice/message/"+ id;
     $.ajax({
         url: url,
         type: 'GET',
@@ -97,7 +97,7 @@ function update() {
         elementu.content = contentu;
         var data = JSON.stringify(elementu);
         console.log(elementu)
-        var url = "http://localhost:3000/backoffice/message/" + elementu._id;
+        var url = "http://147.83.7.201:3000/backoffice/message/" + elementu._id;
         $.ajax({
             url: url,
             type: 'PUT',
@@ -126,7 +126,7 @@ function update() {
 }
 
 function delete_id(id) {
-    var url = "http://localhost:3000/backoffice/message/"+id;
+    var url = "http://147.83.7.201:3000/backoffice/message/"+id;
     $.ajax({
         url: url,
         type: 'DELETE',
@@ -147,7 +147,7 @@ function get() {
     var i;
     $('#getlist').text('');
     $.ajax({
-        url: "http://localhost:3000/messages",
+        url: "http://147.83.7.201:3000/messages",
         type: 'GET',
         crossDomain: true,
         dataType: 'json',
@@ -201,7 +201,7 @@ function post() {
         var data = JSON.stringify(element);
         console.log(data);
         $.ajax({
-            url: "http://localhost:3000/messages",
+            url: "http://147.83.7.201:3000/messages",
             type: 'POST',
             crossDomain: true,
             dataType: 'json',

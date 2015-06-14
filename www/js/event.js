@@ -1,4 +1,5 @@
 angular.module('MainApp', [])
+var token=Cookies.get('token');
 var id_event;
 //id_event = "55634674f5dc43640900000d";
 id_event =Cookies.get('id_event');
@@ -8,6 +9,10 @@ id_user = Cookies.get("id_user");
 var username;
 username= Cookies.get("username");
 //username = "prueba";
+if (token == null)
+{
+    window.location.href="index.html";
+}
 
 var map;
 var event_marker;
@@ -18,6 +23,7 @@ var geocoder;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
+document.getElementById("img_perfil").src = "avatar/"+id_user;
 
 
 var tags = [{
@@ -40,8 +46,8 @@ var tags = [{
     id: 3,
     color : "yellow"
 },{
-    nombre: "Fiesta",
-    tag: "Fiesta",
+    nombre: "Trabajo",
+    tag: "Trabajo",
     id: 4,
     color: "palevioletred"
 }];
@@ -49,7 +55,7 @@ var tags = [{
 function mainController($scope, $http) {
     $scope.messages = {};
     //GET Event
-    $http.get('http://localhost:3000/event/'+id_event).success(function(data) {
+    $http.get('http://147.83.7.201:3000/event/'+id_event).success(function(data) {
         console.log(data);
         event_marker=data;
         geocoder = new google.maps.Geocoder();
@@ -68,7 +74,7 @@ function mainController($scope, $http) {
         userid : id_user,
     };
     //Get Messages from event
-    $http.get('http://localhost:3000/messages/event/'+id_event).success(function (data) {
+    $http.get('http://147.83.7.201:3000/messages/event/'+id_event).success(function (data) {
         $scope.messages = data;
     }).error(function (error) {
         window.alert("FAIL: " + error);
@@ -76,7 +82,7 @@ function mainController($scope, $http) {
 
     $scope.Comentar = function() {
         fecha();
-        $http.post('http://localhost:3000/messages/', $scope.newMessage)
+        $http.post('http://147.83.7.201:3000/messages/', $scope.newMessage)
             .success(function(data) {
                 $scope.messages.push(data);
                 $scope.newMessage = {
@@ -111,7 +117,7 @@ function leave(){
     var data = JSON.stringify(leave);
     console.log(data);
     $.ajax({
-        url: "http://localhost:3000/event/leave/"+id_event,
+        url: "http://147.83.7.201:3000/event/leave/"+id_event,
         type: 'PUT',
         crossDomain: true,
         dataType: 'json',
