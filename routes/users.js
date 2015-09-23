@@ -284,6 +284,8 @@ module.exports = function (app) {
 
                                     usuarios.push(usuario);
                                     console.log(JSON.stringify(usuarios));
+                                } else {
+                                    res.send("eres tu")
                                 }
                             }
                         }

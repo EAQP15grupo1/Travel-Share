@@ -1,6 +1,5 @@
 // Declare app level module which depends on views, and components
-var userid;
-//var isLocated=false;
+var id;
 (function () {
 
     var obj = {};
@@ -29,20 +28,24 @@ var userid;
 
     });
 
-    app.controller('signUpController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
+    app.controller('signUpController', ['$http', '$log', '$scope', function ($http, $log, $scope) {
         $scope.signUpInfo = {};
         buffer = $scope.signUpInfo;
-        $scope.signUpInfo.isHide = false;
-        $scope.signUpInfo.isDisabled=true;
+
+
+
         $scope.signupUser = function () {
+
+
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
 
             var userInfo = new Object();
             userInfo.username = buffer.username;
+            userInfo.name=buffer.name;
             userInfo.email = buffer.email;
-            userInfo.nacionalidad = buffer.nacionalidad;
+            userInfo.nation = buffer.nacionalidad;
             userInfo.password = buffer.password;
             userInfo.idiomas = buffer.idiomas;
             userInfo.description = buffer.description;
@@ -62,7 +65,7 @@ var userid;
                 }
                 else {
 
-                    alert("Usuario creado");
+                    //alert("Usuario creado");
 
                     userid=data;
                     $log.debug("valor del userid",userid);
@@ -70,9 +73,6 @@ var userid;
                     Cookies.set('userId', data);
 
                     window.location.href="image-preview/upload.html";
-
-
-
 
 
                 }
@@ -134,12 +134,12 @@ var userid;
 
 
 
-    app.controller('UpdateController', ['$http', '$log', '$scope', '$window', function ($http, $log, $scope) {
+    app.controller('UpdateController_Facebook', ['$http', '$log', '$scope','$window', function ($http, $log, $scope,$window) {
 
-        //document.getElementById("img_perfil").src = "avatar/" + id_user;
+            $scope.UpdateInfo_Facebook = {};
+            buffer = $scope.UpdateInfo_Facebook;
 
-
-            var Urlactual=window.location;
+            var Urlactual=$window.location;
 
 
             $log.debug('Url actual con parametros',Urlactual);
@@ -151,7 +151,7 @@ var userid;
             $log.debug('userData value',userData);
 
 
-            var username=userData[3].split("@");
+            var username=userData[3].split("#");
 
             $log.debug('token',userData[1]);
             $log.debug('userId',userData[2]);
@@ -166,47 +166,39 @@ var userid;
 
 
 
-           // window.location.href='UpdateUser.html';
+        $scope.updateUser_Facebook = function () {
 
 
 
-
-
-
-        signupUser = function () {
-
-            signUpInfo = {};
-
-            buffer = signUpInfo;
-            window.alert('dentro de la function singupUser');
-            //var userId='5565eb90bec2562e17000001';
             var needsArray = buffer.needs;
             var offersArray = buffer.offers;
 
 
-            var userInfo = new Object();
-            userInfo.username = buffer.username;
-            userInfo.email = buffer.email;
-            userInfo.nacionalidad = buffer.nacionalidad;
-            userInfo.password = buffer.password;
-            userInfo.idiomas = buffer.idiomas;
-            userInfo.description = buffer.description;
-            userInfo.needs = needsArray;
-            userInfo.offers = offersArray;
-            console.log(userInfo);
+            var UpdateInfo_Facebook = new Object();
 
-              var userId=Cookies.get('userId')
-            var res = $http.put('http://147.83.7.201:3000/user/'+userId, userInfo);
+            UpdateInfo_Facebook.name=buffer.name;
+            UpdateInfo_Facebook.email = buffer.email;
+            UpdateInfo_Facebook.nation = buffer.nacionalidad;
+            UpdateInfo_Facebook.idiomas = buffer.idiomas;
+            UpdateInfo_Facebook.description = buffer.description;
+            UpdateInfo_Facebook.needs = needsArray;
+            UpdateInfo_Facebook.offers = offersArray;
+
+            console.log(UpdateInfo_Facebook);
+
+            id=Cookies.get('userId');
+            console.log("userId cookie",id)
+            Cookies.set('userId',id);
+
+            var res = $http.put('http://147.83.7.201:3000/user/'+id, UpdateInfo_Facebook);
             res.success(function (data) {
                 if (data == "Usuario existe!") {
                     //alert("Usuario ya existe");
                     //window.location.reload();
                 }
-                else {
-                    alert("Usuario creado");
-                    userid=data;
-                    $log.debug("valor del userId",userid);
-                    Cookies.set('userId', data);
+                else
+                {
+                    //alert("User Updated");
                     window.location.href="image-preview/upload.html";
                 }
 
@@ -221,15 +213,60 @@ var userid;
 
 
 
+    app.controller('UpdateController', ['$http', '$log', '$scope','$window', function ($http, $log, $scope,$window) {
+
+        $scope.UpdateInfo = {};
+        buffer = $scope.UpdateInfo;
 
 
 
+        var id=Cookies.get('userId');
+
+        $scope.updateUser = function () {
 
 
 
+            var needsArray = buffer.needs;
+            var offersArray = buffer.offers;
 
 
+            var UpdateInfo = new Object();
+            //userInfo.username = buffer.username;
+            UpdateInfo.name=buffer.name;
+            UpdateInfo.email = buffer.email;
+            UpdateInfo.nation = buffer.nacionalidad;
+            //userInfo.password = buffer.password;
+            UpdateInfo.idiomas = buffer.idiomas;
+            UpdateInfo.description = buffer.description;
+            UpdateInfo.needs = needsArray;
+            UpdateInfo.offers = offersArray;
 
+            console.log(UpdateInfo);
+
+            id=Cookies.get('userId');
+            console.log("userId cookie",id)
+            Cookies.set('userId',id);
+
+            var res = $http.put('http://147.83.7.201:3000/user/'+id, UpdateInfo);
+            res.success(function (data) {
+                if (data == "Usuario existe!") {
+                    //alert("Usuario ya existe");
+                    //window.location.reload();
+                }
+                else
+                {
+                    //alert("User Updated");
+                    window.location.href="image-preview/upload.html";
+                }
+
+            });
+            res.error(function (error) {
+                alert("An error has occured");
+            });
+
+        };
+
+    }]);
 
 
 

@@ -73,7 +73,7 @@ module.exports = function (app, passport) {
                 else {
                     User.findOne({username: UnameF}, function (err, user) {
                         var token = generateToken(user);
-                        res.redirect('http://147.83.7.201/UpdateUser.html?' + token + '?' + user._id + '?' + user.username);
+                        res.redirect('http://147.83.7.201/UpdateUser_Facebook.html?' + token + '?' + user._id + '?' + user.username);
                     })
                 }
 
